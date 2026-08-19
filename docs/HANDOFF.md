@@ -32,7 +32,10 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
 7. 🟡 **INTERFACE GRÁFICA** — em andamento. Feito: `ui/contexto.h/.cpp`
    (injeção de dependência), `ui/widgets/cartaoindicador`, `ui/widgets/graficocandlestick`,
    `ui/widgets/graficolinha`, `ui/telalogin`, `ui/dialogos/dialogoativo`.
-   **Falta, nesta ordem:** (a) `telaativos`; (b) `teladashboard` + `teladetalheativo`;
+   Feito também: `ui/telaativos` (CRUD com busca, confirmação de remoção e contagem
+   de cotações) e `ui/telaimportacao` (arquivo ou pasta, relatório de erros linha a
+   linha e histórico de importações).
+   **Falta, nesta ordem:** (b) `teladashboard` + `teladetalheativo`;
    (c) `telacarteira` + `telaalertas` + `dialogos/dialogoalerta`;
    (d) `telarecomendacoes` + `telaregras` + `dialogos/dialogoregra` + `telausuarios`
    + `dialogos/dialogousuario`; (e) **por último** `janelaprincipal` (QMainWindow +
