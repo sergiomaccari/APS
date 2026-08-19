@@ -29,7 +29,7 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
 5. ✅ Serviços (`src/servicos/`) — autenticação, ativos, importação transacional,
    carteira, alertas (Observer), recomendações.
 6. ✅ `CMakeLists.txt` (núcleo + executável + testes no ctest) e CSVs em `dados/`.
-7. 🟡 **INTERFACE GRÁFICA** — em andamento. Feito: `ui/contexto.h/.cpp`
+7. ✅ **INTERFACE GRÁFICA** — concluída. Feito: `ui/contexto.h/.cpp`
    (injeção de dependência), `ui/widgets/cartaoindicador`, `ui/widgets/graficocandlestick`,
    `ui/widgets/graficolinha`, `ui/telalogin`, `ui/dialogos/dialogoativo`.
    Feito também: `ui/telaativos` (CRUD com busca, confirmação de remoção e contagem
@@ -49,11 +49,13 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
    `dialogos/dialogoregra` (ativar/desativar e reparametrizar as estratégias, com o
    critério descrito pela própria regra) e `ui/telausuarios` +
    `dialogos/dialogousuario` (CRUD com senha opcional na edição).
-   **Falta:** (e) **por último** `janelaprincipal` (QMainWindow +
-   QStackedWidget + navegação lateral por papel, implementando `ObservadorAlerta`)
-   e `src/main.cpp` (abre banco em QStandardPaths::AppDataLocation, roda migrações,
-   aplica QSS em `aplicarEstilo`, mostra TelaLogin e então JanelaPrincipal).
-   Sem arquivos .ui — UI em código. Telas recebem `Contexto&`.
+   Feito também: `ui/janelaprincipal` (navegação lateral filtrada por papel,
+   QStackedWidget, recarga da tela ao entrar, navegação cruzada entre telas, menu
+   Sistema/Ajuda, barra de status e implementação de `ObservadorAlerta` com
+   avaliação automática dos alertas na abertura) e `src/main.cpp` (estilo QSS
+   completo, banco em QStandardPaths::AppDataLocation, migrações, laço de sessão
+   que permite "Trocar usuário" para demonstrar os dois perfis).
+   **A interface está completa: 9 telas + 4 diálogos + 3 widgets.**
 7b. ⬜ **Ajuste da demonstração:** com os fundamentos atuais nenhum ativo fecha em
    **Venda** consolidada (ITUB4 dá −0,80 no cruzamento, mas DY 6,3 e P/L 9,1 puxam a
    média para Neutro). Acrescentar em `002_dados_semente.sql` um ativo caro e sem
