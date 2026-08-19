@@ -1,13 +1,17 @@
 #include "ui/widgets/graficocandlestick.h"
 
-#include <QtCharts/QBarCategoryAxis>
 #include <QtCharts/QCandlestickSeries>
 #include <QtCharts/QCandlestickSet>
 #include <QtCharts/QChart>
+#include <QtCharts/QDateTimeAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
 
+#include <QtCharts/QAbstractAxis>
 #include <QtCharts/QAbstractSeries>
+#include <QtCharts/QLegend>
+
+#include <QDateTime>
 
 #include <QBrush>
 #include <QPainter>
@@ -17,6 +21,34 @@ namespace analisador
 {
 
 const int GraficoCandlestick::MAXIMO_ROTULOS_EIXO = 12;
+
+void aplicarTemaEscuro(QChart* grafico, QAbstractAxis* eixoHorizontal, QAbstractAxis* eixoVertical)
+{
+    // O grafico e um QGraphicsView: a folha de estilo da aplicacao nao alcanca o
+    // seu interior, por isso as cores sao definidas aqui, na mao. O tema pronto
+    // do Qt (ChartThemeDark) nao serve porque sobrescreveria o verde e o vermelho
+    // dos candles.
+    grafico->setBackgroundBrush(QBrush(QColor(QStringLiteral("#232a36"))));
+    grafico->setBackgroundPen(Qt::NoPen);
+    grafico->setPlotAreaBackgroundBrush(QBrush(QColor(QStringLiteral("#1f2530"))));
+    grafico->setPlotAreaBackgroundVisible(true);
+    grafico->setTitleBrush(QBrush(QColor(QStringLiteral("#ecf0f1"))));
+    grafico->legend()->setLabelColor(QColor(QStringLiteral("#cfd8e3")));
+
+    const QColor corTexto(QStringLiteral("#9fb0c0"));
+    const QColor corGrade(QStringLiteral("#2f3743"));
+    for (QAbstractAxis* eixo : {eixoHorizontal, eixoVertical})
+    {
+        if (eixo == nullptr)
+        {
+            continue;
+        }
+        eixo->setLabelsColor(corTexto);
+        eixo->setTitleBrush(QBrush(corTexto));
+        eixo->setGridLineColor(corGrade);
+        eixo->setLinePenColor(corGrade);
+    }
+}
 
 void GraficoCandlestick::trocarGrafico(QChart* novo)
 {
@@ -69,29 +101,40 @@ void GraficoCandlestick::definirDados(const QString& titulo,
     candles->setDecreasingColor(QColor(QStringLiteral("#e74c3c")));
     candles->setBodyOutlineVisible(false);
 
-    QStringList categorias;
-    categorias.reserve(cotacoes.size());
     double minimoEixo = cotacoes.first().minima();
     double maximoEixo = cotacoes.first().maxima();
 
     for (const Cotacao& cotacao : cotacoes)
     {
-        const QString rotulo = cotacao.data().toString(QStringLiteral("dd/MM"));
-        categorias.append(rotulo);
-
-        auto* candle = new QCandlestickSet(cotacao.abertura(),
+        // O timestamp posiciona o candle no eixo de tempo; sem ele todos os
+        // candles ficariam no instante zero e o grafico sairia vazio.
+        const qint64 momento = cotacao.data().startOfDay().toMSecsSinceEpoch();
+        candles->append(new QCandlestickSet(cotacao.abertura(),
                                            cotacao.maxima(),
                                            cotacao.minima(),
-                                           cotacao.fechamento());
-        candles->append(candle);
+                                           cotacao.fechamento(),
+                                           momento));
 
         minimoEixo = qMin(minimoEixo, cotacao.minima());
         maximoEixo = qMax(maximoEixo, cotacao.maxima());
     }
     grafico->addSeries(candles);
 
-    // Series de medias moveis: alinhadas pelo fim, ja que terminam na mesma data
-    // da ultima cotacao. Os primeiros pontos da serie de candles ficam sem media.
+    // Eixo de tempo (e nao de categorias): o Qt escolhe sozinho quantas datas
+    // cabem, o que mantem o eixo legivel em qualquer quantidade de pregoes, e as
+    // medias moveis podem compartilhar o mesmo eixo usando as datas reais.
+    auto* eixoDatas = new QDateTimeAxis();
+    eixoDatas->setFormat(QStringLiteral("dd/MM/yy"));
+    eixoDatas->setTickCount(qBound(3, static_cast<int>(cotacoes.size()) / 12 + 2, MAXIMO_ROTULOS_EIXO));
+    eixoDatas->setLabelsAngle(-30);
+    // Meio dia de folga em cada ponta para o primeiro e o ultimo candle nao
+    // ficarem cortados pela borda da area de plotagem.
+    const QDateTime primeiro = cotacoes.first().data().startOfDay().addSecs(-12 * 3600);
+    const QDateTime ultimo = cotacoes.last().data().startOfDay().addSecs(12 * 3600);
+    eixoDatas->setRange(primeiro, ultimo);
+    grafico->addAxis(eixoDatas, Qt::AlignBottom);
+    candles->attachAxis(eixoDatas);
+
     const auto adicionarMedia = [&](const QVector<Indicador>& media, const QColor& cor) {
         if (media.isEmpty())
         {
@@ -103,32 +146,22 @@ void GraficoCandlestick::definirDados(const QString& titulo,
         caneta.setWidth(2);
         linha->setPen(caneta);
 
-        const int deslocamento = cotacoes.size() - media.size();
-        for (int i = 0; i < media.size(); ++i)
+        for (const Indicador& ponto : media)
         {
-            const int posicao = deslocamento + i;
-            if (posicao < 0 || posicao >= cotacoes.size())
+            if (!ponto.valido())
             {
                 continue;
             }
-            linha->append(static_cast<qreal>(posicao), media.at(i).valor);
-            minimoEixo = qMin(minimoEixo, media.at(i).valor);
-            maximoEixo = qMax(maximoEixo, media.at(i).valor);
+            linha->append(static_cast<qreal>(ponto.data.startOfDay().toMSecsSinceEpoch()), ponto.valor);
+            minimoEixo = qMin(minimoEixo, ponto.valor);
+            maximoEixo = qMax(maximoEixo, ponto.valor);
         }
         grafico->addSeries(linha);
+        linha->attachAxis(eixoDatas);
     };
 
     adicionarMedia(mediaCurta, QColor(QStringLiteral("#f1c40f")));
     adicionarMedia(mediaLonga, QColor(QStringLiteral("#3498db")));
-
-    auto* eixoDatas = new QBarCategoryAxis();
-    eixoDatas->append(categorias);
-    // Com muitas datas, mostrar todos os rotulos deixa o eixo ilegivel.
-    if (categorias.size() > MAXIMO_ROTULOS_EIXO)
-    {
-        eixoDatas->setLabelsAngle(-60);
-    }
-    grafico->addAxis(eixoDatas, Qt::AlignBottom);
 
     const double folga = qMax(0.5, (maximoEixo - minimoEixo) * 0.08);
     auto* eixoValores = new QValueAxis();
@@ -137,28 +170,15 @@ void GraficoCandlestick::definirDados(const QString& titulo,
     eixoValores->setTitleText(QString::fromUtf8("Preço"));
     grafico->addAxis(eixoValores, Qt::AlignLeft);
 
-    candles->attachAxis(eixoDatas);
-    candles->attachAxis(eixoValores);
-
-    // As linhas de media usam eixo numerico no lugar das categorias, por isso
-    // recebem um eixo horizontal proprio, invisivel e alinhado com os candles.
+    // Todas as series compartilham o eixo de precos.
     for (QAbstractSeries* serie : grafico->series())
     {
-        auto* linha = qobject_cast<QLineSeries*>(serie);
-        if (linha == nullptr)
-        {
-            continue;
-        }
-        auto* eixoIndice = new QValueAxis();
-        eixoIndice->setRange(0.0, static_cast<double>(categorias.size() - 1));
-        eixoIndice->setVisible(false);
-        grafico->addAxis(eixoIndice, Qt::AlignTop);
-        linha->attachAxis(eixoIndice);
-        linha->attachAxis(eixoValores);
+        serie->attachAxis(eixoValores);
     }
 
     grafico->legend()->setVisible(true);
     grafico->legend()->setAlignment(Qt::AlignBottom);
+    aplicarTemaEscuro(grafico, eixoDatas, eixoValores);
     trocarGrafico(grafico);
 }
 

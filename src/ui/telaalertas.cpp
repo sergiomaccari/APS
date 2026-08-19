@@ -63,6 +63,7 @@ TelaAlertas::TelaAlertas(Contexto& contexto, QWidget* pai)
     m_tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_tabela->setAlternatingRowColors(true);
     m_tabela->verticalHeader()->setVisible(false);
+    m_tabela->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     m_tabela->horizontalHeader()->setStretchLastSection(true);
 
     m_rotuloMensagem = new QLabel(QString(), this);

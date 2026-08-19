@@ -11,6 +11,16 @@
 
 // Declaracao explicita: QChartView usa QChart apenas por ponteiro.
 QT_FORWARD_DECLARE_CLASS(QChart)
+QT_FORWARD_DECLARE_CLASS(QAbstractAxis)
+
+namespace analisador
+{
+
+// Pinta o grafico com as cores do tema escuro da aplicacao (a folha de estilo
+// nao alcanca o interior de um QGraphicsView). Compartilhada pelos graficos.
+void aplicarTemaEscuro(QChart* grafico, QAbstractAxis* eixoHorizontal, QAbstractAxis* eixoVertical);
+
+}
 
 namespace analisador
 {

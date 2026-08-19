@@ -86,6 +86,7 @@ TelaImportacao::TelaImportacao(Contexto& contexto, QWidget* pai)
     m_tabelaHistorico->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_tabelaHistorico->setAlternatingRowColors(true);
     m_tabelaHistorico->verticalHeader()->setVisible(false);
+    m_tabelaHistorico->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     m_tabelaHistorico->horizontalHeader()->setStretchLastSection(true);
 
     auto* grupoHistorico = new QGroupBox(QString::fromUtf8("Histórico de importações"), this);

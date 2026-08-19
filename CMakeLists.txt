@@ -73,6 +73,21 @@ target_link_libraries(analisador-b3 PRIVATE
     Qt6::Charts)
 
 # -----------------------------------------------------------------------------
+# Utilitario de captura de telas: renderiza cada tela e salva PNG (funciona com
+# a plataforma "offscreen"). Serve de verificacao visual automatizada e gera as
+# figuras do capitulo "Prototipo" do documento da disciplina.
+# -----------------------------------------------------------------------------
+add_executable(capturar-telas
+    "${CMAKE_CURRENT_SOURCE_DIR}/ferramentas/capturar-telas.cpp"
+    ${FONTES_INTERFACE}
+    ${ARQUIVO_RECURSOS})
+
+target_link_libraries(capturar-telas PRIVATE
+    analisador-nucleo
+    Qt6::Widgets
+    Qt6::Charts)
+
+# -----------------------------------------------------------------------------
 # Testes (Qt Test). Cada arquivo em testes/ vira um alvo e um caso do ctest.
 # -----------------------------------------------------------------------------
 enable_testing()

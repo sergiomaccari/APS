@@ -31,7 +31,8 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | Testes automatizados (61 casos) | ✅ | Qt Test + ctest |
 | Documentação de uso (README + guia de build) | ✅ | roteiro de demonstração em 7 passos |
 | Revisão adversarial (2 rodadas) | ✅ | ver `LOG.md` de 19/08 |
-| **Compilar, testar e rodar** | ⬜ | **depende de instalar a toolchain Qt** |
+| **Compilar, testar e rodar** | ✅ | Qt 6.4.2: build limpo, 67 testes passando, sistema executando com dados reais |
+| Capturas das telas (figuras do documento) | ✅ | alvo `capturar-telas` gera 12 PNGs em `capturas/` |
 
 ## Notas
 

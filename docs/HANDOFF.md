@@ -99,11 +99,18 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
     1 ponto, série vazia e todas as cotações iguais (a folga mínima de 0,5 mantém o
     eixo válido).
 
-    **IMPLEMENTAÇÃO COMPLETA.** O que resta depende de máquina com toolchain:
-    1. `sudo apt install build-essential cmake qt6-base-dev qt6-charts-dev libqt6sql6-sqlite`
-    2. `cmake -S . -B build && cmake --build build -j` → corrigir o que o compilador apontar
-    3. `ctest --test-dir build --output-on-failure` (61 casos)
-    4. Executar o roteiro de 7 passos do README e conferir as telas.
+11. ✅ **COMPILADO, TESTADO E EXECUTANDO** (19/08). Qt 6.4.2 instalado; build sem erros
+    na primeira tentativa; 67 casos de teste passando; app cria o banco, aplica as 3
+    migrações, importa 650 cotações e gera as 5 recomendações previstas (incluindo o
+    cenário de Venda). Figuras das telas em `capturas/`, geradas pelo alvo
+    `capturar-telas` (`QT_QPA_PLATFORM=offscreen ./build/capturar-telas capturas`).
+    Defeitos que só a execução revelou já corrigidos — ver `LOG.md` de 19/08
+    (gráfico vazio por falta de timestamp nos candles, estilo preso no main.cpp,
+    interior do gráfico sem tema, eixo de datas ilegível, cabeçalhos cortados).
+
+**Próximos passos (fora da implementação):** socializar tema/stack com Arthur, Leo e
+Thales; definir o cliente da entrevista; e então escrever o documento do 1º bimestre
+no modelo do professor, aproveitando as figuras de `capturas/`.
 
 **Restrições da execução:** não compilar (sem gcc/cmake/Qt e sem sudo);
 convenções em `CLAUDE.md`; commit/push na branch a cada item concluído;

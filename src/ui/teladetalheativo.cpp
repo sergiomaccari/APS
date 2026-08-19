@@ -62,6 +62,7 @@ TelaDetalheAtivo::TelaDetalheAtivo(Contexto& contexto, QWidget* pai)
     m_tabelaCotacoes->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_tabelaCotacoes->setAlternatingRowColors(true);
     m_tabelaCotacoes->verticalHeader()->setVisible(false);
+    m_tabelaCotacoes->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     m_tabelaCotacoes->horizontalHeader()->setStretchLastSection(true);
 
     m_pareceres = new QTextBrowser(this);

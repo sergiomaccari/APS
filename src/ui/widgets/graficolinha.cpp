@@ -1,6 +1,9 @@
 #include "ui/widgets/graficolinha.h"
 
+#include "ui/widgets/graficocandlestick.h"
+
 #include <QtCharts/QChart>
+#include <QtCharts/QLegend>
 #include <QtCharts/QDateTimeAxis>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
@@ -31,6 +34,7 @@ GraficoLinha::GraficoLinha(QWidget* pai)
     auto* grafico = new QChart();
     grafico->setTitle(QString::fromUtf8("Sem dados"));
     grafico->legend()->setVisible(false);
+    aplicarTemaEscuro(grafico, nullptr, nullptr);
     trocarGrafico(grafico);
 }
 
@@ -85,6 +89,7 @@ void GraficoLinha::definirDados(const QString& titulo, const QVector<Cotacao>& c
     serie->attachAxis(eixoValores);
 
     grafico->legend()->setVisible(false);
+    aplicarTemaEscuro(grafico, eixoDatas, eixoValores);
     trocarGrafico(grafico);
 }
 
