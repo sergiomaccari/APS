@@ -15,7 +15,7 @@
 #include "dominio/carteira.h"
 #include "dominio/posicao.h"
 
-class QSqlQuery;
+QT_FORWARD_DECLARE_CLASS(QSqlQuery)
 
 namespace analisador
 {

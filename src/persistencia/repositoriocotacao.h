@@ -14,7 +14,7 @@
 
 #include "dominio/cotacao.h"
 
-class QSqlQuery;
+QT_FORWARD_DECLARE_CLASS(QSqlQuery)
 
 namespace analisador
 {

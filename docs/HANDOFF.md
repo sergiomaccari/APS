@@ -17,6 +17,50 @@
 4. Senha dos 14 PDFs de aula (`APS/Aulas/` — criptografados) ou cópias sem proteção.
 5. Preferências de custo: subagentes pesados em **Opus**; avisar Sergio ao cruzar 50% do orçamento de tokens da sessão.
 
+## Próximo item da implementação (loop autônomo — atualizar a cada iteração)
+
+**Fase atual: EXECUÇÃO do sistema na branch `teste-de-desenvolvimento`.**
+Ordem dos itens; marque ✅ ao concluir e commitar.
+
+1. ✅ Domínio (`src/dominio/`) — 12 classes, com máquinas de estado.
+2. ✅ Schema SQL (9 tabelas) + semente idempotente + `recursos.qrc`.
+3. ✅ Análise (`src/analise/`) — indicadores, Strategy com 4 regras, MotorAnalise.
+4. ✅ Persistência (`src/persistencia/`) — BancoDeDados + 8 repositórios.
+5. ✅ Serviços (`src/servicos/`) — autenticação, ativos, importação transacional,
+   carteira, alertas (Observer), recomendações.
+6. ✅ `CMakeLists.txt` (núcleo + executável + testes no ctest) e CSVs em `dados/`.
+7. 🟡 **INTERFACE GRÁFICA** — em andamento. Feito: `ui/contexto.h/.cpp`
+   (injeção de dependência), `ui/widgets/cartaoindicador`, `ui/widgets/graficocandlestick`,
+   `ui/widgets/graficolinha`, `ui/telalogin`, `ui/dialogos/dialogoativo`.
+   **Falta, nesta ordem:** (a) `telaativos`; (b) `teladashboard` + `teladetalheativo`;
+   (c) `telacarteira` + `telaalertas` + `dialogos/dialogoalerta`;
+   (d) `telarecomendacoes` + `telaregras` + `dialogos/dialogoregra` + `telausuarios`
+   + `dialogos/dialogousuario`; (e) **por último** `janelaprincipal` (QMainWindow +
+   QStackedWidget + navegação lateral por papel, implementando `ObservadorAlerta`)
+   e `src/main.cpp` (abre banco em QStandardPaths::AppDataLocation, roda migrações,
+   aplica QSS em `aplicarEstilo`, mostra TelaLogin e então JanelaPrincipal).
+   Sem arquivos .ui — UI em código. Telas recebem `Contexto&`.
+7b. ⬜ **Ajuste da demonstração:** com os fundamentos atuais nenhum ativo fecha em
+   **Venda** consolidada (ITUB4 dá −0,80 no cruzamento, mas DY 6,3 e P/L 9,1 puxam a
+   média para Neutro). Acrescentar em `002_dados_semente.sql` um ativo caro e sem
+   proventos (ex.: MGLU3, Comércio, P/L 28, DY 0,4) e gerar `dados/MGLU3.csv` em
+   queda consistente — assim a apresentação mostra Compra, Neutro e Venda.
+8. ⬜ Testes restantes: `testes/testeregras.cpp` (se ausente) e
+   `testes/testeimportacao.cpp` (banco temporário via QTemporaryDir, prova da
+   transação: CSV inválido não grava nada; reimportação é idempotente).
+9. ⬜ `README.md` (visão geral, arquitetura, como compilar, credenciais de demo) e
+   `docs/processos/como-compilar-e-rodar.md` (passo a passo Ubuntu/WSL).
+10. ⬜ Revisão adversarial de coerência entre camadas (assinaturas, includes,
+    nomes de colunas vs. schema, casos de borda de demonstração) — **crítica**,
+    já que não é possível compilar nesta máquina.
+
+**Restrições da execução:** não compilar (sem gcc/cmake/Qt e sem sudo);
+convenções em `CLAUDE.md`; commit/push na branch a cada item concluído;
+nunca versionar `inicio.txt`, `APS/` nem material do `claude-automacoes`.
+
+**Para compilar quando houver toolchain:**
+`sudo apt install build-essential cmake qt6-base-dev qt6-charts-dev libqt6sql6-sqlite`
+
 ## Fatos a não re-descobrir
 
 - Régua da disciplina extraída dos modelos do professor (PDFs de `APS/Documentos

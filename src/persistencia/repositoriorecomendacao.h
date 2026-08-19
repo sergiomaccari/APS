@@ -13,7 +13,7 @@
 
 #include "dominio/recomendacao.h"
 
-class QSqlQuery;
+QT_FORWARD_DECLARE_CLASS(QSqlQuery)
 
 namespace analisador
 {
