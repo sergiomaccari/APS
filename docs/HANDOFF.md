@@ -73,7 +73,7 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
    de projeto, tecnologias, build, credenciais e **roteiro de demonstração em 7 passos**)
    e `docs/processos/como-compilar-e-rodar.md` (pré-requisitos por sistema, build,
    testes, reset do banco, tabela de 7 problemas prováveis e checklist de apresentação).
-10. 🟡 **Revisão adversarial** — 1ª rodada feita. Os 4 agentes Opus (domínio+análise,
+10. ✅ **Revisão adversarial** — concluída (1ª rodada por agentes + 2ª rodada focada em Qt Charts). Os 4 agentes Opus (domínio+análise,
     persistência+SQL, serviços, interface+build) corrigiram 18 arquivos antes de
     morrerem no limite de sessão, **sem entregar relatório**. Correções mais relevantes:
     divisor de scripts SQL reescrito caractere a caractere (comentário `--` no fim da
@@ -90,9 +90,20 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
     arquivos; chaves balanceadas; `Q_OBJECT` em todas as classes com signals/slots;
     ponteiros de membro em `connect` válidos; e simulação do mapeamento
     navegação→página nos dois perfis (com e sem o item separador).
-    **Falta:** 2ª rodada de revisão com foco em Qt Charts (eixos/séries, série de 1
-    ponto) e em uma leitura linha a linha dos 4 arquivos maiores — pode ser feita
-    depois de instalar a toolchain, quando o compilador apontar o que restar.
+    **2ª rodada (Qt Charts), feita:** `QChartView::setChart` **não destrói** o gráfico
+    anterior (só libera a posse) — cada redesenho do painel vazava um `QChart` inteiro;
+    criado `trocarGrafico()` nos dois widgets para apagar o antigo. Também acrescentado
+    `#include <QPainter>` (usado por `QPainter::Antialiasing`, antes vindo só por
+    dependência transitiva), `<QtCharts/QAbstractSeries>` e
+    `QT_FORWARD_DECLARE_CLASS(QChart)` nos headers. Casos de borda conferidos: série de
+    1 ponto, série vazia e todas as cotações iguais (a folga mínima de 0,5 mantém o
+    eixo válido).
+
+    **IMPLEMENTAÇÃO COMPLETA.** O que resta depende de máquina com toolchain:
+    1. `sudo apt install build-essential cmake qt6-base-dev qt6-charts-dev libqt6sql6-sqlite`
+    2. `cmake -S . -B build && cmake --build build -j` → corrigir o que o compilador apontar
+    3. `ctest --test-dir build --output-on-failure` (61 casos)
+    4. Executar o roteiro de 7 passos do README e conferir as telas.
 
 **Restrições da execução:** não compilar (sem gcc/cmake/Qt e sem sudo);
 convenções em `CLAUDE.md`; commit/push na branch a cada item concluído;

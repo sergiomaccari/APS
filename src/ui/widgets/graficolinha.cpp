@@ -6,10 +6,21 @@
 #include <QtCharts/QValueAxis>
 
 #include <QDateTime>
+#include <QPainter>
 #include <QPen>
 
 namespace analisador
 {
+
+void GraficoLinha::trocarGrafico(QChart* novo)
+{
+    QChart* anterior = chart();
+    setChart(novo);
+    if (anterior != nullptr && anterior != novo)
+    {
+        delete anterior;
+    }
+}
 
 GraficoLinha::GraficoLinha(QWidget* pai)
     : QChartView(pai)
@@ -20,7 +31,7 @@ GraficoLinha::GraficoLinha(QWidget* pai)
     auto* grafico = new QChart();
     grafico->setTitle(QString::fromUtf8("Sem dados"));
     grafico->legend()->setVisible(false);
-    setChart(grafico);
+    trocarGrafico(grafico);
 }
 
 void GraficoLinha::mostrarMensagem(const QString& mensagem)
@@ -28,7 +39,7 @@ void GraficoLinha::mostrarMensagem(const QString& mensagem)
     auto* grafico = new QChart();
     grafico->setTitle(mensagem);
     grafico->legend()->setVisible(false);
-    setChart(grafico);
+    trocarGrafico(grafico);
 }
 
 void GraficoLinha::definirDados(const QString& titulo, const QVector<Cotacao>& cotacoes)
@@ -74,7 +85,7 @@ void GraficoLinha::definirDados(const QString& titulo, const QVector<Cotacao>& c
     serie->attachAxis(eixoValores);
 
     grafico->legend()->setVisible(false);
-    setChart(grafico);
+    trocarGrafico(grafico);
 }
 
 }

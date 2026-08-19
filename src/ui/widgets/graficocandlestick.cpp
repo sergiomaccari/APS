@@ -7,13 +7,26 @@
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
 
+#include <QtCharts/QAbstractSeries>
+
 #include <QBrush>
+#include <QPainter>
 #include <QPen>
 
 namespace analisador
 {
 
 const int GraficoCandlestick::MAXIMO_ROTULOS_EIXO = 12;
+
+void GraficoCandlestick::trocarGrafico(QChart* novo)
+{
+    QChart* anterior = chart();
+    setChart(novo);
+    if (anterior != nullptr && anterior != novo)
+    {
+        delete anterior;
+    }
+}
 
 GraficoCandlestick::GraficoCandlestick(QWidget* pai)
     : QChartView(pai)
@@ -24,7 +37,7 @@ GraficoCandlestick::GraficoCandlestick(QWidget* pai)
     auto* grafico = new QChart();
     grafico->setTitle(QString::fromUtf8("Selecione um ativo"));
     grafico->legend()->setVisible(false);
-    setChart(grafico);
+    trocarGrafico(grafico);
 }
 
 void GraficoCandlestick::mostrarMensagem(const QString& mensagem)
@@ -32,8 +45,7 @@ void GraficoCandlestick::mostrarMensagem(const QString& mensagem)
     auto* grafico = new QChart();
     grafico->setTitle(mensagem);
     grafico->legend()->setVisible(false);
-    // setChart devolve a propriedade do grafico anterior ao QChartView, que o apaga.
-    setChart(grafico);
+    trocarGrafico(grafico);
 }
 
 void GraficoCandlestick::definirDados(const QString& titulo,
@@ -147,7 +159,7 @@ void GraficoCandlestick::definirDados(const QString& titulo,
 
     grafico->legend()->setVisible(true);
     grafico->legend()->setAlignment(Qt::AlignBottom);
-    setChart(grafico);
+    trocarGrafico(grafico);
 }
 
 }

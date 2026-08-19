@@ -8,6 +8,9 @@
 
 #include "dominio/cotacao.h"
 
+// Declaracao explicita: QChartView usa QChart apenas por ponteiro.
+QT_FORWARD_DECLARE_CLASS(QChart)
+
 namespace analisador
 {
 
@@ -20,6 +23,11 @@ public:
 
     void definirDados(const QString& titulo, const QVector<Cotacao>& cotacoes);
     void mostrarMensagem(const QString& mensagem);
+
+private:
+    // Ver GraficoCandlestick::trocarGrafico: setChart nao destroi o grafico
+    // anterior, apenas libera a posse dele.
+    void trocarGrafico(QChart* novo);
 };
 
 }
