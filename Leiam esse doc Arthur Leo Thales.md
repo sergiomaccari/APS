@@ -105,6 +105,41 @@ de última hora para preencher o documento.
   definir o cliente da entrevista e dividir responsabilidades. Depois começa a
   fase de execução.
 
+## 4b. O sistema já está rodando (19/08/2026)
+
+Além do planejamento, o **sistema do 2º bimestre já está implementado e funcionando** —
+bem antes do prazo. Isso nos dá folga para focar no documento escrito, que é onde está
+a maior parte da nota.
+
+- **Compilou de primeira** e os **67 testes automatizados passam** (`ctest`).
+- Stack: C++20 + Qt 6 (Widgets e Charts) + SQLite, compilado com CMake.
+- **9 tabelas** no banco (o professor exige no mínimo 5), criadas por migrações
+  versionadas que rodam sozinhas na primeira execução.
+- **9 telas** funcionando: login, painel de análise (gráfico de candles com médias
+  móveis), detalhe do ativo, recomendações, carteira, alertas, e as telas de
+  administração (ativos, importação de cotações, regras, usuários).
+- Padrões de projeto aplicados de verdade (bom material para o documento):
+  **Strategy** nas 4 regras de análise, **Observer** nos alertas, **Repository** na
+  persistência, **Singleton** na conexão e **herança/polimorfismo** em
+  `Ativo → Ação / Fundo Imobiliário`.
+- Importa **650 cotações** dos CSVs de demonstração em uma operação, de forma
+  transacional: um arquivo com erro é rejeitado por inteiro (temos um CSV inválido
+  de propósito para demonstrar isso na apresentação).
+- As recomendações saem justificadas com os números que as geraram, e a demonstração
+  cobre os três resultados: **PETR4 Compra**, **ITUB4 Neutro** e **MGLU3 Venda**.
+
+**As figuras das telas já estão prontas** na pasta `capturas/` do repositório — foram
+geradas automaticamente por um utilitário (`capturar-telas`), então dá para regerá-las
+a qualquer momento depois de mexer na interface. Elas servem direto no capítulo
+"Protótipo" dos dois documentos.
+
+Para rodar na sua máquina: instale `build-essential cmake qt6-base-dev qt6-charts-dev
+libqt6sql6-sqlite`, depois `cmake -S . -B build && cmake --build build -j` e
+`./build/analisador-b3`. O passo a passo completo (com solução de problemas) está em
+`docs/processos/como-compilar-e-rodar.md`, e o roteiro de demonstração em 7 passos
+está no `README.md`. Credenciais: `admin@analisadorb3.com` / `admin123` e
+`investidor@analisadorb3.com` / `investidor123`.
+
 ## 5. O que a equipe precisa decidir/fazer
 
 1. **Aprovar (ou vetar) o tema** — ler o ADR 0001 (`docs/decisoes/`) com a análise
