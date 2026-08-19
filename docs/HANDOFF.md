@@ -44,8 +44,12 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
    resumo consolidado, compra e venda via `dialogos/dialogooperacao` — arquivo extra,
    fora do contrato original, que atende as duas operações), `ui/telaalertas`
    (cadastro, arquivamento, remoção e "Avaliar agora") e `dialogos/dialogoalerta`.
-   **Falta, nesta ordem:** (d) `telarecomendacoes` + `telaregras` + `dialogos/dialogoregra` + `telausuarios`
-   + `dialogos/dialogousuario`; (e) **por último** `janelaprincipal` (QMainWindow +
+   Feito também: `ui/telarecomendacoes` (lista das vigentes com cor por tipo e
+   reavaliação regra por regra no painel lateral), `ui/telaregras` +
+   `dialogos/dialogoregra` (ativar/desativar e reparametrizar as estratégias, com o
+   critério descrito pela própria regra) e `ui/telausuarios` +
+   `dialogos/dialogousuario` (CRUD com senha opcional na edição).
+   **Falta:** (e) **por último** `janelaprincipal` (QMainWindow +
    QStackedWidget + navegação lateral por papel, implementando `ObservadorAlerta`)
    e `src/main.cpp` (abre banco em QStandardPaths::AppDataLocation, roda migrações,
    aplica QSS em `aplicarEstilo`, mostra TelaLogin e então JanelaPrincipal).
