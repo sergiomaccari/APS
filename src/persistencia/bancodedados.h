@@ -57,7 +57,8 @@ private:
     bool garantirTabelaDeVersao();
 
     // Le um script do recurso qrc e o divide em comandos executaveis,
-    // descartando comentarios de linha e comandos vazios.
+    // descartando comentarios ("--" ate o fim da linha) e comandos vazios.
+    // O ponto-e-virgula so separa comandos quando esta fora de literal de texto.
     static QStringList comandosDoRecurso(const QString& caminhoRecurso, QString* erro);
 
     // Executa um script inteiro; espera-se estar dentro de uma transacao.

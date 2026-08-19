@@ -8,11 +8,18 @@
 // estrutural nao deixa NENHUMA cotacao gravada, e reimportar o mesmo arquivo
 // valido nao duplica dados (idempotencia).
 
+#include <optional>
+
+#include <QDate>
 #include <QDir>
 #include <QFile>
+#include <QObject>
+#include <QString>
+#include <QStringList>
 #include <QTemporaryDir>
 #include <QTest>
 #include <QTextStream>
+#include <QVector>
 
 #include "dominio/acao.h"
 #include "dominio/importacao.h"
@@ -153,7 +160,7 @@ void TesteImportacao::arquivoValidoImportaTodasAsLinhas()
 
     // A serie deve voltar ordenada por data crescente.
     const QVector<Cotacao> historico = repositorioCotacao.listarPorAtivo(m_ativoId);
-    QCOMPARE(historico.size(), 10);
+    QCOMPARE(static_cast<int>(historico.size()), 10);
     QCOMPARE(historico.first().data(), QDate(2026, 1, 5));
     QCOMPARE(historico.last().data(), QDate(2026, 1, 14));
     QVERIFY(historico.first().data() < historico.last().data());
@@ -203,7 +210,7 @@ void TesteImportacao::arquivoInvalidoNaoGravaNada()
     const ResultadoImportacao resultado = servico.importarCsv(invalido, m_ativoId);
 
     QVERIFY2(!resultado.sucesso, "Arquivo com erro estrutural deve ser rejeitado.");
-    QCOMPARE(resultado.erros.size(), 3);
+    QCOMPARE(static_cast<int>(resultado.erros.size()), 3);
     QCOMPARE(resultado.linhasInseridas, 0);
 
     // Prova da transacao: o total permanece exatamente o de antes da tentativa.
@@ -277,7 +284,7 @@ void TesteImportacao::historicoRegistraEstadoDaImportacao()
     QVERIFY(!servico.importarCsv(invalido, m_ativoId).sucesso);
 
     const QVector<Importacao> historico = servico.historico(10);
-    QCOMPARE(historico.size(), 2);
+    QCOMPARE(static_cast<int>(historico.size()), 2);
 
     // O mais recente vem primeiro: a importacao rejeitada.
     QCOMPARE(historico.first().estado(), EstadoImportacao::Rejeitada);
@@ -324,7 +331,7 @@ void TesteImportacao::importarDiretorioCasaTickerComAtivo()
     QCOMPARE(repositorioCotacao.contarPorAtivo(m_ativoId), 4);
     QCOMPARE(repositorioCotacao.contarPorAtivo(outroId), 4);
     QCOMPARE(resultado.linhasInseridas, 8);
-    QCOMPARE(resultado.erros.size(), 1);
+    QCOMPARE(static_cast<int>(resultado.erros.size()), 1);
     QVERIFY(resultado.erros.first().contains(QStringLiteral("SEMCADASTRO")));
 }
 

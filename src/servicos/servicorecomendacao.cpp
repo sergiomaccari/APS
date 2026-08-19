@@ -41,7 +41,13 @@ std::optional<Recomendacao> ServicoRecomendacao::gerarParaAtivo(qint64 ativoId)
     Recomendacao recomendacao = motor->analisar(*ativo, historico);
 
     // A recomendacao anterior deixa de valer no momento em que uma nova e publicada.
-    m_repositorioRecomendacao.invalidarVigentesDoAtivo(ativoId);
+    // Se a invalidacao falhar, publicar agora deixaria duas vigentes para o mesmo
+    // ativo - estado proibido pela maquina de estados do dominio.
+    if (m_repositorioRecomendacao.invalidarVigentesDoAtivo(ativoId) < 0)
+    {
+        m_ultimoErro = m_repositorioRecomendacao.ultimoErro();
+        return std::nullopt;
+    }
 
     if (!recomendacao.marcarComoVigente())
     {

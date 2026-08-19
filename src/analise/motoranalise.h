@@ -11,6 +11,7 @@
 #include <memory>
 #include <vector>
 
+#include <QStringList>
 #include <QVector>
 
 #include "analise/regraanalise.h"

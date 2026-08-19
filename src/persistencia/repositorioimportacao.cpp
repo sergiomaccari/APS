@@ -58,6 +58,7 @@ bool RepositorioImportacao::salvar(Importacao& importacao)
         return false;
     }
     importacao.definirId(consulta.lastInsertId().toLongLong());
+    m_ultimoErro.clear();
     return true;
 }
 
@@ -85,6 +86,7 @@ bool RepositorioImportacao::atualizar(const Importacao& importacao)
         m_ultimoErro = consulta.lastError().text();
         return false;
     }
+    m_ultimoErro.clear();
     return true;
 }
 
@@ -98,6 +100,7 @@ std::optional<Importacao> RepositorioImportacao::buscarPorId(qint64 id) const
         m_ultimoErro = consulta.lastError().text();
         return std::nullopt;
     }
+    m_ultimoErro.clear();
     if (!consulta.next())
     {
         return std::nullopt;
@@ -124,6 +127,7 @@ QVector<Importacao> RepositorioImportacao::listarRecentes(int limite) const
         m_ultimoErro = consulta.lastError().text();
         return lista;
     }
+    m_ultimoErro.clear();
     while (consulta.next())
     {
         lista.append(montarImportacao(consulta));
@@ -143,6 +147,7 @@ QVector<Importacao> RepositorioImportacao::listarPorAtivo(qint64 ativoId) const
         m_ultimoErro = consulta.lastError().text();
         return lista;
     }
+    m_ultimoErro.clear();
     while (consulta.next())
     {
         lista.append(montarImportacao(consulta));

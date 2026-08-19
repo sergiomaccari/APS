@@ -133,7 +133,7 @@ private slots:
 void TesteRegras::cruzamentoGeraCompraNoCruzamentoParaCima()
 {
     // Com medias de 3 e 5 dias: MMS3 vem abaixo da MMS5 e a ultrapassa no
-    // ultimo pregao (14,6667 -> 17,6667 contra 15,2 -> 16,4).
+    // ultimo pregao (MMS3 15,00 -> 17,6667 contra MMS5 15,20 -> 16,40).
     RegraCruzamentoMedias regra;
     regra.configurar(3.0, 5.0);
     QCOMPARE(regra.periodoCurto(), 3);

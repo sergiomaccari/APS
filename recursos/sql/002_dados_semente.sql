@@ -1,8 +1,10 @@
 -- =============================================================================
 -- Analisador B3 - dados de semente (demonstracao)
 --
--- Idempotente: todos os comandos usam INSERT OR IGNORE, apoiados nos indices
--- UNIQUE do esquema inicial. Pode ser executado a cada abertura do sistema.
+-- Idempotente: os comandos usam INSERT OR IGNORE apoiado nos indices UNIQUE do
+-- esquema inicial (usuario.email, ativo.ticker, regra_configurada.nome_regra,
+-- posicao(carteira_id, ativo_id)) e, na carteira, um NOT EXISTS explicito.
+-- Pode ser executado a cada abertura do sistema.
 --
 -- Senhas: SHA-256 de (sal + senha), com sal fixo "aps-b3-2026", exatamente como
 -- em ServicoAutenticacao::gerarHash().
@@ -44,10 +46,16 @@ VALUES
     ('Preco sobre Lucro',           1, 8,   20);   -- P/L atrativo / P/L elevado
 
 -- Carteira de exemplo do investidor de demonstracao.
+-- A tabela carteira nao tem indice UNIQUE por (usuario_id, nome); por isso a
+-- idempotencia aqui vem do NOT EXISTS, e nao do OR IGNORE.
 INSERT OR IGNORE INTO carteira (usuario_id, nome, criada_em)
 SELECT u.id, 'Carteira Principal', '2026-03-02'
 FROM usuario u
-WHERE u.email = 'investidor@analisadorb3.com';
+WHERE u.email = 'investidor@analisadorb3.com'
+  AND NOT EXISTS (SELECT 1
+                  FROM carteira existente
+                  WHERE existente.usuario_id = u.id
+                    AND existente.nome = 'Carteira Principal');
 
 INSERT OR IGNORE INTO posicao (carteira_id, ativo_id, quantidade, preco_medio, comprada_em)
 SELECT c.id, a.id, 200, 36.90, '2026-03-05'

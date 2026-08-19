@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QSet>
+#include <QStringConverter>
 #include <QTextStream>
 
 #include "persistencia/bancodedados.h"
@@ -249,17 +250,28 @@ ResultadoImportacao ServicoImportacao::importarCsv(const QString& caminho, qint6
         m_ultimoErro = banco.ultimoErro();
         resultado.erros.append(m_ultimoErro);
         registro.rejeitar(m_ultimoErro);
+        registro.definirLinhasLidas(resultado.linhasLidas);
         m_repositorioImportacao.salvar(registro);
         return resultado;
     }
 
     const int inseridas = m_repositorioCotacao.inserirEmLote(cotacoes);
-    if (inseridas < 0)
+
+    // Dupla verificacao proposital: o repositorio devolve -1 quando alguma insercao
+    // falha e tambem preenche ultimoErro() (que ele limpa em caso de sucesso).
+    // Checar os dois sinais evita que um erro de banco passe por importacao valida.
+    const QString erroDoLote = m_repositorioCotacao.ultimoErro();
+    if (inseridas < 0 || !erroDoLote.isEmpty())
     {
         banco.desfazer();
-        m_ultimoErro = m_repositorioCotacao.ultimoErro();
+        m_ultimoErro = erroDoLote.isEmpty()
+            ? QString::fromUtf8("Falha ao gravar as cotações do arquivo.")
+            : erroDoLote;
         resultado.erros.append(m_ultimoErro);
+        resultado.linhasInseridas = 0;
+        resultado.linhasIgnoradas = 0;
         registro.rejeitar(m_ultimoErro);
+        registro.definirLinhasLidas(resultado.linhasLidas);
         m_repositorioImportacao.salvar(registro);
         return resultado;
     }
@@ -269,6 +281,8 @@ ResultadoImportacao ServicoImportacao::importarCsv(const QString& caminho, qint6
     resultado.sucesso = true;
 
     registro.concluir(resultado.linhasLidas, resultado.linhasInseridas);
+    // A coluna mensagem_erro e NOT NULL: string vazia, porem nao nula.
+    registro.definirMensagemErro(QString::fromUtf8(""));
     if (!m_repositorioImportacao.salvar(registro))
     {
         banco.desfazer();
@@ -282,8 +296,12 @@ ResultadoImportacao ServicoImportacao::importarCsv(const QString& caminho, qint6
 
     if (!banco.confirmar())
     {
+        // Commit recusado deixa a transacao aberta: desfazer antes de sair.
         m_ultimoErro = banco.ultimoErro();
+        banco.desfazer();
         resultado.sucesso = false;
+        resultado.linhasInseridas = 0;
+        resultado.linhasIgnoradas = 0;
         resultado.erros.append(m_ultimoErro);
     }
     return resultado;

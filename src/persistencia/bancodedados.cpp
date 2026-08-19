@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QTextStream>
 #include <QVariant>
+#include <QVector>
 
 namespace analisador
 {
@@ -146,30 +147,72 @@ QStringList BancoDeDados::comandosDoRecurso(const QString& caminhoRecurso, QStri
 
     QTextStream fluxo(&arquivo);
     fluxo.setEncoding(QStringConverter::Utf8);
-
-    QString conteudo;
-    while (!fluxo.atEnd())
-    {
-        const QString linha = fluxo.readLine();
-        const QString semEspacos = linha.trimmed();
-        // Descarta comentarios de linha e linhas vazias antes de juntar o script.
-        if (semEspacos.isEmpty() || semEspacos.startsWith(QStringLiteral("--")))
-        {
-            continue;
-        }
-        conteudo.append(linha);
-        conteudo.append(QLatin1Char('\n'));
-    }
+    const QString conteudo = fluxo.readAll();
     arquivo.close();
 
-    const QStringList partes = conteudo.split(QLatin1Char(';'), Qt::SkipEmptyParts);
-    for (const QString& parte : partes)
+    // A varredura e feita caractere a caractere (e nao linha a linha) por dois
+    // motivos: um comentario "--" no fim de uma linha de comando nao pode ser
+    // colado no comando seguinte, e um ponto-e-virgula dentro de um literal de
+    // texto nao pode dividir o script no meio de um comando.
+    QString comando;
+    bool dentroDeTexto = false;
+    QChar delimitador;
+
+    for (int i = 0; i < conteudo.size(); ++i)
     {
-        const QString comando = parte.trimmed();
-        if (!comando.isEmpty())
+        const QChar atual = conteudo.at(i);
+        const QChar proximo = (i + 1 < conteudo.size()) ? conteudo.at(i + 1) : QChar();
+
+        if (dentroDeTexto)
         {
-            comandos.append(comando);
+            comando.append(atual);
+            if (atual == delimitador)
+            {
+                // Aspa dobrada ('') reabre o literal na proxima volta do laco,
+                // que e exatamente o comportamento esperado pelo SQLite.
+                dentroDeTexto = false;
+            }
+            continue;
         }
+
+        if (atual == QLatin1Char('\'') || atual == QLatin1Char('"'))
+        {
+            dentroDeTexto = true;
+            delimitador = atual;
+            comando.append(atual);
+            continue;
+        }
+
+        if (atual == QLatin1Char('-') && proximo == QLatin1Char('-'))
+        {
+            // Comentario de linha: descarta tudo ate a quebra de linha.
+            while (i < conteudo.size() && conteudo.at(i) != QLatin1Char('\n'))
+            {
+                ++i;
+            }
+            comando.append(QLatin1Char('\n'));
+            continue;
+        }
+
+        if (atual == QLatin1Char(';'))
+        {
+            const QString pronto = comando.trimmed();
+            if (!pronto.isEmpty())
+            {
+                comandos.append(pronto);
+            }
+            comando.clear();
+            continue;
+        }
+
+        comando.append(atual);
+    }
+
+    // Ultimo comando do arquivo, quando o script nao termina em ponto-e-virgula.
+    const QString restante = comando.trimmed();
+    if (!restante.isEmpty())
+    {
+        comandos.append(restante);
     }
     return comandos;
 }
@@ -263,6 +306,11 @@ bool BancoDeDados::executarMigracoes()
         }
         if (!confirmar())
         {
+            // Commit falhou: a transacao continua aberta no SQLite e travaria a
+            // proxima migracao. Desfaz preservando a mensagem original do erro.
+            const QString erroConfirmacao = m_ultimoErro;
+            desfazer();
+            m_ultimoErro = erroConfirmacao;
             return false;
         }
     }

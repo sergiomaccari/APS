@@ -218,7 +218,9 @@ void TelaDashboard::redesenhar()
         m_cartaoFechamento->limpar();
     }
 
-    const int diasVariacao = dias > 0 ? dias : qMax(1, historico.size() - 1);
+    // size() e qsizetype: sem a conversao explicita, qMin/qMax nao deduzem o tipo.
+    const int totalCotacoes = static_cast<int>(historico.size());
+    const int diasVariacao = dias > 0 ? dias : qMax(1, totalCotacoes - 1);
     const std::optional<double> variacao = CalculadoraIndicadores::variacaoPercentual(historico, diasVariacao);
     if (variacao.has_value())
     {
@@ -255,7 +257,7 @@ void TelaDashboard::redesenhar()
     }
 
     const std::optional<double> volatilidade =
-        CalculadoraIndicadores::volatilidadeAnualizada(historico, qMin(60, historico.size()));
+        CalculadoraIndicadores::volatilidadeAnualizada(historico, qMin(60, totalCotacoes));
     if (volatilidade.has_value())
     {
         m_cartaoVolatilidade->definirValor(

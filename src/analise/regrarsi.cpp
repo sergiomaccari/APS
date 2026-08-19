@@ -2,6 +2,7 @@
 
 #include <QDate>
 #include <QLocale>
+#include <QtGlobal>
 
 #include "analise/calculadoraindicadores.h"
 

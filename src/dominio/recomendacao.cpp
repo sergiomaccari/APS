@@ -1,6 +1,7 @@
 #include "dominio/recomendacao.h"
 
 #include <QLocale>
+#include <QtGlobal>
 
 namespace analisador
 {
@@ -86,7 +87,7 @@ Recomendacao::Recomendacao(qint64 id,
     , m_justificativa(justificativa)
     , m_regraAplicada(regraAplicada)
     , m_geradaEm(geradaEm)
-    , m_pontuacao(pontuacao)
+    , m_pontuacao(qBound(-1.0, pontuacao, 1.0))
 {
 }
 

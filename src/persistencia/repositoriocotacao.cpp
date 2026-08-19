@@ -75,7 +75,7 @@ int RepositorioCotacao::inserirEmLote(const QVector<Cotacao>& cotacoes)
             "VALUES (:ativo_id, :data, :abertura, :maxima, :minima, :fechamento, :volume)")))
     {
         m_ultimoErro = consulta.lastError().text();
-        return 0;
+        return -1;
     }
 
     int inseridas = 0;
@@ -91,8 +91,10 @@ int RepositorioCotacao::inserirEmLote(const QVector<Cotacao>& cotacoes)
 
         if (!consulta.exec())
         {
+            // Falha no meio do lote: devolve -1 para quem chama desfazer a
+            // transacao inteira (a importacao e tudo-ou-nada).
             m_ultimoErro = consulta.lastError().text();
-            return inseridas;
+            return -1;
         }
         if (consulta.numRowsAffected() > 0)
         {

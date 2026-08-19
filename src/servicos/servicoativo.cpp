@@ -39,9 +39,13 @@ bool ServicoAtivo::salvar(Ativo& ativo)
     if (m_repositorio.tickerEmUso(ativo.ticker(), ativo.id()))
     {
         m_ultimoErro = QString::fromUtf8("Já existe um ativo cadastrado com o ticker %1.")
-                           .arg(ativo.ticker());
+                           .arg(ativo.ticker().trimmed().toUpper());
         return false;
     }
+
+    // O banco guarda o ticker em caixa alta; normalizar aqui mantem o objeto em
+    // memoria igual a linha gravada (a tela reexibe o ativo sem recarregar).
+    ativo.definirTicker(ativo.ticker().trimmed().toUpper());
 
     const bool ok = ativo.id() == 0 ? m_repositorio.salvar(ativo) : m_repositorio.atualizar(ativo);
     if (!ok)

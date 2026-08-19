@@ -2,7 +2,8 @@
 
 #include <cmath>
 
-#include <QStringLiteral>
+#include <QString>
+#include <QtGlobal>
 
 namespace analisador
 {
@@ -132,7 +133,14 @@ std::optional<double> CalculadoraIndicadores::variacaoPercentual(const QVector<C
         return std::nullopt;
     }
 
-    const int indiceInicial = qMax(0, historico.size() - 1 - dias);
+    // size() devolve qsizetype (nao int): o recuo e calculado nesse tipo e
+    // limitado ao inicio da serie quando "dias" excede o historico disponivel.
+    qsizetype indiceInicial = historico.size() - 1 - dias;
+    if (indiceInicial < 0)
+    {
+        indiceInicial = 0;
+    }
+
     const double precoInicial = historico.at(indiceInicial).fechamento();
     const double precoFinal = historico.last().fechamento();
     if (qFuzzyIsNull(precoInicial))

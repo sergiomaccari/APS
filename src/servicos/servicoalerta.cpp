@@ -39,7 +39,10 @@ void ServicoAlerta::removerObservador(ObservadorAlerta* observador)
 
 void ServicoAlerta::notificar(const Alerta& alerta, const Ativo& ativo, double valorObservado)
 {
-    for (ObservadorAlerta* observador : m_observadores)
+    // Percorre uma copia: um observador pode se remover (ou registrar outro) ao ser
+    // notificado, e alterar o vetor durante o laco invalidaria o iterador.
+    const std::vector<ObservadorAlerta*> destinatarios = m_observadores;
+    for (ObservadorAlerta* observador : destinatarios)
     {
         if (observador != nullptr)
         {

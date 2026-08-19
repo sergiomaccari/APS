@@ -73,9 +73,26 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
    de projeto, tecnologias, build, credenciais e **roteiro de demonstração em 7 passos**)
    e `docs/processos/como-compilar-e-rodar.md` (pré-requisitos por sistema, build,
    testes, reset do banco, tabela de 7 problemas prováveis e checklist de apresentação).
-10. ⬜ Revisão adversarial de coerência entre camadas (assinaturas, includes,
-    nomes de colunas vs. schema, casos de borda de demonstração) — **crítica**,
-    já que não é possível compilar nesta máquina.
+10. 🟡 **Revisão adversarial** — 1ª rodada feita. Os 4 agentes Opus (domínio+análise,
+    persistência+SQL, serviços, interface+build) corrigiram 18 arquivos antes de
+    morrerem no limite de sessão, **sem entregar relatório**. Correções mais relevantes:
+    divisor de scripts SQL reescrito caractere a caractere (comentário `--` no fim da
+    linha grudava no comando seguinte e quebraria a migração); idempotência da carteira
+    na semente via `NOT EXISTS` (não havia UNIQUE em (usuario_id, nome));
+    `qsizetype` × `int` em `qMin/qMax` e `QCOMPARE` (erro de compilação no Qt 6);
+    `inserirEmLote` devolvendo −1 (contrato que o serviço já esperava); `desfazer()`
+    nos caminhos de commit recusado; cópia do vetor de observadores antes de notificar;
+    normalização de ticker/e-mail; includes faltando (`<QtGlobal>`, `<QStringList>`,
+    `<QString>`, `<QVector>`, `<QStringConverter>`).
+    **Verificações automáticas executadas depois (todas passaram):** toda chamada
+    UI→serviços e serviços→repositórios existe nos headers; todo método declarado tem
+    definição (erro de link); `#pragma once` e `namespace analisador` em todos os
+    arquivos; chaves balanceadas; `Q_OBJECT` em todas as classes com signals/slots;
+    ponteiros de membro em `connect` válidos; e simulação do mapeamento
+    navegação→página nos dois perfis (com e sem o item separador).
+    **Falta:** 2ª rodada de revisão com foco em Qt Charts (eixos/séries, série de 1
+    ponto) e em uma leitura linha a linha dos 4 arquivos maiores — pode ser feita
+    depois de instalar a toolchain, quando o compilador apontar o que restar.
 
 **Restrições da execução:** não compilar (sem gcc/cmake/Qt e sem sudo);
 convenções em `CLAUDE.md`; commit/push na branch a cada item concluído;

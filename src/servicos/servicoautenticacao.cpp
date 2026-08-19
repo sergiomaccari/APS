@@ -105,6 +105,12 @@ bool ServicoAutenticacao::cadastrarUsuario(const QString& nome,
 bool ServicoAutenticacao::atualizarUsuario(const Usuario& usuario)
 {
     m_ultimoErro.clear();
+    // Mesma normalizacao do cadastro: o e-mail e a chave natural do login e nao
+    // pode ser gravado com espacos nas pontas nem com caixa diferente.
+    Usuario normalizado = usuario;
+    normalizado.definirNome(usuario.nome().trimmed());
+    normalizado.definirEmail(usuario.email().trimmed().toLower());
+
     if (usuario.id() <= 0)
     {
         m_ultimoErro = QString::fromUtf8("Usuário sem identificador não pode ser atualizado.");
@@ -121,7 +127,7 @@ bool ServicoAutenticacao::atualizarUsuario(const Usuario& usuario)
         return false;
     }
 
-    const std::optional<Usuario> mesmoEmail = m_repositorio.buscarPorEmail(usuario.email().trimmed().toLower());
+    const std::optional<Usuario> mesmoEmail = m_repositorio.buscarPorEmail(normalizado.email());
     if (mesmoEmail.has_value() && mesmoEmail.value().id() != usuario.id())
     {
         m_ultimoErro = QString::fromUtf8("O e-mail %1 já pertence a outro usuário.").arg(usuario.email());
@@ -137,7 +143,7 @@ bool ServicoAutenticacao::atualizarUsuario(const Usuario& usuario)
         return false;
     }
 
-    if (!m_repositorio.atualizar(usuario))
+    if (!m_repositorio.atualizar(normalizado))
     {
         m_ultimoErro = m_repositorio.ultimoErro();
         return false;

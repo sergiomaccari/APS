@@ -28,7 +28,8 @@ public:
     bool salvar(Cotacao& cotacao);
 
     // Insere varias cotacoes com INSERT OR IGNORE e devolve quantas foram de
-    // fato gravadas (as duplicadas sao silenciosamente ignoradas).
+    // fato gravadas (as duplicadas sao silenciosamente ignoradas);
+    // devolve -1 quando alguma insercao falha.
     // A transacao NAO e aberta aqui: quem chama controla a atomicidade.
     int inserirEmLote(const QVector<Cotacao>& cotacoes);
 
