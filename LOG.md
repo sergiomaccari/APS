@@ -22,4 +22,5 @@
 
 ## 2026-08-18 (commit inicial)
 - Planejamento do 1º bimestre incorporado ao doc da equipe (`Leiam esse doc Arthur Leo Thales.md`, seção 6) — cronograma resumido, papéis e regras de ouro.
-- Primeiro commit/push do repositório (a pedido do Sergio): estrutura do projeto, docs vivos, análises, specs/ADRs/planos. Fora do versionamento: `inicio.txt` (privado), material da Driva e `APS/` (PDFs da disciplina/veteranos — repo é público).
+- Primeiro commit/push do repositório (a pedido do Sergio): estrutura do projeto, docs vivos, análises, specs/ADRs/planos (commit `9ff2c3c`). Fora do versionamento: `inicio.txt` (privado), material da Driva e `APS/` (PDFs da disciplina/veteranos — repo é público).
+- Plano do 2º bimestre criado (`docs/planos/0002-plano-2o-bimestre.md`) a pedido do Sergio — duas trilhas paralelas (documento × sistema em 3 sprints Scrum), cronograma reverso de 17/11 e 24/11, janela de reavaliação do 1º bim até 27/10. Detalhamento fino (quantidade exata de diagramas) fica condicionado à lista final de UCs/classes do 1º bim.

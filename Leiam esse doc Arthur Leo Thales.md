@@ -138,6 +138,23 @@ Entregar cedo também antecipa nossa ordem de apresentação (regra do professor
 | 13/10 | **Entrega** | Documento enviado |
 | 20/10 | **Apresentação** | Testes do Protótipo (telas funcionais) |
 
+### E o 2º bimestre? (resumo — plano completo em `docs/planos/0002-plano-2o-bimestre.md`)
+
+⚠️ Regra dura: **a parte escrita do 2º bim só é corrigida se o sistema for
+apresentado funcionando em 24/11** — e não há reavaliação. Por isso o plano roda
+em **duas trilhas paralelas**: o documento (comunicação, DER, estados, atividades —
+derivam da modelagem de setembro, não do código) e o sistema (3 sprints Scrum).
+
+| Período | Trilha A — Documento | Trilha B — Sistema |
+|---|---|---|
+| 14–27/10 | Feedback do professor + reavaliação do 1º bim (até 27/10) | — |
+| até 26/10 | Diagramas de Comunicação + DER/schema SQL | Sprint 1 (20/10–02/11): banco, login, CRUD ativos, importação CSV |
+| até 02/11 | Diagramas de Estados (incl. ciclo de vida de domínio) | idem |
+| até 09/11 | Diagramas de Atividades | Sprint 2: gráficos, indicadores, carteira, alertas, recomendações |
+| até 16/11 | Prints do protótipo + revisão final | Sprint 3: exceções, dados de demo, teste em máquina limpa |
+| **17/11** | **Entrega do documento** | Ensaio geral UC por UC |
+| **24/11** | — | **Testes de Validação (sistema rodando)** |
+
 **O que cada um precisa saber já:**
 - A divisão exata de tarefas sai no kickoff (o Histórico de Modificações do
   documento exige autores por etapa — como no exemplo MUTEQ).

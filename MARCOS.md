@@ -15,8 +15,8 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | 2b | Leitura das 14 aulas (desbloqueadas com a senha) e síntese das convenções do professor | não necessário | `docs/analises/aulas-*.md` regravados com conteúdo real | ✅ | 2026-08-18 |
 | 3 | Trabalho 1º bimestre — Plano do Projeto (parte escrita, 8,0 pts) | [`docs/planos/0001-plano-1o-bimestre.md`](docs/planos/0001-plano-1o-bimestre.md) | Documento no modelo do professor completo, revisado, entregue até 13/10/2026 | ⬜ | 2026-08-18 |
 | 4 | Protótipo de telas (2,0 pts) | idem | Telas gráficas funcionais cobrindo os casos de uso, apresentadas em 20/10/2026 | ⬜ | 2026-08-18 |
-| 5 | Trabalho 2º bimestre — Projeto (parte escrita, 8,0 pts) | a criar | Documento completo (comunicação, DER, estados, atividades, protótipo) entregue até 17/11/2026 | ⬜ | 2026-08-18 |
-| 6 | Sistema funcionando + Testes de Validação (2,0 pts) | a criar | Requisitos atendidos pelos casos de uso e diagramas de sequência demonstrados em 24/11/2026 | ⬜ | 2026-08-18 |
+| 5 | Trabalho 2º bimestre — Projeto (parte escrita, 8,0 pts) | [`docs/planos/0002-plano-2o-bimestre.md`](docs/planos/0002-plano-2o-bimestre.md) | Documento completo (comunicação, DER, estados, atividades, protótipo) entregue até 17/11/2026 | ⬜ | 2026-08-18 |
+| 6 | Sistema funcionando + Testes de Validação (2,0 pts) | [`docs/planos/0002-plano-2o-bimestre.md`](docs/planos/0002-plano-2o-bimestre.md) | Requisitos atendidos pelos casos de uso e diagramas de sequência demonstrados em 24/11/2026 | ⬜ | 2026-08-18 |
 
 ## Notas
 
