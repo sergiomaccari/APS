@@ -46,9 +46,12 @@ file(GLOB_RECURSE FONTES_NUCLEO CONFIGURE_DEPENDS
     "${CMAKE_CURRENT_SOURCE_DIR}/src/persistencia/*.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/servicos/*.cpp")
 
-add_library(analisador-nucleo STATIC
-    ${FONTES_NUCLEO}
-    "${CMAKE_CURRENT_SOURCE_DIR}/recursos/recursos.qrc")
+# O .qrc NAO entra na biblioteca estatica: o registro do recurso depende de um
+# inicializador estatico que o linker descarta em bibliotecas. Por isso o
+# recurso e compilado em cada alvo executavel (aplicacao e testes).
+set(ARQUIVO_RECURSOS "${CMAKE_CURRENT_SOURCE_DIR}/recursos/recursos.qrc")
+
+add_library(analisador-nucleo STATIC ${FONTES_NUCLEO})
 
 target_include_directories(analisador-nucleo PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 target_link_libraries(analisador-nucleo PUBLIC Qt6::Core Qt6::Sql)
@@ -61,7 +64,8 @@ file(GLOB_RECURSE FONTES_INTERFACE CONFIGURE_DEPENDS
 
 add_executable(analisador-b3
     "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp"
-    ${FONTES_INTERFACE})
+    ${FONTES_INTERFACE}
+    ${ARQUIVO_RECURSOS})
 
 target_link_libraries(analisador-b3 PRIVATE
     analisador-nucleo
@@ -78,7 +82,7 @@ file(GLOB ARQUIVOS_DE_TESTE CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/teste
 foreach(ARQUIVO_TESTE ${ARQUIVOS_DE_TESTE})
     get_filename_component(NOME_TESTE ${ARQUIVO_TESTE} NAME_WE)
     string(REPLACE "teste" "teste-" ALVO_TESTE ${NOME_TESTE})
-    add_executable(${ALVO_TESTE} ${ARQUIVO_TESTE})
+    add_executable(${ALVO_TESTE} ${ARQUIVO_TESTE} ${ARQUIVO_RECURSOS})
     target_link_libraries(${ALVO_TESTE} PRIVATE analisador-nucleo Qt6::Test)
     add_test(NAME ${ALVO_TESTE} COMMAND ${ALVO_TESTE})
 endforeach()

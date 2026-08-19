@@ -429,3 +429,4 @@ void TesteIndicadores::historicoVazioNaoQuebraNenhumMetodo()
 }
 
 QTEST_APPLESS_MAIN(analisador::TesteIndicadores)
+#include "testeindicadores.moc"

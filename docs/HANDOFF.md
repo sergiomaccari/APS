@@ -56,14 +56,19 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
    completo, banco em QStandardPaths::AppDataLocation, migrações, laço de sessão
    que permite "Trocar usuário" para demonstrar os dois perfis).
    **A interface está completa: 9 telas + 4 diálogos + 3 widgets.**
-7b. ⬜ **Ajuste da demonstração:** com os fundamentos atuais nenhum ativo fecha em
+7b. ✅ **Ajuste da demonstração:** resolvido pela migração
+   `recursos/sql/003_ativo_demonstracao.sql` (MGLU3, P/L 28, DY 0,4%) + `dados/MGLU3.csv`
+   calibrado (MMS9 9,82 < MMS21 10,16, RSI 36,6 na faixa neutra) → parecer −0,367 = **Venda**.
+   Contexto original: com os fundamentos atuais nenhum ativo fecha em
    **Venda** consolidada (ITUB4 dá −0,80 no cruzamento, mas DY 6,3 e P/L 9,1 puxam a
    média para Neutro). Acrescentar em `002_dados_semente.sql` um ativo caro e sem
    proventos (ex.: MGLU3, Comércio, P/L 28, DY 0,4) e gerar `dados/MGLU3.csv` em
    queda consistente — assim a apresentação mostra Compra, Neutro e Venda.
-8. ⬜ Testes restantes: `testes/testeregras.cpp` (se ausente) e
-   `testes/testeimportacao.cpp` (banco temporário via QTemporaryDir, prova da
-   transação: CSV inválido não grava nada; reimportação é idempotente).
+8. ✅ Testes completos: `testeindicadores.cpp` (27 casos), `testeregras.cpp` (26 casos) e
+   `testeimportacao.cpp` (8 casos de integração com banco SQLite temporário, migrações
+   reais e prova da atomicidade). Também corrigido no CMake: o `.qrc` passou a ser
+   compilado em cada alvo executável (em biblioteca estática o registro do recurso é
+   descartado pelo linker) e padronizado o `#include "<arquivo>.moc"` nos três testes.
 9. ⬜ `README.md` (visão geral, arquitetura, como compilar, credenciais de demo) e
    `docs/processos/como-compilar-e-rodar.md` (passo a passo Ubuntu/WSL).
 10. ⬜ Revisão adversarial de coerência entre camadas (assinaturas, includes,

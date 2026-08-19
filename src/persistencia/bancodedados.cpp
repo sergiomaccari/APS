@@ -240,7 +240,9 @@ bool BancoDeDados::executarMigracoes()
 
     const QVector<Migracao> migracoes = {
         {1, QStringLiteral(":/sql/001_esquema_inicial.sql"), QStringLiteral("Esquema inicial")},
-        {2, QStringLiteral(":/sql/002_dados_semente.sql"), QStringLiteral("Dados de semente")}
+        {2, QStringLiteral(":/sql/002_dados_semente.sql"), QStringLiteral("Dados de semente")},
+        {3, QStringLiteral(":/sql/003_ativo_demonstracao.sql"),
+         QStringLiteral("Ativo de demonstracao para cenario de venda")}
     };
 
     const int versaoAtual = versaoAplicada();

@@ -557,3 +557,4 @@ void TesteRegras::motorAnalisaSerieTecnicaComoCompra()
 }
 
 QTEST_APPLESS_MAIN(analisador::TesteRegras)
+#include "testeregras.moc"
