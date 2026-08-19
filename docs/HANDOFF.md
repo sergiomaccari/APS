@@ -40,8 +40,11 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
    recomendação vigente com justificativa, botão "Analisar agora") e
    `ui/teladetalheativo` (fundamentos, gráfico de linha, tabela das 60 últimas
    cotações e pareceres regra por regra).
-   **Falta, nesta ordem:** (c) `telacarteira` + `telaalertas` + `dialogos/dialogoalerta`;
-   (d) `telarecomendacoes` + `telaregras` + `dialogos/dialogoregra` + `telausuarios`
+   Feito também: `ui/telacarteira` (posições com preço médio/atual, lucro colorido,
+   resumo consolidado, compra e venda via `dialogos/dialogooperacao` — arquivo extra,
+   fora do contrato original, que atende as duas operações), `ui/telaalertas`
+   (cadastro, arquivamento, remoção e "Avaliar agora") e `dialogos/dialogoalerta`.
+   **Falta, nesta ordem:** (d) `telarecomendacoes` + `telaregras` + `dialogos/dialogoregra` + `telausuarios`
    + `dialogos/dialogousuario`; (e) **por último** `janelaprincipal` (QMainWindow +
    QStackedWidget + navegação lateral por papel, implementando `ObservadorAlerta`)
    e `src/main.cpp` (abre banco em QStandardPaths::AppDataLocation, roda migrações,
