@@ -69,8 +69,10 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
    reais e prova da atomicidade). Também corrigido no CMake: o `.qrc` passou a ser
    compilado em cada alvo executável (em biblioteca estática o registro do recurso é
    descartado pelo linker) e padronizado o `#include "<arquivo>.moc"` nos três testes.
-9. ⬜ `README.md` (visão geral, arquitetura, como compilar, credenciais de demo) e
-   `docs/processos/como-compilar-e-rodar.md` (passo a passo Ubuntu/WSL).
+9. ✅ `README.md` (visão geral, diagrama da arquitetura em camadas, tabela de padrões
+   de projeto, tecnologias, build, credenciais e **roteiro de demonstração em 7 passos**)
+   e `docs/processos/como-compilar-e-rodar.md` (pré-requisitos por sistema, build,
+   testes, reset do banco, tabela de 7 problemas prováveis e checklist de apresentação).
 10. ⬜ Revisão adversarial de coerência entre camadas (assinaturas, includes,
     nomes de colunas vs. schema, casos de borda de demonstração) — **crítica**,
     já que não é possível compilar nesta máquina.
