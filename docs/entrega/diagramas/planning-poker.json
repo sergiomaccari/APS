@@ -1,0 +1,9 @@
+{
+  "tipo": "grade",
+  "folgaColunas": 60, "folgaLinhas": 40,
+  "elementos": [
+    {"id": "n", "tipo": "nota", "col": 0, "linha": 0,
+     "texto": "ESPAÇO RESERVADO\n\nInserir aqui o print da sessão online de\nPlanning Poker realizada pela equipe\n(ex.: planningpokeronline.com).\n\nEstimativas combinadas na Tabela 1."}
+  ],
+  "ligacoes": []
+}
