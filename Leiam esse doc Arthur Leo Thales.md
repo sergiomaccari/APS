@@ -140,6 +140,41 @@ libqt6sql6-sqlite`, depois `cmake -S . -B build && cmake --build build -j` e
 está no `README.md`. Credenciais: `admin@analisadorb3.com` / `admin123` e
 `investidor@analisadorb3.com` / `investidor123`.
 
+## 4c. Os DOIS documentos entregáveis já têm minuta completa (19/08/2026)
+
+Os documentos do 1º e do 2º bimestre estão prontos em versão completa para a nossa
+revisão, em `docs/entrega/`:
+
+- **`documento-1-bimestre.docx`** — Plano do Projeto (entrega 13/10): introdução,
+  entrevista com o cliente (28 questões), 19 RFs + RNF/RP/REU, estimativa com
+  **Planning Poker e UCP** (os veteranos só fizeram poker — UCP é diferencial),
+  viabilidade, protótipo com as telas reais, e a modelagem: diagrama de casos de
+  uso, **18 quadros de especificação no formato exato do professor**, 3 diagramas
+  de classes, dicionário de informações com 60 quadros, 2 de objetos e 18 de
+  sequência. 37 figuras e 83 quadros/tabelas.
+- **`documento-2-bimestre.docx`** — Projeto completo (entrega 17/11): tudo do 1º
+  mais 18 diagramas de comunicação, o DER (9 tabelas), **40 diagramas de estados**
+  e **40 de atividades**. 136 figuras.
+
+Como foi feito: os diagramas são gerados por uma ferramenta nossa
+(`gerar-diagramas`, no próprio CMake) a partir de arquivos JSON versionados em
+`docs/entrega/diagramas/` — ou seja, **qualquer ajuste é editar um JSON e rodar um
+comando**, sem redesenhar nada à mão. O texto vive em seções Markdown em
+`docs/entrega/secoes/` e o `montar-documento.py` numera figuras/quadros e gera o
+`.docx`. Tudo descreve o sistema **como ele realmente é** (as mensagens de erro dos
+quadros de UC são as strings literais do código).
+
+**O que falta é de gente, não de máquina** (procurem 🟦 dentro dos documentos):
+
+1. Validar o **cliente fictício** que assumi: "Clube de Investimentos Neoville",
+   coordenador "Prof. Marcos R. Andrade". Se preferirem entrevistar alguém real,
+   só as respostas das seções 2.1–2.4 mudam.
+2. Fazer a **sessão real de Planning Poker** (~30 min) e trocar a Figura 1, que
+   hoje é um marcador. A tabela de horas já está proposta (116 h).
+3. Ajustar **autores e datas do Histórico de Modificações** — o professor usa
+   isso para ver a divisão do grupo.
+4. **Ler e revisar**: são os documentos que valem 8,0 pontos em cada bimestre.
+
 ## 5. O que a equipe precisa decidir/fazer
 
 1. **Aprovar (ou vetar) o tema** — ler o ADR 0001 (`docs/decisoes/`) com a análise

@@ -1,21 +1,40 @@
 # HANDOFF — retomada entre sessões
 
-> Atualizado em **2026-08-18**. Leia junto com [`../MARCOS.md`](../MARCOS.md) e [`../LOG.md`](../LOG.md).
+> Atualizado em **2026-08-19**. Leia junto com [`../MARCOS.md`](../MARCOS.md) e [`../LOG.md`](../LOG.md).
 
-## Alerta ativo
+## Estado atual (resumo de 1 parágrafo)
 
-- **Fase atual: PLANEJAMENTO.** A spec `docs/specs/0001-tema-e-escopo.md` está em
-  `rascunho` — **implementação proibida** até o Sergio (e a equipe) aprovarem tema
-  (ADR 0001) e stack (ADR 0002).
-- `inicio.txt` é privado — está no `.gitignore` e **nunca** entra em commit/push.
+Sistema **compilado, testado (67 casos) e rodando** na branch
+`teste-de-desenvolvimento`. **Minutas completas dos 2 documentos entregáveis**
+geradas em `docs/entrega/` (`documento-1-bimestre.md/.docx` e
+`documento-2-bimestre.md/.docx`), na estrutura exata do modelo do professor, com
+123 diagramas UML próprios (gerador `gerar-diagramas` + montador
+`montar-documento.py`). Falta: revisão humana da equipe e as pendências 🟦 abaixo.
 
 ## Pendências 🟦 (input humano)
 
-1. Aprovar tema: A (Analisador B3, recomendado) / B (gestão p/ cliente real) / C (paper trading).
-2. Aprovar stack: Qt 6 + Qt Charts + SQLite + CMake (C++ POO é restrição fixa, item 7 do briefing).
-3. Definir o "cliente" da entrevista de requisitos.
-4. Senha dos 14 PDFs de aula (`APS/Aulas/` — criptografados) ou cópias sem proteção.
-5. Preferências de custo: subagentes pesados em **Opus**; avisar Sergio ao cruzar 50% do orçamento de tokens da sessão.
+1. **Socializar com Arthur/Leo/Thales:** tema A + stack (aprovados pelo Sergio em
+   18/08) e o cliente fictício assumido nos documentos ("Clube de Investimentos
+   Neoville", coordenador Prof. Marcos R. Andrade — trocar se a equipe entrevistar
+   alguém real; só muda a seção 2.1–2.4).
+2. **Sessão real de Planning Poker** da equipe → substituir a Figura 1 (marcador)
+   dos documentos; a Tabela 1 (116 h) já está preenchida como proposta.
+3. **Histórico de Modificações:** ajustar autores/datas por etapa (marcado 🟦 nos
+   documentos).
+4. Preferências de custo: subagentes pesados em **Opus**; avisar Sergio ao cruzar
+   50% do orçamento de tokens da sessão.
+
+## Como regenerar os documentos
+
+```bash
+cmake --build build --target gerar-diagramas
+QT_QPA_PLATFORM=offscreen ./build/gerar-diagramas --lote docs/entrega/diagramas docs/entrega/figuras
+python3 ferramentas/gerar-secoes-diagramas.py
+python3 ferramentas/montar-documento.py ambos --docx <caminho-do-pandoc>
+```
+
+Editou um diagrama? Mude o `.json` e rode as 2 últimas linhas. Editou texto? Mude a
+seção em `docs/entrega/secoes/` e rode só a última.
 
 ## Próximo item da implementação (loop autônomo — atualizar a cada iteração)
 
@@ -108,16 +127,21 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
     (gráfico vazio por falta de timestamp nos candles, estilo preso no main.cpp,
     interior do gráfico sem tema, eixo de datas ilegível, cabeçalhos cortados).
 
-**Próximos passos (fora da implementação):** socializar tema/stack com Arthur, Leo e
-Thales; definir o cliente da entrevista; e então escrever o documento do 1º bimestre
-no modelo do professor, aproveitando as figuras de `capturas/`.
+12. ✅ **DOCUMENTOS ENTREGÁVEIS GERADOS** (19/08). `docs/entrega/` contém o modelo
+    canônico, 123 diagramas (JSON + PNG verificado), todas as seções e os dois
+    documentos montados em `.md` + `.docx`. Ver "Como regenerar" no topo.
 
-**Restrições da execução:** não compilar (sem gcc/cmake/Qt e sem sudo);
-convenções em `CLAUDE.md`; commit/push na branch a cada item concluído;
-nunca versionar `inicio.txt`, `APS/` nem material do `claude-automacoes`.
+**Próximos passos:** revisão humana dos documentos pela equipe (pendências 🟦 no
+topo); ensaio da apresentação do protótipo (roteiro de 7 passos no README);
+depois da entrega de 13/10, incorporar feedback do professor.
 
-**Para compilar quando houver toolchain:**
-`sudo apt install build-essential cmake qt6-base-dev qt6-charts-dev libqt6sql6-sqlite`
+**Restrições da execução:** convenções em `CLAUDE.md`; commit/push na branch a cada
+item concluído; nunca versionar `inicio.txt`, `APS/` nem material do
+`claude-automacoes`.
+
+**Toolchain (já instalada em 19/08):** gcc 12, CMake, Qt 6.4.2 (base + charts),
+`libqt6sql6-sqlite`; pandoc estático em `/tmp/pandoc/pandoc-3.10.2/bin/pandoc`
+(re-baixar se o /tmp for limpo: https://github.com/jgm/pandoc/releases).
 
 ## Fatos a não re-descobrir
 
