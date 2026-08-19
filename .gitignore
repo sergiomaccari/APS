@@ -1,0 +1,41 @@
+# Segredos — NUNCA commitar
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+secrets/
+credenciais/
+
+# Dependências / build
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+build/
+
+# Skills — symlinks para o hub (só existem nesta máquina; fonte da verdade é o hub)
+.claude/skills/
+.agents/skills/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# briefing privado do Sergio — nunca commitar
+inicio.txt
+
+# material da empresa (claude-automacoes/Driva) — NUNCA subir neste repo publico
+.claude/skills/
+.agents/skills/
+.claude/
+.agents/
+padroes/
+design-system/
+cofre*
