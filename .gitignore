@@ -39,3 +39,7 @@ inicio.txt
 padroes/
 design-system/
 cofre*
+
+# build do CMake
+build/
+*.user

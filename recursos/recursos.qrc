@@ -1,0 +1,7 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <qresource prefix="/sql">
+        <file alias="001_esquema_inicial.sql">sql/001_esquema_inicial.sql</file>
+        <file alias="002_dados_semente.sql">sql/002_dados_semente.sql</file>
+    </qresource>
+</RCC>
