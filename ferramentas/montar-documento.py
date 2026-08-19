@@ -135,6 +135,28 @@ def gerar_docx(md: Path, pandoc: str):
     print(f"  {docx.name} gerado ({docx.stat().st_size // 1024} KB)")
 
 
+def gerar_pdf(md: Path, pandoc: str):
+    """PDF via pandoc + tectonic. O marcador 🟦 não existe nas fontes LaTeX;
+    vira [PENDÊNCIA DA EQUIPE] apenas na renderização do PDF."""
+    pdf = md.with_suffix(".pdf")
+    texto = md.read_text(encoding="utf-8").replace("🟦", "[PENDÊNCIA DA EQUIPE]")
+    temporario = md.with_suffix(".pdf.tmp.md")
+    temporario.write_text(texto, encoding="utf-8")
+    cmd = [pandoc, str(temporario), "-o", str(pdf),
+           "--resource-path", str(SAIDA),
+           "--pdf-engine", "tectonic",
+           "--toc", "--toc-depth=3",
+           "-V", "lang=pt-BR",
+           "-V", "geometry:margin=2.5cm",
+           "-V", "fontsize=11pt",
+           "--metadata", "title=AB3 — Analisador de Ativos da B3"]
+    try:
+        subprocess.run(cmd, check=True, cwd=SAIDA)
+    finally:
+        temporario.unlink(missing_ok=True)
+    print(f"  {pdf.name} gerado ({pdf.stat().st_size // 1024} KB)")
+
+
 if __name__ == "__main__":
     alvo = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] in ("1", "2") else "ambos"
     pandoc = None
@@ -145,3 +167,5 @@ if __name__ == "__main__":
         md = montar(bim)
         if pandoc:
             gerar_docx(md, pandoc)
+            if "--pdf" in sys.argv:
+                gerar_pdf(md, pandoc)
