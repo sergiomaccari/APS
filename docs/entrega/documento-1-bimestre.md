@@ -1,17 +1,52 @@
-# AB3 — Analisador de Ativos da B3
+```{=openxml}
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="3600"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="72"/></w:rPr><w:t>AB3</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="200"/></w:pPr><w:r><w:rPr><w:sz w:val="40"/></w:rPr><w:t>Analisador de Ativos da B3</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Cliente: Clube de Investimentos Neoville</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsável no cliente: Prof. Marcos R. Andrade</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Projeto: AB3 — Versão: 0.7</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Curitiba</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>2026</w:t></w:r></w:p>
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="40"/></w:rPr><w:t>AB3</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsável no cliente: Prof. Marcos R. Andrade</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="600"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsáveis pelo projeto e desenvolvimento:</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Sergio Roncato Maccari, Arthur Dal Bem Nunes,</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Leonardo Pereira Shibata e Thales Romagna Fabrowski</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="3600"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Curitiba</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>2026</w:t></w:r></w:p>
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
 
-**Cliente:** Clube de Investimentos Neoville
-**Responsável no cliente:** Prof. Marcos R. Andrade 🟦
-**Responsáveis pelo projeto e desenvolvimento:** Sergio Roncato Maccari, Arthur Dal Bem Nunes, Leonardo Pereira Shibata e Thales Romagna Fabrowski
+```{=latex}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{4cm}
+{\Huge\bfseries AB3}\\[0.6em]
+{\LARGE Analisador de Ativos da B3}\\[4cm]
+{\large Cliente: Clube de Investimentos Neoville}\\[0.3em]
+{\large Responsável no cliente: Prof. Marcos R. Andrade}\\[1.5cm]
+{\large Projeto: AB3 --- Versão: 0.7}
+\vfill
+{\large Curitiba}\\
+{\large 2026}
+\end{center}
+\clearpage
+\thispagestyle{empty}
+\begin{center}
+\vspace*{4cm}
+{\LARGE\bfseries AB3}\\[2cm]
+{\large Responsável no cliente: Prof. Marcos R. Andrade}\\[1cm]
+{\large Responsáveis pelo projeto e desenvolvimento:}\\[0.3em]
+{\large Sergio Roncato Maccari, Arthur Dal Bem Nunes,}\\
+{\large Leonardo Pereira Shibata e Thales Romagna Fabrowski}
+\vfill
+{\large Curitiba}\\
+{\large 2026}
+\end{center}
+\clearpage
+```
 
-**Projeto:** AB3 · **Versão:** 0.7
-
-Curitiba
-2026
-
-\newpage
-
-## Histórico de Modificações
+**Histórico de Modificações**
 
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
@@ -26,9 +61,27 @@ Curitiba
 🟦 *[Equipe: ajustar autores e datas de cada etapa antes da entrega — o professor
 usa este quadro para ver a divisão de trabalho do grupo.]*
 
-\newpage
+```{=openxml}
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>SUMÁRIO</w:t></w:r></w:p>
+<w:sdt><w:sdtPr><w:docPartObj><w:docPartGallery w:val="Table of Contents"/><w:docPartUnique/></w:docPartObj></w:sdtPr><w:sdtContent><w:p><w:r><w:fldChar w:fldCharType="begin" w:dirty="true"/></w:r><w:r><w:instrText xml:space="preserve"> TOC \o "1-3" \h \z \u </w:instrText></w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r><w:r><w:t>Sumário gerado pelo Word: clique com o botão direito e escolha "Atualizar campo" (ou selecione tudo e pressione F9).</w:t></w:r><w:r><w:fldChar w:fldCharType="end"/></w:r></w:p></w:sdtContent></w:sdt>
+```
 
-# Lista de Figuras
+```{=latex}
+\renewcommand*\contentsname{SUMÁRIO}
+\setcounter{tocdepth}{3}
+\tableofcontents
+```
+
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
+\newpage
+```
+
+# LISTA DE FIGURAS
 
 Figura 1. Sessão online de Planning Poker. 🟦  
 Figura 2. Protótipo da tela de login.  
@@ -68,9 +121,16 @@ Figura 35. Diagrama de sequência para o [UC016].
 Figura 36. Diagrama de sequência para o [UC017].  
 Figura 37. Diagrama de sequência para o [UC018].  
 
-\newpage
 
-# Lista de Tabelas e Quadros
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
+\newpage
+```
+
+# LISTA DE TABELAS E QUADROS
 
 Tabela 1. Estimativa de esforço em horas para cada requisito funcional.  
 Tabela 2. Cálculo do peso não ajustado dos atores (UAW).  
@@ -156,9 +216,16 @@ Quadro 76. Dicionário de informações da classe CartaoIndicador.
 Quadro 77. Dicionário de informações da classe GraficoCandlestick.  
 Quadro 78. Dicionário de informações da classe GraficoLinha.  
 
-\newpage
 
-# Lista de Abreviaturas e Siglas
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
+\newpage
+```
+
+# LISTA DE ABREVIATURAS E SIGLAS
 
 AB3: Analisador de Ativos da B3 (nome do sistema).
 B3: Brasil, Bolsa, Balcão (bolsa de valores brasileira).
@@ -181,7 +248,15 @@ UC: Use Case (Caso de Uso).
 UCP: Use Case Points (Pontos de Caso de Uso).
 UML: Unified Modeling Language (Linguagem de Modelagem Unificada).
 
+
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
 \newpage
+```
 
 # 1 INTRODUÇÃO
 
@@ -239,7 +314,15 @@ Este documento está dividido em cinco partes:
 5. **Capítulo 6: Referências Bibliográficas.** Por fim, a última seção contém as
    referências bibliográficas utilizadas no decorrer do documento.
 
+
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
 \newpage
+```
 
 # 2 LEVANTAMENTO DE REQUISITOS
 
@@ -430,7 +513,6 @@ português indicando o motivo (e a linha, no caso da importação), navegação 
 mostre a cada papel somente as opções permitidas e a indicação clara de que as
 recomendações não constituem aconselhamento financeiro.
 
-\newpage
 
 ## 2.5 Requisitos Funcionais, Não Funcionais, Restrições de Projeto e Requisitos de Experiência do Usuário
 
@@ -484,7 +566,6 @@ experiência do usuário:
 - [REU003] Mensagens de erro devem indicar o motivo — e a linha, na importação — em português.
 - [REU004] O sistema deve indicar claramente que as recomendações são apoio à decisão, não aconselhamento financeiro.
 
-\newpage
 
 ## 2.6 Estimativa de Esforço de Software com Planning Poker
 
@@ -630,7 +711,15 @@ técnicas. Adotamos como compromisso operacional a estimativa do Planning Poker
 (116 horas de implementação), usando o UCP como medida de tamanho funcional e como
 verificação da classificação de esforço entre os casos de uso.
 
+
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
 \newpage
+```
 
 # 3 ESTUDO DE VIABILIDADE
 
@@ -712,7 +801,15 @@ de rede da sala do clube.
 - **Bibliografia técnica:** obras de engenharia de software, UML e análise técnica
   listadas no Capítulo 6.
 
+
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
 \newpage
+```
 
 # 4 RESULTADOS
 
@@ -2495,6 +2592,15 @@ hierarquicamente e os retornos relevantes aparecem tracejados.
 
 ![Figura 37. Diagrama de sequência para o [UC018].](figuras/seq-uc018.png)
 
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
+\newpage
+```
+
 # 5 CONCLUSÕES
 
 Este Plano do Projeto consolidou o ciclo de análise do sistema AB3 — Analisador de
@@ -2529,7 +2635,15 @@ evoluções além do escopo da disciplina, vislumbram-se a atualização automá
 cotações via API quando houver conexão, novas regras de análise (MACD e Bandas de
 Bollinger) e o backtesting das regras sobre o histórico importado.
 
+
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
 \newpage
+```
 
 # 6 REFERÊNCIAS BIBLIOGRÁFICAS
 

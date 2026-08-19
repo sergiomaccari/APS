@@ -39,15 +39,39 @@ MODELAGEM_1BIM = [
     "10-modelagem-sequencia.md",
 ]
 MANIFESTOS = {
-    "1": ["00-capa-1bim.md", "@LISTAS"] + MIOLO_COMUM
+    "1": ["00-capa-1bim.md", "@SUMARIO", "@LISTAS"] + MIOLO_COMUM
          + ["07-resultados-abre-1bim.md"] + MODELAGEM_1BIM
          + ["15-conclusoes-1bim.md", "16-referencias.md"],
-    "2": ["00-capa-2bim.md", "@LISTAS"] + MIOLO_COMUM
+    "2": ["00-capa-2bim.md", "@SUMARIO", "@LISTAS"] + MIOLO_COMUM
          + ["07-resultados-abre-2bim.md"] + MODELAGEM_1BIM
          + ["11-modelagem-comunicacao.md", "12-modelagem-der.md",
             "13-modelagem-estados.md", "14-modelagem-atividades.md",
             "15-conclusoes-2bim.md", "16-referencias.md"],
 }
+
+# Quebra de página nos dois formatos (o docx ignora LaTeX cru e vice-versa).
+QUEBRA = ('```{=openxml}\n<w:p><w:r><w:br w:type="page"/></w:r></w:p>\n```\n\n'
+          '```{=latex}\n\\newpage\n```')
+
+# Sumário posicionado após a capa, como no modelo do professor. No Word ele é
+# um campo TOC: abrir o documento e atualizar campos (F9) preenche as páginas.
+SUMARIO = ('```{=openxml}\n'
+           '<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/>'
+           '<w:sz w:val="28"/></w:rPr><w:t>SUMÁRIO</w:t></w:r></w:p>\n'
+           '<w:sdt><w:sdtPr><w:docPartObj>'
+           '<w:docPartGallery w:val="Table of Contents"/><w:docPartUnique/>'
+           '</w:docPartObj></w:sdtPr><w:sdtContent><w:p>'
+           '<w:r><w:fldChar w:fldCharType="begin" w:dirty="true"/></w:r>'
+           '<w:r><w:instrText xml:space="preserve"> TOC \\o "1-3" \\h \\z \\u '
+           '</w:instrText></w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r>'
+           '<w:r><w:t>Sumário gerado pelo Word: clique com o botão direito e '
+           'escolha "Atualizar campo" (ou selecione tudo e pressione F9).</w:t>'
+           '</w:r><w:r><w:fldChar w:fldCharType="end"/></w:r></w:p>'
+           '</w:sdtContent></w:sdt>\n```\n\n'
+           '```{=latex}\n'
+           '\\renewcommand*\\contentsname{SUMÁRIO}\n'
+           '\\setcounter{tocdepth}{3}\n'
+           '\\tableofcontents\n```')
 
 
 def numerar(texto: str):
@@ -82,37 +106,58 @@ def numerar(texto: str):
     return texto, legendas_fig, legendas_tab
 
 
+def paginar(documento: str) -> str:
+    """Remove os \\newpage soltos das seções e insere quebra de página (nos
+    dois formatos) antes de cada capítulo (título de nível 1)."""
+    linhas = []
+    dentro_de_cerca = False
+    for linha in documento.split("\n"):
+        if linha.startswith("```"):
+            dentro_de_cerca = not dentro_de_cerca
+            linhas.append(linha)
+            continue
+        if not dentro_de_cerca and linha.strip() == "\\newpage":
+            continue
+        if not dentro_de_cerca and linha.startswith("# "):
+            linhas += ["", QUEBRA, ""]
+        linhas.append(linha)
+    return "\n".join(linhas)
+
+
 def montar(bim: str) -> Path:
     partes = []
     for nome in MANIFESTOS[bim]:
-        if nome == "@LISTAS":
-            partes.append("@LISTAS")
+        if nome.startswith("@"):
+            partes.append(nome)
             continue
         arquivo = SECOES / nome
         if not arquivo.exists():
             sys.exit(f"ERRO: seção ausente: {arquivo}")
         partes.append(arquivo.read_text(encoding="utf-8").strip())
 
-    corpo = "\n\n".join(p for p in partes if p != "@LISTAS")
+    corpo = "\n\n".join(p for p in partes if not p.startswith("@"))
     corpo, legendas_fig, legendas_tab = numerar(corpo)
 
-    listas = ["# Lista de Figuras", ""]
+    listas = ["# LISTA DE FIGURAS", ""]
     listas += [f"{l}  " for l in legendas_fig]
-    listas += ["", "\\newpage", "", "# Lista de Tabelas e Quadros", ""]
+    listas += ["", "# LISTA DE TABELAS E QUADROS", ""]
     listas += [f"{l}  " for l in legendas_tab]
-    listas += ["", "\\newpage"]
     bloco_listas = "\n".join(listas)
 
-    # Reinsere as listas na posição do marcador (após a capa).
+    # Reinsere sumário e listas na posição dos marcadores (após a capa).
     saida_md = []
     for p in partes:
         if p == "@LISTAS":
             saida_md.append("@@LISTAS@@")
+        elif p == "@SUMARIO":
+            saida_md.append("@@SUMARIO@@")
         else:
             saida_md.append(p)
     documento = "\n\n".join(saida_md)
     documento, _, _ = numerar(documento)
     documento = documento.replace("@@LISTAS@@", bloco_listas)
+    documento = paginar(documento)
+    documento = documento.replace("@@SUMARIO@@", SUMARIO)
 
     destino = SAIDA / f"documento-{bim}-bimestre.md"
     destino.write_text(documento + "\n", encoding="utf-8")
@@ -126,11 +171,10 @@ def montar(bim: str) -> Path:
 
 def gerar_docx(md: Path, pandoc: str):
     docx = md.with_suffix(".docx")
-    cmd = [pandoc, str(md), "-o", str(docx),
+    cmd = [pandoc, "--from", "markdown-tex_math_dollars", str(md), "-o", str(docx),
            "--resource-path", str(SAIDA),
-           "--toc", "--toc-depth=3",
-           "-V", "lang=pt-BR",
-           "--metadata", "title=AB3 — Analisador de Ativos da B3"]
+           "--reference-doc", str(RAIZ / "ferramentas/referencia.docx"),
+           "-V", "lang=pt-BR"]
     subprocess.run(cmd, check=True, cwd=SAIDA)
     print(f"  {docx.name} gerado ({docx.stat().st_size // 1024} KB)")
 
@@ -142,14 +186,22 @@ def gerar_pdf(md: Path, pandoc: str):
     texto = md.read_text(encoding="utf-8").replace("🟦", "[PENDÊNCIA DA EQUIPE]")
     temporario = md.with_suffix(".pdf.tmp.md")
     temporario.write_text(texto, encoding="utf-8")
-    cmd = [pandoc, str(temporario), "-o", str(pdf),
+    cmd = [pandoc, "--from", "markdown-tex_math_dollars", str(temporario), "-o", str(pdf),
            "--resource-path", str(SAIDA),
            "--pdf-engine", "tectonic",
-           "--toc", "--toc-depth=3",
            "-V", "lang=pt-BR",
            "-V", "geometry:margin=2.5cm",
-           "-V", "fontsize=11pt",
-           "--metadata", "title=AB3 — Analisador de Ativos da B3"]
+           "-V", "fontsize=11pt"]
+    # Arial (a fonte do modelo do professor), servida pelo Windows via WSL.
+    arial = Path("/mnt/c/Windows/Fonts/arial.ttf")
+    if arial.exists():
+        cmd += ["-V", "mainfont=arial.ttf",
+                "-V", f"mainfontoptions=Path={arial.parent}/",
+                "-V", "mainfontoptions=BoldFont=arialbd.ttf",
+                "-V", "mainfontoptions=ItalicFont=ariali.ttf",
+                "-V", "mainfontoptions=BoldItalicFont=arialbi.ttf"]
+    else:
+        cmd += ["-V", "mainfont=DejaVu Sans"]
     try:
         subprocess.run(cmd, check=True, cwd=SAIDA)
     finally:

@@ -1,4 +1,4 @@
-# Lista de Abreviaturas e Siglas
+# LISTA DE ABREVIATURAS E SIGLAS
 
 AB3: Analisador de Ativos da B3 (nome do sistema).
 B3: Brasil, Bolsa, Balcão (bolsa de valores brasileira).
