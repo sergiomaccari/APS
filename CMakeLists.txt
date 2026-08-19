@@ -88,6 +88,12 @@ target_link_libraries(capturar-telas PRIVATE
     Qt6::Charts)
 
 # -----------------------------------------------------------------------------
+# Gerador de diagramas UML dos documentos da disciplina (JSON -> PNG via QPainter).
+# -----------------------------------------------------------------------------
+add_executable(gerar-diagramas "${CMAKE_CURRENT_SOURCE_DIR}/ferramentas/gerar-diagramas.cpp")
+target_link_libraries(gerar-diagramas PRIVATE Qt6::Gui)
+
+# -----------------------------------------------------------------------------
 # Testes (Qt Test). Cada arquivo em testes/ vira um alvo e um caso do ctest.
 # -----------------------------------------------------------------------------
 enable_testing()

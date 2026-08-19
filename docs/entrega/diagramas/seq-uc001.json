@@ -1,0 +1,22 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC001",
+  "participantes": [
+    {"id": "u", "nome": ": Usuário", "ator": true},
+    {"id": "tela", "nome": ": TelaLogin"},
+    {"id": "serv", "nome": ": ServicoAutenticacao"},
+    {"id": "repo", "nome": ": RepositorioUsuario"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "tela", "rotulo": "1: informar e-mail e senha"},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: autenticar(email, senha)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.1: gerarHash(senha)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.1.2: buscarPorEmail(email)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.1.2.1: SELECT ... WHERE email = :email"},
+    {"de": "bd", "para": "repo", "rotulo": "registro", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "std::optional<Usuario>", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "Usuario autenticado", "retorno": true},
+    {"de": "tela", "para": "u", "rotulo": "abre a JanelaPrincipal", "retorno": true}
+  ]
+}

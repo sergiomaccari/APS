@@ -1,0 +1,17 @@
+{
+  "tipo": "grade",
+  "moldura": "stm Alerta",
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a", "tipo": "estado", "nome": "Ativo", "texto": "do / monitorar cotações", "col": 1, "linha": 0},
+    {"id": "d", "tipo": "estado", "nome": "Disparado", "texto": "entry / registrar momento\ndo / notificar observadores", "col": 2, "linha": 0},
+    {"id": "q", "tipo": "estado", "nome": "Arquivado", "col": 3, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 4, "linha": 0}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a", "rotulo": "criarAlerta()"},
+    {"de": "a", "para": "d", "rotulo": "disparar(momento)\n[condição satisfeita]"},
+    {"de": "d", "para": "q", "rotulo": "arquivar()"},
+    {"de": "q", "para": "f"}
+  ]
+}
