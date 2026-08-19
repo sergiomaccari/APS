@@ -35,8 +35,12 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
    Feito também: `ui/telaativos` (CRUD com busca, confirmação de remoção e contagem
    de cotações) e `ui/telaimportacao` (arquivo ou pasta, relatório de erros linha a
    linha e histórico de importações).
-   **Falta, nesta ordem:** (b) `teladashboard` + `teladetalheativo`;
-   (c) `telacarteira` + `telaalertas` + `dialogos/dialogoalerta`;
+   Feito também: `ui/teladashboard` (seletor de ativo/período, candlestick com
+   MMS 9/21, cartões de fechamento, variação, RSI e volatilidade, selo colorido da
+   recomendação vigente com justificativa, botão "Analisar agora") e
+   `ui/teladetalheativo` (fundamentos, gráfico de linha, tabela das 60 últimas
+   cotações e pareceres regra por regra).
+   **Falta, nesta ordem:** (c) `telacarteira` + `telaalertas` + `dialogos/dialogoalerta`;
    (d) `telarecomendacoes` + `telaregras` + `dialogos/dialogoregra` + `telausuarios`
    + `dialogos/dialogousuario`; (e) **por último** `janelaprincipal` (QMainWindow +
    QStackedWidget + navegação lateral por papel, implementando `ObservadorAlerta`)
