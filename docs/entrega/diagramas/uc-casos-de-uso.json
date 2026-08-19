@@ -1,0 +1,61 @@
+{
+  "tipo": "grade",
+  "moldura": "uc Analisador B3",
+  "folgaColunas": 70,
+  "folgaLinhas": 38,
+  "elementos": [
+    {"id": "adm", "tipo": "ator", "nome": "Administrador", "col": 0, "linha": 3},
+    {"id": "inv", "tipo": "ator", "nome": "Investidor", "col": 3, "linha": 5},
+
+    {"id": "uc001", "tipo": "casodeuso", "texto": "UC001\nFazer login", "col": 1, "linha": 0},
+    {"id": "uc002", "tipo": "casodeuso", "texto": "UC002\nCadastrar ativo", "col": 1, "linha": 1},
+    {"id": "uc003", "tipo": "casodeuso", "texto": "UC003\nAtualizar ativo", "col": 1, "linha": 2},
+    {"id": "uc004", "tipo": "casodeuso", "texto": "UC004\nRemover ativo", "col": 1, "linha": 3},
+    {"id": "uc005", "tipo": "casodeuso", "texto": "UC005\nImportar cotações", "col": 1, "linha": 4},
+    {"id": "uc006", "tipo": "casodeuso", "texto": "UC006\nConfigurar regra\nde análise", "col": 1, "linha": 5},
+    {"id": "uc007", "tipo": "casodeuso", "texto": "UC007\nGerenciar usuários", "col": 1, "linha": 6},
+
+    {"id": "uc008", "tipo": "casodeuso", "texto": "UC008\nBuscar ativos", "col": 2, "linha": 0},
+    {"id": "uc009", "tipo": "casodeuso", "texto": "UC009\nVisualizar painel de análise", "col": 2, "linha": 1},
+    {"id": "uc010", "tipo": "casodeuso", "texto": "UC010\nVisualizar detalhes do ativo", "col": 2, "linha": 2},
+    {"id": "uc011", "tipo": "casodeuso", "texto": "UC011\nGerar recomendações", "col": 2, "linha": 3},
+    {"id": "uc012", "tipo": "casodeuso", "texto": "UC012\nVisualizar recomendações\nvigentes", "col": 2, "linha": 4},
+    {"id": "uc013", "tipo": "casodeuso", "texto": "UC013\nComprar ativo", "col": 2, "linha": 5},
+    {"id": "uc014", "tipo": "casodeuso", "texto": "UC014\nVender ativo", "col": 2, "linha": 6},
+    {"id": "uc015", "tipo": "casodeuso", "texto": "UC015\nVisualizar resultado\nda carteira", "col": 2, "linha": 7},
+    {"id": "uc016", "tipo": "casodeuso", "texto": "UC016\nCadastrar alerta", "col": 2, "linha": 8},
+    {"id": "uc017", "tipo": "casodeuso", "texto": "UC017\nAvaliar e disparar\nalertas", "col": 2, "linha": 9},
+    {"id": "uc018", "tipo": "casodeuso", "texto": "UC018\nArquivar alerta", "col": 2, "linha": 10},
+
+    {"id": "nota", "tipo": "nota", "texto": "Todos os casos de uso exigem\nlogin prévio (<<include>> UC001).\nUC002 e UC008 representam essa\ndependência como amostra.", "col": 1, "linha": 9}
+  ],
+  "ligacoes": [
+    {"de": "adm", "para": "uc001", "tipo": "associacao"},
+    {"de": "adm", "para": "uc002", "tipo": "associacao"},
+    {"de": "adm", "para": "uc003", "tipo": "associacao"},
+    {"de": "adm", "para": "uc004", "tipo": "associacao"},
+    {"de": "adm", "para": "uc005", "tipo": "associacao"},
+    {"de": "adm", "para": "uc006", "tipo": "associacao"},
+    {"de": "adm", "para": "uc007", "tipo": "associacao"},
+    {"de": "adm", "para": "uc011", "tipo": "associacao",
+     "via": [{"col": 0.5, "linha": 3.5}, {"col": 1.55, "linha": 3.5}]},
+
+    {"de": "inv", "para": "uc001", "tipo": "associacao",
+     "via": [{"col": 2.75, "linha": 0.5}, {"col": 1.5, "linha": 0.5}]},
+    {"de": "inv", "para": "uc008", "tipo": "associacao"},
+    {"de": "inv", "para": "uc009", "tipo": "associacao"},
+    {"de": "inv", "para": "uc010", "tipo": "associacao"},
+    {"de": "inv", "para": "uc011", "tipo": "associacao"},
+    {"de": "inv", "para": "uc012", "tipo": "associacao"},
+    {"de": "inv", "para": "uc013", "tipo": "associacao"},
+    {"de": "inv", "para": "uc014", "tipo": "associacao"},
+    {"de": "inv", "para": "uc015", "tipo": "associacao"},
+    {"de": "inv", "para": "uc016", "tipo": "associacao"},
+    {"de": "inv", "para": "uc017", "tipo": "associacao"},
+    {"de": "inv", "para": "uc018", "tipo": "associacao"},
+
+    {"de": "uc002", "para": "uc001", "tipo": "tracejada", "rotulo": "<<include>>"},
+    {"de": "uc008", "para": "uc001", "tipo": "tracejada", "rotulo": "<<include>>"},
+    {"de": "uc017", "para": "uc016", "tipo": "tracejada", "rotulo": "<<extend>> [condição satisfeita]"}
+  ]
+}

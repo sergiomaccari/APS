@@ -1,0 +1,36 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC011 | MotorAnalise | Consolidando parecer",
+  "folgaColunas": 80,
+  "folgaLinhas": 70,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "avaliarRegrasIndividualmente():\nchamar avaliar(ativo, historico)\nem cada regra registrada", "col": 1.2, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "descartar as regras que se\nabstiveram (std::nullopt, RN019)", "col": 2.6, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "algum parecer ?", "col": 4, "linha": 0},
+    {"id": "a3", "tipo": "acao", "texto": "somar as pontuações e montar a justificativa\nnumerada por regra; em seguida\npontuacao = soma / pareceres.size()", "col": 2.6, "linha": 1},
+    {"id": "d2", "tipo": "decisao", "texto": "tipoPorPontuacao() ?", "col": 1.2, "linha": 1},
+    {"id": "a6", "tipo": "acao", "texto": "pontuacao = 0, tipo = Neutro e\njustificativa \"Nenhuma regra\naplicável\"", "col": 4, "linha": 1},
+    {"id": "ac", "tipo": "acao", "texto": "tipo = Compra", "col": 0, "linha": 2},
+    {"id": "an", "tipo": "acao", "texto": "tipo = Neutro", "col": 1.2, "linha": 2},
+    {"id": "av", "tipo": "acao", "texto": "tipo = Venda", "col": 2.6, "linha": 2},
+    {"id": "a5", "tipo": "acao", "texto": "montar o cabeçalho com ticker, data, tipo,\npontuação e limiar, seguido das\njustificativas numeradas", "col": 1.2, "linha": 3},
+    {"id": "f", "tipo": "final", "col": 2.6, "linha": 3}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "d1"},
+    {"de": "d1", "para": "a3", "rotulo": "[há pareceres]"},
+    {"de": "d1", "para": "a6", "rotulo": "[nenhuma\nregra opinou]"},
+    {"de": "a3", "para": "d2"},
+    {"de": "d2", "para": "ac", "rotulo": "[pontuação ≥ +0,25]\n(RN016)"},
+    {"de": "d2", "para": "an", "rotulo": "[entre −0,25\ne +0,25]"},
+    {"de": "d2", "para": "av", "rotulo": "[pontuação\n≤ −0,25]"},
+    {"de": "ac", "para": "a5"},
+    {"de": "an", "para": "a5"},
+    {"de": "av", "para": "a5"},
+    {"de": "a5", "para": "f", "rotulo": "devolver a\nRecomendacao"},
+    {"de": "a6", "para": "f", "rotulo": "devolver parecer\nNeutro"}
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC007 | ServicoAutenticacao | Validando dados",
+  "folgaColunas": 84,
+  "folgaLinhas": 64,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "ultimoErro.clear()\nnome = nome.trimmed()\nemail = email.trimmed()\n.toLower()", "col": 1, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "col": 2, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "d3", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "d4", "tipo": "decisao", "col": 5, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "montar Usuario\nsenhaHash =\ngerarHash(senha)", "col": 6, "linha": 0},
+    {"id": "e1", "tipo": "acao", "texto": "ultimoErro = motivo do erro\ndevolver false", "col": 4, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 6, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "d1"},
+    {"de": "d1", "para": "d2", "rotulo": "[nome\npreenchido]"},
+    {"de": "d1", "para": "e1", "rotulo": "[nome em branco]", "via": [{"col": 2, "linha": 0.68}, {"col": 3.6, "linha": 0.68}]},
+    {"de": "d2", "para": "d3", "rotulo": "[e-mail\nválido]"},
+    {"de": "d2", "para": "e1", "rotulo": "[emailPareceValido\n== false]"},
+    {"de": "d3", "para": "d4", "rotulo": "[senha com\n6+ caracteres]"},
+    {"de": "d3", "para": "e1", "rotulo": "[senha curta\n(RN003)]"},
+    {"de": "d4", "para": "a2", "rotulo": "[e-mail\ninédito]"},
+    {"de": "d4", "para": "e1", "rotulo": "[e-mail já\ncadastrado (RN002)]"},
+    {"de": "a2", "para": "f", "rotulo": "seguir para\nPersistindo usuário"},
+    {"de": "e1", "para": "f", "rotulo": "a tela exibe ultimoErro()"}
+  ]
+}

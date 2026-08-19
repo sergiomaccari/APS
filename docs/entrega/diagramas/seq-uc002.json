@@ -1,0 +1,32 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC002",
+  "participantes": [
+    {"id": "adm", "nome": ": Administrador", "ator": true},
+    {"id": "tela", "nome": ": TelaAtivos"},
+    {"id": "dlg", "nome": ": DialogoAtivo"},
+    {"id": "serv", "nome": ": ServicoAtivo"},
+    {"id": "repo", "nome": ": RepositorioAtivo"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "adm", "para": "tela", "rotulo": "1: acionar \"Novo ativo\""},
+    {"de": "tela", "para": "dlg", "rotulo": "1.1: exec()"},
+    {"de": "adm", "para": "dlg", "rotulo": "1.2: preencher e confirmar"},
+    {"de": "tela", "para": "dlg", "rotulo": "1.3: ativoInformado()"},
+    {"de": "dlg", "para": "tela", "rotulo": "Acao ou FundoImobiliario", "retorno": true},
+    {"de": "tela", "para": "serv", "rotulo": "1.4: salvar(ativo)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.4.1: tickerValido()"},
+    {"de": "serv", "para": "repo", "rotulo": "1.4.2: tickerEmUso(ticker)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.4.2.1: SELECT em ativo"},
+    {"de": "bd", "para": "repo", "rotulo": "sem duplicidade", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "falso", "retorno": true},
+    {"de": "serv", "para": "repo", "rotulo": "1.4.3: salvar(ativo)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.4.3.1: INSERT em ativo"},
+    {"de": "bd", "para": "repo", "rotulo": "id gerado", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "verdadeiro", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "verdadeiro", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.5: atualizar()"},
+    {"de": "tela", "para": "adm", "rotulo": "ativo cadastrado", "retorno": true}
+  ]
+}

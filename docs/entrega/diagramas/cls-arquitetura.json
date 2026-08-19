@@ -1,0 +1,56 @@
+{
+  "tipo": "grade",
+  "moldura": "cd Arquitetura em camadas",
+  "folgaColunas": 38,
+  "folgaLinhas": 50,
+  "elementos": [
+    {"id": "dash", "tipo": "classe", "nome": "TelaDashboard", "estereotipo": "<<fronteira>>",
+     "col": 1, "linha": 0},
+    {"id": "cart", "tipo": "classe", "nome": "TelaCarteira", "estereotipo": "<<fronteira>>",
+     "col": 2, "linha": 0},
+    {"id": "alertas", "tipo": "classe", "nome": "TelaAlertas", "estereotipo": "<<fronteira>>",
+     "col": 3, "linha": 0},
+    {"id": "janela", "tipo": "classe", "nome": "JanelaPrincipal", "estereotipo": "<<fronteira>>",
+     "col": 4, "linha": 0},
+    {"id": "notaobs", "tipo": "nota", "col": 5, "linha": 0,
+     "texto": "Observer: JanelaPrincipal\nimplementa\nObservadorAlerta."},
+
+    {"id": "sautent", "tipo": "classe", "nome": "ServicoAutenticacao", "estereotipo": "<<controle>>",
+     "col": 0, "linha": 1},
+    {"id": "sativo", "tipo": "classe", "nome": "ServicoAtivo", "estereotipo": "<<controle>>",
+     "col": 1, "linha": 1},
+    {"id": "simport", "tipo": "classe", "nome": "ServicoImportacao", "estereotipo": "<<controle>>",
+     "col": 2, "linha": 1},
+    {"id": "scarteira", "tipo": "classe", "nome": "ServicoCarteira", "estereotipo": "<<controle>>",
+     "col": 3, "linha": 1},
+    {"id": "salerta", "tipo": "classe", "nome": "ServicoAlerta", "estereotipo": "<<controle>>",
+     "col": 4, "linha": 1},
+    {"id": "srecom", "tipo": "classe", "nome": "ServicoRecomendacao", "estereotipo": "<<controle>>",
+     "col": 5, "linha": 1},
+
+    {"id": "motor", "tipo": "classe", "nome": "MotorAnalise", "col": 4, "linha": 1.5},
+    {"id": "calc", "tipo": "classe", "nome": "CalculadoraIndicadores", "col": 5, "linha": 1.5},
+
+    {"id": "repoa", "tipo": "classe", "nome": "RepositorioUsuario\nRepositorioCarteira",
+     "estereotipo": "<<repositório>>", "col": 0, "linha": 2},
+    {"id": "repob", "tipo": "classe", "nome": "RepositorioAtivo\nRepositorioCotacao",
+     "estereotipo": "<<repositório>>", "col": 1, "linha": 2},
+    {"id": "repoc", "tipo": "classe", "nome": "RepositorioAlerta\nRepositorioRecomendacao",
+     "estereotipo": "<<repositório>>", "col": 2, "linha": 2},
+    {"id": "repod", "tipo": "classe", "nome": "RepositorioRegra\nRepositorioImportacao",
+     "estereotipo": "<<repositório>>", "col": 3, "linha": 2},
+
+    {"id": "banco", "tipo": "classe", "nome": "BancoDeDados", "estereotipo": "<<singleton>>",
+     "col": 1, "linha": 3},
+    {"id": "notacamadas", "tipo": "nota", "col": 3, "linha": 3,
+     "texto": "Dependências de cima para\nbaixo: telas → serviços →\nrepositórios → BancoDeDados."}
+  ],
+  "ligacoes": [
+    {"de": "dash", "para": "sativo", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "sautent", "para": "repoa", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "repob", "para": "banco", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "srecom", "para": "motor", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "salerta", "para": "janela", "tipo": "tracejada", "rotulo": "notifica (Observer)"},
+    {"de": "notaobs", "para": "janela", "tipo": "tracejada"}
+  ]
+}

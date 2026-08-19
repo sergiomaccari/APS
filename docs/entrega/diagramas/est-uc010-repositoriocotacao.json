@@ -1,0 +1,22 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC010 | RepositorioCotacao",
+  "folgaColunas": 96,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocio", "tipo": "estado", "nome": "Ocioso", "texto": "do / aguardar pedido do serviço", "col": 1, "linha": 0},
+    {"id": "cons", "tipo": "estado", "nome": "Consultando cotações", "texto": "entry / prepare(SELECT ... WHERE ativo_id)\nentry / acrescentar LIMIT quando limite > 0\ndo / bindValue(:ativo_id) e exec()", "col": 2.3, "linha": 0},
+    {"id": "mont", "tipo": "estado", "nome": "Montando histórico", "texto": "entry / limpar m_ultimoErro\ndo / montarCotacao() a cada next()\nexit / reverter a ordem quando limite > 0", "col": 3.6, "linha": 0},
+    {"id": "err", "tipo": "estado", "nome": "Erro de consulta", "texto": "entry / m_ultimoErro = lastError().text()", "col": 2.3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 3.6, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocio", "rotulo": "criar()"},
+    {"de": "ocio", "para": "cons", "rotulo": "listarPorAtivo\n(ativoId, limite)"},
+    {"de": "cons", "para": "mont", "rotulo": "[exec()\nbem-sucedido]"},
+    {"de": "cons", "para": "err", "rotulo": "[exec() falhou]"},
+    {"de": "mont", "para": "f", "rotulo": "cursor esgotado /\ndevolver QVector<Cotacao>"},
+    {"de": "err", "para": "f", "rotulo": "devolver lista vazia"}
+  ]
+}

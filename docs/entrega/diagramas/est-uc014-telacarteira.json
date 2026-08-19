@@ -1,0 +1,29 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC014 | TelaCarteira",
+  "folgaColunas": 88,
+  "folgaLinhas": 82,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "carr", "tipo": "estado", "nome": "Carregando a carteira", "texto": "do / garantirCarteira()\ndo / calcularResumo(carteiraId)", "col": 1, "linha": 0},
+    {"id": "exib", "tipo": "estado", "nome": "Exibindo as posições", "texto": "do / preencher a tabela e o resumo\ndo / habilitar \"Vender\" se há posição", "col": 2.2, "linha": 0},
+    {"id": "sel", "tipo": "estado", "nome": "Escolhendo a venda", "texto": "entry / montar opções com a\nquantidade máxima da posição\ndo / DialogoOperacao(Modo::Venda).exec()", "col": 3.4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 1.6, "linha": 1},
+    {"id": "vazia", "tipo": "estado", "nome": "Carteira vazia", "texto": "do / avisar \"Carteira vazia\"", "col": 1, "linha": 1},
+    {"id": "rec", "tipo": "estado", "nome": "Venda recusada", "texto": "do / exibir ultimoErro() (RN012)", "col": 2.2, "linha": 1},
+    {"id": "venda", "tipo": "estado", "nome": "Registrando a venda", "texto": "do / servicoCarteira.vender(carteiraId,\nativoId, quantidade)", "col": 3.4, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "carr", "rotulo": "abrirTela()"},
+    {"de": "carr", "para": "exib", "rotulo": "[há posições]"},
+    {"de": "carr", "para": "vazia", "rotulo": "[resumo vazio]"},
+    {"de": "exib", "para": "sel", "rotulo": "clicou \"Vender\""},
+    {"de": "sel", "para": "exib", "rotulo": "reject() /\ncancelou a venda", "via": [{"col": 2.8, "linha": 0.48}]},
+    {"de": "sel", "para": "venda", "rotulo": "accept()"},
+    {"de": "venda", "para": "carr", "rotulo": "[vender() devolveu true] / atualizar()", "via": [{"col": 3.05, "linha": 0.66}, {"col": 1.15, "linha": 0.66}]},
+    {"de": "venda", "para": "rec", "rotulo": "[vender() devolveu false]"},
+    {"de": "rec", "para": "exib", "rotulo": "mensagem lida"},
+    {"de": "exib", "para": "f", "rotulo": "fecharTela()"},
+    {"de": "vazia", "para": "f", "rotulo": "fecharTela()"}
+  ]
+}

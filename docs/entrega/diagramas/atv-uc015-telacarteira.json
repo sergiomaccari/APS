@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC015 | TelaCarteira | Calculando o resumo",
+  "folgaColunas": 84,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "garantirCarteira(): carteiraDoUsuario()\ncria a Carteira Principal no 1º acesso", "col": 1.2, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "servicoCarteira.\ncalcularResumo(m_carteiraId)", "col": 2.6, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "resumo.vazia() ?", "col": 4, "linha": 0},
+    {"id": "a5", "tipo": "acao", "texto": "colorir o resultado em verde (ganho)\nou vermelho (perda) (REU002)", "col": 1.2, "linha": 1},
+    {"id": "a4", "tipo": "acao", "texto": "preencher uma linha por posição: ticker,\nquantidade, preço médio, preço atual,\nvalor investido, valor atual e resultado", "col": 2.6, "linha": 1},
+    {"id": "a3", "tipo": "acao", "texto": "exibir \"Carteira vazia. Use Comprar\npara registrar a primeira posição\"", "col": 4, "linha": 1},
+    {"id": "a6", "tipo": "acao", "texto": "exibir os totais: investido, valor atual,\nresultado e rentabilidade da carteira", "col": 2.6, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 4, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "d1"},
+    {"de": "d1", "para": "a4", "rotulo": "[há posições]"},
+    {"de": "d1", "para": "a3", "rotulo": "[carteira vazia]"},
+    {"de": "a4", "para": "a5"},
+    {"de": "a5", "para": "a6"},
+    {"de": "a6", "para": "f"},
+    {"de": "a3", "para": "f"}
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC013",
+  "participantes": [
+    {"id": "u", "nome": ": Investidor", "ator": true},
+    {"id": "tela", "nome": ": TelaCarteira"},
+    {"id": "dlg", "nome": ": DialogoOperacao"},
+    {"id": "serv", "nome": ": ServicoCarteira"},
+    {"id": "repo", "nome": ": RepositorioCarteira"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "tela", "rotulo": "1: acionar \"Comprar\""},
+    {"de": "tela", "para": "dlg", "rotulo": "1.1: exec()"},
+    {"de": "u", "para": "dlg", "rotulo": "1.2: informar ativo, quantidade e preço"},
+    {"de": "dlg", "para": "tela", "rotulo": "Accepted", "retorno": true},
+    {"de": "tela", "para": "serv", "rotulo": "1.3: comprar(carteiraId, ativoId, qtd, preco, data)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.3.1: buscarPosicao(carteiraId, ativoId)"},
+    {"de": "repo", "para": "serv", "rotulo": "std::optional<Posicao>", "retorno": true},
+    {"de": "serv", "para": "serv", "rotulo": "1.3.2: [há posição] incorporarCompra(qtd, preco)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.3.3: [há posição] atualizarPosicao(posicao)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.3.4: [posição nova] salvarPosicao(nova)"},
+    {"de": "repo", "para": "serv", "rotulo": "true", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "true", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.4: atualizar()"},
+    {"de": "tela", "para": "u", "rotulo": "posição registrada", "retorno": true}
+  ]
+}

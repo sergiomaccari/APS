@@ -1,0 +1,31 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC003 | TelaAtivos | Editando no diálogo",
+  "folgaColunas": 72,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "id = idSelecionado()", "col": 1, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "existente = servicoAtivo\n.buscarPorId(id)", "col": 2, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "a3", "tipo": "acao", "texto": "DialogoAtivo\ndialogo(this,\nexistente.get())\ndialogo.exec()", "col": 4, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "col": 5, "linha": 0},
+    {"id": "a4", "tipo": "acao", "texto": "editado =\ndialogo.ativoInformado()", "col": 6, "linha": 0},
+    {"id": "e1", "tipo": "acao", "texto": "mostrarMensagem(\"O ativo\nselecionado não foi\nencontrado.\")\natualizar()", "col": 2, "linha": 1},
+    {"id": "fe", "tipo": "final", "col": 3, "linha": 1},
+    {"id": "fc", "tipo": "final", "col": 5, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 6, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "d1"},
+    {"de": "d1", "para": "a3", "rotulo": "[ativo\nencontrado]"},
+    {"de": "d1", "para": "e1", "rotulo": "[ativo removido por outro usuário]", "via": [{"col": 3, "linha": 0.62}, {"col": 2.4, "linha": 0.62}]},
+    {"de": "e1", "para": "fe"},
+    {"de": "a3", "para": "d2"},
+    {"de": "d2", "para": "a4", "rotulo": "[exec() ==\nAccepted]"},
+    {"de": "d2", "para": "fc", "rotulo": "[cancelado]"},
+    {"de": "a4", "para": "f", "rotulo": "seguir para\nGravando alteração"}
+  ]
+}

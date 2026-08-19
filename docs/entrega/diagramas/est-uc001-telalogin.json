@@ -1,0 +1,30 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC001 | TelaLogin",
+  "folgaColunas": 74,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "aguardando", "tipo": "estado", "nome": "Aguardando credenciais",
+     "texto": "do / exibir formulário\nreturnPressed / tentarEntrar()", "col": 1, "linha": 0},
+    {"id": "autenticando", "tipo": "estado", "nome": "Autenticando",
+     "texto": "entry / mostrarErro(\"\")\ndo / autenticar(email, senha)", "col": 2, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "sessao", "tipo": "estado", "nome": "Sessão iniciada",
+     "texto": "entry / guardar o usuário\ndo / accept()", "col": 4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 0},
+    {"id": "erro", "tipo": "estado", "nome": "Exibindo erro",
+     "texto": "entry / mostrarErro(ultimoErro())\ndo / limpar senha e focar campo", "col": 3, "linha": 1},
+    {"id": "fc", "tipo": "final", "col": 1, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "aguardando", "rotulo": "abrir tela de login"},
+    {"de": "aguardando", "para": "autenticando", "rotulo": "tentarEntrar()"},
+    {"de": "autenticando", "para": "d"},
+    {"de": "d", "para": "sessao", "rotulo": "[usuário autenticado]"},
+    {"de": "sessao", "para": "f", "rotulo": "fechar diálogo"},
+    {"de": "d", "para": "erro", "rotulo": "[credenciais\ninválidas]"},
+    {"de": "erro", "para": "aguardando", "rotulo": "digitar novamente", "via": [{"col": 1.6, "linha": 1}]},
+    {"de": "aguardando", "para": "fc", "rotulo": "cancelar() / reject()"}
+  ]
+}

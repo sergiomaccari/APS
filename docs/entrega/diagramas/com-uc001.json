@@ -1,0 +1,20 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC001",
+  "folgaColunas": 260, "folgaLinhas": 130,
+  "elementos": [
+    {"id": "u", "tipo": "ator", "nome": ": Usuário", "col": 0, "linha": 0},
+    {"id": "tela", "tipo": "classe", "nome": ": TelaLogin", "col": 1, "linha": 0},
+    {"id": "serv", "tipo": "classe", "nome": ": ServicoAutenticacao", "col": 2, "linha": 0},
+    {"id": "repo", "tipo": "classe", "nome": ": RepositorioUsuario", "col": 2, "linha": 1},
+    {"id": "bd", "tipo": "classe", "nome": ": BancoDeDados", "col": 1, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "u", "para": "tela", "rotulo": "1: informar e-mail e senha"},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: autenticar(email, senha)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.1: gerarHash(senha)",
+     "via": [{"col": 1.5, "linha": 0.06}, {"col": 1.5, "linha": 0.34}, {"col": 1.92, "linha": 0.34}]},
+    {"de": "serv", "para": "repo", "rotulo": "1.1.2: buscarPorEmail(email)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.1.2.1: SELECT ... WHERE\nemail = :email"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC012 | RepositorioRecomendacao",
+  "folgaColunas": 96,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocio", "tipo": "estado", "nome": "Ocioso", "texto": "do / aguardar pedido do serviço", "col": 1, "linha": 0},
+    {"id": "cons", "tipo": "estado", "nome": "Consultando vigentes", "texto": "entry / prepare(SELECT ... WHERE estado)\ndo / bindValue(:estado, \"Vigente\")\ndo / consulta.exec()", "col": 2.3, "linha": 0},
+    {"id": "mont", "tipo": "estado", "nome": "Montando recomendações", "texto": "entry / limpar m_ultimoErro\ndo / montarRecomendacao() a cada next()\ndo / manter a ordem por gerada_em DESC", "col": 3.6, "linha": 0},
+    {"id": "err", "tipo": "estado", "nome": "Erro de consulta", "texto": "entry / m_ultimoErro = lastError().text()", "col": 2.3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 3.6, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocio", "rotulo": "criar()"},
+    {"de": "ocio", "para": "cons", "rotulo": "listarVigentes()"},
+    {"de": "cons", "para": "mont", "rotulo": "[exec()\nbem-sucedido]"},
+    {"de": "cons", "para": "err", "rotulo": "[exec() falhou]"},
+    {"de": "mont", "para": "f", "rotulo": "cursor esgotado /\ndevolver QVector<Recomendacao>"},
+    {"de": "err", "para": "f", "rotulo": "devolver lista vazia"}
+  ]
+}

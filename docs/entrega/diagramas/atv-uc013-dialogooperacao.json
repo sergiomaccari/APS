@@ -1,0 +1,29 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC013 | DialogoOperacao | Editando a compra",
+  "folgaColunas": 84,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "exibir o seletor de ativos, a quantidade,\no preço unitário e a data da compra", "col": 1.2, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "ajustarLimitesPorAtivo(): sugerir o preço\ndo último fechamento e avisar quando\nnão há cotação importada", "col": 2.7, "linha": 0},
+    {"id": "a3", "tipo": "acao", "texto": "aguardar a quantidade, o preço\ne a data informados", "col": 4.2, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "trocou o ativo ?", "col": 4.2, "linha": 1},
+    {"id": "d2", "tipo": "decisao", "texto": "qual botão ?", "col": 2.7, "linha": 1},
+    {"id": "a4", "tipo": "acao", "texto": "accept(): entregar ativoId(), quantidade(),\npreco() e data() à TelaCarteira", "col": 1.2, "linha": 1},
+    {"id": "a5", "tipo": "acao", "texto": "reject(): descartar a compra", "col": 2.7, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 1.2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "a3"},
+    {"de": "a3", "para": "d1"},
+    {"de": "d1", "para": "a2", "rotulo": "[sim] / novo preço sugerido"},
+    {"de": "d1", "para": "d2", "rotulo": "[não]"},
+    {"de": "d2", "para": "a4", "rotulo": "[\"Comprar\"]"},
+    {"de": "d2", "para": "a5", "rotulo": "[\"Cancelar\"]"},
+    {"de": "a4", "para": "f"},
+    {"de": "a5", "para": "f"}
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC008 | RepositorioAtivo | Montando objetos",
+  "folgaColunas": 60,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0.5},
+    {"id": "a1", "tipo": "acao", "texto": "ativos = vetor vazio", "col": 1, "linha": 0.5},
+    {"id": "a2", "tipo": "acao", "texto": "para cada linha do resultado:\nler id, ticker, nome_empresa,\nsetor, tipo e dividend_yield", "col": 2, "linha": 0.5},
+    {"id": "d1", "tipo": "decisao", "col": 3, "linha": 0.5},
+    {"id": "a3", "tipo": "acao", "texto": "criar FundoImobiliario com\nvalorPatrimonialPorCota\ne segmento", "col": 4, "linha": 0},
+    {"id": "a4", "tipo": "acao", "texto": "criar Acao com precoLucro\ne valorMercado", "col": 4, "linha": 1},
+    {"id": "a5", "tipo": "acao", "texto": "ativos.push_back(\nstd::move(ativo))\ndevolver o vetor de\nunique_ptr<Ativo>", "col": 5, "linha": 0.5},
+    {"id": "f", "tipo": "final", "col": 6, "linha": 0.5}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "d1"},
+    {"de": "d1", "para": "a3", "rotulo": "[tipo == \"FII\"]"},
+    {"de": "d1", "para": "a4", "rotulo": "[tipo == \"ACAO\"]"},
+    {"de": "a3", "para": "a5"},
+    {"de": "a4", "para": "a5"},
+    {"de": "a5", "para": "f"}
+  ]
+}

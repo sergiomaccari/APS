@@ -1,0 +1,27 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC018",
+  "participantes": [
+    {"id": "u", "nome": ": Investidor", "ator": true},
+    {"id": "tela", "nome": ": TelaAlertas"},
+    {"id": "serv", "nome": ": ServicoAlerta"},
+    {"id": "repo", "nome": ": RepositorioAlerta"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "tela", "rotulo": "1: selecionar alerta e acionar \"Arquivar\""},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: arquivarAlerta(alertaId)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.1.1: buscarPorId(alertaId)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.1.1.1: SELECT ... FROM alerta"},
+    {"de": "bd", "para": "repo", "rotulo": "registro", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "std::optional<Alerta>", "retorno": true},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.2: [disparado] alerta.arquivar()"},
+    {"de": "serv", "para": "repo", "rotulo": "1.1.3: atualizar(alerta)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.1.3.1: UPDATE alerta SET estado"},
+    {"de": "bd", "para": "repo", "rotulo": "ok", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "true", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "true", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.2: atualizar()"},
+    {"de": "tela", "para": "u", "rotulo": "alerta arquivado", "retorno": true}
+  ]
+}

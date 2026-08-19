@@ -1,0 +1,22 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC016",
+  "folgaColunas": 210,
+  "folgaLinhas": 100,
+  "elementos": [
+    {"id": "u", "tipo": "ator", "nome": ": Investidor", "col": 0, "linha": 1},
+    {"id": "dlg", "tipo": "objeto", "estereotipo": "dialogo :", "nome": "DialogoAlerta", "col": 1, "linha": 0},
+    {"id": "tela", "tipo": "objeto", "estereotipo": "telaAlertas :", "nome": "TelaAlertas", "col": 1, "linha": 1},
+    {"id": "serv", "tipo": "objeto", "estereotipo": "servicoAlerta :", "nome": "ServicoAlerta", "col": 2, "linha": 1},
+    {"id": "repo", "tipo": "objeto", "estereotipo": "repositorioAlerta :", "nome": "RepositorioAlerta", "col": 2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "u", "para": "tela", "rotulo": "1: acionar \"Novo alerta\""},
+    {"de": "tela", "para": "dlg", "rotulo": "1.1: exec()"},
+    {"de": "u", "para": "dlg", "rotulo": "1.2: informar ativo,\ncondição e valor"},
+    {"de": "tela", "para": "serv", "rotulo": "1.3: criarAlerta(usuarioId, ativoId,\ncondicao, valor)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.3.1: [valor > 0] montar\nAlerta no estado Ativo", "via": [{"col": 1.86, "linha": 0.55}, {"col": 2.14, "linha": 0.55}]},
+    {"de": "serv", "para": "repo", "rotulo": "1.3.2: salvar(alerta)"},
+    {"de": "tela", "para": "tela", "rotulo": "1.4: atualizar()", "via": [{"col": 0.80, "linha": 1.45}, {"col": 1.20, "linha": 1.45}]}
+  ]
+}

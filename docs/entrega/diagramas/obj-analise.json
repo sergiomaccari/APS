@@ -1,0 +1,43 @@
+{
+  "tipo": "grade",
+  "moldura": "od Análise de PETR4",
+  "folgaColunas": 70,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "petr4", "tipo": "objeto", "nome": "petr4 : Acao", "col": 0, "linha": 0,
+     "atributos": ["ticker = \"PETR4\"", "precoLucro = 4,8", "dividendYield = 12,4"]},
+
+    {"id": "motor", "tipo": "objeto", "nome": "motor : MotorAnalise", "col": 1, "linha": 0,
+     "atributos": ["quantidadeDeRegras = 4"]},
+
+    {"id": "recomendacao", "tipo": "objeto", "nome": "recomendacao : Recomendacao",
+     "col": 2, "linha": 0,
+     "atributos": ["tipo = Compra", "pontuacao = 0,72", "estado = Vigente"]},
+
+    {"id": "cruzamento", "tipo": "objeto", "nome": "cruzamento : RegraCruzamentoMedias",
+     "col": 0, "linha": 1,
+     "atributos": ["periodoCurto = 9", "periodoLongo = 21"]},
+
+    {"id": "rsi", "tipo": "objeto", "nome": "rsi : RegraRsi", "col": 1, "linha": 1,
+     "atributos": ["limiteSobrevenda = 30", "limiteSobrecompra = 70"]},
+
+    {"id": "dy", "tipo": "objeto", "nome": "dy : RegraDividendYield", "col": 2, "linha": 1,
+     "atributos": ["dividendYieldMinimo = 6", "dividendYieldExcelente = 10"]},
+
+    {"id": "pl", "tipo": "objeto", "nome": "pl : RegraPrecoLucro", "col": 3, "linha": 1,
+     "atributos": ["precoLucroAtrativo = 8", "precoLucroElevado = 20"]}
+  ],
+  "ligacoes": [
+    {"de": "motor", "para": "petr4", "tipo": "associacao", "rotulo": "avalia"},
+    {"de": "motor", "para": "recomendacao", "tipo": "associacao", "rotulo": "produz"},
+
+    {"de": "motor", "para": "cruzamento", "tipo": "associacao",
+     "via": [{"col": 1, "linha": 0.5}, {"col": 0, "linha": 0.5}]},
+    {"de": "motor", "para": "rsi", "tipo": "associacao",
+     "via": [{"col": 1, "linha": 0.5}]},
+    {"de": "motor", "para": "dy", "tipo": "associacao",
+     "via": [{"col": 1, "linha": 0.5}, {"col": 2, "linha": 0.5}]},
+    {"de": "motor", "para": "pl", "tipo": "associacao", "rotulo": "regras ativas",
+     "via": [{"col": 1, "linha": 0.5}, {"col": 3, "linha": 0.5}]}
+  ]
+}

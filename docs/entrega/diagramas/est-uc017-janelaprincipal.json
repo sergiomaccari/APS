@@ -1,0 +1,23 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC017 | JanelaPrincipal",
+  "folgaColunas": 88,
+  "folgaLinhas": 82,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "mont", "tipo": "estado", "nome": "Montando a janela", "texto": "entry / montar navegação e páginas\nentry / mensagem de boas-vindas", "col": 1, "linha": 0},
+    {"id": "obs", "tipo": "estado", "nome": "Observando os alertas", "texto": "entry / registrarObservador(this)\ndo / aguardar alertaDisparado()", "col": 2.2, "linha": 0},
+    {"id": "aval", "tipo": "estado", "nome": "Avaliando os alertas", "texto": "do / avaliarAlertas(usuarioId)", "col": 3.4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 1, "linha": 1},
+    {"id": "notif", "tipo": "estado", "nome": "Notificando na barra de status", "texto": "entry / montar \"Alerta disparado: ...\"\ndo / showMessage(mensagem, 15 s)\nexit / telaAlertas->atualizar()", "col": 3.4, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "mont", "rotulo": "abrirJanela()"},
+    {"de": "mont", "para": "obs", "rotulo": "janela montada"},
+    {"de": "obs", "para": "aval", "rotulo": "QTimer::\nsingleShot(400 ms)"},
+    {"de": "aval", "para": "obs", "rotulo": "[nenhum disparado]", "via": [{"col": 2.9, "linha": 0.38}]},
+    {"de": "aval", "para": "notif", "rotulo": "alertaDisparado(alerta,\nativo, valorObservado)"},
+    {"de": "notif", "para": "obs", "rotulo": "notificação exibida", "via": [{"col": 2.9, "linha": 0.66}]},
+    {"de": "obs", "para": "f", "rotulo": "fecharJanela() /\nremoverObservador(this)"}
+  ]
+}

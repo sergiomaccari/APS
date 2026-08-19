@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC009 | CalculadoraIndicadores",
+  "folgaColunas": 100,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ociosa", "tipo": "estado", "nome": "Ociosa",
+     "texto": "do / aguardar chamada", "col": 1, "linha": 0},
+    {"id": "conferindo", "tipo": "estado", "nome": "Conferindo a série",
+     "texto": "do / periodo > 0?\ndo / historico.size() cobre\no período?", "col": 2, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "calculando", "tipo": "estado", "nome": "Calculando a série",
+     "texto": "do / MMS: janela deslizante\ndo / RSI: suavização de Wilder\ndo / volatilidade: desvio × √252\ndo / um Indicador por data", "col": 4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 0},
+    {"id": "sem", "tipo": "estado", "nome": "Sem dados suficientes",
+     "texto": "do / devolver série vazia\nou std::nullopt (RN019)", "col": 2, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ociosa", "rotulo": "criar()"},
+    {"de": "ociosa", "para": "conferindo", "rotulo": "mediaMovelSimples(),\nindiceForcaRelativa()\nou volatilidade\nAnualizada()"},
+    {"de": "conferindo", "para": "d"},
+    {"de": "d", "para": "calculando", "rotulo": "[histórico\nsuficiente]"},
+    {"de": "calculando", "para": "f", "rotulo": "devolver\nQVector<Indicador>"},
+    {"de": "d", "para": "sem", "rotulo": "[poucas cotações]"},
+    {"de": "sem", "para": "ociosa", "rotulo": "tela limpa o cartão", "via": [{"col": 1, "linha": 1}]}
+  ]
+}

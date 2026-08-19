@@ -1,0 +1,21 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC014 | Posicao",
+  "folgaColunas": 92,
+  "folgaLinhas": 92,
+  "elementos": [
+    {"id": "enc", "tipo": "estado", "nome": "Encerrada", "texto": "entry / quantidade = 0 e precoMedio = 0\ndo / sair da carteira do investidor", "col": 2.9, "linha": 0},
+    {"id": "fim", "tipo": "final", "col": 4.1, "linha": 0},
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 1},
+    {"id": "ab", "tipo": "estado", "nome": "Aberta", "texto": "do / manter quantidade e preço médio\ndo / valorAtual() e lucroPrejuizo()", "col": 1.4, "linha": 1},
+    {"id": "nota", "tipo": "nota", "texto": "RN013 - a compra de ativo já existente\nrecalcula o preço médio ponderado.\nRN014 - a posição zerada é removida\nda carteira.", "col": 2.9, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ab", "rotulo": "comprar(qtd,\npreço)"},
+    {"de": "ab", "para": "ab", "rotulo": "incorporarCompra(qtd, preço) /\nrecalcular o preço médio ponderado", "via": [{"col": 0.9, "linha": 0.42}, {"col": 1.8, "linha": 0.42}]},
+    {"de": "ab", "para": "ab", "rotulo": "venderParcial(qtd)\n[quantidade > 0 após a venda]", "via": [{"col": 0.9, "linha": 1.55}, {"col": 1.75, "linha": 1.55}]},
+    {"de": "ab", "para": "enc", "rotulo": "venderParcial(qtd)\n[posição zerada]"},
+    {"de": "enc", "para": "fim", "rotulo": "removerPosicao\n(id)"},
+    {"de": "nota", "para": "ab", "tipo": "tracejada"}
+  ]
+}

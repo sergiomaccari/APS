@@ -1,0 +1,31 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC005 | TelaImportacao",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "aguardando", "tipo": "estado", "nome": "Aguardando escolha",
+     "texto": "entry / carregarAtivos()\ndo / listar ativos no combo\ndo / carregarHistorico()", "col": 1, "linha": 0},
+    {"id": "escolhido", "tipo": "estado", "nome": "Arquivo escolhido",
+     "texto": "do / getOpenFileName()\ndo / casar nome e ticker", "col": 2, "linha": 0},
+    {"id": "importando", "tipo": "estado", "nome": "Importando",
+     "texto": "entry / cursor de espera\ndo / importarCsv(caminho,\nativoId)", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "resumo", "tipo": "estado", "nome": "Exibindo resumo",
+     "texto": "do / relatar(resumo)\ndo / carregarHistorico()\ndo / emit cotacoes\nImportadas()", "col": 5, "linha": 0},
+    {"id": "erros", "tipo": "estado", "nome": "Listando erros",
+     "texto": "do / relatar(resumo, erros)\ndo / mostrar linha e motivo", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "aguardando", "rotulo": "abrir a\ntela"},
+    {"de": "aguardando", "para": "escolhido", "rotulo": "escolher\nArquivo()"},
+    {"de": "escolhido", "para": "importando", "rotulo": "importar\nArquivo()"},
+    {"de": "importando", "para": "d", "rotulo": "resultado\ndevolvido"},
+    {"de": "d", "para": "resumo", "rotulo": "[sucesso]"},
+    {"de": "d", "para": "erros", "rotulo": "[arquivo\nrejeitado]"},
+    {"de": "erros", "para": "aguardando", "rotulo": "corrigir o arquivo", "via": [{"col": 1.6, "linha": 1}]},
+    {"de": "resumo", "para": "f", "rotulo": "encerrar"}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC011 | TelaRecomendacoes",
+  "folgaColunas": 92,
+  "folgaLinhas": 78,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "carr", "tipo": "estado", "nome": "Carregando vigentes", "texto": "do / servicoRecomendacao.listarVigentes()\ndo / preencher a tabela e avisar se vazia", "col": 1.2, "linha": 0},
+    {"id": "exib", "tipo": "estado", "nome": "Exibindo recomendações", "texto": "do / aguardar seleção ou comando\nexit / limpar a mensagem da tela", "col": 2.5, "linha": 0},
+    {"id": "ger", "tipo": "estado", "nome": "Gerando recomendações", "texto": "do / servicoRecomendacao.gerarParaTodos()\ndo / invalidar a vigente e publicar a nova", "col": 3.8, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 1.2, "linha": 1},
+    {"id": "falha", "tipo": "estado", "nome": "Falha na geração", "texto": "do / exibir ultimoErro() do serviço", "col": 3.8, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "carr", "rotulo": "abrirTela()"},
+    {"de": "carr", "para": "exib", "rotulo": "tabela preenchida"},
+    {"de": "exib", "para": "ger", "rotulo": "clicou\n\"Gerar para todos\""},
+    {"de": "ger", "para": "carr", "rotulo": "[geradas > 0] /\navisar o total publicado", "via": [{"col": 3.8, "linha": 0.62}, {"col": 1.2, "linha": 0.62}]},
+    {"de": "ger", "para": "falha", "rotulo": "[nenhuma gerada]"},
+    {"de": "falha", "para": "exib", "rotulo": "mensagem lida /\natualizar()"},
+    {"de": "exib", "para": "f", "rotulo": "fecharTela()"}
+  ]
+}

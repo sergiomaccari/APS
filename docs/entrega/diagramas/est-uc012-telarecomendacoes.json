@@ -1,0 +1,26 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC012 | TelaRecomendacoes",
+  "folgaColunas": 88,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "carr", "tipo": "estado", "nome": "Carregando vigentes", "texto": "do / listarVigentes()\ndo / preencher a tabela", "col": 1, "linha": 0},
+    {"id": "exib", "tipo": "estado", "nome": "Exibindo a tabela", "texto": "do / colorir Compra, Venda e Neutro\ndo / aguardar seleção", "col": 2.2, "linha": 0},
+    {"id": "det", "tipo": "estado", "nome": "Detalhando justificativa", "texto": "entry / habilitar \"Abrir no painel\"\ndo / exibir a justificativa gravada\ndo / detalharPorRegra(ativoId) (RNF006)", "col": 3.4, "linha": 0},
+    {"id": "sem", "tipo": "estado", "nome": "Sem recomendação vigente", "texto": "do / avisar \"Use Gerar para todos\"", "col": 1, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 2.2, "linha": 1},
+    {"id": "abrir", "tipo": "estado", "nome": "Abrindo no painel", "texto": "exit / emit abrirAtivo(ativoId)", "col": 3.4, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "carr", "rotulo": "abrirTela()"},
+    {"de": "carr", "para": "exib", "rotulo": "[há vigentes]"},
+    {"de": "carr", "para": "sem", "rotulo": "[lista vazia]"},
+    {"de": "exib", "para": "det", "rotulo": "itemSelection\nChanged()"},
+    {"de": "det", "para": "exib", "rotulo": "seleção desfeita /\nlimpar o painel", "via": [{"col": 2.8, "linha": 0.55}]},
+    {"de": "det", "para": "abrir", "rotulo": "clicou\n\"Abrir no painel\""},
+    {"de": "abrir", "para": "f", "rotulo": "JanelaPrincipal troca\npara o painel de análise"},
+    {"de": "exib", "para": "f", "rotulo": "fecharTela()"},
+    {"de": "sem", "para": "f", "rotulo": "fecharTela()"}
+  ]
+}

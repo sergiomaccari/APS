@@ -1,0 +1,31 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC010 | RepositorioCotacao | Consultando cotações",
+  "folgaColunas": 84,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "prepare(SELECT ... FROM cotacao WHERE\nativo_id = :ativo_id ORDER BY data);\nacrescentar LIMIT :limite quando limite > 0", "col": 1.3, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "bindValue(:ativo_id, ativoId)\ne consulta.exec()", "col": 2.7, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "exec() teve sucesso ?", "col": 4.1, "linha": 0},
+    {"id": "a7", "tipo": "acao", "texto": "m_ultimoErro = lastError().text()\ne devolver lista vazia", "col": 1.3, "linha": 1},
+    {"id": "d2", "tipo": "decisao", "texto": "limite > 0 ?", "col": 2.7, "linha": 1},
+    {"id": "a4", "tipo": "acao", "texto": "montarCotacao(consulta)\na cada next()", "col": 4.1, "linha": 1},
+    {"id": "a6", "tipo": "acao", "texto": "limpar m_ultimoErro e devolver\nQVector<Cotacao>", "col": 1.3, "linha": 2},
+    {"id": "a5", "tipo": "acao", "texto": "std::reverse(cotacoes) para voltar\nà ordem cronológica", "col": 2.7, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 0, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "d1"},
+    {"de": "d1", "para": "a4", "rotulo": "[consulta\nexecutada]"},
+    {"de": "d1", "para": "a7", "rotulo": "[exec() falhou]", "via": [{"col": 4.1, "linha": 0.55}, {"col": 2.0, "linha": 0.75}]},
+    {"de": "a4", "para": "d2"},
+    {"de": "d2", "para": "a5", "rotulo": "[limite > 0]"},
+    {"de": "d2", "para": "a6", "rotulo": "[sem limite]"},
+    {"de": "a5", "para": "a6"},
+    {"de": "a6", "para": "f"},
+    {"de": "a7", "para": "f"}
+  ]
+}

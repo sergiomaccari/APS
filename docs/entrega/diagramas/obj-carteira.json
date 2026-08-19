@@ -1,0 +1,48 @@
+{
+  "tipo": "grade",
+  "moldura": "od Carteira do investidor",
+  "folgaColunas": 70,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "investidor", "tipo": "objeto", "nome": "investidor : Usuario", "col": 0, "linha": 0,
+     "atributos": ["nome = \"Investidor de Demonstracao\"",
+                   "email = \"investidor@analisadorb3.com\"",
+                   "papel = Investidor"]},
+
+    {"id": "carteira", "tipo": "objeto", "nome": "carteira : Carteira", "col": 1, "linha": 0,
+     "atributos": ["nome = \"Carteira Principal\"", "criadaEm = 02/03/2026"]},
+
+    {"id": "pos1", "tipo": "objeto", "nome": "pos1 : Posicao", "col": 0, "linha": 1,
+     "atributos": ["quantidade = 200", "precoMedio = 36,90", "compradaEm = 05/03/2026"]},
+
+    {"id": "pos2", "tipo": "objeto", "nome": "pos2 : Posicao", "col": 1, "linha": 1,
+     "atributos": ["quantidade = 100", "precoMedio = 61,25", "compradaEm = 10/04/2026"]},
+
+    {"id": "pos3", "tipo": "objeto", "nome": "pos3 : Posicao", "col": 2, "linha": 1,
+     "atributos": ["quantidade = 30", "precoMedio = 158,70", "compradaEm = 20/05/2026"]},
+
+    {"id": "petr4", "tipo": "objeto", "nome": "petr4 : Acao", "col": 0, "linha": 2,
+     "atributos": ["ticker = \"PETR4\"", "precoLucro = 4,8", "dividendYield = 12,4"]},
+
+    {"id": "vale3", "tipo": "objeto", "nome": "vale3 : Acao", "col": 1, "linha": 2,
+     "atributos": ["ticker = \"VALE3\"", "precoLucro = 6,2", "dividendYield = 8,1"]},
+
+    {"id": "hglg11", "tipo": "objeto", "nome": "hglg11 : FundoImobiliario", "col": 2, "linha": 2,
+     "atributos": ["ticker = \"HGLG11\"", "dividendYield = 9,2",
+                   "valorPatrimonialPorCota = 168,40"]}
+  ],
+  "ligacoes": [
+    {"de": "investidor", "para": "carteira", "tipo": "associacao", "rotulo": "possui"},
+
+    {"de": "carteira", "para": "pos1", "tipo": "associacao",
+     "via": [{"col": 1, "linha": 0.5}, {"col": 0, "linha": 0.5}]},
+    {"de": "carteira", "para": "pos2", "tipo": "associacao",
+     "via": [{"col": 1, "linha": 0.5}]},
+    {"de": "carteira", "para": "pos3", "tipo": "associacao", "rotulo": "posições",
+     "via": [{"col": 1, "linha": 0.5}, {"col": 2, "linha": 0.5}]},
+
+    {"de": "pos1", "para": "petr4", "tipo": "associacao", "rotulo": "ativo"},
+    {"de": "pos2", "para": "vale3", "tipo": "associacao", "rotulo": "ativo"},
+    {"de": "pos3", "para": "hglg11", "tipo": "associacao", "rotulo": "ativo"}
+  ]
+}

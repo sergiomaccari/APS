@@ -1,0 +1,33 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC007 | TelaUsuarios",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "listando", "tipo": "estado", "nome": "Listando usuários",
+     "texto": "do / listarUsuarios()\ndo / destacar o administrador", "col": 1, "linha": 0},
+    {"id": "selecionado", "tipo": "estado", "nome": "Usuário selecionado",
+     "texto": "entry / habilitar Editar\ne Remover", "col": 2, "linha": 0},
+    {"id": "editando", "tipo": "estado", "nome": "Editando no diálogo",
+     "texto": "do / DialogoUsuario.exec()\ndo / usuarioInformado()\ndo / senha vazia mantém\na senha atual", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "aplicando", "tipo": "estado", "nome": "Aplicando mudança",
+     "texto": "do / cadastrarUsuario() ou\natualizarUsuario()\ndo / alterarSenha(id, senha)", "col": 5, "linha": 0},
+    {"id": "erro", "tipo": "estado", "nome": "Exibindo erro",
+     "texto": "do / QMessageBox::warning(\nultimoErro())", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "listando", "rotulo": "abrir a\ntela"},
+    {"de": "listando", "para": "selecionado", "rotulo": "escolher\nlinha"},
+    {"de": "selecionado", "para": "editando", "rotulo": "editar\nSelecionado()"},
+    {"de": "listando", "para": "editando", "rotulo": "cadastrar()", "via": [{"col": 1, "linha": 0.6}, {"col": 3, "linha": 0.6}]},
+    {"de": "editando", "para": "d", "rotulo": "diálogo\nfechado"},
+    {"de": "d", "para": "aplicando", "rotulo": "[dados\nconfirmados]"},
+    {"de": "d", "para": "erro", "rotulo": "[cancelado ou\ndado inválido]", "via": [{"col": 3.9, "linha": 0.72}]},
+    {"de": "aplicando", "para": "erro", "rotulo": "[serviço recusou]", "via": [{"col": 4.6, "linha": 0.8}]},
+    {"de": "aplicando", "para": "f", "rotulo": "[aplicado]\n/ atualizar()"},
+    {"de": "erro", "para": "selecionado", "rotulo": "fechar\naviso"}
+  ]
+}

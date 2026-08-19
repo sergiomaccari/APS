@@ -1,0 +1,25 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC016 | DialogoAlerta",
+  "folgaColunas": 92,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "mont", "tipo": "estado", "nome": "Montando formulário", "texto": "entry / preencher o seletor de ativos\nentry / listar as três condições", "col": 1, "linha": 0},
+    {"id": "sug", "tipo": "estado", "nome": "Sugerindo o valor de referência", "texto": "do / prefixo R$ ou sufixo % pela condição\ndo / valor = último fechamento × 1,05 ou × 0,95\ndo / avisar quando não há cotação importada", "col": 2.2, "linha": 0},
+    {"id": "edit", "tipo": "estado", "nome": "Editando o alerta", "texto": "do / aguardar ativo, condição\ne valor de referência", "col": 3.4, "linha": 0},
+    {"id": "canc", "tipo": "estado", "nome": "Cancelado", "texto": "exit / reject()", "col": 1, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 2.2, "linha": 1},
+    {"id": "conf", "tipo": "estado", "nome": "Confirmado", "texto": "exit / accept()\ndo / entregar ativoId(), condicao()\ne valorReferencia()", "col": 3.4, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "mont", "rotulo": "abrirDialogo()"},
+    {"de": "mont", "para": "sug", "rotulo": "atualizar\nSugestao()"},
+    {"de": "sug", "para": "edit", "rotulo": "sugestão aplicada"},
+    {"de": "edit", "para": "sug", "rotulo": "currentIndexChanged(i) /\natualizarSugestao()", "via": [{"col": 2.8, "linha": 0.5}]},
+    {"de": "edit", "para": "conf", "rotulo": "clicou\n\"Criar alerta\""},
+    {"de": "edit", "para": "canc", "rotulo": "clicou \"Cancelar\"", "via": [{"col": 3.3, "linha": 0.66}, {"col": 1.5, "linha": 0.66}]},
+    {"de": "conf", "para": "f", "rotulo": "devolver\nQDialog::Accepted"},
+    {"de": "canc", "para": "f", "rotulo": "devolver\nQDialog::Rejected"}
+  ]
+}

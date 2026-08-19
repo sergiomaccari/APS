@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC004 | RepositorioAtivo",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocioso", "tipo": "estado", "nome": "Ocioso",
+     "texto": "do / aguardar pedido", "col": 1, "linha": 0},
+    {"id": "preparando", "tipo": "estado", "nome": "Preparando comando",
+     "texto": "do / conexão do BancoDeDados\ndo / prepare(\"DELETE FROM ativo\nWHERE id = :id\")\ndo / bindValue(\":id\", id)", "col": 2, "linha": 0},
+    {"id": "executando", "tipo": "estado", "nome": "Executando exclusão",
+     "texto": "do / consulta.exec()\ndo / cascata apaga cotações,\nposições, alertas e\nrecomendações", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 0},
+    {"id": "erro", "tipo": "estado", "nome": "Registrando erro",
+     "texto": "entry / ultimoErro =\nlastError().text()\ndo / devolver false", "col": 3, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocioso", "rotulo": "criar()"},
+    {"de": "ocioso", "para": "preparando", "rotulo": "remover(id)"},
+    {"de": "preparando", "para": "executando", "rotulo": "comando\npronto"},
+    {"de": "executando", "para": "d"},
+    {"de": "d", "para": "f", "rotulo": "[exec() = true]\n/ limpar ultimoErro;\ndevolver true"},
+    {"de": "d", "para": "erro", "rotulo": "[erro de SQL]", "via": [{"col": 4.3, "linha": 0.6}]},
+    {"de": "erro", "para": "ocioso", "rotulo": "serviço lê ultimoErro()", "via": [{"col": 1, "linha": 1}]}
+  ]
+}

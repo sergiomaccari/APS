@@ -1,0 +1,71 @@
+{
+  "tipo": "grade",
+  "moldura": "der Analisador B3",
+  "folgaColunas": 70,
+  "folgaLinhas": 56,
+  "elementos": [
+    {"id": "usuario", "tipo": "tabela", "nome": "usuario", "col": 0, "linha": 0, "largura": 200,
+     "colunas": ["id INTEGER  [PK]", "nome TEXT", "email TEXT", "senha_hash TEXT",
+                 "papel TEXT"]},
+
+    {"id": "carteira", "tipo": "tabela", "nome": "carteira", "col": 1, "linha": 0, "largura": 240,
+     "colunas": ["id INTEGER  [PK]", "usuario_id INTEGER  [FK]", "nome TEXT",
+                 "criada_em TEXT"]},
+
+    {"id": "ativo", "tipo": "tabela", "nome": "ativo", "col": 2, "linha": 0, "largura": 230,
+     "colunas": ["id INTEGER  [PK]", "ticker TEXT", "nome_empresa TEXT", "setor TEXT",
+                 "tipo TEXT", "preco_lucro REAL", "valor_mercado REAL",
+                 "dividend_yield REAL", "valor_patrimonial_por_cota REAL",
+                 "segmento TEXT"]},
+
+    {"id": "cotacao", "tipo": "tabela", "nome": "cotacao", "col": 3, "linha": 0, "largura": 180,
+     "colunas": ["id INTEGER  [PK]", "ativo_id INTEGER  [FK]", "data TEXT",
+                 "abertura REAL", "maxima REAL", "minima REAL", "fechamento REAL",
+                 "volume INTEGER"]},
+
+    {"id": "alerta", "tipo": "tabela", "nome": "alerta", "col": 0, "linha": 1, "largura": 200,
+     "colunas": ["id INTEGER  [PK]", "usuario_id INTEGER  [FK]", "ativo_id INTEGER  [FK]",
+                 "condicao TEXT", "valor_referencia REAL", "estado TEXT",
+                 "criado_em TEXT", "disparado_em TEXT"]},
+
+    {"id": "posicao", "tipo": "tabela", "nome": "posicao", "col": 1, "linha": 1, "largura": 240,
+     "colunas": ["id INTEGER  [PK]", "carteira_id INTEGER  [FK]", "ativo_id INTEGER  [FK]",
+                 "quantidade INTEGER", "preco_medio REAL", "comprada_em TEXT"]},
+
+    {"id": "recomendacao", "tipo": "tabela", "nome": "recomendacao", "col": 2, "linha": 1,
+     "largura": 230,
+     "colunas": ["id INTEGER  [PK]", "ativo_id INTEGER  [FK]", "tipo TEXT",
+                 "justificativa TEXT", "regra_aplicada TEXT", "gerada_em TEXT",
+                 "estado TEXT", "pontuacao REAL"]},
+
+    {"id": "importacao", "tipo": "tabela", "nome": "importacao", "col": 3, "linha": 1,
+     "largura": 180,
+     "colunas": ["id INTEGER  [PK]", "ativo_id INTEGER  [FK]", "arquivo TEXT",
+                 "estado TEXT", "linhas_lidas INTEGER", "linhas_inseridas INTEGER",
+                 "mensagem_erro TEXT", "executada_em TEXT"]},
+
+    {"id": "regra", "tipo": "tabela", "nome": "regra_configurada", "col": 3, "linha": 2,
+     "largura": 180,
+     "colunas": ["id INTEGER  [PK]", "nome_regra TEXT", "ativa INTEGER",
+                 "parametro_principal REAL", "parametro_secundario REAL"]}
+  ],
+  "ligacoes": [
+    {"de": "usuario", "para": "carteira", "tipo": "associacao",
+     "rotuloOrigem": "1", "rotuloDestino": "N"},
+    {"de": "usuario", "para": "alerta", "tipo": "associacao",
+     "rotuloOrigem": "1", "rotuloDestino": "N"},
+    {"de": "carteira", "para": "posicao", "tipo": "associacao",
+     "rotuloOrigem": "1", "rotuloDestino": "N"},
+    {"de": "ativo", "para": "posicao", "tipo": "associacao",
+     "rotuloOrigem": "1", "rotuloDestino": "N"},
+    {"de": "ativo", "para": "cotacao", "tipo": "associacao",
+     "rotuloOrigem": "1", "rotuloDestino": "N"},
+    {"de": "ativo", "para": "recomendacao", "tipo": "associacao",
+     "rotuloOrigem": "1", "rotuloDestino": "N"},
+    {"de": "ativo", "para": "importacao", "tipo": "associacao",
+     "rotuloOrigem": "1", "rotuloDestino": "N"},
+    {"de": "ativo", "para": "alerta", "tipo": "associacao",
+     "rotuloOrigem": "1", "rotuloDestino": "N",
+     "via": [{"col": 1.5, "linha": 0}, {"col": 1.5, "linha": 1.5}, {"col": 0.45, "linha": 1.5}]}
+  ]
+}

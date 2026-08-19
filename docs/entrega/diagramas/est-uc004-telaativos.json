@@ -1,0 +1,32 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC004 | TelaAtivos",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "lista", "tipo": "estado", "nome": "Exibindo lista",
+     "texto": "do / atualizar()\ndo / preencher a tabela", "col": 1, "linha": 0},
+    {"id": "selecionado", "tipo": "estado", "nome": "Ativo selecionado",
+     "texto": "entry / habilitar Remover\ndo / idSelecionado()", "col": 2, "linha": 0},
+    {"id": "confirmando", "tipo": "estado", "nome": "Confirmando remoção",
+     "texto": "do / buscarPorId(id)\ndo / QMessageBox::question()\ndo / avisar sobre os dados\nvinculados", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "removendo", "tipo": "estado", "nome": "Removendo ativo",
+     "texto": "do / servicoAtivo.remover(id)", "col": 5, "linha": 0},
+    {"id": "erro", "tipo": "estado", "nome": "Exibindo erro",
+     "texto": "do / QMessageBox::warning(\nultimoErro())", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "lista", "rotulo": "abrir a\ntela"},
+    {"de": "lista", "para": "selecionado", "rotulo": "escolher\nlinha"},
+    {"de": "selecionado", "para": "confirmando", "rotulo": "removerAtivo\nSelecionado()"},
+    {"de": "confirmando", "para": "d"},
+    {"de": "d", "para": "removendo", "rotulo": "[resposta Sim]"},
+    {"de": "d", "para": "selecionado", "rotulo": "[resposta Não]", "via": [{"col": 4, "linha": 0.55}, {"col": 2, "linha": 0.55}]},
+    {"de": "removendo", "para": "erro", "rotulo": "[falha ao remover]", "via": [{"col": 4.6, "linha": 0.8}]},
+    {"de": "removendo", "para": "f", "rotulo": "[removido] / atualizar();\nemit cadastroAlterado()"},
+    {"de": "erro", "para": "selecionado", "rotulo": "fechar\naviso"}
+  ]
+}

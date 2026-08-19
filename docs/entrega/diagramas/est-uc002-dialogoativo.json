@@ -1,0 +1,30 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC002 | DialogoAtivo",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "preenchendo", "tipo": "estado", "nome": "Preenchendo formulário",
+     "texto": "entry / atualizarCamposPorTipo()\ndo / exibir campos do tipo\ntipoAlterado / trocar os campos", "col": 1, "linha": 0},
+    {"id": "montando", "tipo": "estado", "nome": "Montando ativo",
+     "texto": "do / ativoInformado()\ndo / ticker em caixa alta", "col": 2, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "informado", "tipo": "estado", "nome": "Ativo informado",
+     "texto": "do / devolver Acao ou\nFundoImobiliario", "col": 4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 0},
+    {"id": "incompleto", "tipo": "estado", "nome": "Campos incompletos",
+     "texto": "do / devolver nullptr\ndo / tela avisa \"preencha o\nticker e o nome\"", "col": 3, "linha": 1},
+    {"id": "fc", "tipo": "final", "col": 1, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "preenchendo", "rotulo": "abrir\ndiálogo"},
+    {"de": "preenchendo", "para": "montando", "rotulo": "aceitar\n(Salvar)"},
+    {"de": "montando", "para": "d"},
+    {"de": "d", "para": "informado", "rotulo": "[ticker e nome\npreenchidos]"},
+    {"de": "informado", "para": "f", "rotulo": "accept()"},
+    {"de": "d", "para": "incompleto", "rotulo": "[campo\nem branco]"},
+    {"de": "incompleto", "para": "preenchendo", "rotulo": "corrigir os campos", "via": [{"col": 1.6, "linha": 1}]},
+    {"de": "preenchendo", "para": "fc", "rotulo": "cancelar() / reject()"}
+  ]
+}

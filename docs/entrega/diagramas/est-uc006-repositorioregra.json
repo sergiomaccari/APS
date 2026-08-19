@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC006 | RepositorioRegra",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocioso", "tipo": "estado", "nome": "Ocioso",
+     "texto": "do / aguardar pedido", "col": 1, "linha": 0},
+    {"id": "montando", "tipo": "estado", "nome": "Montando comando",
+     "texto": "do / prepare(\"UPDATE\nregra_configurada SET ...\nWHERE id = :id\")\ndo / vincular nome e parâmetros\ndo / ativa gravada como 0 ou 1", "col": 2, "linha": 0},
+    {"id": "executando", "tipo": "estado", "nome": "Executando no banco",
+     "texto": "do / consulta.exec()\ndo / conferir lastError()", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 0},
+    {"id": "erro", "tipo": "estado", "nome": "Registrando erro",
+     "texto": "entry / ultimoErro =\nlastError().text()\ndo / devolver false", "col": 3, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocioso", "rotulo": "criar()"},
+    {"de": "ocioso", "para": "montando", "rotulo": "atualizar(regra)"},
+    {"de": "montando", "para": "executando", "rotulo": "comando\npronto"},
+    {"de": "executando", "para": "d"},
+    {"de": "d", "para": "f", "rotulo": "[exec() = true]\n/ limpar ultimoErro;\ndevolver true"},
+    {"de": "d", "para": "erro", "rotulo": "[erro de SQL]", "via": [{"col": 4.3, "linha": 0.6}]},
+    {"de": "erro", "para": "ocioso", "rotulo": "tela exibe ultimoErro()", "via": [{"col": 1, "linha": 1}]}
+  ]
+}

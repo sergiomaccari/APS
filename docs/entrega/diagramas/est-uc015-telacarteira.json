@@ -1,0 +1,26 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC015 | TelaCarteira",
+  "folgaColunas": 88,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "gar", "tipo": "estado", "nome": "Obtendo a carteira", "texto": "do / carteiraDoUsuario(usuarioId)\ndo / criar a carteira principal\nno primeiro acesso", "col": 1, "linha": 0},
+    {"id": "calc", "tipo": "estado", "nome": "Calculando o resumo", "texto": "do / calcularResumo(carteiraId)", "col": 2.2, "linha": 0},
+    {"id": "exib", "tipo": "estado", "nome": "Exibindo o resultado", "texto": "do / preencher a tabela por posição\ndo / verde para ganho e vermelho para\nperda (REU002)\ndo / exibir os totais da carteira", "col": 3.4, "linha": 0},
+    {"id": "err", "tipo": "estado", "nome": "Carteira indisponível", "texto": "do / exibir ultimoErro()", "col": 1, "linha": 1},
+    {"id": "vazia", "tipo": "estado", "nome": "Carteira vazia", "texto": "do / avisar \"Use Comprar para registrar\na primeira posição\"", "col": 2.2, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 3.4, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "gar", "rotulo": "abrirTela()"},
+    {"de": "gar", "para": "calc", "rotulo": "[carteira obtida]"},
+    {"de": "gar", "para": "err", "rotulo": "[garantirCarteira()\ndevolveu false]"},
+    {"de": "calc", "para": "exib", "rotulo": "[há posições]"},
+    {"de": "calc", "para": "vazia", "rotulo": "[resumo vazio]"},
+    {"de": "exib", "para": "calc", "rotulo": "clicou \"Recarregar\" /\natualizar()", "via": [{"col": 2.8, "linha": 0.5}]},
+    {"de": "exib", "para": "f", "rotulo": "fecharTela()"},
+    {"de": "vazia", "para": "f", "rotulo": "fecharTela()"},
+    {"de": "err", "para": "f", "rotulo": "fecharTela()"}
+  ]
+}

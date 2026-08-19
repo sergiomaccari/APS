@@ -1,0 +1,27 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC005 | Importacao",
+  "folgaColunas": 128,
+  "folgaLinhas": 70,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "pendente", "tipo": "estado", "nome": "Pendente",
+     "texto": "entry / definir ativo e arquivo\ndo / aguardar a leitura", "col": 1, "linha": 0},
+    {"id": "validando", "tipo": "estado", "nome": "Validando",
+     "texto": "entry / estado = Validando\ndo / conferir cabeçalho\ndo / converter cada linha", "col": 2, "linha": 0},
+    {"id": "concluida", "tipo": "estado", "nome": "Concluida",
+     "texto": "entry / registrar lidas e inseridas\nentry / executadaEm = agora\ndo / limpar mensagemErro", "col": 3, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 4, "linha": 0},
+    {"id": "rejeitada", "tipo": "estado", "nome": "Rejeitada",
+     "texto": "entry / linhasInseridas = 0\nentry / mensagemErro = motivo\nentry / executadaEm = agora", "col": 2, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "pendente", "rotulo": "Importacao\n(ativoId,\narquivo)"},
+    {"de": "pendente", "para": "validando", "rotulo": "iniciarValidacao()\n[estado ==\nPendente]"},
+    {"de": "validando", "para": "concluida", "rotulo": "concluir(lidas,\ninseridas)\n[sem erros]"},
+    {"de": "pendente", "para": "rejeitada", "rotulo": "rejeitar(motivo)\n[arquivo não abre]"},
+    {"de": "validando", "para": "rejeitada", "rotulo": "rejeitar(motivo)\n[erro estrutural] (RN011)"},
+    {"de": "concluida", "para": "f", "rotulo": "gravada no\nhistórico"},
+    {"de": "rejeitada", "para": "f", "rotulo": "gravada no histórico com o motivo", "via": [{"col": 4, "linha": 1}]}
+  ]
+}

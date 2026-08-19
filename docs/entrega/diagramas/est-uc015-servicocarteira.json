@@ -1,0 +1,25 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC015 | ServicoCarteira",
+  "folgaColunas": 88,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocio", "tipo": "estado", "nome": "Ocioso", "texto": "do / aguardar consulta", "col": 1, "linha": 0},
+    {"id": "list", "tipo": "estado", "nome": "Listando as posições", "texto": "do / listarPosicoes(carteiraId)", "col": 2.2, "linha": 0},
+    {"id": "aval", "tipo": "estado", "nome": "Avaliando a posição", "texto": "do / repositorioAtivo.buscarPorId(ativoId)\ndo / repositorioCotacao.buscarUltima(ativoId)\ndo / valorAtual(), lucroPrejuizo() e\nrentabilidadePercentual()", "col": 3.4, "linha": 0},
+    {"id": "tot", "tipo": "estado", "nome": "Consolidando os totais", "texto": "do / somar valorInvestido e valorAtual\ndo / lucroPrejuizo da carteira\ndo / rentabilidade = lucro / investido × 100", "col": 2.2, "linha": 1},
+    {"id": "semc", "tipo": "estado", "nome": "Sem cotação importada", "texto": "do / precoAtual = precoMedio\ndo / marcar a linha como \"sem cotação\"", "col": 3.4, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 2.2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocio", "rotulo": "criar()"},
+    {"de": "ocio", "para": "list", "rotulo": "calcularResumo\n(carteiraId)"},
+    {"de": "list", "para": "aval", "rotulo": "para cada Posicao"},
+    {"de": "list", "para": "tot", "rotulo": "[carteira vazia]"},
+    {"de": "aval", "para": "semc", "rotulo": "[buscarUltima()\ndevolveu vazio]"},
+    {"de": "aval", "para": "tot", "rotulo": "[há cotação] /\nprecoAtual = fechamento"},
+    {"de": "semc", "para": "tot", "rotulo": "linha somada\nao resumo"},
+    {"de": "tot", "para": "f", "rotulo": "devolver ResumoCarteira"}
+  ]
+}

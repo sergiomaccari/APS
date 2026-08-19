@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC001 | TelaLogin | Autenticando",
+  "folgaColunas": 76,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "mostrarErro(\"\")\nlimpa o aviso anterior", "col": 1, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "autenticado = servico\n.autenticar(\ncampoEmail.text(),\ncampoSenha.text())", "col": 2, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "a3", "tipo": "acao", "texto": "usuarioAutenticado =\nautenticado.value()", "col": 4, "linha": 0},
+    {"id": "a4", "tipo": "acao", "texto": "accept()", "col": 5, "linha": 0},
+    {"id": "e1", "tipo": "acao", "texto": "mostrarErro(\nservico.ultimoErro())", "col": 3, "linha": 1},
+    {"id": "e2", "tipo": "acao", "texto": "campoSenha.clear()\ncampoSenha.setFocus()", "col": 4, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "d"},
+    {"de": "d", "para": "a3", "rotulo": "[usuário\nautenticado]"},
+    {"de": "a3", "para": "a4"},
+    {"de": "a4", "para": "f"},
+    {"de": "d", "para": "e1", "rotulo": "[devolveu\nstd::nullopt]"},
+    {"de": "e1", "para": "e2"},
+    {"de": "e2", "para": "f"}
+  ]
+}

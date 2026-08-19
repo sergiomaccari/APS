@@ -1,0 +1,31 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC008 | RepositorioAtivo",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocioso", "tipo": "estado", "nome": "Ocioso",
+     "texto": "do / aguardar pedido", "col": 1, "linha": 0},
+    {"id": "montando", "tipo": "estado", "nome": "Montando consulta",
+     "texto": "do / prepare(\"SELECT ... WHERE\nticker LIKE :padraoTicker OR\nnome_empresa LIKE :padraoNome\nORDER BY ticker\")\ndo / vincular \"%termo%\"", "col": 2, "linha": 0},
+    {"id": "executando", "tipo": "estado", "nome": "Executando consulta",
+     "texto": "do / consulta.exec()", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "objetos", "tipo": "estado", "nome": "Montando objetos",
+     "texto": "do / lerTodos() percorre\no resultado\ndo / montarAtivo() cria Acao\nou FundoImobiliario", "col": 5, "linha": 0},
+    {"id": "erro", "tipo": "estado", "nome": "Registrando erro",
+     "texto": "entry / ultimoErro =\nlastError().text()\ndo / devolver vetor vazio", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocioso", "rotulo": "criar()"},
+    {"de": "ocioso", "para": "montando", "rotulo": "buscar(termo)"},
+    {"de": "montando", "para": "executando", "rotulo": "consulta\npronta"},
+    {"de": "executando", "para": "d"},
+    {"de": "d", "para": "objetos", "rotulo": "[exec() = true]"},
+    {"de": "d", "para": "erro", "rotulo": "[erro de SQL]"},
+    {"de": "objetos", "para": "f", "rotulo": "devolver\nvector<unique_ptr<Ativo>>"},
+    {"de": "erro", "para": "ocioso", "rotulo": "serviço lê ultimoErro()", "via": [{"col": 1, "linha": 1}]}
+  ]
+}

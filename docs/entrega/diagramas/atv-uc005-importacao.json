@@ -1,0 +1,33 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC005 | Importacao | Validando",
+  "folgaColunas": 96,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0.5},
+    {"id": "d1", "tipo": "decisao", "col": 1, "linha": 0.5},
+    {"id": "d2", "tipo": "decisao", "col": 2, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "estado = Concluida\nlinhasLidas = lidas\nlinhasInseridas = inseridas", "col": 3, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "mensagemErro.clear()\nexecutadaEm = now()", "col": 4, "linha": 0},
+    {"id": "d3", "tipo": "decisao", "col": 2, "linha": 1},
+    {"id": "a3", "tipo": "acao", "texto": "estado = Rejeitada\nlinhasInseridas = 0\nmensagemErro = motivo", "col": 3, "linha": 1},
+    {"id": "a4", "tipo": "acao", "texto": "executadaEm = now()", "col": 4, "linha": 1},
+    {"id": "e1", "tipo": "acao", "texto": "devolver false\n(transição recusada)", "col": 3, "linha": 0.5},
+    {"id": "fe", "tipo": "final", "col": 4, "linha": 0.5},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 0.5}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "d1"},
+    {"de": "d1", "para": "d2", "rotulo": "[concluir(lidas,\ninseridas)]"},
+    {"de": "d1", "para": "d3", "rotulo": "[rejeitar(motivo)]"},
+    {"de": "d2", "para": "a1", "rotulo": "[é Validando]"},
+    {"de": "d2", "para": "e1", "rotulo": "[outro estado]"},
+    {"de": "d3", "para": "a3", "rotulo": "[é Pendente ou\nValidando]"},
+    {"de": "d3", "para": "e1", "rotulo": "[outro estado]"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a3", "para": "a4"},
+    {"de": "a2", "para": "f", "rotulo": "devolver true"},
+    {"de": "a4", "para": "f", "rotulo": "devolver true"},
+    {"de": "e1", "para": "fe"}
+  ]
+}

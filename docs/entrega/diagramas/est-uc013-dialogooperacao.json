@@ -1,0 +1,25 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC013 | DialogoOperacao",
+  "folgaColunas": 92,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "mont", "tipo": "estado", "nome": "Montando formulário", "texto": "entry / preencher o seletor de ativos\nentry / exibir preço unitário e data\n(modo Compra)", "col": 1, "linha": 0},
+    {"id": "ajus", "tipo": "estado", "nome": "Ajustando sugestões", "texto": "do / preço = último fechamento importado\ndo / avisar quando não há cotação", "col": 2.2, "linha": 0},
+    {"id": "edit", "tipo": "estado", "nome": "Editando a compra", "texto": "do / aguardar quantidade,\npreço e data da compra", "col": 3.4, "linha": 0},
+    {"id": "canc", "tipo": "estado", "nome": "Cancelado", "texto": "exit / reject()", "col": 1, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 2.2, "linha": 1},
+    {"id": "conf", "tipo": "estado", "nome": "Confirmado", "texto": "exit / accept()\ndo / entregar ativoId(), quantidade(),\npreco() e data()", "col": 3.4, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "mont", "rotulo": "abrirDialogo()"},
+    {"de": "mont", "para": "ajus", "rotulo": "ajustarLimites\nPorAtivo()"},
+    {"de": "ajus", "para": "edit", "rotulo": "sugestão aplicada"},
+    {"de": "edit", "para": "ajus", "rotulo": "currentIndexChanged(i) /\najustarLimitesPorAtivo()", "via": [{"col": 2.8, "linha": 0.5}]},
+    {"de": "edit", "para": "conf", "rotulo": "clicou\n\"Comprar\""},
+    {"de": "edit", "para": "canc", "rotulo": "clicou \"Cancelar\"", "via": [{"col": 3.3, "linha": 0.62}, {"col": 1.6, "linha": 0.62}]},
+    {"de": "conf", "para": "f", "rotulo": "devolver\nQDialog::Accepted"},
+    {"de": "canc", "para": "f", "rotulo": "devolver\nQDialog::Rejected"}
+  ]
+}

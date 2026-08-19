@@ -1,0 +1,26 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC014 | TelaCarteira | Registrando a venda",
+  "folgaColunas": 84,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a0", "tipo": "acao", "texto": "garantirCarteira(): obter\nm_carteiraId do investidor", "col": 1.2, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "DialogoOperacao(Modo::Venda, opcoes)\nentregou ativoId() e quantidade()", "col": 2.6, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "servicoCarteira.vender(m_carteiraId,\ndialogo.ativoId(), dialogo.quantidade())", "col": 4.1, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "vender() = true ?", "col": 4.1, "linha": 1},
+    {"id": "a3", "tipo": "acao", "texto": "atualizar(): recarregar a tabela\ne o resumo da carteira", "col": 2.6, "linha": 1},
+    {"id": "a4", "tipo": "acao", "texto": "QMessageBox::warning com o\nultimoErro() do serviço (RN012)", "col": 2.6, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 1.2, "linha": 1.5}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a0"},
+    {"de": "a0", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "d1"},
+    {"de": "d1", "para": "a3", "rotulo": "[venda registrada]"},
+    {"de": "d1", "para": "a4", "rotulo": "[venda recusada]", "via": [{"col": 4.1, "linha": 1.62}]},
+    {"de": "a3", "para": "f"},
+    {"de": "a4", "para": "f"}
+  ]
+}

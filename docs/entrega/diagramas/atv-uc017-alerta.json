@@ -1,0 +1,32 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC017 | Alerta | Ativo",
+  "folgaColunas": 84,
+  "folgaLinhas": 72,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "receber o valorObservado\nda última cotação importada", "col": 1.2, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "PrecoAcimaDe:\nvalorObservado >\nvalorReferencia", "col": 2.5, "linha": 0},
+    {"id": "a5", "tipo": "acao", "texto": "permanecer Ativo e\ncontinuar monitorando\n(RN020)", "col": 3.8, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "qual condição ?", "col": 1.2, "linha": 1},
+    {"id": "a3", "tipo": "acao", "texto": "PrecoAbaixoDe:\nvalorObservado <\nvalorReferencia", "col": 2.5, "linha": 1},
+    {"id": "d2", "tipo": "decisao", "texto": "condição satisfeita ?", "col": 3.8, "linha": 1},
+    {"id": "a4", "tipo": "acao", "texto": "VariacaoDiariaAcimaDe:\n|valorObservado| >\n|valorReferencia|", "col": 2.5, "linha": 2},
+    {"id": "a6", "tipo": "acao", "texto": "disparar(momento):\nm_estado = Disparado e\nm_disparadoEm = momento", "col": 3.8, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 4.8, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "d1"},
+    {"de": "d1", "para": "a2", "rotulo": "[preço\nacima de]"},
+    {"de": "d1", "para": "a3", "rotulo": "[preço abaixo de]"},
+    {"de": "d1", "para": "a4", "rotulo": "[variação\ndiária]"},
+    {"de": "a2", "para": "d2"},
+    {"de": "a3", "para": "d2"},
+    {"de": "a4", "para": "d2"},
+    {"de": "d2", "para": "a5", "rotulo": "[não satisfeita]"},
+    {"de": "d2", "para": "a6", "rotulo": "[satisfeita]"},
+    {"de": "a5", "para": "f"},
+    {"de": "a6", "para": "f"}
+  ]
+}

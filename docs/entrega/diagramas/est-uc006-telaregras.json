@@ -1,0 +1,33 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC006 | TelaRegras",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "listando", "tipo": "estado", "nome": "Listando regras",
+     "texto": "do / repositorioRegra.listarTodas()\ndo / MotorAnalise::criarRegra()\npara descrever o critério", "col": 1, "linha": 0},
+    {"id": "selecionada", "tipo": "estado", "nome": "Regra selecionada",
+     "texto": "entry / habilitar Editar\ne Ativar/desativar", "col": 2, "linha": 0},
+    {"id": "editando", "tipo": "estado", "nome": "Editando parâmetros",
+     "texto": "do / buscarPorId(id)\ndo / DialogoRegra.exec()\ndo / regraInformada()", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "gravando", "tipo": "estado", "nome": "Gravando regra",
+     "texto": "do / repositorioRegra.\natualizar(regra)", "col": 5, "linha": 0},
+    {"id": "erro", "tipo": "estado", "nome": "Exibindo erro",
+     "texto": "do / mostrarMensagem() ou\nQMessageBox::warning()", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "listando", "rotulo": "abrir a\ntela"},
+    {"de": "listando", "para": "selecionada", "rotulo": "escolher\nlinha"},
+    {"de": "selecionada", "para": "editando", "rotulo": "editar\nSelecionada()"},
+    {"de": "editando", "para": "d", "rotulo": "diálogo\nfechado"},
+    {"de": "d", "para": "gravando", "rotulo": "[Salvar e\nvalida()]"},
+    {"de": "d", "para": "erro", "rotulo": "[parâmetro\ninválido]"},
+    {"de": "selecionada", "para": "gravando", "rotulo": "alternarAtivacao()\n/ definirAtiva(!ativa)", "via": [{"col": 2, "linha": 0.62}, {"col": 5, "linha": 0.62}]},
+    {"de": "gravando", "para": "erro", "rotulo": "[falha no banco]", "via": [{"col": 4.6, "linha": 0.8}]},
+    {"de": "gravando", "para": "f", "rotulo": "[gravada] / atualizar();\nemit regrasAlteradas()"},
+    {"de": "erro", "para": "selecionada", "rotulo": "fechar\naviso"}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC008",
+  "folgaColunas": 260, "folgaLinhas": 150,
+  "elementos": [
+    {"id": "inv", "tipo": "ator", "nome": ": Investidor", "col": 0, "linha": 0},
+    {"id": "tela", "tipo": "classe", "nome": ": TelaAtivos", "col": 1, "linha": 0},
+    {"id": "serv", "tipo": "classe", "nome": ": ServicoAtivo", "col": 2, "linha": 0},
+    {"id": "repo", "tipo": "classe", "nome": ": RepositorioAtivo", "col": 2, "linha": 1},
+    {"id": "bd", "tipo": "classe", "nome": ": BancoDeDados", "col": 1, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "inv", "para": "tela", "rotulo": "1: digitar ticker ou nome"},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: aplicarFiltro()\n1.3: preencher a tabela",
+     "via": [{"col": 0.52, "linha": 0.10}, {"col": 0.52, "linha": 0.34}, {"col": 0.95, "linha": 0.34}]},
+    {"de": "tela", "para": "serv", "rotulo": "1.2: buscar(termo)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.2.1: buscar(termo)",
+     "via": [{"col": 2, "linha": 0.65}]},
+    {"de": "repo", "para": "repo", "rotulo": "1.2.1.2: montarAtivo()",
+     "via": [{"col": 1.90, "linha": 0.62}, {"col": 1.25, "linha": 0.62}, {"col": 1.25, "linha": 0.76}, {"col": 1.75, "linha": 0.76}]},
+    {"de": "repo", "para": "bd", "rotulo": "1.2.1.1: SELECT ...\nLIKE :padrao"}
+  ]
+}

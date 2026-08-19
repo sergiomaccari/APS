@@ -1,0 +1,23 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC003",
+  "folgaColunas": 260, "folgaLinhas": 150,
+  "elementos": [
+    {"id": "adm", "tipo": "ator", "nome": ": Administrador", "col": 0, "linha": 0},
+    {"id": "tela", "tipo": "classe", "nome": ": TelaAtivos", "col": 1, "linha": 0},
+    {"id": "dlg", "tipo": "classe", "nome": ": DialogoAtivo", "col": 1, "linha": 1},
+    {"id": "serv", "tipo": "classe", "nome": ": ServicoAtivo", "col": 2, "linha": 0},
+    {"id": "repo", "tipo": "classe", "nome": ": RepositorioAtivo", "col": 2, "linha": 1},
+    {"id": "bd", "tipo": "classe", "nome": ": BancoDeDados", "col": 2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "adm", "para": "tela", "rotulo": "1: selecionar ativo e editar"},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: idSelecionado()\n1.7: atualizar()",
+     "via": [{"col": 0.55, "linha": 0.05}, {"col": 0.55, "linha": 0.30}, {"col": 0.93, "linha": 0.30}]},
+    {"de": "tela", "para": "serv", "rotulo": "1.2: buscarPorId(id)\n1.6: salvar(ativo)"},
+    {"de": "tela", "para": "dlg", "rotulo": "1.3: exec()\n1.5: ativoInformado()"},
+    {"de": "adm", "para": "dlg", "rotulo": "1.4: alterar dados e confirmar"},
+    {"de": "serv", "para": "repo", "rotulo": "1.2.1: buscarPorId(id)\n1.6.1: tickerEmUso(ticker, id)\n1.6.2: atualizar(ativo)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.2.1.1: SELECT em ativo\n1.6.2.1: UPDATE em ativo"}
+  ]
+}

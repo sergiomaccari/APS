@@ -1,0 +1,30 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC004",
+  "participantes": [
+    {"id": "adm", "nome": ": Administrador", "ator": true},
+    {"id": "tela", "nome": ": TelaAtivos"},
+    {"id": "serv", "nome": ": ServicoAtivo"},
+    {"id": "repo", "nome": ": RepositorioAtivo"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "adm", "para": "tela", "rotulo": "1: selecionar ativo e remover"},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: buscarPorId(id)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.1.1: buscarPorId(id)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.1.1.1: SELECT em ativo"},
+    {"de": "bd", "para": "repo", "rotulo": "registro", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "Ativo existente", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "Ativo existente", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.2: QMessageBox::question()"},
+    {"de": "adm", "para": "tela", "rotulo": "1.3: confirmar a exclusão"},
+    {"de": "tela", "para": "serv", "rotulo": "1.4: remover(id)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.4.1: remover(id)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.4.1.1: DELETE em ativo"},
+    {"de": "bd", "para": "repo", "rotulo": "linhas apagadas", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "verdadeiro", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "verdadeiro", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.5: atualizar()"},
+    {"de": "tela", "para": "adm", "rotulo": "ativo removido", "retorno": true}
+  ]
+}

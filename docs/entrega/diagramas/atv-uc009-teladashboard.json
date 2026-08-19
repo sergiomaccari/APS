@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC009 | TelaDashboard | Calculando indicadores",
+  "folgaColunas": 42,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0.5},
+    {"id": "a1", "tipo": "acao", "texto": "historico =\nrepositorioCotacao\n.listarPorAtivo(\nativoId, dias)", "col": 1, "linha": 0.5},
+    {"id": "a2", "tipo": "acao", "texto": "mediaCurta =\nmediaMovelSimples(\nhistorico, 9)\nmediaLonga =\nmediaMovelSimples(\nhistorico, 21)", "col": 2, "linha": 0.5},
+    {"id": "a3", "tipo": "acao", "texto": "grafico.definirDados(\nticker, historico,\nmediaCurta, mediaLonga)", "col": 3, "linha": 0.5},
+    {"id": "a4", "tipo": "acao", "texto": "ultimoFechamento()\nvariacaoPercentual()\nindiceForcaRelativa(14)\nvolatilidadeAnualizada()", "col": 4, "linha": 0.5},
+    {"id": "d1", "tipo": "decisao", "col": 5, "linha": 0.5},
+    {"id": "a5", "tipo": "acao", "texto": "definirValor nos cartões\nde fechamento, variação,\nRSI e volatilidade", "col": 6, "linha": 0},
+    {"id": "a6", "tipo": "acao", "texto": "limpar() o cartão\ncorrespondente", "col": 6, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 7, "linha": 0.5}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "a3"},
+    {"de": "a3", "para": "a4"},
+    {"de": "a4", "para": "d1"},
+    {"de": "d1", "para": "a5", "rotulo": "[indicador\ncom valor]"},
+    {"de": "d1", "para": "a6", "rotulo": "[std::nullopt:\nsem dados (RN019)]"},
+    {"de": "a5", "para": "f"},
+    {"de": "a6", "para": "f"}
+  ]
+}

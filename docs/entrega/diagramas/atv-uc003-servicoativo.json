@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC003 | ServicoAtivo | Validando alteração",
+  "folgaColunas": 86,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "ultimoErro.clear()", "col": 1, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "col": 2, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "d3", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "ativo.definirTicker(\nticker.trimmed().toUpper())", "col": 5, "linha": 0},
+    {"id": "e1", "tipo": "acao", "texto": "ultimoErro = motivo do erro\n(RN001, RN005)\ndevolver false", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "d1"},
+    {"de": "d1", "para": "d2", "rotulo": "[tickerValido\n(ticker)]"},
+    {"de": "d1", "para": "e1", "rotulo": "[ticker\ninválido]"},
+    {"de": "d2", "para": "d3", "rotulo": "[nome e setor\npreenchidos]"},
+    {"de": "d2", "para": "e1", "rotulo": "[campo\nem branco]"},
+    {"de": "d3", "para": "a2", "rotulo": "[ticker livre:\nativo.id() é\nignorado]"},
+    {"de": "d3", "para": "e1", "rotulo": "[ticker de\noutro ativo]"},
+    {"de": "a2", "para": "f", "rotulo": "seguir para\nAtualizando ativo"},
+    {"de": "e1", "para": "f", "rotulo": "a tela exibe ultimoErro()"}
+  ]
+}

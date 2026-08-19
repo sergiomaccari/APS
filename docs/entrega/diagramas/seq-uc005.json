@@ -1,0 +1,27 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC005",
+  "participantes": [
+    {"id": "adm", "nome": ": Administrador", "ator": true},
+    {"id": "tela", "nome": ": TelaImportacao"},
+    {"id": "serv", "nome": ": ServicoImportacao"},
+    {"id": "cot", "nome": ": RepositorioCotacao"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "adm", "para": "tela", "rotulo": "1: importar cotações"},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: importarCsv(caminho, ativoId)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.1: cabecalhoValido()"},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.2: converterLinha() *[cada linha]"},
+    {"de": "serv", "para": "bd", "rotulo": "1.1.3: iniciarTransacao()"},
+    {"de": "serv", "para": "cot", "rotulo": "1.1.4: inserirEmLote(cotacoes)"},
+    {"de": "cot", "para": "bd", "rotulo": "1.1.4.1: INSERT OR IGNORE"},
+    {"de": "bd", "para": "cot", "rotulo": "linhas gravadas", "retorno": true},
+    {"de": "cot", "para": "serv", "rotulo": "linhasInseridas", "retorno": true},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.5: RepositorioImportacao::salvar()"},
+    {"de": "serv", "para": "bd", "rotulo": "1.1.6: confirmar()"},
+    {"de": "serv", "para": "tela", "rotulo": "ResultadoImportacao", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.2: carregarHistorico()"},
+    {"de": "tela", "para": "adm", "rotulo": "resumo da importação", "retorno": true}
+  ]
+}

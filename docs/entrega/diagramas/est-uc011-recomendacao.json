@@ -1,0 +1,23 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC011 | Recomendacao",
+  "folgaColunas": 100,
+  "folgaLinhas": 84,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ger", "tipo": "estado", "nome": "Gerada", "texto": "entry / definirPontuacao(pontuacao)\ndo / aguardar publicação", "col": 1, "linha": 0},
+    {"id": "vig", "tipo": "estado", "nome": "Vigente", "texto": "entry / estado = \"Vigente\"\ndo / aparecer em listarVigentes()", "col": 2.3, "linha": 0},
+    {"id": "exp", "tipo": "estado", "nome": "Expirada", "texto": "do / manter apenas o histórico", "col": 3.6, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 4.5, "linha": 0},
+    {"id": "inv", "tipo": "estado", "nome": "Invalidada", "texto": "entry / estado = \"Invalidada\"\ndo / sair das listagens vigentes", "col": 2.3, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ger", "rotulo": "analisar(ativo,\nhistorico)"},
+    {"de": "ger", "para": "vig", "rotulo": "marcarComoVigente()\n[estado == Gerada] /\nsalvar()"},
+    {"de": "vig", "para": "exp", "rotulo": "expirar()\n[estado == Vigente]"},
+    {"de": "ger", "para": "inv", "rotulo": "invalidar()\n[substituída antes\nde publicar]"},
+    {"de": "vig", "para": "inv", "rotulo": "invalidar() (RN017)"},
+    {"de": "exp", "para": "f"},
+    {"de": "inv", "para": "f", "via": [{"col": 4.5, "linha": 1}]}
+  ]
+}

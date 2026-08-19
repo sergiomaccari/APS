@@ -1,0 +1,32 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC003 | TelaAtivos",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "lista", "tipo": "estado", "nome": "Exibindo lista",
+     "texto": "do / atualizar()\ndo / preencher a tabela", "col": 1, "linha": 0},
+    {"id": "selecionado", "tipo": "estado", "nome": "Ativo selecionado",
+     "texto": "entry / habilitar Editar\ne Remover", "col": 2, "linha": 0},
+    {"id": "editando", "tipo": "estado", "nome": "Editando no diálogo",
+     "texto": "do / buscarPorId(id)\ndo / DialogoAtivo.exec()", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "gravando", "tipo": "estado", "nome": "Gravando alteração",
+     "texto": "do / servicoAtivo.salvar(*editado)", "col": 5, "linha": 0},
+    {"id": "erro", "tipo": "estado", "nome": "Exibindo erro",
+     "texto": "do / QMessageBox::warning(\nultimoErro())", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "lista", "rotulo": "abrir a\ntela"},
+    {"de": "lista", "para": "selecionado", "rotulo": "escolher\nlinha"},
+    {"de": "selecionado", "para": "editando", "rotulo": "editarAtivo\nSelecionado()"},
+    {"de": "editando", "para": "d", "rotulo": "diálogo\nfechado"},
+    {"de": "d", "para": "gravando", "rotulo": "[aceito e\npreenchido]"},
+    {"de": "d", "para": "erro", "rotulo": "[campo em branco]"},
+    {"de": "gravando", "para": "erro", "rotulo": "[falha ao gravar]", "via": [{"col": 4.6, "linha": 0.8}]},
+    {"de": "gravando", "para": "f", "rotulo": "[gravado] / atualizar();\nemit cadastroAlterado()"},
+    {"de": "erro", "para": "selecionado", "rotulo": "fechar\naviso"}
+  ]
+}

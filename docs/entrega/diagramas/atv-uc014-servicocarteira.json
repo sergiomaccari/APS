@@ -1,0 +1,34 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC014 | ServicoCarteira | Verificando a posição",
+  "folgaColunas": 84,
+  "folgaLinhas": 70,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "buscarPosicao(carteiraId, ativoId)", "col": 1.2, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "há posição do ativo ?", "col": 2.5, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "texto": "quantidade disponível ?", "col": 3.9, "linha": 0},
+    {"id": "aerr", "tipo": "acao", "texto": "m_ultimoErro = motivo da\nrecusa (RN012) e devolver false", "col": 0, "linha": 1},
+    {"id": "d3", "tipo": "decisao", "texto": "posicao.zerada() ?", "col": 2.5, "linha": 1},
+    {"id": "a2", "tipo": "acao", "texto": "posicao.venderParcial(quantidade):\nquantidade −= quantidade vendida", "col": 3.9, "linha": 1},
+    {"id": "a3", "tipo": "acao", "texto": "removerPosicao(posicao.id()):\nposição zerada sai da carteira (RN014)", "col": 1.2, "linha": 2},
+    {"id": "a4", "tipo": "acao", "texto": "atualizarPosicao(posicao)\ncom a quantidade restante", "col": 3.9, "linha": 2},
+    {"id": "aok", "tipo": "acao", "texto": "devolver true", "col": 2.5, "linha": 3},
+    {"id": "f", "tipo": "final", "col": 0, "linha": 3}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "d1"},
+    {"de": "d1", "para": "d2", "rotulo": "[posição encontrada]"},
+    {"de": "d1", "para": "aerr", "rotulo": "[sem posição\nna carteira]", "via": [{"col": 2.5, "linha": 0.45}]},
+    {"de": "d2", "para": "a2", "rotulo": "[quantidade ≤\nposicao.quantidade()]"},
+    {"de": "d2", "para": "aerr", "rotulo": "[quantidade excedida] (RN012)", "via": [{"col": 3.9, "linha": 0.45}, {"col": 1.6, "linha": 0.7}]},
+    {"de": "a2", "para": "d3"},
+    {"de": "d3", "para": "a3", "rotulo": "[posição zerada]"},
+    {"de": "d3", "para": "a4", "rotulo": "[restam unidades]"},
+    {"de": "a3", "para": "aok"},
+    {"de": "a4", "para": "aok"},
+    {"de": "aok", "para": "f"},
+    {"de": "aerr", "para": "f"}
+  ]
+}

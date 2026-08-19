@@ -1,0 +1,25 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC017 | ServicoAlerta",
+  "folgaColunas": 88,
+  "folgaLinhas": 82,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocio", "tipo": "estado", "nome": "Ocioso", "texto": "do / aguardar avaliação", "col": 1, "linha": 0},
+    {"id": "list", "tipo": "estado", "nome": "Listando os monitorados", "texto": "do / listarMonitoradosPorUsuario(usuarioId)\ndo / apenas alertas no estado Ativo", "col": 2.2, "linha": 0},
+    {"id": "aval", "tipo": "estado", "nome": "Avaliando a condição", "texto": "do / repositorioCotacao.buscarUltima(ativoId)\ndo / valorObservado = fechamento ou variação\ndo / alerta.condicaoSatisfeita(valorObservado)", "col": 3.4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 1, "linha": 1},
+    {"id": "notif", "tipo": "estado", "nome": "Notificando observadores", "texto": "do / observador->alertaDisparado(alerta,\nativo, valorObservado)\nexit / ++disparados", "col": 2.2, "linha": 1},
+    {"id": "disp", "tipo": "estado", "nome": "Disparando o alerta", "texto": "entry / alerta.disparar(QDateTime::currentDateTime())\ndo / repositorioAlerta.atualizar(alerta)", "col": 3.4, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocio", "rotulo": "criar()"},
+    {"de": "ocio", "para": "list", "rotulo": "avaliarAlertas\n(usuarioId)"},
+    {"de": "list", "para": "aval", "rotulo": "para cada Alerta\nmonitorado"},
+    {"de": "aval", "para": "list", "rotulo": "[sem cotação ou condição\nnão satisfeita] / próximo alerta", "via": [{"col": 2.8, "linha": 0.55}]},
+    {"de": "aval", "para": "disp", "rotulo": "[condição satisfeita]\n(RN020)"},
+    {"de": "disp", "para": "notif", "rotulo": "[estado gravado]"},
+    {"de": "notif", "para": "list", "rotulo": "próximo alerta"},
+    {"de": "list", "para": "f", "rotulo": "fim da lista /\ndevolver disparados"}
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC007",
+  "participantes": [
+    {"id": "adm", "nome": ": Administrador", "ator": true},
+    {"id": "tela", "nome": ": TelaUsuarios"},
+    {"id": "serv", "nome": ": ServicoAutenticacao"},
+    {"id": "repo", "nome": ": RepositorioUsuario"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "adm", "para": "tela", "rotulo": "1: informar os dados do usuário"},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: DialogoUsuario::exec()"},
+    {"de": "tela", "para": "serv", "rotulo": "1.2: cadastrarUsuario(dados)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.2.1: emailPareceValido()"},
+    {"de": "serv", "para": "repo", "rotulo": "1.2.2: buscarPorEmail(email)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.2.2.1: SELECT em usuario"},
+    {"de": "bd", "para": "repo", "rotulo": "nenhum registro", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "std::nullopt", "retorno": true},
+    {"de": "serv", "para": "serv", "rotulo": "1.2.3: gerarHash(senha)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.2.4: salvar(usuario)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.2.4.1: INSERT em usuario"},
+    {"de": "bd", "para": "repo", "rotulo": "id gerado", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "verdadeiro", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "verdadeiro", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.3: atualizar()"},
+    {"de": "tela", "para": "adm", "rotulo": "usuário cadastrado", "retorno": true}
+  ]
+}

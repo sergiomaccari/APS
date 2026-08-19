@@ -1,0 +1,21 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC017",
+  "folgaColunas": 200,
+  "folgaLinhas": 104,
+  "elementos": [
+    {"id": "u", "tipo": "ator", "nome": ": Investidor", "col": 0, "linha": 1},
+    {"id": "janela", "tipo": "objeto", "estereotipo": "janela :", "nome": "JanelaPrincipal", "col": 1, "linha": 1},
+    {"id": "serv", "tipo": "objeto", "estereotipo": "servicoAlerta :", "nome": "ServicoAlerta", "col": 2, "linha": 1},
+    {"id": "repoAl", "tipo": "objeto", "estereotipo": "repositorioAlerta :", "nome": "RepositorioAlerta", "col": 3, "linha": 0},
+    {"id": "repoCot", "tipo": "objeto", "estereotipo": "repositorioCotacao :", "nome": "RepositorioCotacao", "col": 3, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "u", "para": "janela", "rotulo": "1: abrir a janela principal"},
+    {"de": "janela", "para": "serv", "rotulo": "1.1: avaliarAlertas(usuarioId)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.3: condicaoSatisfeita(valor)\n1.1.4: [satisfeita] alerta.disparar(momento)\n1.1.6: notificar(alerta, ativo, valor)", "via": [{"col": 1.45, "linha": 0.55}, {"col": 1.95, "linha": 0.55}]},
+    {"de": "serv", "para": "repoAl", "rotulo": "1.1.1: listarMonitoradosPorUsuario(id)\n1.1.5: atualizar(alerta)"},
+    {"de": "serv", "para": "repoCot", "rotulo": "1.1.2: *[cada alerta] buscarUltima(ativoId)"},
+    {"de": "serv", "para": "janela", "rotulo": "1.1.6.1: alertaDisparado(alerta,\nativo, valor)", "via": [{"col": 1.5, "linha": 1.55}]}
+  ]
+}

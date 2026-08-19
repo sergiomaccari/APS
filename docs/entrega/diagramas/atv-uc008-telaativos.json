@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC008 | TelaAtivos | Filtrando ativos",
+  "folgaColunas": 44,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0.5},
+    {"id": "a1", "tipo": "acao", "texto": "termo = campoBusca\n.text().trimmed()", "col": 1, "linha": 0.5},
+    {"id": "a2", "tipo": "acao", "texto": "ativos = servicoAtivo\n.buscar(termo)\ntermo vazio devolve\nlistarTodos()", "col": 2, "linha": 0.5},
+    {"id": "a3", "tipo": "acao", "texto": "tabela.setRowCount(\nativos.size())", "col": 3, "linha": 0.5},
+    {"id": "a4", "tipo": "acao", "texto": "para cada ativo:\nmontar as células e\ncontarPorAtivo(id)", "col": 4, "linha": 0.5},
+    {"id": "d1", "tipo": "decisao", "col": 5, "linha": 0.5},
+    {"id": "a5", "tipo": "acao", "texto": "mostrarMensagem(\"Nenhum\nativo encontrado\npara <termo>.\")", "col": 6, "linha": 0},
+    {"id": "a6", "tipo": "acao", "texto": "mostrarMensagem(\"\")\nliberar Editar e Remover", "col": 6, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 7, "linha": 0.5}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "a3"},
+    {"de": "a3", "para": "a4"},
+    {"de": "a4", "para": "d1"},
+    {"de": "d1", "para": "a5", "rotulo": "[nenhuma linha\npreenchida]"},
+    {"de": "d1", "para": "a6", "rotulo": "[houve\nresultado]"},
+    {"de": "a5", "para": "f"},
+    {"de": "a6", "para": "f"}
+  ]
+}

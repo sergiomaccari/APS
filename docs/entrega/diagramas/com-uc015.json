@@ -1,0 +1,22 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC015",
+  "folgaColunas": 215,
+  "folgaLinhas": 104,
+  "elementos": [
+    {"id": "u", "tipo": "ator", "nome": ": Investidor", "col": 0, "linha": 1.5},
+    {"id": "tela", "tipo": "objeto", "estereotipo": "telaCarteira :", "nome": "TelaCarteira", "col": 1, "linha": 1.5},
+    {"id": "serv", "tipo": "objeto", "estereotipo": "servicoCarteira :", "nome": "ServicoCarteira", "col": 2, "linha": 1.5},
+    {"id": "repoCart", "tipo": "objeto", "estereotipo": "repositorioCarteira :", "nome": "RepositorioCarteira", "col": 3, "linha": 0},
+    {"id": "repoAtivo", "tipo": "objeto", "estereotipo": "repositorioAtivo :", "nome": "RepositorioAtivo", "col": 3, "linha": 1},
+    {"id": "repoCot", "tipo": "objeto", "estereotipo": "repositorioCotacao :", "nome": "RepositorioCotacao", "col": 3, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "u", "para": "tela", "rotulo": "1: abrir \"Minha carteira\""},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: carteiraDoUsuario(id)\n1.2: calcularResumo(carteiraId)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.2.4: consolidar os totais", "via": [{"col": 1.78, "linha": 1.2}, {"col": 2.22, "linha": 1.2}]},
+    {"de": "serv", "para": "repoCart", "rotulo": "1.1.1: buscarPrincipalDoUsuario(id)\n1.2.1: listarPosicoes(carteiraId)"},
+    {"de": "serv", "para": "repoAtivo", "rotulo": "1.2.2: *[cada posição] buscarPorId(ativoId)", "via": [{"col": 2.68, "linha": 1.3}]},
+    {"de": "serv", "para": "repoCot", "rotulo": "1.2.3: *[cada posição] buscarUltima(ativoId)"}
+  ]
+}

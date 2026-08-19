@@ -1,0 +1,22 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC013",
+  "folgaColunas": 210,
+  "folgaLinhas": 100,
+  "elementos": [
+    {"id": "u", "tipo": "ator", "nome": ": Investidor", "col": 0, "linha": 1},
+    {"id": "dlg", "tipo": "objeto", "estereotipo": "dialogo :", "nome": "DialogoOperacao", "col": 1, "linha": 0},
+    {"id": "tela", "tipo": "objeto", "estereotipo": "telaCarteira :", "nome": "TelaCarteira", "col": 1, "linha": 1},
+    {"id": "serv", "tipo": "objeto", "estereotipo": "servicoCarteira :", "nome": "ServicoCarteira", "largura": 300, "col": 2, "linha": 1},
+    {"id": "repo", "tipo": "objeto", "estereotipo": "repositorioCarteira :", "nome": "RepositorioCarteira", "largura": 300, "col": 2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "u", "para": "tela", "rotulo": "1: acionar \"Comprar\""},
+    {"de": "tela", "para": "dlg", "rotulo": "1.1: exec()"},
+    {"de": "u", "para": "dlg", "rotulo": "1.2: informar ativo,\nquantidade e preço"},
+    {"de": "tela", "para": "serv", "rotulo": "1.3: comprar(carteiraId, ativoId,\nqtd, preco, data)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.3.2: [há posição]\nincorporarCompra(qtd, preco)", "via": [{"col": 1.86, "linha": 0.55}, {"col": 2.14, "linha": 0.55}]},
+    {"de": "serv", "para": "repo", "rotulo": "1.3.1: buscarPosicao(carteiraId, ativoId)\n1.3.3: [há posição] atualizarPosicao(posicao)\n1.3.4: [posição nova] salvarPosicao(nova)"},
+    {"de": "tela", "para": "tela", "rotulo": "1.4: atualizar()", "via": [{"col": 0.80, "linha": 1.45}, {"col": 1.20, "linha": 1.45}]}
+  ]
+}

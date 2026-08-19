@@ -1,0 +1,25 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC018 | RepositorioAlerta",
+  "folgaColunas": 92,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocio", "tipo": "estado", "nome": "Ocioso", "texto": "do / aguardar pedido do serviço", "col": 1, "linha": 0},
+    {"id": "busc", "tipo": "estado", "nome": "Buscando o alerta", "texto": "entry / prepare(SELECT ... WHERE id = :id)\ndo / consulta.exec() e next()\nexit / montarAlerta(consulta)", "col": 2.3, "linha": 0},
+    {"id": "grav", "tipo": "estado", "nome": "Gravando o estado", "texto": "entry / prepare(UPDATE alerta SET estado ...)\ndo / bindValue(:estado, \"Arquivado\")\ndo / consulta.exec()", "col": 3.6, "linha": 0},
+    {"id": "nenc", "tipo": "estado", "nome": "Alerta inexistente", "texto": "exit / devolver std::nullopt", "col": 1, "linha": 1},
+    {"id": "err", "tipo": "estado", "nome": "Erro de gravação", "texto": "entry / m_ultimoErro = lastError().text()", "col": 2.3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 3.6, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocio", "rotulo": "criar()"},
+    {"de": "ocio", "para": "busc", "rotulo": "buscarPorId(alertaId)"},
+    {"de": "busc", "para": "nenc", "rotulo": "[cursor vazio]"},
+    {"de": "busc", "para": "grav", "rotulo": "atualizar(alerta)"},
+    {"de": "grav", "para": "err", "rotulo": "[exec() falhou]"},
+    {"de": "grav", "para": "f", "rotulo": "[UPDATE aplicado] /\ndevolver true"},
+    {"de": "err", "para": "f", "rotulo": "devolver false"},
+    {"de": "nenc", "para": "ocio", "rotulo": "alerta não\nencontrado"}
+  ]
+}

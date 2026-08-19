@@ -1,0 +1,23 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC009",
+  "folgaColunas": 260, "folgaLinhas": 150,
+  "elementos": [
+    {"id": "inv", "tipo": "ator", "nome": ": Investidor", "col": 0, "linha": 0},
+    {"id": "repo", "tipo": "classe", "nome": ": RepositorioCotacao", "col": 1, "linha": 0},
+    {"id": "graf", "tipo": "classe", "nome": ": GraficoCandlestick", "col": 2, "linha": 0},
+    {"id": "tela", "tipo": "classe", "nome": ": TelaDashboard", "col": 1, "linha": 1},
+    {"id": "cartao", "tipo": "classe", "nome": ": CartaoIndicador", "col": 2, "linha": 1},
+    {"id": "calc", "tipo": "classe", "nome": ": CalculadoraIndicadores", "col": 1, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "inv", "para": "tela", "rotulo": "1: escolher ativo e período"},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: redesenhar()",
+     "via": [{"col": 0.62, "linha": 0.72}, {"col": 0.15, "linha": 0.72}, {"col": 0.15, "linha": 0.90}, {"col": 0.55, "linha": 0.90}]},
+    {"de": "tela", "para": "repo", "rotulo": "1.2: listarPorAtivo(ativoId, dias)",
+     "via": [{"col": 1, "linha": 0.35}]},
+    {"de": "tela", "para": "calc", "rotulo": "1.3: mediaMovelSimples(historico, 9)\n1.4: mediaMovelSimples(historico, 21)\n1.6: indiceForcaRelativa(historico, 14)\n1.7: volatilidadeAnualizada(historico, 60)"},
+    {"de": "tela", "para": "graf", "rotulo": "1.5: definirDados(titulo,\nhistorico, medias)"},
+    {"de": "tela", "para": "cartao", "rotulo": "1.8: definirValor(valor,\nleitura)"}
+  ]
+}

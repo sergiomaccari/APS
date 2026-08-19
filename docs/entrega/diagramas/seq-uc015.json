@@ -1,0 +1,29 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC015",
+  "participantes": [
+    {"id": "u", "nome": ": Investidor", "ator": true},
+    {"id": "tela", "nome": ": TelaCarteira"},
+    {"id": "serv", "nome": ": ServicoCarteira"},
+    {"id": "repoCart", "nome": ": RepositorioCarteira"},
+    {"id": "repoAtivo", "nome": ": RepositorioAtivo"},
+    {"id": "repoCot", "nome": ": RepositorioCotacao"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "tela", "rotulo": "1: abrir \"Minha carteira\""},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: carteiraDoUsuario(id)"},
+    {"de": "serv", "para": "repoCart", "rotulo": "1.1.1: buscarPrincipalDoUsuario(id)"},
+    {"de": "repoCart", "para": "serv", "rotulo": "Carteira", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "carteira", "retorno": true},
+    {"de": "tela", "para": "serv", "rotulo": "1.2: calcularResumo(carteiraId)"},
+    {"de": "serv", "para": "repoCart", "rotulo": "1.2.1: listarPosicoes(carteiraId)"},
+    {"de": "repoCart", "para": "serv", "rotulo": "QVector<Posicao>", "retorno": true},
+    {"de": "serv", "para": "repoAtivo", "rotulo": "1.2.2: *[cada posição] buscarPorId(ativoId)"},
+    {"de": "repoAtivo", "para": "serv", "rotulo": "Ativo", "retorno": true},
+    {"de": "serv", "para": "repoCot", "rotulo": "1.2.3: *[cada posição] buscarUltima(ativoId)"},
+    {"de": "repoCot", "para": "serv", "rotulo": "std::optional<Cotacao>", "retorno": true},
+    {"de": "serv", "para": "serv", "rotulo": "1.2.4: consolidar os totais"},
+    {"de": "serv", "para": "tela", "rotulo": "ResumoCarteira", "retorno": true},
+    {"de": "tela", "para": "u", "rotulo": "resultado consolidado", "retorno": true}
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC010 | TelaDetalheAtivo",
+  "folgaColunas": 96,
+  "folgaLinhas": 70,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "mont", "tipo": "estado", "nome": "Montando tela", "texto": "entry / montar seletor, gráfico\ne tabela de cotações", "col": 1, "linha": 0},
+    {"id": "carr", "tipo": "estado", "nome": "Carregando ativos", "texto": "do / servicoAtivo.listarTodos()\ndo / preencher o seletor", "col": 2, "linha": 0},
+    {"id": "exib", "tipo": "estado", "nome": "Exibindo detalhes", "texto": "entry / mostrar fundamentos\ndo / desenhar gráfico e cotações\ndo / listar pareceres por regra", "col": 3.2, "linha": 0},
+    {"id": "sem", "tipo": "estado", "nome": "Sem ativo", "texto": "do / exibir \"Nenhum ativo cadastrado\"", "col": 2, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 4.4, "linha": 0}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "mont", "rotulo": "abrirTela()"},
+    {"de": "mont", "para": "carr", "rotulo": "atualizar()"},
+    {"de": "carr", "para": "exib", "rotulo": "[há ativos] /\nredesenhar()"},
+    {"de": "carr", "para": "sem", "rotulo": "[seletor vazio]"},
+    {"de": "exib", "para": "exib", "rotulo": "currentIndexChanged(i) /\nredesenhar()", "via": [{"col": 2.85, "linha": 0.62}, {"col": 3.6, "linha": 0.62}]},
+    {"de": "sem", "para": "f", "rotulo": "fecharTela()", "via": [{"col": 4.4, "linha": 1}]},
+    {"de": "exib", "para": "f", "rotulo": "fecharTela()"}
+  ]
+}

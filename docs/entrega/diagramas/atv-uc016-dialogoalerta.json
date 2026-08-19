@@ -1,0 +1,34 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC016 | DialogoAlerta | Sugerindo o valor de referência",
+  "folgaColunas": 62,
+  "folgaLinhas": 72,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "definir o prefixo \"R$ \" ou o sufixo\n\" %\" no campo de valor, conforme\na condição escolhida", "col": 1.2, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "há ativo selecionado ?", "col": 2.5, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "texto": "é variação diária ?", "col": 3.8, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "texto = \"Cadastre um ativo\nantes de criar alertas\"", "col": 1.2, "linha": 1},
+    {"id": "a3", "tipo": "acao", "texto": "valor = 3,00 % e texto\nexplicando que o disparo usa\no módulo da variação do dia", "col": 2.5, "linha": 1},
+    {"id": "d3", "tipo": "decisao", "texto": "último fechamento > 0 ?", "col": 3.8, "linha": 1},
+    {"id": "a5", "tipo": "acao", "texto": "texto \"Este ativo ainda não\ntem cotações importadas\"", "col": 5, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 1.2, "linha": 2},
+    {"id": "a6", "tipo": "acao", "texto": "aplicar o valor no campo\ne o texto em m_rotuloAjuda", "col": 2.5, "linha": 2},
+    {"id": "a4", "tipo": "acao", "texto": "valor = último fechamento × 1,05\n(preço acima) ou × 0,95 (preço abaixo)\ne texto \"Último fechamento\nde PETR4: R$ 38,90\"", "col": 3.8, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "d1"},
+    {"de": "d1", "para": "d2", "rotulo": "[ativo escolhido]"},
+    {"de": "d1", "para": "a2", "rotulo": "[seletor vazio]"},
+    {"de": "d2", "para": "a3", "rotulo": "[variação diária\nacima de]"},
+    {"de": "d2", "para": "d3", "rotulo": "[condição\nde preço]"},
+    {"de": "d3", "para": "a4", "rotulo": "[com cotação]"},
+    {"de": "d3", "para": "a5", "rotulo": "[sem cotação]"},
+    {"de": "a2", "para": "a6"},
+    {"de": "a3", "para": "a6"},
+    {"de": "a4", "para": "a6"},
+    {"de": "a5", "para": "a6"},
+    {"de": "a6", "para": "f"}
+  ]
+}

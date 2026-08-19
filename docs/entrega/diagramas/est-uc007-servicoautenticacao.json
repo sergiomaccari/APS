@@ -1,0 +1,34 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC007 | ServicoAutenticacao",
+  "folgaColunas": 72,
+  "folgaLinhas": 58,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocioso", "tipo": "estado", "nome": "Ocioso",
+     "texto": "do / aguardar pedido", "col": 1, "linha": 0},
+    {"id": "validando", "tipo": "estado", "nome": "Validando dados",
+     "texto": "entry / limpar ultimoErro\ndo / normalizar nome e e-mail\ndo / emailPareceValido(email)\ndo / senha com 6+ caracteres", "col": 2, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "regras", "tipo": "estado", "nome": "Conferindo regras",
+     "texto": "do / e-mail único (RN002)\ndo / contarAdministradores()\nao rebaixar ou remover", "col": 4, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "col": 5, "linha": 0},
+    {"id": "recusando", "tipo": "estado", "nome": "Recusando operação",
+     "texto": "entry / definir ultimoErro\ndo / devolver false", "col": 2, "linha": 1},
+    {"id": "persistindo", "tipo": "estado", "nome": "Persistindo usuário",
+     "texto": "do / gerarHash(senha)\ndo / salvar, atualizar\nou remover", "col": 5, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocioso", "rotulo": "criar()"},
+    {"de": "ocioso", "para": "validando", "rotulo": "cadastrar(),\natualizar() ou\nremover()"},
+    {"de": "validando", "para": "d1"},
+    {"de": "d1", "para": "regras", "rotulo": "[nome, e-mail e\nsenha válidos]"},
+    {"de": "d1", "para": "recusando", "rotulo": "[dado inválido]"},
+    {"de": "regras", "para": "d2"},
+    {"de": "d2", "para": "persistindo", "rotulo": "[regras atendidas]"},
+    {"de": "d2", "para": "recusando", "rotulo": "[e-mail em uso ou último administrador]", "via": [{"col": 4.7, "linha": 0.85}]},
+    {"de": "persistindo", "para": "f", "rotulo": "devolver true"},
+    {"de": "recusando", "para": "ocioso", "rotulo": "tela exibe\nultimoErro()", "via": [{"col": 1, "linha": 1}]}
+  ]
+}

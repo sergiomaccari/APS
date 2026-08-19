@@ -1,0 +1,32 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC016 | ServicoAlerta | Validando o alerta",
+  "folgaColunas": 62,
+  "folgaLinhas": 72,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "ativo informado ?", "col": 1.2, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "texto": "valorReferencia > 0 ?", "col": 2.4, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "repositorioAtivo.\nbuscarPorId(ativoId)", "col": 3.6, "linha": 0},
+    {"id": "d3", "tipo": "decisao", "texto": "ativo cadastrado ?", "col": 4.8, "linha": 0},
+    {"id": "aerr", "tipo": "acao", "texto": "m_ultimoErro = motivo da recusa\ne devolver false", "col": 2.4, "linha": 1},
+    {"id": "a2", "tipo": "acao", "texto": "montar o Alerta: usuarioId,\nativoId, condicao, valorReferencia,\nestado = Ativo e\ncriadoEm = data atual", "col": 4.8, "linha": 1},
+    {"id": "a3", "tipo": "acao", "texto": "repositorioAlerta.salvar(alerta)", "col": 3.6, "linha": 2},
+    {"id": "aok", "tipo": "acao", "texto": "devolver true e entregar\no alerta criado", "col": 2.4, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 1.2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "d1"},
+    {"de": "d1", "para": "d2", "rotulo": "[usuarioId > 0 e\nativoId > 0]"},
+    {"de": "d1", "para": "aerr", "rotulo": "[ativo não\ninformado]"},
+    {"de": "d2", "para": "a1", "rotulo": "[valor válido]"},
+    {"de": "d2", "para": "aerr", "rotulo": "[valor ≤ 0]\n(RN022)"},
+    {"de": "a1", "para": "d3"},
+    {"de": "d3", "para": "a2", "rotulo": "[ativo encontrado]"},
+    {"de": "d3", "para": "aerr", "rotulo": "[ativo inexistente]", "via": [{"col": 4.8, "linha": 0.45}, {"col": 3.4, "linha": 0.72}]},
+    {"de": "a2", "para": "a3"},
+    {"de": "a3", "para": "aok"},
+    {"de": "aok", "para": "f"},
+    {"de": "aerr", "para": "f"}
+  ]
+}

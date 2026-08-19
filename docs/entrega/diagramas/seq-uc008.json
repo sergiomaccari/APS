@@ -1,0 +1,24 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC008",
+  "participantes": [
+    {"id": "inv", "nome": ": Investidor", "ator": true},
+    {"id": "tela", "nome": ": TelaAtivos"},
+    {"id": "serv", "nome": ": ServicoAtivo"},
+    {"id": "repo", "nome": ": RepositorioAtivo"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "inv", "para": "tela", "rotulo": "1: digitar ticker ou nome"},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: aplicarFiltro()"},
+    {"de": "tela", "para": "serv", "rotulo": "1.2: buscar(termo)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.2.1: buscar(termo)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.2.1.1: SELECT ... LIKE :padrao"},
+    {"de": "bd", "para": "repo", "rotulo": "linhas encontradas", "retorno": true},
+    {"de": "repo", "para": "repo", "rotulo": "1.2.1.2: montarAtivo()"},
+    {"de": "repo", "para": "serv", "rotulo": "lista de Ativo", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "lista de Ativo", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.3: preencher a tabela"},
+    {"de": "tela", "para": "inv", "rotulo": "ativos encontrados", "retorno": true}
+  ]
+}

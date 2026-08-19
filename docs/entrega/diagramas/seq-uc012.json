@@ -1,0 +1,25 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC012",
+  "participantes": [
+    {"id": "u", "nome": ": Investidor", "ator": true},
+    {"id": "tela", "nome": ": TelaRecomendacoes"},
+    {"id": "serv", "nome": ": ServicoRecomendacao"},
+    {"id": "repo", "nome": ": RepositorioRecomendacao"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "tela", "rotulo": "1: abrir \"Recomendações\""},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: listarVigentes()"},
+    {"de": "serv", "para": "repo", "rotulo": "1.1.1: listarVigentes()"},
+    {"de": "repo", "para": "bd", "rotulo": "1.1.1.1: SELECT ... estado 'Vigente'"},
+    {"de": "bd", "para": "repo", "rotulo": "registros", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "QVector<Recomendacao>", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "vigentes", "retorno": true},
+    {"de": "tela", "para": "u", "rotulo": "tabela de recomendações", "retorno": true},
+    {"de": "u", "para": "tela", "rotulo": "2: selecionar uma linha"},
+    {"de": "tela", "para": "serv", "rotulo": "2.1: detalharPorRegra(ativoId)"},
+    {"de": "serv", "para": "tela", "rotulo": "pareceres por regra", "retorno": true},
+    {"de": "tela", "para": "u", "rotulo": "justificativa e pareceres", "retorno": true}
+  ]
+}

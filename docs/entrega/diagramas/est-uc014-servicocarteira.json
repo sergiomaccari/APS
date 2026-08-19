@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC014 | ServicoCarteira",
+  "folgaColunas": 88,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocio", "tipo": "estado", "nome": "Ocioso", "texto": "do / aguardar operação", "col": 1, "linha": 0},
+    {"id": "val", "tipo": "estado", "nome": "Validando a venda", "texto": "do / quantidade > 0", "col": 2.2, "linha": 0},
+    {"id": "ver", "tipo": "estado", "nome": "Verificando a posição", "texto": "do / buscarPosicao(carteiraId, ativoId)\ndo / quantidade ≤ posicao.quantidade() (RN012)\nexit / posicao.venderParcial(quantidade)", "col": 3.4, "linha": 0},
+    {"id": "err", "tipo": "estado", "nome": "Erro registrado", "texto": "entry / m_ultimoErro = motivo", "col": 1, "linha": 1},
+    {"id": "rem", "tipo": "estado", "nome": "Removendo a posição", "texto": "do / removerPosicao(posicao.id())", "col": 2.2, "linha": 1},
+    {"id": "atu", "tipo": "estado", "nome": "Atualizando a posição", "texto": "do / atualizarPosicao(posicao)", "col": 3.4, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 2.2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocio", "rotulo": "criar()"},
+    {"de": "ocio", "para": "val", "rotulo": "vender(carteiraId,\nativoId, quantidade)"},
+    {"de": "val", "para": "ver", "rotulo": "[quantidade > 0]"},
+    {"de": "val", "para": "err", "rotulo": "[quantidade ≤ 0]"},
+    {"de": "ver", "para": "err", "rotulo": "[sem posição ou\nquantidade excedida]"},
+    {"de": "ver", "para": "rem", "rotulo": "[posição zerada]\n(RN014)"},
+    {"de": "ver", "para": "atu", "rotulo": "[restam unidades]"},
+    {"de": "atu", "para": "f", "rotulo": "devolver true"},
+    {"de": "rem", "para": "f", "rotulo": "devolver true"},
+    {"de": "err", "para": "f", "rotulo": "devolver false"}
+  ]
+}

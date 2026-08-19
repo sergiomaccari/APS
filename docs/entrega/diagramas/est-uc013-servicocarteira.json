@@ -1,0 +1,27 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC013 | ServicoCarteira",
+  "folgaColunas": 88,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocio", "tipo": "estado", "nome": "Ocioso", "texto": "do / aguardar operação", "col": 1, "linha": 0},
+    {"id": "val", "tipo": "estado", "nome": "Validando a compra", "texto": "do / carteiraId > 0 e ativoId > 0\ndo / quantidade > 0 e preço > 0 (RN001)", "col": 2.2, "linha": 0},
+    {"id": "proc", "tipo": "estado", "nome": "Procurando a posição", "texto": "do / buscarPosicao(carteiraId, ativoId)", "col": 3.4, "linha": 0},
+    {"id": "err", "tipo": "estado", "nome": "Erro registrado", "texto": "entry / m_ultimoErro = motivo", "col": 1, "linha": 1},
+    {"id": "cria", "tipo": "estado", "nome": "Criando a posição", "texto": "entry / definirQuantidade e definirPrecoMedio\ndo / salvarPosicao(nova)", "col": 2.2, "linha": 1},
+    {"id": "atu", "tipo": "estado", "nome": "Atualizando a posição", "texto": "entry / incorporarCompra(qtd, preço)\ndo / preço médio ponderado (RN013)\ndo / atualizarPosicao(posicao)", "col": 3.4, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 2.2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocio", "rotulo": "criar()"},
+    {"de": "ocio", "para": "val", "rotulo": "comprar(carteiraId, ativoId,\nquantidade, preco, data)"},
+    {"de": "val", "para": "proc", "rotulo": "[dados válidos]"},
+    {"de": "val", "para": "err", "rotulo": "[campo inválido]"},
+    {"de": "proc", "para": "atu", "rotulo": "[posição existente]"},
+    {"de": "proc", "para": "cria", "rotulo": "[sem posição\nna carteira]"},
+    {"de": "atu", "para": "f", "rotulo": "devolver true"},
+    {"de": "cria", "para": "f", "rotulo": "devolver true"},
+    {"de": "err", "para": "f", "rotulo": "devolver false"}
+  ]
+}

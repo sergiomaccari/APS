@@ -1,0 +1,20 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC004",
+  "folgaColunas": 260, "folgaLinhas": 150,
+  "elementos": [
+    {"id": "adm", "tipo": "ator", "nome": ": Administrador", "col": 0, "linha": 0},
+    {"id": "tela", "tipo": "classe", "nome": ": TelaAtivos", "col": 1, "linha": 0},
+    {"id": "serv", "tipo": "classe", "nome": ": ServicoAtivo", "col": 2, "linha": 0},
+    {"id": "repo", "tipo": "classe", "nome": ": RepositorioAtivo", "col": 2, "linha": 1},
+    {"id": "bd", "tipo": "classe", "nome": ": BancoDeDados", "col": 1, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "adm", "para": "tela", "rotulo": "1: selecionar ativo e remover\n1.3: confirmar a exclusão"},
+    {"de": "tela", "para": "tela", "rotulo": "1.2: QMessageBox::question()\n1.5: atualizar()",
+     "via": [{"col": 0.30, "linha": 0.14}, {"col": 0.30, "linha": 0.38}, {"col": 0.94, "linha": 0.38}]},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: buscarPorId(id)\n1.4: remover(id)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.1.1: buscarPorId(id)\n1.4.1: remover(id)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.1.1.1: SELECT em ativo\n1.4.1.1: DELETE em ativo"}
+  ]
+}

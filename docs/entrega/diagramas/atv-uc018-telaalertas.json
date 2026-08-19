@@ -1,0 +1,31 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC018 | TelaAlertas | Arquivando o alerta",
+  "folgaColunas": 84,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "id = idSelecionado():\nUserRole da linha marcada", "col": 1.2, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "id > 0 ?", "col": 2.4, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "servicoAlerta.arquivarAlerta(id)", "col": 3.6, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "texto": "arquivarAlerta() ?", "col": 4.9, "linha": 0},
+    {"id": "a6", "tipo": "acao", "texto": "ignorar o comando: nenhum\nalerta está selecionado", "col": 1.2, "linha": 1},
+    {"id": "a4", "tipo": "acao", "texto": "mostrarMensagem(\n\"Alerta arquivado.\", false)", "col": 2.4, "linha": 1},
+    {"id": "a3", "tipo": "acao", "texto": "atualizar(): recarregar a lista com\nlistarPorUsuario(usuarioId)", "col": 3.6, "linha": 1},
+    {"id": "a5", "tipo": "acao", "texto": "mostrarMensagem(ultimoErro(), true):\nsó alerta já disparado pode ser\narquivado (RN021)", "col": 3.6, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 0, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "d1"},
+    {"de": "d1", "para": "a2", "rotulo": "[alerta selecionado]"},
+    {"de": "d1", "para": "a6", "rotulo": "[sem seleção]"},
+    {"de": "a2", "para": "d2"},
+    {"de": "d2", "para": "a3", "rotulo": "[estado gravado]"},
+    {"de": "d2", "para": "a5", "rotulo": "[arquivamento\nrecusado]", "via": [{"col": 4.9, "linha": 1.2}]},
+    {"de": "a3", "para": "a4"},
+    {"de": "a4", "para": "f"},
+    {"de": "a5", "para": "f"},
+    {"de": "a6", "para": "f"}
+  ]
+}

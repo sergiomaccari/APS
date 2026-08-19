@@ -1,0 +1,24 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC009 | CalculadoraIndicadores | Calculando a série",
+  "folgaColunas": 62,
+  "folgaLinhas": 66,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "nome = \"MMS %1\".arg(periodo)\nserie.reserve(historico.size()\n− periodo + 1)", "col": 1, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "soma = soma dos fechamentos\ndas 'periodo' primeiras\ncotações", "col": 2, "linha": 0},
+    {"id": "a3", "tipo": "acao", "texto": "serie.append(Indicador(nome,\ndata(periodo − 1),\nsoma / periodo))\ni = periodo", "col": 3, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "a4", "tipo": "acao", "texto": "janela deslizante:\nsoma += fechamento(i)\n− fechamento(i − periodo)\nserie.append(Indicador(nome,\ndata(i), soma / periodo))\n++i", "col": 5, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 3, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "a3"},
+    {"de": "a3", "para": "d1"},
+    {"de": "d1", "para": "a4", "rotulo": "[há próxima\ncotação]"},
+    {"de": "d1", "para": "f", "rotulo": "[i == historico.size()]\n/ devolver serie"},
+    {"de": "a4", "para": "d1", "rotulo": "próxima cotação", "via": [{"col": 5, "linha": 0.7}, {"col": 4.4, "linha": 0.7}]}
+  ]
+}

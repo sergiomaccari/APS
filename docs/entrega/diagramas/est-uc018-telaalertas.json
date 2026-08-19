@@ -1,0 +1,23 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC018 | TelaAlertas",
+  "folgaColunas": 88,
+  "folgaLinhas": 82,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "carr", "tipo": "estado", "nome": "Carregando os alertas", "texto": "do / servicoAlerta.listarPorUsuario(usuarioId)\ndo / Ativo em verde e Disparado em laranja", "col": 1.2, "linha": 0},
+    {"id": "exib", "tipo": "estado", "nome": "Exibindo os alertas", "texto": "do / habilitar \"Arquivar\" com a seleção\ndo / aguardar comando", "col": 2.5, "linha": 0},
+    {"id": "arq", "tipo": "estado", "nome": "Arquivando o alerta", "texto": "do / servicoAlerta.arquivarAlerta(id)", "col": 3.8, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 1.2, "linha": 1},
+    {"id": "rec", "tipo": "estado", "nome": "Arquivamento recusado", "texto": "do / exibir ultimoErro() (RN021)", "col": 3.8, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "carr", "rotulo": "abrirTela()"},
+    {"de": "carr", "para": "exib", "rotulo": "tabela preenchida"},
+    {"de": "exib", "para": "arq", "rotulo": "clicou \"Arquivar\"\ncom alerta selecionado"},
+    {"de": "arq", "para": "carr", "rotulo": "[arquivado] /\natualizar() e avisar o usuário", "via": [{"col": 3.8, "linha": 0.6}, {"col": 1.2, "linha": 0.6}]},
+    {"de": "arq", "para": "rec", "rotulo": "[arquivarAlerta()\ndevolveu false]"},
+    {"de": "rec", "para": "exib", "rotulo": "mensagem lida"},
+    {"de": "exib", "para": "f", "rotulo": "fecharTela()"}
+  ]
+}

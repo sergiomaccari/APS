@@ -1,0 +1,25 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC002",
+  "folgaColunas": 260, "folgaLinhas": 150,
+  "elementos": [
+    {"id": "adm", "tipo": "ator", "nome": ": Administrador", "col": 0, "linha": 0},
+    {"id": "tela", "tipo": "classe", "nome": ": TelaAtivos", "col": 1, "linha": 0},
+    {"id": "dlg", "tipo": "classe", "nome": ": DialogoAtivo", "col": 1, "linha": 1},
+    {"id": "serv", "tipo": "classe", "nome": ": ServicoAtivo", "col": 2, "linha": 0},
+    {"id": "repo", "tipo": "classe", "nome": ": RepositorioAtivo", "col": 2, "linha": 1},
+    {"id": "bd", "tipo": "classe", "nome": ": BancoDeDados", "col": 2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "adm", "para": "tela", "rotulo": "1: acionar \"Novo ativo\""},
+    {"de": "tela", "para": "dlg", "rotulo": "1.1: exec()\n1.3: ativoInformado()"},
+    {"de": "adm", "para": "dlg", "rotulo": "1.2: preencher e confirmar"},
+    {"de": "tela", "para": "serv", "rotulo": "1.4: salvar(ativo)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.4.1: tickerValido()",
+     "via": [{"col": 1.45, "linha": 0.05}, {"col": 1.45, "linha": 0.26}, {"col": 1.86, "linha": 0.26}]},
+    {"de": "serv", "para": "repo", "rotulo": "1.4.2: tickerEmUso(ticker)\n1.4.3: salvar(ativo)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.4.2.1: SELECT em ativo\n1.4.3.1: INSERT em ativo"},
+    {"de": "tela", "para": "tela", "rotulo": "1.5: atualizar()",
+     "via": [{"col": 0.55, "linha": 0.06}, {"col": 0.55, "linha": 0.30}, {"col": 0.93, "linha": 0.30}]}
+  ]
+}

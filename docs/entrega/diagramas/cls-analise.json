@@ -1,0 +1,77 @@
+{
+  "tipo": "grade",
+  "moldura": "cd Análise (Strategy)",
+  "folgaColunas": 70,
+  "folgaLinhas": 56,
+  "elementos": [
+    {"id": "regracfg", "tipo": "classe", "nome": "RegraConfigurada", "col": 0, "linha": 0,
+     "atributos": ["- nomeRegra : QString", "- ativa : bool",
+                   "- parametroPrincipal : double"]},
+
+    {"id": "motor", "tipo": "classe", "nome": "MotorAnalise", "col": 1, "linha": 0,
+     "atributos": ["- regras : vector<RegraAnalise*>"],
+     "metodos": ["+ registrarRegra(regra)", "+ quantidadeDeRegras() : int",
+                 "+ nomesDasRegras() : QStringList", "+ analisar(ativo, historico)",
+                 "+ avaliarRegrasIndividualmente()", "+ comRegrasPadrao(regras) {static}"]},
+
+    {"id": "iregra", "tipo": "classe", "nome": "RegraAnalise", "estereotipo": "<<interface>>",
+     "col": 2, "linha": 0,
+     "metodos": ["+ nome() : QString", "+ descricao() : QString",
+                 "+ configurar(param1, param2)", "+ avaliar(ativo, historico)"]},
+
+    {"id": "recomendacao", "tipo": "classe", "nome": "Recomendacao", "col": 3, "linha": 0,
+     "atributos": ["- tipo : TipoRecomendacao", "- justificativa : QString",
+                   "- pontuacao : double"]},
+
+    {"id": "cruzamento", "tipo": "classe", "nome": "RegraCruzamentoMedias", "col": 0, "linha": 1,
+     "atributos": ["- periodoCurto : int", "- periodoLongo : int"],
+     "metodos": ["+ nome() : QString", "+ descricao() : QString",
+                 "+ configurar(param1, param2)", "+ avaliar(ativo, historico)"]},
+
+    {"id": "rsi", "tipo": "classe", "nome": "RegraRsi", "col": 1, "linha": 1,
+     "atributos": ["- limiteSobrevenda : double", "- limiteSobrecompra : double",
+                   "- periodo : int"],
+     "metodos": ["+ nome() : QString", "+ descricao() : QString",
+                 "+ configurar(param1, param2)", "+ avaliar(ativo, historico)"]},
+
+    {"id": "dy", "tipo": "classe", "nome": "RegraDividendYield", "col": 2, "linha": 1,
+     "atributos": ["- dividendYieldMinimo : double", "- dividendYieldExcelente : double"],
+     "metodos": ["+ nome() : QString", "+ descricao() : QString",
+                 "+ configurar(param1, param2)", "+ avaliar(ativo, historico)"]},
+
+    {"id": "pl", "tipo": "classe", "nome": "RegraPrecoLucro", "col": 3, "linha": 1,
+     "atributos": ["- precoLucroAtrativo : double", "- precoLucroElevado : double"],
+     "metodos": ["+ nome() : QString", "+ descricao() : QString",
+                 "+ configurar(param1, param2)", "+ avaliar(ativo, historico)"]},
+
+    {"id": "calc", "tipo": "classe", "nome": "CalculadoraIndicadores", "col": 0, "linha": 2,
+     "metodos": ["+ mediaMovelSimples(historico, periodo)",
+                 "+ mediaMovelExponencial(historico, periodo)",
+                 "+ indiceForcaRelativa(historico, periodo)",
+                 "+ variacaoPercentual(historico, dias)",
+                 "+ volatilidadeAnualizada(historico, janela)",
+                 "+ ultimoFechamento(historico)"]},
+
+    {"id": "nota", "tipo": "nota", "col": 1, "linha": 2,
+     "texto": "Todos os métodos de\nCalculadoraIndicadores são\nestáticos e assumem o histórico\nordenado por data crescente."}
+  ],
+  "ligacoes": [
+    {"de": "motor", "para": "regracfg", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "motor", "para": "iregra", "tipo": "agregacao",
+     "rotuloOrigem": "1", "rotuloDestino": "*"},
+    {"de": "iregra", "para": "recomendacao", "tipo": "tracejada", "rotulo": "<<produz>>"},
+
+    {"de": "cruzamento", "para": "iregra", "tipo": "realizacao",
+     "via": [{"col": 0, "linha": 0.5}, {"col": 2, "linha": 0.5}]},
+    {"de": "rsi", "para": "iregra", "tipo": "realizacao",
+     "via": [{"col": 1, "linha": 0.5}, {"col": 2, "linha": 0.5}]},
+    {"de": "dy", "para": "iregra", "tipo": "realizacao",
+     "via": [{"col": 2, "linha": 0.5}]},
+    {"de": "pl", "para": "iregra", "tipo": "realizacao",
+     "via": [{"col": 3, "linha": 0.5}, {"col": 2, "linha": 0.5}]},
+
+    {"de": "cruzamento", "para": "calc", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "rsi", "para": "calc", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "nota", "para": "calc", "tipo": "tracejada"}
+  ]
+}

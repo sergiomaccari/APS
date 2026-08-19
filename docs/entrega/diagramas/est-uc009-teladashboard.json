@@ -1,0 +1,32 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC009 | TelaDashboard",
+  "folgaColunas": 68,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "selecao", "tipo": "estado", "nome": "Escolhendo ativo e período",
+     "texto": "entry / carregar o combo\ndo / ativoSelecionado()\ndo / período selecionado", "col": 1, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 2, "linha": 0},
+    {"id": "carregando", "tipo": "estado", "nome": "Carregando histórico",
+     "texto": "do / listarPorAtivo(\nativoId, dias)", "col": 3, "linha": 0},
+    {"id": "calculando", "tipo": "estado", "nome": "Calculando indicadores",
+     "texto": "do / mediaMovelSimples(9, 21)\ndo / indiceForcaRelativa(14)\ndo / variacaoPercentual()\ndo / volatilidadeAnualizada()", "col": 4, "linha": 0},
+    {"id": "desenhando", "tipo": "estado", "nome": "Desenhando painel",
+     "texto": "do / definirDados() no gráfico\ndo / cartões de fechamento,\nvariação, RSI e volatilidade\ndo / selo da recomendação", "col": 5, "linha": 0},
+    {"id": "vazio", "tipo": "estado", "nome": "Painel vazio",
+     "texto": "do / mostrarMensagem(\n\"Nenhum ativo cadastrado\")\ndo / limpar os cartões", "col": 1, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "selecao", "rotulo": "abrir o\npainel"},
+    {"de": "selecao", "para": "d", "rotulo": "redesenhar()"},
+    {"de": "d", "para": "carregando", "rotulo": "[há ativo]"},
+    {"de": "d", "para": "vazio", "rotulo": "[nenhum ativo]"},
+    {"de": "vazio", "para": "selecao", "rotulo": "cadastrar\num ativo"},
+    {"de": "carregando", "para": "calculando", "rotulo": "cotações\nlidas"},
+    {"de": "calculando", "para": "desenhando", "rotulo": "séries\nprontas"},
+    {"de": "desenhando", "para": "selecao", "rotulo": "trocar ativo ou período / analisarAgora()", "via": [{"col": 4.8, "linha": 0.62}, {"col": 0.55, "linha": 0.62}]},
+    {"de": "desenhando", "para": "f", "rotulo": "sair do\npainel"}
+  ]
+}

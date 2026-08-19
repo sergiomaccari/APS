@@ -1,0 +1,33 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC010 | TelaDetalheAtivo | Exibindo detalhes",
+  "folgaColunas": 84,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "ativoId = ativoSelecionado()", "col": 1, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "ativoId > 0 ?", "col": 2, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "exibir os fundamentos do ativo\ne desenhar o gráfico de linha", "col": 3.1, "linha": 0},
+    {"id": "a3", "tipo": "acao", "texto": "preencher a tabela com as\n20 cotações mais recentes", "col": 4.3, "linha": 0},
+    {"id": "a4", "tipo": "acao", "texto": "servicoRecomendacao.\ndetalharPorRegra(ativoId)", "col": 4.3, "linha": 1},
+    {"id": "d2", "tipo": "decisao", "texto": "algum parecer ?", "col": 3.1, "linha": 1},
+    {"id": "a5", "tipo": "acao", "texto": "listar os pareceres numerados\npor regra, tipo e pontuação", "col": 1, "linha": 1},
+    {"id": "a6", "tipo": "acao", "texto": "avisar que nenhuma\nregra opinou", "col": 3.1, "linha": 2},
+    {"id": "a7", "tipo": "acao", "texto": "limpar fundamentos, gráfico,\ntabela e pareceres", "col": 1, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 0, "linha": 1.5}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "d1"},
+    {"de": "d1", "para": "a2", "rotulo": "[ativoId > 0]"},
+    {"de": "d1", "para": "a7", "rotulo": "[nenhum ativo\ncadastrado]", "via": [{"col": 2, "linha": 0.5}]},
+    {"de": "a2", "para": "a3"},
+    {"de": "a3", "para": "a4"},
+    {"de": "a4", "para": "d2"},
+    {"de": "d2", "para": "a5", "rotulo": "[há pareceres]"},
+    {"de": "d2", "para": "a6", "rotulo": "[nenhum parecer]"},
+    {"de": "a5", "para": "f"},
+    {"de": "a6", "para": "f", "via": [{"col": 2, "linha": 2}]},
+    {"de": "a7", "para": "f"}
+  ]
+}

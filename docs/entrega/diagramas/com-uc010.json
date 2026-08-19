@@ -1,0 +1,22 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC010",
+  "folgaColunas": 190,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "u", "tipo": "ator", "nome": ": Investidor", "col": 0, "linha": 1.5},
+    {"id": "tela", "tipo": "objeto", "estereotipo": "telaDetalhe :", "nome": "TelaDetalheAtivo", "col": 1, "linha": 1.5},
+    {"id": "servAtivo", "tipo": "objeto", "estereotipo": "servicoAtivo :", "nome": "ServicoAtivo", "col": 2, "linha": 0},
+    {"id": "repoCot", "tipo": "objeto", "estereotipo": "repositorioCotacao :", "nome": "RepositorioCotacao", "col": 2, "linha": 1},
+    {"id": "grafico", "tipo": "objeto", "estereotipo": "grafico :", "nome": "GraficoLinha", "col": 2, "linha": 2},
+    {"id": "servRec", "tipo": "objeto", "estereotipo": "servicoRecomendacao :", "nome": "ServicoRecomendacao", "col": 2, "linha": 3}
+  ],
+  "ligacoes": [
+    {"de": "u", "para": "tela", "rotulo": "1: selecionar o ativo"},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: redesenhar()", "via": [{"col": 0.86, "linha": 1.2}, {"col": 1.14, "linha": 1.2}]},
+    {"de": "tela", "para": "servAtivo", "rotulo": "1.1.1: buscarPorId(ativoId)"},
+    {"de": "tela", "para": "repoCot", "rotulo": "1.1.2: listarPorAtivo(ativoId)"},
+    {"de": "tela", "para": "grafico", "rotulo": "1.1.3: definirDados(titulo, historico)"},
+    {"de": "tela", "para": "servRec", "rotulo": "1.1.4: detalharPorRegra(ativoId)"}
+  ]
+}

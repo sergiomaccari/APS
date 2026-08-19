@@ -1,0 +1,24 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC011 | MotorAnalise",
+  "folgaColunas": 80,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "conf", "tipo": "estado", "nome": "Configurando regras", "texto": "do / criarRegra() por regra ativa\ndo / regra->configurar(parametros)\ndo / registrarRegra(regra)", "col": 1.2, "linha": 0},
+    {"id": "pronto", "tipo": "estado", "nome": "Pronto para analisar", "texto": "do / aguardar analisar(ativo, historico)", "col": 2.5, "linha": 0},
+    {"id": "aval", "tipo": "estado", "nome": "Avaliando regras", "texto": "do / regra->avaliar(ativo, historico)\ndo / descartar abstenção (RN019)\nexit / reunir os pareceres obtidos", "col": 3.8, "linha": 0},
+    {"id": "sem", "tipo": "estado", "nome": "Sem parecer aplicável", "texto": "entry / pontuacao = 0 e tipo = Neutro\ndo / justificar \"Nenhuma regra aplicável\"", "col": 2.5, "linha": 1},
+    {"id": "cons", "tipo": "estado", "nome": "Consolidando parecer", "texto": "do / pontuacao = média dos pareceres\ndo / tipoPorPontuacao() (RN016)\nexit / montar a justificativa numerada", "col": 3.8, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 3.15, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "conf", "rotulo": "comRegras\nPadrao()"},
+    {"de": "conf", "para": "pronto", "rotulo": "regras ativas\nregistradas"},
+    {"de": "pronto", "para": "aval", "rotulo": "analisar(ativo,\nhistorico)"},
+    {"de": "aval", "para": "cons", "rotulo": "[algum parecer]"},
+    {"de": "aval", "para": "sem", "rotulo": "[nenhuma regra opinou]"},
+    {"de": "cons", "para": "f", "rotulo": "devolver a\nRecomendacao"},
+    {"de": "sem", "para": "f", "rotulo": "devolver parecer\nNeutro"}
+  ]
+}

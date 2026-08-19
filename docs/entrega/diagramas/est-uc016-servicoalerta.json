@@ -1,0 +1,25 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC016 | ServicoAlerta",
+  "folgaColunas": 88,
+  "folgaLinhas": 80,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocio", "tipo": "estado", "nome": "Ocioso", "texto": "do / aguardar operação", "col": 1, "linha": 0},
+    {"id": "val", "tipo": "estado", "nome": "Validando o alerta", "texto": "do / usuarioId > 0 e ativoId > 0\ndo / valorReferencia > 0 (RN022)\ndo / repositorioAtivo.buscarPorId(ativoId)", "col": 2.2, "linha": 0},
+    {"id": "mont", "tipo": "estado", "nome": "Montando o Alerta", "texto": "entry / definirCondicao e definirValorReferencia\nentry / estado = Ativo\nentry / criadoEm = data atual", "col": 3.4, "linha": 0},
+    {"id": "err", "tipo": "estado", "nome": "Erro registrado", "texto": "entry / m_ultimoErro = motivo", "col": 1, "linha": 1},
+    {"id": "pers", "tipo": "estado", "nome": "Persistindo o alerta", "texto": "do / repositorioAlerta.salvar(alerta)", "col": 3.4, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 2.2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocio", "rotulo": "criar()"},
+    {"de": "ocio", "para": "val", "rotulo": "criarAlerta(usuarioId, ativoId,\ncondicao, valorReferencia)"},
+    {"de": "val", "para": "mont", "rotulo": "[dados válidos]"},
+    {"de": "val", "para": "err", "rotulo": "[valor ≤ 0 ou\nativo inexistente]"},
+    {"de": "mont", "para": "pers", "rotulo": "alerta pronto"},
+    {"de": "pers", "para": "err", "rotulo": "[salvar() devolveu false]"},
+    {"de": "pers", "para": "f", "rotulo": "[alerta gravado] /\ndevolver true"},
+    {"de": "err", "para": "f", "rotulo": "devolver false"}
+  ]
+}

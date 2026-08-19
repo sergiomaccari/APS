@@ -1,0 +1,27 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC017",
+  "participantes": [
+    {"id": "u", "nome": ": Investidor", "ator": true},
+    {"id": "janela", "nome": ": JanelaPrincipal"},
+    {"id": "serv", "nome": ": ServicoAlerta"},
+    {"id": "repoAl", "nome": ": RepositorioAlerta"},
+    {"id": "repoCot", "nome": ": RepositorioCotacao"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "janela", "rotulo": "1: abrir a janela principal"},
+    {"de": "janela", "para": "serv", "rotulo": "1.1: avaliarAlertas(usuarioId)"},
+    {"de": "serv", "para": "repoAl", "rotulo": "1.1.1: listarMonitoradosPorUsuario(id)"},
+    {"de": "repoAl", "para": "serv", "rotulo": "alertas ativos", "retorno": true},
+    {"de": "serv", "para": "repoCot", "rotulo": "1.1.2: *[cada alerta] buscarUltima(ativoId)"},
+    {"de": "repoCot", "para": "serv", "rotulo": "std::optional<Cotacao>", "retorno": true},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.3: condicaoSatisfeita(valor)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.4: [satisfeita] alerta.disparar(momento)"},
+    {"de": "serv", "para": "repoAl", "rotulo": "1.1.5: atualizar(alerta)"},
+    {"de": "repoAl", "para": "serv", "rotulo": "true", "retorno": true},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.6: notificar(alerta, ativo, valor)"},
+    {"de": "serv", "para": "janela", "rotulo": "1.1.6.1: alertaDisparado(alerta, ativo, valor)"},
+    {"de": "serv", "para": "janela", "rotulo": "disparados", "retorno": true},
+    {"de": "janela", "para": "u", "rotulo": "aviso na barra de status", "retorno": true}
+  ]
+}

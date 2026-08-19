@@ -1,0 +1,32 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC008 | TelaAtivos",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "completa", "tipo": "estado", "nome": "Exibindo lista completa",
+     "texto": "entry / atualizar()\ndo / buscar(\"\") lista tudo", "col": 1, "linha": 0},
+    {"id": "termo", "tipo": "estado", "nome": "Recebendo termo",
+     "texto": "do / textChanged →\naplicarFiltro()\ndo / termo = campoBusca.\ntext().trimmed()", "col": 2, "linha": 0},
+    {"id": "filtrando", "tipo": "estado", "nome": "Filtrando ativos",
+     "texto": "do / servicoAtivo.buscar(termo)\ndo / repovoar a tabela\ndo / contarPorAtivo(id)", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "resultados", "tipo": "estado", "nome": "Exibindo resultados",
+     "texto": "do / listar os ativos achados\ndo / liberar a seleção", "col": 5, "linha": 0},
+    {"id": "vazio", "tipo": "estado", "nome": "Nenhum ativo encontrado",
+     "texto": "do / mostrarMensagem(\n\"Nenhum ativo encontrado\npara ...\")", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "completa", "rotulo": "abrir a\ntela"},
+    {"de": "completa", "para": "termo", "rotulo": "digitar no\ncampo"},
+    {"de": "termo", "para": "filtrando", "rotulo": "aplicar\nFiltro()"},
+    {"de": "filtrando", "para": "d"},
+    {"de": "d", "para": "resultados", "rotulo": "[houve\nresultado]"},
+    {"de": "d", "para": "vazio", "rotulo": "[lista vazia]"},
+    {"de": "vazio", "para": "termo", "rotulo": "corrigir o termo", "via": [{"col": 2.4, "linha": 1}]},
+    {"de": "resultados", "para": "termo", "rotulo": "novo termo de busca", "via": [{"col": 4.8, "linha": 0.6}, {"col": 2, "linha": 0.6}]},
+    {"de": "resultados", "para": "f", "rotulo": "sair da\ntela"}
+  ]
+}

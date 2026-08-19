@@ -1,0 +1,29 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC011",
+  "participantes": [
+    {"id": "u", "nome": ": Investidor", "ator": true},
+    {"id": "tela", "nome": ": TelaRecomendacoes"},
+    {"id": "serv", "nome": ": ServicoRecomendacao"},
+    {"id": "repoRegra", "nome": ": RepositorioRegra"},
+    {"id": "motor", "nome": ": MotorAnalise"},
+    {"id": "repoRec", "nome": ": RepositorioRecomendacao"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "tela", "rotulo": "1: gerar recomendações"},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: gerarParaTodos()"},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.1: *[cada ativo] gerarParaAtivo(id)"},
+    {"de": "serv", "para": "repoRegra", "rotulo": "1.1.1.1: listarAtivas()"},
+    {"de": "repoRegra", "para": "serv", "rotulo": "regras ativas", "retorno": true},
+    {"de": "serv", "para": "motor", "rotulo": "1.1.1.2: comRegrasPadrao(regras)"},
+    {"de": "serv", "para": "motor", "rotulo": "1.1.1.3: analisar(ativo, historico)"},
+    {"de": "motor", "para": "serv", "rotulo": "Recomendacao", "retorno": true},
+    {"de": "serv", "para": "repoRec", "rotulo": "1.1.1.4: invalidarVigentesDoAtivo(id)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.1.5: marcarComoVigente()"},
+    {"de": "serv", "para": "repoRec", "rotulo": "1.1.1.6: salvar(recomendacao)"},
+    {"de": "repoRec", "para": "serv", "rotulo": "true", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "publicadas", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.2: atualizar()"},
+    {"de": "tela", "para": "u", "rotulo": "recomendações publicadas", "retorno": true}
+  ]
+}

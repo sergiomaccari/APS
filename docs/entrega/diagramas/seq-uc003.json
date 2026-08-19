@@ -1,0 +1,36 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC003",
+  "participantes": [
+    {"id": "adm", "nome": ": Administrador", "ator": true},
+    {"id": "tela", "nome": ": TelaAtivos"},
+    {"id": "dlg", "nome": ": DialogoAtivo"},
+    {"id": "serv", "nome": ": ServicoAtivo"},
+    {"id": "repo", "nome": ": RepositorioAtivo"},
+    {"id": "bd", "nome": ": BancoDeDados"}
+  ],
+  "mensagens": [
+    {"de": "adm", "para": "tela", "rotulo": "1: selecionar ativo e editar"},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: idSelecionado()"},
+    {"de": "tela", "para": "serv", "rotulo": "1.2: buscarPorId(id)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.2.1: buscarPorId(id)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.2.1.1: SELECT em ativo"},
+    {"de": "bd", "para": "repo", "rotulo": "registro", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "Ativo existente", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "Ativo existente", "retorno": true},
+    {"de": "tela", "para": "dlg", "rotulo": "1.3: exec()"},
+    {"de": "adm", "para": "dlg", "rotulo": "1.4: alterar dados e confirmar"},
+    {"de": "tela", "para": "dlg", "rotulo": "1.5: ativoInformado()"},
+    {"de": "dlg", "para": "tela", "rotulo": "Ativo editado", "retorno": true},
+    {"de": "tela", "para": "serv", "rotulo": "1.6: salvar(ativo)"},
+    {"de": "serv", "para": "repo", "rotulo": "1.6.1: tickerEmUso(ticker, id)"},
+    {"de": "repo", "para": "serv", "rotulo": "falso", "retorno": true},
+    {"de": "serv", "para": "repo", "rotulo": "1.6.2: atualizar(ativo)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.6.2.1: UPDATE em ativo"},
+    {"de": "bd", "para": "repo", "rotulo": "linha alterada", "retorno": true},
+    {"de": "repo", "para": "serv", "rotulo": "verdadeiro", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "verdadeiro", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.7: atualizar()"},
+    {"de": "tela", "para": "adm", "rotulo": "ativo atualizado", "retorno": true}
+  ]
+}

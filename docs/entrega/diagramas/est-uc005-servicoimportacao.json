@@ -1,0 +1,36 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC005 | ServicoImportacao",
+  "folgaColunas": 88,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocioso", "tipo": "estado", "nome": "Ocioso",
+     "texto": "do / aguardar pedido", "col": 1, "linha": 0},
+    {"id": "abrindo", "tipo": "estado", "nome": "Abrindo arquivo",
+     "texto": "entry / criar Importacao\ndo / buscarPorId(ativoId)\ndo / QFile::open(caminho)", "col": 2, "linha": 0},
+    {"id": "validando", "tipo": "estado", "nome": "Validando linhas",
+     "texto": "entry / iniciarValidacao()\ndo / cabecalhoValido(linha 1)\ndo / converterLinha() em cada\nlinha (RN008, RN009)\ndo / recusar data repetida", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "gravando", "tipo": "estado", "nome": "Gravando em lote",
+     "texto": "entry / iniciarTransacao()\ndo / inserirEmLote(cotacoes)", "col": 5, "linha": 0},
+    {"id": "rejeitando", "tipo": "estado", "nome": "Rejeitando arquivo",
+     "texto": "entry / rejeitar(motivo)\ndo / banco.desfazer()\ndo / salvar no histórico", "col": 3, "linha": 1},
+    {"id": "confirmando", "tipo": "estado", "nome": "Confirmando transação",
+     "texto": "do / registro.concluir(lidas,\ninseridas)\ndo / banco.confirmar()", "col": 5, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 4, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocioso", "rotulo": "criar()"},
+    {"de": "ocioso", "para": "abrindo", "rotulo": "importarCsv()"},
+    {"de": "abrindo", "para": "validando", "rotulo": "[arquivo\naberto]"},
+    {"de": "abrindo", "para": "rejeitando", "rotulo": "[ativo inexistente ou\narquivo ilegível]"},
+    {"de": "validando", "para": "d"},
+    {"de": "d", "para": "gravando", "rotulo": "[sem erros e\ncom cotações]"},
+    {"de": "d", "para": "rejeitando", "rotulo": "[algum erro]\n(RN011)", "via": [{"col": 3.9, "linha": 0.6}]},
+    {"de": "gravando", "para": "confirmando", "rotulo": "[lote gravado]"},
+    {"de": "gravando", "para": "rejeitando", "rotulo": "[falha no lote]", "via": [{"col": 4.5, "linha": 0.62}]},
+    {"de": "confirmando", "para": "f", "rotulo": "devolver\nresultado"},
+    {"de": "rejeitando", "para": "ocioso", "rotulo": "nenhuma cotação gravada", "via": [{"col": 1, "linha": 1}]}
+  ]
+}

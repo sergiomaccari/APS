@@ -1,0 +1,26 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC006 | RepositorioRegra | Montando comando",
+  "folgaColunas": 60,
+  "folgaLinhas": 62,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0.5},
+    {"id": "a1", "tipo": "acao", "texto": "consulta = QSqlQuery(\nBancoDeDados::instancia()\n.conexao())", "col": 1, "linha": 0.5},
+    {"id": "a2", "tipo": "acao", "texto": "consulta.prepare(\"UPDATE\nregra_configurada SET\nnome_regra, ativa,\nparametro_principal,\nparametro_secundario\nWHERE id = :id\")", "col": 2, "linha": 0.5},
+    {"id": "d1", "tipo": "decisao", "col": 3, "linha": 0.5},
+    {"id": "a3", "tipo": "acao", "texto": "bindValue(\":ativa\", 1)", "col": 4, "linha": 0},
+    {"id": "a4", "tipo": "acao", "texto": "bindValue(\":ativa\", 0)", "col": 4, "linha": 1},
+    {"id": "a5", "tipo": "acao", "texto": "bindValue de :nome_regra,\n:parametro_principal,\n:parametro_secundario\ne :id\ncomando pronto para\nExecutando no banco", "col": 5, "linha": 0.5},
+    {"id": "f", "tipo": "final", "col": 6, "linha": 0.5}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "d1"},
+    {"de": "d1", "para": "a3", "rotulo": "[regra.ativa()]"},
+    {"de": "d1", "para": "a4", "rotulo": "[regra inativa]"},
+    {"de": "a3", "para": "a5"},
+    {"de": "a4", "para": "a5"},
+    {"de": "a5", "para": "f"}
+  ]
+}

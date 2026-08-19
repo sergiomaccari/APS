@@ -1,0 +1,28 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC009",
+  "participantes": [
+    {"id": "inv", "nome": ": Investidor", "ator": true},
+    {"id": "tela", "nome": ": TelaDashboard"},
+    {"id": "repo", "nome": ": RepositorioCotacao"},
+    {"id": "calc", "nome": ": CalculadoraIndicadores"},
+    {"id": "graf", "nome": ": GraficoCandlestick"}
+  ],
+  "mensagens": [
+    {"de": "inv", "para": "tela", "rotulo": "1: escolher ativo e período"},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: redesenhar()"},
+    {"de": "tela", "para": "repo", "rotulo": "1.2: listarPorAtivo(ativoId, dias)"},
+    {"de": "repo", "para": "tela", "rotulo": "QVector<Cotacao>", "retorno": true},
+    {"de": "tela", "para": "calc", "rotulo": "1.3: mediaMovelSimples(historico, 9)"},
+    {"de": "calc", "para": "tela", "rotulo": "QVector<Indicador>", "retorno": true},
+    {"de": "tela", "para": "calc", "rotulo": "1.4: mediaMovelSimples(historico, 21)"},
+    {"de": "calc", "para": "tela", "rotulo": "QVector<Indicador>", "retorno": true},
+    {"de": "tela", "para": "graf", "rotulo": "1.5: definirDados(titulo, historico, medias)"},
+    {"de": "tela", "para": "calc", "rotulo": "1.6: indiceForcaRelativa(historico, 14)"},
+    {"de": "calc", "para": "tela", "rotulo": "QVector<Indicador>", "retorno": true},
+    {"de": "tela", "para": "calc", "rotulo": "1.7: volatilidadeAnualizada(historico, 60)"},
+    {"de": "calc", "para": "tela", "rotulo": "volatilidade anualizada", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.8: atualizar CartaoIndicador"},
+    {"de": "tela", "para": "inv", "rotulo": "gráfico e indicadores do período", "retorno": true}
+  ]
+}

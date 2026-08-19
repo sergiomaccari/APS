@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC003 | ServicoAtivo",
+  "folgaColunas": 76,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocioso", "tipo": "estado", "nome": "Ocioso",
+     "texto": "do / aguardar pedido", "col": 1, "linha": 0},
+    {"id": "validando", "tipo": "estado", "nome": "Validando alteração",
+     "texto": "entry / limpar ultimoErro\ndo / tickerValido(ticker)\ndo / conferir nome e setor\ndo / tickerEmUso(ticker, id)\nignorando o próprio ativo", "col": 2, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "atualizando", "tipo": "estado", "nome": "Atualizando ativo",
+     "texto": "do / ticker em caixa alta\ndo / repositorio.atualizar(ativo)", "col": 4, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 5, "linha": 0},
+    {"id": "rejeitando", "tipo": "estado", "nome": "Rejeitando alteração",
+     "texto": "entry / definir ultimoErro\ndo / devolver false", "col": 3, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocioso", "rotulo": "criar()"},
+    {"de": "ocioso", "para": "validando", "rotulo": "salvar(ativo)\n[id > 0]"},
+    {"de": "validando", "para": "d"},
+    {"de": "d", "para": "atualizando", "rotulo": "[RN001, RN005\natendidas]"},
+    {"de": "atualizando", "para": "f", "rotulo": "devolver\ntrue"},
+    {"de": "d", "para": "rejeitando", "rotulo": "[ticker inválido, campo\nvazio ou ticker de outro ativo]"},
+    {"de": "rejeitando", "para": "ocioso", "rotulo": "tela exibe ultimoErro()", "via": [{"col": 1, "linha": 1}]}
+  ]
+}

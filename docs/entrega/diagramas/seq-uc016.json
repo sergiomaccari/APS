@@ -1,0 +1,24 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC016",
+  "participantes": [
+    {"id": "u", "nome": ": Investidor", "ator": true},
+    {"id": "tela", "nome": ": TelaAlertas"},
+    {"id": "dlg", "nome": ": DialogoAlerta"},
+    {"id": "serv", "nome": ": ServicoAlerta"},
+    {"id": "repo", "nome": ": RepositorioAlerta"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "tela", "rotulo": "1: acionar \"Novo alerta\""},
+    {"de": "tela", "para": "dlg", "rotulo": "1.1: exec()"},
+    {"de": "u", "para": "dlg", "rotulo": "1.2: informar ativo, condição e valor"},
+    {"de": "dlg", "para": "tela", "rotulo": "Accepted", "retorno": true},
+    {"de": "tela", "para": "serv", "rotulo": "1.3: criarAlerta(usuarioId, ativoId, condicao, valor)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.3.1: [valor > 0] montar Alerta no estado Ativo"},
+    {"de": "serv", "para": "repo", "rotulo": "1.3.2: salvar(alerta)"},
+    {"de": "repo", "para": "serv", "rotulo": "true", "retorno": true},
+    {"de": "serv", "para": "tela", "rotulo": "true", "retorno": true},
+    {"de": "tela", "para": "tela", "rotulo": "1.4: atualizar()"},
+    {"de": "tela", "para": "u", "rotulo": "alerta em monitoramento", "retorno": true}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC018",
+  "folgaColunas": 220,
+  "folgaLinhas": 92,
+  "elementos": [
+    {"id": "esp", "tipo": "texto", "texto": "", "col": 0, "linha": -0.5},
+    {"id": "u", "tipo": "ator", "nome": ": Investidor", "col": 0, "linha": 0},
+    {"id": "tela", "tipo": "objeto", "estereotipo": "telaAlertas :", "nome": "TelaAlertas", "col": 1, "linha": 0},
+    {"id": "serv", "tipo": "objeto", "estereotipo": "servicoAlerta :", "nome": "ServicoAlerta", "col": 2, "linha": 0},
+    {"id": "repo", "tipo": "objeto", "estereotipo": "repositorioAlerta :", "nome": "RepositorioAlerta", "col": 2, "linha": 1},
+    {"id": "bd", "tipo": "objeto", "estereotipo": "instancia :", "nome": "BancoDeDados", "col": 2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "u", "para": "tela", "rotulo": "1: selecionar alerta\ne acionar \"Arquivar\""},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: arquivarAlerta(alertaId)"},
+    {"de": "tela", "para": "tela", "rotulo": "1.2: atualizar()", "via": [{"col": 0.80, "linha": -0.25}, {"col": 1.20, "linha": -0.25}]},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.2: [disparado] alerta.arquivar()", "via": [{"col": 1.78, "linha": -0.25}, {"col": 2.22, "linha": -0.25}]},
+    {"de": "serv", "para": "repo", "rotulo": "1.1.1: buscarPorId(alertaId)\n1.1.3: atualizar(alerta)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.1.1.1: SELECT ... FROM alerta\n1.1.3.1: UPDATE alerta SET estado"}
+  ]
+}

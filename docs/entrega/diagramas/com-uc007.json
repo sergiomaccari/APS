@@ -1,0 +1,24 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC007",
+  "folgaColunas": 260, "folgaLinhas": 150,
+  "elementos": [
+    {"id": "adm", "tipo": "ator", "nome": ": Administrador", "col": 0, "linha": 0},
+    {"id": "tela", "tipo": "classe", "nome": ": TelaUsuarios", "col": 1, "linha": 0},
+    {"id": "dlg", "tipo": "classe", "nome": ": DialogoUsuario", "col": 1, "linha": 1},
+    {"id": "serv", "tipo": "classe", "nome": ": ServicoAutenticacao", "col": 2, "linha": 0},
+    {"id": "repo", "tipo": "classe", "nome": ": RepositorioUsuario", "col": 2, "linha": 1},
+    {"id": "bd", "tipo": "classe", "nome": ": BancoDeDados", "col": 2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "adm", "para": "tela", "rotulo": "1: informar os dados do usuário"},
+    {"de": "tela", "para": "dlg", "rotulo": "1.1: exec()"},
+    {"de": "tela", "para": "tela", "rotulo": "1.3: atualizar()",
+     "via": [{"col": 0.55, "linha": 0.10}, {"col": 0.55, "linha": 0.32}, {"col": 0.95, "linha": 0.32}]},
+    {"de": "tela", "para": "serv", "rotulo": "1.2: cadastrarUsuario(dados)"},
+    {"de": "serv", "para": "serv", "rotulo": "1.2.1: emailPareceValido()\n1.2.3: gerarHash(senha)",
+     "via": [{"col": 1.40, "linha": 0.10}, {"col": 1.40, "linha": 0.32}, {"col": 1.92, "linha": 0.32}]},
+    {"de": "serv", "para": "repo", "rotulo": "1.2.2: buscarPorEmail(email)\n1.2.4: salvar(usuario)"},
+    {"de": "repo", "para": "bd", "rotulo": "1.2.2.1: SELECT em usuario\n1.2.4.1: INSERT em usuario"}
+  ]
+}

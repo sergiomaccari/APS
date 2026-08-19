@@ -1,17 +1,22 @@
 {
   "tipo": "grade",
-  "moldura": "stm Alerta",
+  "moldura": "stm UC017 | Alerta",
+  "folgaColunas": 96,
+  "folgaLinhas": 88,
   "elementos": [
     {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
-    {"id": "a", "tipo": "estado", "nome": "Ativo", "texto": "do / monitorar cotações", "col": 1, "linha": 0},
-    {"id": "d", "tipo": "estado", "nome": "Disparado", "texto": "entry / registrar momento\ndo / notificar observadores", "col": 2, "linha": 0},
-    {"id": "q", "tipo": "estado", "nome": "Arquivado", "col": 3, "linha": 0},
-    {"id": "f", "tipo": "final", "col": 4, "linha": 0}
+    {"id": "a", "tipo": "estado", "nome": "Ativo", "texto": "do / monitorar a última cotação", "col": 1, "linha": 0},
+    {"id": "d", "tipo": "estado", "nome": "Disparado", "texto": "entry / registrar disparadoEm\ndo / notificar os observadores", "col": 2.3, "linha": 0},
+    {"id": "q", "tipo": "estado", "nome": "Arquivado", "texto": "do / sair do monitoramento", "col": 3.5, "linha": 0},
+    {"id": "f", "tipo": "final", "col": 4.4, "linha": 0},
+    {"id": "nota", "tipo": "nota", "texto": "RN020 - o alerta só dispara quando a condição\né satisfeita pela última cotação importada.\nRN021 - somente alerta já disparado\npode ser arquivado.", "col": 2.3, "linha": 1}
   ],
   "ligacoes": [
     {"de": "i", "para": "a", "rotulo": "criarAlerta()"},
+    {"de": "a", "para": "a", "rotulo": "avaliarAlertas()\n[condição não satisfeita]", "via": [{"col": 0.6, "linha": 0.45}, {"col": 1.4, "linha": 0.45}]},
     {"de": "a", "para": "d", "rotulo": "disparar(momento)\n[condição satisfeita]"},
     {"de": "d", "para": "q", "rotulo": "arquivar()"},
-    {"de": "q", "para": "f"}
+    {"de": "q", "para": "f", "rotulo": "remover()"},
+    {"de": "nota", "para": "d", "tipo": "tracejada"}
   ]
 }
