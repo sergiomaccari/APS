@@ -107,10 +107,12 @@ def numerar(texto: str):
 
 
 # Proporções de coluna por assinatura de cabeçalho: a linha delimitadora do
-# pandoc define as larguras relativas no Word e no PDF.
+# pandoc define as larguras relativas no Word e no PDF. Os números saem da
+# medição do conteúdo real (maior palavra indivisível, não maior célula) —
+# coluna estreita demais faz o LaTeX transbordar o texto por cima da vizinha.
 LARGURAS = [
-    (("Atributo", "Descrição", "Tamanho"), [12, 30, 6, 12, 10, 14]),
-    (("Método", "Retorno", "Parâmetros"), [12, 28, 10, 16, 16]),
+    (("Atributo", "Descrição", "Tamanho"), [15, 21, 7, 12, 10, 15]),
+    (("Método", "Retorno", "Parâmetros"), [13, 22, 13, 17, 15]),
     (("Data", "Versão", "Autor"), [7, 6, 34, 18]),
     (("Ações dos atores", "Ações do sistema"), [24, 24]),
 ]
@@ -120,13 +122,21 @@ def ajustar_larguras(documento: str) -> str:
     linhas = documento.split("\n")
     for i in range(1, len(linhas)):
         linha = linhas[i]
-        if not re.fullmatch(r"\|[-| ]+\|", linha.strip()) or "-" not in linha:
+        # aceita as duas formas de delimitador: |-----| e | :---- | (com os
+        # dois-pontos de alinhamento), usadas em seções diferentes
+        if not re.fullmatch(r"\|[-:| ]+\|", linha.strip()) or "-" not in linha:
             continue
         cabecalho = linhas[i - 1]
         for chaves, proporcao in LARGURAS:
             if all(c in cabecalho for c in chaves):
                 if len(proporcao) == cabecalho.count("|") - 1:
-                    linhas[i] = "|" + "|".join("-" * n for n in proporcao) + "|"
+                    celulas = [c.strip() for c in linha.strip().strip("|").split("|")]
+                    novas = []
+                    for celula, n in zip(celulas, proporcao):
+                        esquerda = ":" if celula.startswith(":") else ""
+                        direita = ":" if celula.endswith(":") else ""
+                        novas.append(esquerda + "-" * n + direita)
+                    linhas[i] = "|" + "|".join(novas) + "|"
                 break
     return "\n".join(linhas)
 
@@ -163,10 +173,15 @@ def montar(bim: str) -> Path:
     corpo = "\n\n".join(p for p in partes if not p.startswith("@"))
     corpo, legendas_fig, legendas_tab = numerar(corpo)
 
-    listas = ["# LISTA DE FIGURAS", ""]
+    # As listas são um parágrafo só, com quebra manual de linha: o recuo de
+    # primeira linha cairia sobre a primeira legenda e desalinharia a lista.
+    abre = "```{=latex}\n" + r"\begingroup\setlength{\parindent}{0pt}" + "\n```\n"
+    fecha = "```{=latex}\n" + r"\endgroup" + "\n```\n"
+    listas = ["# LISTA DE FIGURAS", "", abre]
     listas += [f"{l}  " for l in legendas_fig]
-    listas += ["", "# LISTA DE TABELAS E QUADROS", ""]
+    listas += ["", fecha, "# LISTA DE TABELAS E QUADROS", "", abre]
     listas += [f"{l}  " for l in legendas_tab]
+    listas += ["", fecha]
     bloco_listas = "\n".join(listas)
 
     # Reinsere sumário e listas na posição dos marcadores (após a capa).
@@ -197,7 +212,8 @@ def montar(bim: str) -> Path:
 
 def _pos_processar_docx(docx: Path):
     """Ajustes que o pandoc não expressa: linha de tabela indivisível entre
-    páginas e título de Quadro/Tabela colado à tabela seguinte."""
+    páginas, título de Quadro/Tabela colado à tabela seguinte e legenda sem
+    o recuo de primeira linha que o estilo BodyText aplica ao texto."""
     import zipfile
     conteudo = {}
     with zipfile.ZipFile(docx) as z:
@@ -209,7 +225,18 @@ def _pos_processar_docx(docx: Path):
         r'(<w:pStyle w:val="(?:BodyText|FirstParagraph)" ?/>)'
         r'(</w:pPr><w:r><w:rPr><w:b ?/>(?:<w:bCs ?/>)?</w:rPr>'
         r'<w:t xml:space="preserve">(?:Quadro|Tabela) )',
-        r"\1<w:keepNext/>\2", doc)
+        r'\1<w:keepNext/><w:ind w:firstLine="0"/>\2', doc)
+    # As duas listas (figuras e tabelas/quadros) são um parágrafo só com
+    # quebra manual de linha: sem isto o recuo do BodyText cairia apenas
+    # sobre a primeira legenda e desalinharia a lista inteira.
+    def sem_recuo(m: re.Match) -> str:
+        paragrafo = m.group(0)
+        if not re.search(r"<w:br ?/>", paragrafo):
+            return paragrafo
+        return re.sub(r'(<w:pStyle w:val="(?:BodyText|FirstParagraph)" ?/>)',
+                      r'\1<w:ind w:firstLine="0"/>', paragrafo, count=1)
+
+    doc = re.sub(r"<w:p\b.*?</w:p>", sem_recuo, doc, flags=re.S)
     conteudo["word/document.xml"] = doc.encode("utf-8")
     with zipfile.ZipFile(docx, "w", zipfile.ZIP_DEFLATED) as z:
         for nome, dados in conteudo.items():
@@ -227,11 +254,101 @@ def gerar_docx(md: Path, pandoc: str):
     print(f"  {docx.name} gerado ({docx.stat().st_size // 1024} KB)")
 
 
+# Caracteres depois dos quais a linha pode quebrar dentro de uma palavra longa.
+# Abre-parênteses e abre-colchetes ficam de fora: quebrar depois deles deixaria
+# "Objeto (" no fim da linha. O \hspace{0pt} não só autoriza a quebra como
+# devolve a hifenização ao pedaço seguinte: o TeX não hifeniza uma palavra que
+# começa depois de "_", "<" ou ":".
+SEPARADORES = r"_:./<>*)\]+=;,@"
+QUEBRA_TEX = r"\hspace{0pt}"
+
+
+def permitir_quebra_de_palavras_longas(texto: str) -> str:
+    """Insere pontos de quebra em palavras que o LaTeX não quebra sozinho.
+
+    Só o PDF precisa disso — o Word quebra palavra longa por conta própria.
+    Sem isso, m_valorPatrimonialPorCota e QVector<LinhaResumoCarteira> vazam
+    para fora da célula e se sobrepõem ao texto da coluna ao lado, o URL das
+    referências invade a margem e os trechos de código do texto corrido
+    (UNIQUE(ativo_id, data)) avançam sobre a margem direita.
+    """
+    # duas oportunidades de quebra: depois de um separador e antes de uma
+    # maiúscula interna (RepositorioCarteira quebra em Repositorio|Carteira,
+    # sem hífen, que num dicionário de classes seria lido como parte do nome).
+    # Nunca antes de um espaço: dividir um trecho de código ali faria o pandoc
+    # descartar o espaço no início do trecho seguinte.
+    padrao = (rf"(?<=[{SEPARADORES}])(?![{SEPARADORES}])(?=\S)"
+              r"|(?<=[a-zà-öø-ÿ0-9])(?=[A-ZÀ-ÖØ-Þ])")
+
+    def quebrar(m: re.Match) -> str:
+        return re.sub(padrao, lambda _: QUEBRA_TEX, m.group(0))
+
+    def quebrar_codigo(trecho: str) -> str:
+        # Dentro das crases a barra invertida é literal, então o \hspace não
+        # pode entrar no trecho: fecha-se o código, quebra, e reabre. O pandoc
+        # emite \texttt{} adjacentes, visualmente idênticos a um trecho só.
+        interno = trecho[1:-1]
+        if len(interno) < 12:
+            return trecho
+        return "`" + re.sub(padrao, lambda _: "`" + QUEBRA_TEX + "`", interno) + "`"
+
+    def tratar_celula(celula: str) -> str:
+        partes = re.split(r"(`[^`]*`)", celula)
+        partes[::2] = [re.sub(r"[^\s|]{12,}", quebrar, p) for p in partes[::2]]
+        partes[1::2] = [quebrar_codigo(p) for p in partes[1::2]]
+        celula = "".join(partes)
+        # O TeX não hifeniza a primeira palavra de um parágrafo e cada célula
+        # é um parágrafo: sem a cola de largura zero, uma célula com uma só
+        # palavra longa (RepositorioAtivo&) não quebra e invade a coluna vizinha.
+        if re.match(r"\s*[A-Za-zÀ-ÿ][^\s|]{11,}", celula):
+            celula = re.sub(r"^\s*", lambda m: m.group(0) + QUEBRA_TEX, celula, count=1)
+        return celula
+
+    def tratar_texto(linha: str) -> str:
+        partes = re.split(r"(`[^`]*`)", linha)
+        partes[::2] = [re.sub(r"https?://\S{20,}", quebrar, p) for p in partes[::2]]
+        partes[1::2] = [quebrar_codigo(p) for p in partes[1::2]]
+        return "".join(partes)
+
+    linhas = []
+    dentro_de_cerca = False
+    for linha in texto.split("\n"):
+        if linha.startswith("```"):
+            dentro_de_cerca = not dentro_de_cerca
+            linhas.append(linha)
+            continue
+        if dentro_de_cerca:          # openxml da capa e LaTeX cru: não tocar
+            linhas.append(linha)
+        elif linha.startswith("|") and not re.fullmatch(r"\|[-:| ]+\|", linha.strip()):
+            linhas.append("|".join(tratar_celula(c) for c in linha.split("|")))
+        else:
+            linhas.append(tratar_texto(linha))
+    return "\n".join(linhas)
+
+
+def manter_legenda_com_a_tabela(texto: str) -> str:
+    """Impede que a legenda de um Quadro/Tabela fique órfã no pé da página.
+
+    É o equivalente em LaTeX do <w:keepNext/> que _pos_processar_docx aplica
+    no Word: reserva espaço para a legenda, a descrição em itálico, o
+    cabeçalho e as primeiras linhas antes de deixar a tabela começar.
+    """
+    reserva = "```{=latex}\n" + r"\Needspace*{10\baselineskip}" + "\n```\n"
+    linhas = []
+    for linha in texto.split("\n"):
+        if re.match(r"\*\*(?:Quadro|Tabela) \d+\.", linha):
+            linhas.append(reserva)
+        linhas.append(linha)
+    return "\n".join(linhas)
+
+
 def gerar_pdf(md: Path, pandoc: str):
     """PDF via pandoc + tectonic. O marcador 🟦 não existe nas fontes LaTeX;
     vira [PENDÊNCIA DA EQUIPE] apenas na renderização do PDF."""
     pdf = md.with_suffix(".pdf")
     texto = md.read_text(encoding="utf-8").replace("🟦", "[PENDÊNCIA DA EQUIPE]")
+    texto = permitir_quebra_de_palavras_longas(texto)
+    texto = manter_legenda_com_a_tabela(texto)
     temporario = md.with_suffix(".pdf.tmp.md")
     temporario.write_text(texto, encoding="utf-8")
     cmd = [pandoc, "--from", "markdown-tex_math_dollars", str(temporario), "-o", str(pdf),
@@ -240,6 +357,23 @@ def gerar_pdf(md: Path, pandoc: str):
            "-V", "lang=pt-BR",
            "-V", "geometry:margin=2.5cm",
            "-V", "fontsize=11pt",
+           # recuo de 1,25 cm na primeira linha de cada parágrafo, inclusive no
+           # primeiro parágrafo de cada seção (indentfirst)
+           "-V", "indent=true",
+           "-V", "header-includes=\\usepackage{indentfirst}",
+           "-V", "header-includes=\\setlength{\\parindent}{1.25cm}",
+           "-V", "header-includes=\\setlength{\\parskip}{6pt plus 2pt minus 1pt}",
+           # tabelas em corpo menor: em 11pt as colunas do dicionário não cabem
+           # na largura útil e o texto transborda por cima da coluna vizinha
+           "-V", "header-includes=\\usepackage{etoolbox}",
+           "-V", "header-includes=\\AtBeginEnvironment{longtable}{\\footnotesize}",
+           # legenda de Quadro/Tabela não fica órfã no pé da página
+           "-V", "header-includes=\\usepackage{needspace}",
+           # figura fica onde foi escrita, em vez de flutuar: com 148 figuras
+           # seguidas a fila de floats do LaTeX estoura, e o resultado eram
+           # páginas só de figura com um vão enorme antes da primeira
+           "-V", "header-includes=\\usepackage{float}",
+           "-V", "header-includes=\\floatplacement{figure}{H}",
            # sem prefixo automático "Figura N:" (as legendas já trazem o número)
            "-V", "header-includes=\\usepackage[labelformat=empty]{caption}",
            # cabeçalho corrido "capítulo … página", como no modelo do professor

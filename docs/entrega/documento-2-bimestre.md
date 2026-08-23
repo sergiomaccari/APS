@@ -96,6 +96,10 @@
 
 # LISTA DE FIGURAS
 
+```{=latex}
+\begingroup\setlength{\parindent}{0pt}
+```
+
 Figura 1. Sessão online de Planning Poker. 🟦  
 Figura 2. Tela de login.  
 Figura 3. Janela principal com a navegação do papel Administrador.  
@@ -245,6 +249,10 @@ Figura 146. Diagrama de Atividades para o estado "Sincronizando ativo", dentro d
 Figura 147. Diagrama de Atividades para o estado "Executando o backtesting", dentro do Diagrama de Estados para a classe DialogoBacktest em [UC020].  
 Figura 148. Diagrama de Atividades para o estado "Percorrendo os pregões", dentro do Diagrama de Estados para a classe Backtester em [UC020].  
 
+```{=latex}
+\endgroup
+```
+
 
 ```{=openxml}
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
@@ -255,6 +263,10 @@ Figura 148. Diagrama de Atividades para o estado "Percorrendo os pregões", dent
 ```
 
 # LISTA DE TABELAS E QUADROS
+
+```{=latex}
+\begingroup\setlength{\parindent}{0pt}
+```
 
 Tabela 1. Estimativa de esforço em horas para cada requisito funcional.  
 Tabela 2. Cálculo do peso não ajustado dos atores (UAW).  
@@ -349,6 +361,11 @@ Quadro 85. Dicionário de informações da classe DialogoUsuario.
 Quadro 86. Dicionário de informações da classe CartaoIndicador.  
 Quadro 87. Dicionário de informações da classe GraficoCandlestick.  
 Quadro 88. Dicionário de informações da classe GraficoLinha.  
+
+```{=latex}
+\endgroup
+```
+
 
 
 ```{=openxml}
@@ -1683,7 +1700,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Usuario: identifica quem acessa o sistema, define o seu perfil de acesso e é o proprietário das carteiras e dos alertas.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único do usuário, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo: 1 a 9.223.372.036.854.775.807 |
 | m_nome | Nome completo do usuário | 60 | Alfanumérico (QString) | 1{X}60 | Contínuo |
 | m_email | Endereço de correio eletrônico, chave natural usada no login | 80 | Alfanumérico (QString) | 1{X}80 | Contínuo, no padrão `usuario@dominio.ext` |
@@ -1696,7 +1713,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Ativo: raiz abstrata da hierarquia de ativos negociados na B3; concentra os dados de identificação comuns a ações e a fundos imobiliários.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único do ativo, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ticker | Código de negociação do ativo na bolsa | 6 | Alfanumérico (QString) | 4{X}6 | Contínuo: de 4 a 6 caracteres alfanuméricos, único no sistema (RN005) |
 | m_nomeEmpresa | Razão social ou nome de pregão do emissor do ativo | 80 | Alfanumérico (QString) | 1{X}80 | Contínuo |
@@ -1708,7 +1725,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Acao: ação negociada na B3; especializa Ativo acrescentando os fundamentos Preço/Lucro, Dividend Yield e Valor de Mercado.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único do ativo, herdado de Ativo | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ticker | Código de negociação do ativo na bolsa, herdado de Ativo | 6 | Alfanumérico (QString) | 4{X}6 | Contínuo: de 4 a 6 caracteres alfanuméricos, único no sistema |
 | m_nomeEmpresa | Razão social da companhia emissora, herdado de Ativo | 80 | Alfanumérico (QString) | 1{X}80 | Contínuo |
@@ -1725,7 +1742,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *FundoImobiliario: fundo de investimento imobiliário negociado na B3; especializa Ativo acrescentando Dividend Yield, Valor Patrimonial por Cota e segmento de atuação.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único do ativo, herdado de Ativo | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ticker | Código de negociação do fundo na bolsa, herdado de Ativo | 6 | Alfanumérico (QString) | 4{X}6 | Contínuo: de 4 a 6 caracteres alfanuméricos, único no sistema |
 | m_nomeEmpresa | Nome do fundo, herdado de Ativo | 80 | Alfanumérico (QString) | 1{X}80 | Contínuo |
@@ -1742,7 +1759,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Cotacao: cotação diária de um ativo no formato candle OHLCV (abertura, máxima, mínima, fechamento e volume); é a base de todos os cálculos técnicos do sistema.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único da cotação, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ativoId | Identificador do ativo a que a cotação pertence | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
 | m_data | Data do pregão a que se refere a cotação | 10 | Data (QDate) | dd/mm/aaaa | Contínuo: 01/01/1990 até a data corrente |
@@ -1758,7 +1775,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Indicador: valor de um indicador técnico calculado para uma data específica da série histórica, produzido pela CalculadoraIndicadores.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | nome | Nome do indicador, formado pela sigla e pelo período utilizado | 20 | Alfanumérico (QString) | 1{X}20 | Discreto: MMS n = média móvel simples de n períodos; MME n = média móvel exponencial de n períodos; RSI n = índice de força relativa de n períodos |
 | data | Data do pregão a que o valor calculado se refere | 10 | Data (QDate) | dd/mm/aaaa | Contínuo |
 | valor | Valor numérico calculado do indicador na data | 8 | Numérico (double) | {9}9,99 | Contínuo: preços em reais para as médias móveis; 0,00 a 100,00 para o RSI |
@@ -1769,7 +1786,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Carteira: carteira de investimentos de um usuário; agrega, por composição, as posições dos ativos que ele possui.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único da carteira, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_usuarioId | Identificador do usuário proprietário da carteira | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Usuario |
 | m_nome | Nome atribuído à carteira pelo usuário | 40 | Alfanumérico (QString) | 1{X}40 | Contínuo |
@@ -1782,7 +1799,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Posicao: posição de um ativo dentro de uma carteira, com a quantidade detida, o preço médio ponderado de aquisição e a data da compra.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único da posição, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_carteiraId | Identificador da carteira a que a posição pertence | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Carteira |
 | m_ativoId | Identificador do ativo detido na posição | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
@@ -1796,7 +1813,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Alerta: condição de preço ou de variação cadastrada por um usuário sobre um ativo, monitorada pelo sistema a cada nova cotação.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único do alerta, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_usuarioId | Identificador do usuário que cadastrou o alerta | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Usuario |
 | m_ativoId | Identificador do ativo monitorado pelo alerta | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
@@ -1812,7 +1829,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Recomendacao: parecer de compra, venda ou neutralidade gerado pelo MotorAnalise para um ativo, acompanhado da pontuação e da justificativa numérica que o sustentam.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único da recomendação, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ativoId | Identificador do ativo a que a recomendação se refere | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
 | m_tipo | Tipo do parecer emitido | 4 | Enumerado (TipoRecomendacao) | {A}7 | Discreto: Compra = pontuação maior ou igual a +0,25; Venda = pontuação menor ou igual a −0,25; Neutro = pontuação entre os dois limiares (RN016) |
@@ -1829,7 +1846,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RegraConfigurada: configuração persistida de uma regra de análise; permite ligar, desligar e reparametrizar as estratégias do motor sem recompilar o sistema.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único da configuração, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_nomeRegra | Nome canônico da estratégia, que deve coincidir com o nome devolvido por RegraAnalise::nome() | 60 | Alfanumérico (QString) | 1{X}60 | Discreto: Cruzamento de Medias Moveis; Indice de Forca Relativa; Dividend Yield; Preco sobre Lucro |
 | m_ativa | Indica se a regra participa da análise; somente as regras ativas são executadas (RN018) | 1 | Lógico (bool) | [Sim \| Não] | Discreto: 1 = Sim, regra em uso; 0 = Não, regra desligada |
@@ -1843,7 +1860,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Importacao: registro de auditoria de uma carga de cotações a partir de arquivo CSV, com o resultado da validação e as contagens de linhas processadas.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_id | Identificador único da importação, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ativoId | Identificador do ativo cujas cotações foram importadas | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
 | m_arquivo | Caminho completo do arquivo CSV processado | 255 | Alfanumérico (QString) | 1{X}255 | Contínuo |
@@ -1859,7 +1876,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RegraAnalise: interface do padrão de projeto Strategy; define o contrato que toda regra de análise deve cumprir para ser combinada pelo MotorAnalise. Por ser uma interface, não possui atributos, sendo descrita por suas operações.*
 
 | Método | Descrição | Retorno | Parâmetros | Domínio do retorno |
-|------------|----------------------------|----------|----------------|----------------|
+|-------------|----------------------|-------------|-----------------|---------------|
 | nome() | Nome canônico da regra; deve ser idêntico ao gravado em RegraConfigurada para que a fábrica do motor localize a estratégia | Alfanumérico (QString) | — | Discreto: Cruzamento de Medias Moveis; Indice de Forca Relativa; Dividend Yield; Preco sobre Lucro |
 | descricao() | Explicação do critério aplicado pela regra, exibida ao administrador na tela de configuração de regras | Alfanumérico (QString) | — | Contínuo: até 255 caracteres |
 | configurar() | Ajusta os parâmetros da estratégia com os valores lidos de RegraConfigurada | Sem retorno (void) | parametroPrincipal, parametroSecundario (double) | — |
@@ -1871,7 +1888,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RegraCruzamentoMedias: estratégia técnica que compara duas médias móveis; sinaliza compra quando a média curta cruza para cima da média longa e venda no cruzamento inverso.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_periodoCurto | Quantidade de pregões da média móvel curta, configurada pelo parâmetro principal da regra | 4 | Numérico (int) | {9}3 | Contínuo: 2 a 200 pregões; valor padrão 9 |
 | m_periodoLongo | Quantidade de pregões da média móvel longa, configurada pelo parâmetro secundário da regra | 4 | Numérico (int) | {9}3 | Contínuo: maior que m_periodoCurto, até 200 pregões; valor padrão 21 |
 
@@ -1881,7 +1898,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RegraRsi: estratégia técnica baseada no Índice de Força Relativa de Wilder; indica compra em situação de sobrevenda e venda em situação de sobrecompra.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_limiteSobrevenda | Valor do RSI abaixo do qual o ativo é considerado descontado, gerando sinal de compra | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00; valor padrão 30,00 |
 | m_limiteSobrecompra | Valor do RSI acima do qual o ativo é considerado esticado, gerando sinal de venda | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00, maior que m_limiteSobrevenda; valor padrão 70,00 |
 | m_periodo | Quantidade de pregões usada no cálculo do RSI | 4 | Numérico (int) | {9}3 | Contínuo: 2 a 200 pregões; valor padrão 14 |
@@ -1892,7 +1909,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RegraDividendYield: estratégia fundamentalista que avalia o percentual de proventos distribuídos; aplica-se tanto a ações quanto a fundos imobiliários, lendo o fundamento de forma polimórfica.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_dividendYieldMinimo | Dividend Yield a partir do qual o ativo passa a ser considerado atrativo | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00; valor padrão 6,00 |
 | m_dividendYieldExcelente | Dividend Yield a partir do qual o ativo recebe a pontuação máxima do critério | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00, maior que m_dividendYieldMinimo; valor padrão 10,00 |
 
@@ -1902,7 +1919,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RegraPrecoLucro: estratégia fundamentalista que avalia o índice Preço/Lucro; aplica-se somente a ações e abstém-se de opinar quando o ativo é um fundo imobiliário.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_precoLucroAtrativo | Índice Preço/Lucro até o qual a ação é considerada barata, gerando sinal de compra | 8 | Numérico (double) | {9}4,99 | Contínuo: maior que 0,00; valor padrão 8,00 |
 | m_precoLucroElevado | Índice Preço/Lucro a partir do qual a ação é considerada cara, gerando sinal de venda | 8 | Numérico (double) | {9}4,99 | Contínuo: maior que m_precoLucroAtrativo; valor padrão 20,00 |
 
@@ -1912,7 +1929,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *MotorAnalise: contexto do padrão Strategy; guarda as estratégias ativas, executa cada uma delas sobre o ativo e agrega os pareceres em uma única recomendação justificada.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_regras | Coleção das estratégias de análise registradas no motor, na ordem de execução; o motor assume a propriedade dos objetos | Variável | Objeto (RegraAnalise) | — | Discreto: instâncias de RegraCruzamentoMedias, RegraRsi, RegraDividendYield e RegraPrecoLucro correspondentes às regras ativas |
 
 
@@ -1921,7 +1938,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *CalculadoraIndicadores: classe utilitária de cálculos técnicos sobre séries históricas ordenadas por data; todas as suas operações são estáticas, de modo que ela mantém apenas a constante de anualização.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | PREGOES_POR_ANO | Constante de classe: quantidade de pregões considerada em um ano (252), usada na anualização da volatilidade | 4 | Numérico (int, constante) | {9}3 | Contínuo: valor fixo 252 |
 
 
@@ -1930,7 +1947,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Backtester: reexecuta o MotorAnalise em cada ponto da série histórica já importada, como se aquele pregão fosse o mais recente, e confere o parecer emitido contra o comportamento do preço nos pregões seguintes (RF021); é uma classe pura, que não conhece banco de dados nem interface gráfica.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_regras | Coleção das configurações de regras com que o motor é remontado a cada ponto do histórico avaliado | Variável | Objeto (RegraConfigurada) | — | Discreto: instâncias válidas da classe RegraConfigurada |
 | HORIZONTE_PADRAO | Constante de classe: quantidade de pregões à frente considerada para medir o resultado de um sinal (10) | 4 | Numérico (int, constante) | {9}2 | Contínuo: valor fixo 10 |
 | MINIMO_DE_PREGOES | Constante de classe: quantidade de pregões de histórico exigida antes do primeiro sinal (30), para que as médias móveis e o RSI tenham série suficiente para se formar | 4 | Numérico (int, constante) | {9}2 | Contínuo: valor fixo 30 |
@@ -1942,7 +1959,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *ResultadoBacktestRegra: estrutura de dados com o desempenho histórico de uma única regra, ou do parecer consolidado, apurado pelo Backtester ao longo de todo o período avaliado.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | regra | Nome canônico da regra a que a apuração se refere, ou o rótulo do parecer consolidado | 60 | Alfanumérico (QString) | 1{X}60 | Discreto: Cruzamento de Medias Moveis; Indice de Forca Relativa; Dividend Yield; Preco sobre Lucro; Consolidado (média ponderada) |
 | sinais | Quantidade de pareceres diferentes de Neutro emitidos ao longo do histórico; pareceres Neutro não são sinal e não entram na contabilidade (RN024) | 4 | Numérico (int) | {9}9 | Contínuo: maior ou igual a zero |
 | acertos | Quantidade de sinais cuja direção se confirmou no horizonte avaliado: Compra com retorno futuro positivo e Venda com retorno futuro negativo (RN024) | 4 | Numérico (int) | {9}9 | Contínuo: de zero até o valor de sinais |
@@ -1956,7 +1973,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *ResultadoBacktest: estrutura de dados com o resultado completo do backtesting de um ativo, reunindo a apuração consolidada e a apuração de cada regra ativa, apresentadas no DialogoBacktest.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | ticker | Código de negociação do ativo submetido ao backtesting | 6 | Alfanumérico (QString) | 4{X}6 | Discreto: tickers cadastrados na classe Ativo |
 | pregoesAvaliados | Quantidade de pregões em que houve reavaliação das regras ao longo do histórico | 4 | Numérico (int) | {9}9 | Contínuo: maior ou igual a zero |
 | horizonte | Quantidade de pregões à frente usada para medir o resultado de cada sinal | 4 | Numérico (int) | {9}2 | Contínuo: 1 a 60 pregões; valor padrão 10 |
@@ -1970,7 +1987,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *BancoDeDados: fachada única de acesso ao banco SQLite (padrão Singleton); abre a conexão, aplica as migrações versionadas e oferece controle explícito de transação às operações que precisam ser atômicas.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_conexao | Conexão aberta com o banco de dados, compartilhada por todos os repositórios | Variável | Objeto (QSqlDatabase) | — | Discreto: conexão aberta ou conexão inválida |
 | m_caminhoBanco | Caminho do arquivo de banco de dados em uso | 255 | Alfanumérico (QString) | 1{X}255 | Contínuo |
 | m_ultimoErro | Mensagem do último erro ocorrido na abertura, na migração ou no controle de transação | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando não há erro |
@@ -1982,7 +1999,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RepositorioUsuario: repositório da tabela usuario; converte objetos Usuario em linhas do banco e vice-versa, isolando o restante do sistema do SQL e utilizando sempre consultas parametrizadas.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações de gravação, remoção ou consulta de usuários | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
@@ -1991,7 +2008,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RepositorioAtivo: repositório da tabela ativo; grava e recupera a hierarquia Ativo, Acao e FundoImobiliario em uma única relação, usando a coluna tipo como discriminador e devolvendo a subclasse concreta correspondente.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre ativos, inclusive na verificação de unicidade do ticker | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
@@ -2000,7 +2017,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RepositorioCotacao: repositório da tabela cotacao; grava as séries históricas em lote de forma idempotente, apoiando-se no índice de unicidade por ativo e data, e devolve os históricos ordenados por data crescente.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na inserção em lote ou nas consultas de série histórica | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
@@ -2009,7 +2026,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RepositorioCarteira: repositório das tabelas carteira e posicao; por serem uma composição no domínio, toda carteira recuperada já vem com as suas posições carregadas, e a gravação de posição atualiza a existente em vez de duplicá-la.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre carteiras e posições | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
@@ -2018,7 +2035,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RepositorioAlerta: repositório da tabela alerta; preserva no banco os textos canônicos do estado e da condição, mantendo válida a máquina de estados do domínio.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre alertas | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
@@ -2027,7 +2044,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RepositorioRecomendacao: repositório da tabela recomendacao; guarda a saída do MotorAnalise e invalida as recomendações anteriores do ativo quando uma nova análise é publicada.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na gravação, na consulta ou na invalidação de recomendações | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
@@ -2036,7 +2053,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RepositorioRegra: repositório da tabela regra_configurada; é a fonte dos parâmetros com que o MotorAnalise monta as estratégias, permitindo ligar, desligar e reparametrizar regras sem recompilar o sistema.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre as configurações de regras | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
@@ -2045,7 +2062,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *RepositorioImportacao: repositório da tabela importacao; mantém o histórico de auditoria das cargas de arquivos CSV, com o estado final e as contagens de linhas de cada execução.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|------------|------------------------------|------|------------|----------|--------------|
+|---------------|---------------------|-------|------------|----------|---------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na gravação ou na consulta do histórico de importações | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 **Quadro 52. Dicionário de informações da classe ServicoAutenticacao.**
@@ -2053,7 +2070,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Concentra as regras de negócio de autenticação e de gestão de usuários: valida credenciais, aplica o resumo criptográfico SHA-256 sobre o sal concatenado à senha (RN004), garante a unicidade do e-mail (RN002), o tamanho mínimo da senha (RN003) e impede a remoção ou o rebaixamento do último administrador (RN006).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | SAL | Constante de classe com o sal fixo da aplicação, concatenado à senha antes do cálculo do resumo criptográfico. Valor `aps-b3-2026` | 11 | QString | Alfanumérico | N/A |
 | TAMANHO_MINIMO_SENHA | Constante de classe com o número mínimo de caracteres aceito para a senha (RN003). Valor 6 | 4 | int | Numérico | Discreto |
 | m_repositorio | Referência ao repositório de usuários, injetada pelo Contexto; é por ela que o serviço consulta e grava os dados persistidos | N/A | RepositorioUsuario& | Objeto | N/A |
@@ -2064,7 +2081,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Concentra as regras de negócio do cadastro de ativos, validando o formato e a unicidade do ticker (RN005) e os campos obrigatórios (RN001); devolve os ativos como ponteiros para a classe base Ativo, preservando o polimorfismo entre Acao e FundoImobiliario.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_repositorio | Referência ao repositório de ativos, injetada pelo Contexto; realiza a leitura e a gravação dos ativos no banco de dados | N/A | RepositorioAtivo& | Objeto | N/A |
 | m_ultimoErro | Mensagem do último erro de validação ou de persistência, exibida pela tela que solicitou a operação | 255 | QString | Alfanumérico | N/A |
 
@@ -2073,7 +2090,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Responsável pela carga de cotações a partir de arquivos CSV no padrão brasileiro. A operação é transacional: o arquivo inteiro é lido e validado em memória antes de qualquer escrita, de modo que um único erro estrutural rejeita todo o arquivo (RN011); cotações de mesma data e mesmo ativo são ignoradas, tornando a importação idempotente (RN010).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | COLUNAS_ESPERADAS | Constante de classe com o número de colunas exigidas no arquivo (Data, Abertura, Máxima, Mínima, Fechamento e Volume), conforme RN007. Valor 6 | 4 | int | Numérico | Discreto |
 | SEPARADOR | Constante de classe com o caractere separador de campos do arquivo exportado pela B3. Valor ponto e vírgula | 2 | QChar | Caractere | N/A |
 | m_repositorioCotacao | Referência ao repositório de cotações, destino das linhas validadas | N/A | RepositorioCotacao& | Objeto | N/A |
@@ -2086,7 +2103,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Estrutura de dados devolvida pelo ServicoImportacao ao término de cada carga; reúne o desfecho da operação e os números que alimentam o relatório apresentado na TelaImportacao.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | sucesso | Indica se o arquivo foi aceito e gravado; falso quando houve erro estrutural e nada foi persistido | 1 | bool | Lógico | Discreto |
 | linhasLidas | Quantidade de linhas de dados lidas do arquivo, excluído o cabeçalho | 4 | int | Numérico | Discreto |
 | linhasInseridas | Quantidade de cotações efetivamente gravadas no banco de dados | 4 | int | Numérico | Discreto |
@@ -2098,7 +2115,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Concentra as regras de negócio da carteira de investimentos: a compra recalcula o preço médio ponderado da posição (RN013), a venda nunca excede a quantidade existente (RN012) e a posição zerada é removida (RN014). O resumo consolidado cruza as posições com a última cotação de cada ativo para apurar o lucro ou o prejuízo.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_repositorioCarteira | Referência ao repositório de carteiras e posições, injetada pelo Contexto | N/A | RepositorioCarteira& | Objeto | N/A |
 | m_repositorioCotacao | Referência ao repositório de cotações, usada para obter o último fechamento de cada ativo no cálculo do resumo | N/A | RepositorioCotacao& | Objeto | N/A |
 | m_repositorioAtivo | Referência ao repositório de ativos, usada para obter o ticker e o nome exibidos em cada linha do resumo | N/A | RepositorioAtivo& | Objeto | N/A |
@@ -2109,7 +2126,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Estrutura de dados com o resultado consolidado da carteira, calculada por ServicoCarteira::calcularResumo e apresentada no rodapé da TelaCarteira (RF016).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | valorInvestido | Soma do custo de aquisição de todas as posições, isto é, quantidade multiplicada pelo preço médio | 8 | double | Decimal (R$) | Contínuo |
 | valorAtual | Soma do valor de mercado de todas as posições, avaliado pela última cotação de cada ativo | 8 | double | Decimal (R$) | Contínuo |
 | lucroPrejuizo | Diferença entre o valor atual e o valor investido; positivo indica lucro e negativo indica prejuízo (REU002) | 8 | double | Decimal (R$) | Contínuo |
@@ -2121,7 +2138,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Estrutura de dados que representa uma linha do resumo da carteira: reúne os dados da posição e os valores calculados a partir da última cotação do ativo.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | ativoId | Identificador do ativo a que a posição se refere | 8 | qint64 | Numérico | Discreto |
 | ticker | Código de negociação do ativo, exibido na primeira coluna da tabela | 6 | QString | Alfanumérico | Discreto |
 | nomeAtivo | Nome da empresa ou do fundo correspondente ao ativo | 120 | QString | Alfanumérico | Contínuo |
@@ -2139,7 +2156,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Responsável pelo monitoramento dos alertas de preço e sujeito do padrão Observer: compara cada alerta monitorado com a última cotação do ativo, dispara os que satisfazem a condição (RN020) e notifica os observadores registrados, sem conhecer a janela concreta que exibirá a mensagem.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_repositorioAlerta | Referência ao repositório de alertas, injetada pelo Contexto | N/A | RepositorioAlerta& | Objeto | N/A |
 | m_repositorioCotacao | Referência ao repositório de cotações, usada para obter a última cotação de cada ativo monitorado | N/A | RepositorioCotacao& | Objeto | N/A |
 | m_repositorioAtivo | Referência ao repositório de ativos, usada para identificar o ativo na notificação enviada ao observador | N/A | RepositorioAtivo& | Objeto | N/A |
@@ -2151,7 +2168,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Interface abstrata do padrão Observer. Não possui atributos: declara apenas a operação de notificação que as classes interessadas em receber os disparos de alerta devem implementar — no sistema, a JanelaPrincipal.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | alertaDisparado(alerta, ativo, valorObservado) | Método virtual puro chamado uma vez por alerta disparado, recebendo o alerta, o ativo correspondente e o valor que satisfez a condição | N/A | void | Método | N/A |
 | ~ObservadorAlerta() | Destrutor virtual, necessário para a destruição correta dos observadores concretos por meio da interface | N/A | virtual | Método | N/A |
 
@@ -2160,7 +2177,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Orquestra o motor de análise: monta o MotorAnalise com as regras ativas do banco (RN018), gera a recomendação do ativo e administra o seu ciclo de vida, publicando a nova recomendação como vigente e invalidando a anterior do mesmo ativo (RN017).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | COTACOES_MINIMAS | Constante de classe com a quantidade mínima de cotações necessária para que o motor consiga emitir parecer técnico. Valor 2 | 4 | int | Numérico | Discreto |
 | m_repositorioRecomendacao | Referência ao repositório de recomendações, onde as recomendações são persistidas e consultadas | N/A | RepositorioRecomendacao& | Objeto | N/A |
 | m_repositorioCotacao | Referência ao repositório de cotações, fonte da série histórica submetida às regras | N/A | RepositorioCotacao& | Objeto | N/A |
@@ -2173,7 +2190,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Interface que abstrai o provedor remoto de cotações diárias (RF020), isolando o ServicoSincronizacao da API concreta: hoje a implementação é a FonteYahooFinance, e trocar de provedor não exige alteração no serviço nem na interface gráfica; nos testes, a mesma interface permite injetar uma fonte falsa, sem rede. Por ser uma interface, não possui atributos, sendo descrita por suas operações.*
 
 | Método | Descrição | Retorno | Parâmetros | Domínio do retorno |
-| :---- | :---- | :---- | :---- | :---- |
+|:-------------|:----------------------|:-------------|:-----------------|:---------------|
 | nome() | Nome legível do provedor, empregado no registro de auditoria e nas mensagens apresentadas ao administrador | Alfanumérico (QString) | — | Contínuo: até 60 caracteres |
 | buscar() | Baixa as cotações diárias do ticker no intervalo informado, já com o identificador do ativo preenchido em cada candle; não grava nada no banco de dados e nunca lança exceção, devolvendo falso com a causa em erro nas falhas de rede ou de formato (RNF008) | Lógico (bool) | ticker (QString), ativoId (qint64), de e ate (QDate), destino (coleção de Cotacao), erro (QString) | Discreto: 1 = Sim, cotações obtidas; 0 = Não, falha descrita em erro |
 | ~FonteCotacoesRemota() | Destrutor virtual, necessário para a destruição correta das fontes concretas por meio da interface | Sem retorno | — | — |
@@ -2183,7 +2200,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Implementação concreta da FonteCotacoesRemota apoiada na chart API v8 do Yahoo Finance: monta um pedido por ativo, com intervalo diário e o sufixo `.SA` dos tickers da B3, e converte a resposta JSON em cotações do domínio. A requisição é síncrona, pois a sincronização é disparada por um clique; a conversão do JSON é estática e pura, para poder ser testada sem rede.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | TEMPO_LIMITE_MS | Constante de classe com o tempo máximo de espera pela resposta da API, em milissegundos. Valor 15000 | 4 | int | Numérico | Discreto |
 | SUFIXO_B3 | Constante de classe com o sufixo acrescentado aos tickers brasileiros na API do Yahoo. Valor `.SA` | 3 | QString | Alfanumérico | Discreto |
 | m_rede | Gerenciador de acesso à rede utilizado nas requisições ao endpoint do provedor | N/A | QNetworkAccessManager\* | Objeto | N/A |
@@ -2193,7 +2210,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Responsável pela sincronização online das cotações (RF020), complementar à importação de arquivos CSV. Para cada ativo cadastrado calcula a janela faltante — do dia seguinte à última cotação local até hoje —, pede somente esse intervalo à fonte remota e grava o resultado de forma transacional, reaproveitando a inserção idempotente da importação, de modo que acionar a sincronização duas vezes não duplica pregões (RN023). A falha de um ativo nunca interrompe os demais (RNF008), e cada tentativa é registrada na tabela de importações, que assim guarda a auditoria única do CSV e da sincronização.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | JANELA_INICIAL_DIAS | Constante de classe com a quantidade de dias de histórico buscada quando o ativo ainda não possui nenhuma cotação local (RN023). Valor 365 | 4 | int | Numérico | Discreto |
 | m_repositorioAtivo | Referência ao repositório de ativos, injetada pelo Contexto; fornece a relação dos ativos a sincronizar e os respectivos tickers | N/A | RepositorioAtivo& | Objeto | N/A |
 | m_repositorioCotacao | Referência ao repositório de cotações, usada para obter a última cotação local de cada ativo e gravar as cotações baixadas | N/A | RepositorioCotacao& | Objeto | N/A |
@@ -2205,7 +2222,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Estrutura de dados devolvida pelo ServicoSincronizacao ao término da sincronização; reúne as contagens da operação e a relação de mensagens por ativo apresentada na TelaImportacao.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | ativosProcessados | Quantidade de ativos cujas cotações foram efetivamente atualizadas | 4 | int | Numérico | Discreto |
 | ativosComFalha | Quantidade de ativos que falharam, por indisponibilidade da rede ou erro do provedor; a falha de um ativo não interrompe os demais (RNF008) | 4 | int | Numérico | Discreto |
 | cotacoesInseridas | Quantidade total de cotações novas gravadas no banco de dados | 4 | int | Numérico | Discreto |
@@ -2218,7 +2235,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Contexto da aplicação: é o proprietário dos repositórios e dos serviços e torna explícita a injeção de dependência entre as camadas, pois as telas recebem uma referência ao Contexto e nunca criam repositórios. Os repositórios são declarados antes dos serviços para garantir a ordem correta de inicialização e destruição.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | usuarioLogado | Usuário autenticado na sessão corrente; o seu papel determina as telas visíveis na navegação (REU001, RNF005) | N/A | Usuario | Objeto | N/A |
 | repositorioUsuario | Repositório de acesso à tabela de usuários | N/A | RepositorioUsuario | Objeto | N/A |
 | repositorioAtivo | Repositório de acesso à tabela de ativos, com a construção polimórfica de Acao e FundoImobiliario | N/A | RepositorioAtivo | Objeto | N/A |
@@ -2242,7 +2259,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Janela principal do sistema, composta por uma navegação lateral e por uma pilha de páginas com as telas; os itens exibidos dependem do papel do usuário autenticado (REU001, RNF005). Implementa a interface ObservadorAlerta e, por isso, é o observador concreto do padrão Observer: recebe do ServicoAlerta cada disparo e o apresenta na barra de estado (RF018).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação, repassada a todas as telas construídas pela janela | N/A | Contexto& | Objeto | N/A |
 | m_navegacao | Lista da navegação lateral, com um item por tela permitida ao papel do usuário | N/A | Objeto (QListWidget\*) | Componente gráfico | N/A |
 | m_paginas | Pilha de páginas que exibe uma tela por vez, sincronizada com o item selecionado na navegação | N/A | Objeto (QStackedWidget\*) | Componente gráfico | N/A |
@@ -2263,7 +2280,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela de autenticação, apresentada como diálogo modal antes da janela principal (UC001); se o usuário cancelar, a aplicação encerra sem abrir o sistema. A mensagem de erro não revela qual dos dois campos falhou.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_servico | Referência ao serviço de autenticação, responsável por validar as credenciais informadas | N/A | ServicoAutenticacao& | Objeto | N/A |
 | m_campoEmail | Campo de entrada do endereço de e-mail do usuário | N/A | Objeto (QLineEdit\*) | Componente gráfico | N/A |
 | m_campoSenha | Campo de entrada da senha, com o conteúdo mascarado na digitação | N/A | Objeto (QLineEdit\*) | Componente gráfico | N/A |
@@ -2276,7 +2293,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Painel principal do investidor (UC009): apresenta o gráfico de candles com as médias móveis sobrepostas (RF009), os cartões com os indicadores técnicos do período (RF010) e a recomendação vigente do ativo com a justificativa completa (RNF006).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | PERIODOS | Constante de classe com os períodos de histórico oferecidos no seletor, em dias. Valores 30, 90, 180, 365 e 0, sendo 0 a série inteira | 20 | int[] | Vetor numérico | Discreto |
 | QUANTIDADE_PERIODOS | Constante de classe com a quantidade de opções do seletor de período. Valor 5 | 4 | int | Numérico | Discreto |
 | m_contexto | Referência ao contexto da aplicação, por onde a tela alcança os serviços e os repositórios | N/A | Contexto& | Objeto | N/A |
@@ -2297,7 +2314,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela de detalhe do ativo (UC010): exibe os fundamentos cadastrados, o gráfico de linha do preço de fechamento, a tabela com as cotações mais recentes e o parecer de cada regra de análise, detalhando o padrão Strategy regra por regra (RF011).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | LINHAS_TABELA | Constante de classe com a quantidade de cotações apresentadas na tabela, das mais recentes para as mais antigas. Valor 60 | 4 | int | Numérico | Discreto |
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_campoAtivo | Seletor do ativo detalhado | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
@@ -2311,7 +2328,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela das recomendações vigentes (UC012): apresenta a lista consolidada por ativo e, no painel lateral, o detalhamento do parecer de cada regra do padrão Strategy, atendendo à exigência de que toda recomendação exiba a regra e os números que a justificaram (RNF006).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_tabela | Tabela das recomendações vigentes, com ticker, tipo, pontuação, regra aplicada e data de geração | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 | m_detalhes | Área de texto com o detalhamento regra a regra da recomendação selecionada | N/A | Objeto (QTextBrowser\*) | Componente gráfico | N/A |
@@ -2323,7 +2340,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela da carteira do investidor (UC013, UC014 e UC015): lista as posições com preço médio, preço atual e lucro ou prejuízo destacado por cor e por sinal (REU002), e apresenta o resumo consolidado no rodapé.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_carteiraId | Identificador da carteira do usuário autenticado, obtido ou criado na primeira entrada na tela | 8 | qint64 | Numérico | Discreto |
 | m_tabela | Tabela das posições, uma linha por ativo em carteira | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
@@ -2336,7 +2353,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela de alertas do investidor (UC016, UC017 e UC018): permite cadastrar, remover e arquivar alertas e acionar a avaliação, que percorre os alertas monitorados e dispara os que atingiram a condição; as notificações chegam à JanelaPrincipal pelo padrão Observer.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_tabela | Tabela dos alertas do usuário, com ativo, condição, valor de referência, estado e datas | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 | m_botaoArquivar | Botão de arquivamento, aplicável somente a alerta já disparado (RN021) | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
@@ -2348,7 +2365,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela de manutenção do cadastro de ativos, exclusiva do administrador (UC002, UC003, UC004 e UC008): lista os ativos com os seus fundamentos e a quantidade de cotações importadas, permitindo cadastrar, editar, remover e filtrar por ticker ou por nome.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_campoBusca | Campo de filtro por ticker ou por parte do nome da empresa (RF008) | N/A | Objeto (QLineEdit\*) | Componente gráfico | N/A |
 | m_tabela | Tabela dos ativos cadastrados, com tipo, ticker, nome, setor, fundamentos e número de cotações | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
@@ -2361,7 +2378,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela de importação de cotações, exclusiva do administrador (UC005): permite importar um arquivo CSV para um ativo específico ou um diretório inteiro, casando o nome TICKER.csv com o cadastro, e exibe o relatório completo da operação e o histórico das importações anteriores. Oferece também a sincronização online das cotações (UC019), atalho opcional que baixa da fonte remota apenas o período faltante de cada ativo; o arquivo CSV permanece como caminho primário, pois a sincronização pode falhar na ausência de rede (RNF008).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_campoAtivo | Seletor do ativo de destino das cotações do arquivo | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
 | m_campoArquivo | Campo com o caminho do arquivo CSV escolhido | 255 | Objeto (QLineEdit\*) | Componente gráfico | N/A |
@@ -2378,7 +2395,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela de configuração das regras de análise, exclusiva do administrador (UC006): permite ativar, desativar e reparametrizar as estratégias sem recompilar o sistema, uma vez que o MotorAnalise lê essas configurações a cada análise (RN018). É também o ponto de entrada do backtesting (UC020), que mede no histórico já importado o desempenho da configuração vigente.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_tabela | Tabela das regras configuradas, com nome, situação de ativação e parâmetros | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 | m_botaoEditar | Botão de edição dos parâmetros da regra selecionada | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
@@ -2391,7 +2408,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Tela de gestão de usuários, exclusiva do administrador (UC007): apresenta os usuários cadastrados e aciona o cadastro, a edição e a remoção; as regras de negócio de unicidade do e-mail, tamanho mínimo da senha e proteção do último administrador permanecem no ServicoAutenticacao.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_tabela | Tabela dos usuários cadastrados, com nome, e-mail e papel | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 | m_botaoEditar | Botão de edição do usuário selecionado | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
@@ -2403,7 +2420,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Diálogo de cadastro e de edição de ativos: o tipo escolhido determina quais campos de fundamentos ficam habilitados e qual subclasse concreta de Ativo é construída, evidenciando o polimorfismo entre Acao e FundoImobiliario.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | INDICE_ACAO | Constante de classe com o índice da opção "Ação" no seletor de tipo. Valor 0 | 4 | int | Numérico | Discreto |
 | INDICE_FUNDO | Constante de classe com o índice da opção "Fundo Imobiliário" no seletor de tipo. Valor 1 | 4 | int | Numérico | Discreto |
 | m_campoTipo | Seletor do tipo do ativo, que determina a subclasse construída | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
@@ -2426,7 +2443,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Diálogo de compra e de venda de ativos na carteira: o mesmo formulário atende às duas operações; no modo Compra solicita preço e data, e no modo Venda limita a quantidade à posição existente e dispensa o preço, pois a venda apenas reduz a posição registrada (RN012).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_modo | Modo de operação do diálogo: Compra ou Venda | 4 | Modo (enumeração) | Enumerado | Discreto |
 | m_opcoes | Coleção dos ativos oferecidos no diálogo, com os limites aplicáveis a cada operação | N/A | QVector\<OpcaoOperacao\> | Lista de objetos | N/A |
 | m_campoAtivo | Seletor do ativo objeto da operação | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
@@ -2442,7 +2459,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Estrutura de dados que descreve um ativo oferecido no DialogoOperacao, com o preço sugerido e o limite de quantidade aplicáveis à operação.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | ativoId | Identificador do ativo correspondente à opção | 8 | qint64 | Numérico | Discreto |
 | rotulo | Texto apresentado no seletor, formado pelo ticker e pelo nome do ativo | 130 | QString | Alfanumérico | Contínuo |
 | precoSugerido | Preço proposto para a compra, obtido da última cotação importada do ativo | 8 | double | Decimal (R$) | Contínuo |
@@ -2453,7 +2470,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Diálogo de cadastro de alerta de preço: reúne o ativo monitorado, a condição de disparo e o valor de referência, que deve ser maior que zero (RN022). As condições oferecidas correspondem aos valores da enumeração TipoCondicaoAlerta do domínio.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_opcoes | Coleção dos ativos oferecidos no diálogo, com o último fechamento de cada um | N/A | QVector\<OpcaoAlerta\> | Lista de objetos | N/A |
 | m_campoAtivo | Seletor do ativo a ser monitorado pelo alerta | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
 | m_campoCondicao | Seletor da condição de disparo: preço acima de, preço abaixo de ou variação diária acima de | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
@@ -2465,7 +2482,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Estrutura de dados que descreve um ativo oferecido no DialogoAlerta, com o último fechamento usado como valor sugerido para a condição.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | ativoId | Identificador do ativo correspondente à opção | 8 | qint64 | Numérico | Discreto |
 | rotulo | Texto apresentado no seletor, formado pelo ticker e pelo nome do ativo | 130 | QString | Alfanumérico | Contínuo |
 | ultimoFechamento | Preço de fechamento da última cotação importada, proposto como valor de referência | 8 | double | Decimal (R$) | Contínuo |
@@ -2475,7 +2492,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Diálogo de configuração de uma regra de análise do padrão Strategy. O nome da regra não é editável, pois é a chave que o MotorAnalise utiliza para instanciar a estratégia concreta; são ajustáveis apenas os parâmetros e a situação de ativação.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_regra | Cópia da regra recebida, base do objeto devolvido com os valores informados no formulário | N/A | RegraConfigurada | Objeto | N/A |
 | m_campoAtiva | Caixa de seleção que define se a regra participa das análises (RN018) | N/A | Objeto (QCheckBox\*) | Componente gráfico | N/A |
 | m_campoPrincipal | Campo do primeiro parâmetro da regra, com duas casas decimais e faixa de 0,00 a 100.000,00 | N/A | Objeto (QDoubleSpinBox\*) | Componente gráfico | N/A |
@@ -2488,7 +2505,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Diálogo de backtesting das regras de análise (UC020, RF021), aberto pela TelaRegras: permite escolher um ativo, ou todos, e o horizonte de avaliação, e apresenta, regra por regra, quantos sinais a configuração vigente teria emitido no histórico importado, quantos acertaram a direção (RN024) e qual o retorno médio. O cálculo permanece no Backtester; ao diálogo cabe apenas a coleta dos dados nos repositórios e a apresentação dos resultados.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_contexto | Referência ao contexto da aplicação, por onde o diálogo alcança os repositórios de ativos, de cotações e de regras | N/A | Contexto& | Objeto | N/A |
 | m_campoAtivo | Seletor do ativo avaliado, com a opção de submeter todos os ativos cadastrados | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
 | m_campoHorizonte | Campo do horizonte de avaliação, em pregões à frente, com faixa de 1 a 60 e valor inicial igual a Backtester::HORIZONTE\_PADRAO | N/A | Objeto (QSpinBox\*) | Componente gráfico | N/A |
@@ -2502,7 +2519,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Diálogo de cadastro e de edição de usuários, exclusivo do administrador: no cadastro a senha é obrigatória e, na edição, deixar o campo em branco mantém a senha atual.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_ehEdicao | Indica se o diálogo foi aberto em modo de edição de usuário existente | 1 | bool | Lógico | Discreto |
 | m_original | Cópia do usuário recebido, cujo identificador e resumo de senha são preservados na edição | N/A | Usuario | Objeto | N/A |
 | m_campoNome | Campo do nome do usuário | 120 | Objeto (QLineEdit\*) | Componente gráfico | N/A |
@@ -2516,7 +2533,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Componente gráfico compacto para a apresentação de um indicador no painel: exibe o título, o valor em destaque e uma linha de detalhe que pode ser colorida conforme o sinal do número, atendendo à exigência de distinguir ganho e perda por cor e por sinal (REU002).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | m_rotuloTitulo | Rótulo com o nome do indicador apresentado no cartão | 40 | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_rotuloValor | Rótulo com o valor principal do indicador, em destaque tipográfico | 20 | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_rotuloDetalhe | Rótulo com a informação complementar, colorido em verde para valores positivos, em vermelho para negativos e em cinza para zero | 40 | Objeto (QLabel\*) | Componente gráfico | N/A |
@@ -2526,7 +2543,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Componente gráfico que desenha o gráfico de candles (abertura, máxima, mínima e fechamento) com as médias móveis sobrepostas, construído com o módulo Qt Charts (RF009). Ao instalar um gráfico novo, destrói explicitamente o anterior, pois a troca do gráfico apenas libera a posse do objeto substituído.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | MAXIMO_ROTULOS_EIXO | Constante de classe com o número máximo de rótulos exibidos no eixo de datas, para preservar a legibilidade. Valor 12 | 4 | int | Numérico | Discreto |
 
 **Quadro 88. Dicionário de informações da classe GraficoLinha.**
@@ -2534,7 +2551,7 @@ essa classe não é instanciada diretamente pelo sistema.
 *Componente gráfico que desenha a linha do preço de fechamento do ativo, utilizado na tela de detalhe e em visualizações secundárias (RF011). Assim como o gráfico de candles, destrói o gráfico anterior a cada redesenho, evitando o vazamento de memória.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-| :---- | :---- | :---- | :---- | :---- | :---- |
+|:---------------|:---------------------|:-------|:------------|:----------|:---------------|
 | definirDados(titulo, cotacoes) | Método que recebe a série de cotações já ordenada por data e redesenha a linha de fechamento. A classe não declara atributos próprios: herda o estado do componente QChartView e mantém o gráfico corrente sob a posse dele | N/A | void | Método | N/A |
 | mostrarMensagem(mensagem) | Método que substitui o gráfico por uma mensagem, empregado quando não há cotações suficientes para o desenho | N/A | void | Método | N/A |
 
