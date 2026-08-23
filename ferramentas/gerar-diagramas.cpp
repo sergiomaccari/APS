@@ -590,7 +590,7 @@ QSizeF medirElemento(const Elemento& e)
         }
         double largura = medirTexto(cabecalho, fonteNegrito()).width();
         double altura = medirTexto(cabecalho, fonteNegrito()).height() + 12.0;
-        if (!e.atributos.isEmpty() || e.tipo == QLatin1String("classe"))
+        if (!e.atributos.isEmpty() || !e.metodos.isEmpty())
         {
             const QSizeF t = e.atributos.isEmpty() ? QSizeF(0, 6) : medirTexto(e.atributos, fontePequena());
             largura = std::max(largura, t.width());
@@ -743,7 +743,7 @@ void desenharElemento(QPainter& p, const Elemento& e)
             }
             y += 5.0;
         };
-        if (!e.atributos.isEmpty() || e.tipo == QLatin1String("classe"))
+        if (!e.atributos.isEmpty() || !e.metodos.isEmpty())
         {
             compartimento(e.atributos);
         }

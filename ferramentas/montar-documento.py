@@ -106,6 +106,31 @@ def numerar(texto: str):
     return texto, legendas_fig, legendas_tab
 
 
+# Proporções de coluna por assinatura de cabeçalho: a linha delimitadora do
+# pandoc define as larguras relativas no Word e no PDF.
+LARGURAS = [
+    (("Atributo", "Descrição", "Tamanho"), [12, 30, 6, 12, 10, 14]),
+    (("Método", "Retorno", "Parâmetros"), [12, 28, 10, 16, 16]),
+    (("Data", "Versão", "Autor"), [7, 6, 34, 18]),
+    (("Ações dos atores", "Ações do sistema"), [24, 24]),
+]
+
+
+def ajustar_larguras(documento: str) -> str:
+    linhas = documento.split("\n")
+    for i in range(1, len(linhas)):
+        linha = linhas[i]
+        if not re.fullmatch(r"\|[-| ]+\|", linha.strip()) or "-" not in linha:
+            continue
+        cabecalho = linhas[i - 1]
+        for chaves, proporcao in LARGURAS:
+            if all(c in cabecalho for c in chaves):
+                if len(proporcao) == cabecalho.count("|") - 1:
+                    linhas[i] = "|" + "|".join("-" * n for n in proporcao) + "|"
+                break
+    return "\n".join(linhas)
+
+
 def paginar(documento: str) -> str:
     """Remove os \\newpage soltos das seções e insere quebra de página (nos
     dois formatos) antes de cada capítulo (título de nível 1)."""
@@ -116,7 +141,7 @@ def paginar(documento: str) -> str:
             dentro_de_cerca = not dentro_de_cerca
             linhas.append(linha)
             continue
-        if not dentro_de_cerca and linha.strip() == "\\newpage":
+        if not dentro_de_cerca and linha.strip() in ("\\newpage", "---"):
             continue
         if not dentro_de_cerca and linha.startswith("# "):
             linhas += ["", QUEBRA, ""]
@@ -156,8 +181,9 @@ def montar(bim: str) -> Path:
     documento = "\n\n".join(saida_md)
     documento, _, _ = numerar(documento)
     documento = documento.replace("@@LISTAS@@", bloco_listas)
+    documento = ajustar_larguras(documento)
     documento = paginar(documento)
-    documento = documento.replace("@@SUMARIO@@", SUMARIO)
+    documento = documento.replace("@@SUMARIO@@", QUEBRA + "\n\n" + SUMARIO)
 
     destino = SAIDA / f"documento-{bim}-bimestre.md"
     destino.write_text(documento + "\n", encoding="utf-8")
@@ -169,6 +195,27 @@ def montar(bim: str) -> Path:
     return destino
 
 
+def _pos_processar_docx(docx: Path):
+    """Ajustes que o pandoc não expressa: linha de tabela indivisível entre
+    páginas e título de Quadro/Tabela colado à tabela seguinte."""
+    import zipfile
+    conteudo = {}
+    with zipfile.ZipFile(docx) as z:
+        for item in z.infolist():
+            conteudo[item.filename] = z.read(item.filename)
+    doc = conteudo["word/document.xml"].decode("utf-8")
+    doc = doc.replace("<w:tr>", "<w:tr><w:trPr><w:cantSplit/></w:trPr>")
+    doc = re.sub(
+        r'(<w:pStyle w:val="(?:BodyText|FirstParagraph)" ?/>)'
+        r'(</w:pPr><w:r><w:rPr><w:b ?/>(?:<w:bCs ?/>)?</w:rPr>'
+        r'<w:t xml:space="preserve">(?:Quadro|Tabela) )',
+        r"\1<w:keepNext/>\2", doc)
+    conteudo["word/document.xml"] = doc.encode("utf-8")
+    with zipfile.ZipFile(docx, "w", zipfile.ZIP_DEFLATED) as z:
+        for nome, dados in conteudo.items():
+            z.writestr(nome, dados)
+
+
 def gerar_docx(md: Path, pandoc: str):
     docx = md.with_suffix(".docx")
     cmd = [pandoc, "--from", "markdown-tex_math_dollars", str(md), "-o", str(docx),
@@ -176,6 +223,7 @@ def gerar_docx(md: Path, pandoc: str):
            "--reference-doc", str(RAIZ / "ferramentas/referencia.docx"),
            "-V", "lang=pt-BR"]
     subprocess.run(cmd, check=True, cwd=SAIDA)
+    _pos_processar_docx(docx)
     print(f"  {docx.name} gerado ({docx.stat().st_size // 1024} KB)")
 
 
@@ -191,7 +239,16 @@ def gerar_pdf(md: Path, pandoc: str):
            "--pdf-engine", "tectonic",
            "-V", "lang=pt-BR",
            "-V", "geometry:margin=2.5cm",
-           "-V", "fontsize=11pt"]
+           "-V", "fontsize=11pt",
+           # sem prefixo automático "Figura N:" (as legendas já trazem o número)
+           "-V", "header-includes=\\usepackage[labelformat=empty]{caption}",
+           # cabeçalho corrido "capítulo … página", como no modelo do professor
+           "-V", "header-includes=\\usepackage{fancyhdr}",
+           "-V", "header-includes=\\pagestyle{fancy}",
+           "-V", "header-includes=\\fancyhead[L]{\\small\\nouppercase{\\leftmark}}",
+           "-V", "header-includes=\\fancyhead[R]{\\thepage}",
+           "-V", "header-includes=\\fancyfoot[C]{}",
+           "-V", "header-includes=\\renewcommand{\\headrulewidth}{0.2pt}"]
     # Arial (a fonte do modelo do professor), servida pelo Windows via WSL.
     arial = Path("/mnt/c/Windows/Fonts/arial.ttf")
     if arial.exists():

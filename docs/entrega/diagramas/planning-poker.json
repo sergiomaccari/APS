@@ -1,9 +1,11 @@
 {
   "tipo": "grade",
-  "folgaColunas": 60, "folgaLinhas": 40,
+  "folgaColunas": 60, "folgaLinhas": 30,
   "elementos": [
-    {"id": "n", "tipo": "nota", "col": 0, "linha": 0,
-     "texto": "ESPAÇO RESERVADO\n\nInserir aqui o print da sessão online de\nPlanning Poker realizada pela equipe\n(ex.: planningpokeronline.com).\n\nEstimativas combinadas na Tabela 1."}
+    {"id": "t1", "tipo": "texto", "col": 0, "linha": 0,
+     "texto": "Espaço reservado para o print da sessão de Planning Poker da equipe."},
+    {"id": "t2", "tipo": "texto", "col": 0, "linha": 0.6,
+     "texto": "Sugestão: planningpokeronline.com — as estimativas combinadas estão na Tabela 1."}
   ],
   "ligacoes": []
 }

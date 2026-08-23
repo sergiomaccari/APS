@@ -16,6 +16,9 @@ reutilizáveis de software orientado a objetos**. Porto Alegre: Bookman, 2000.
 GRENNING, J. **Planning Poker or how to avoid analysis paralysis while release
 planning**. Hawthorn Woods: Renaissance Software Consulting, 2002.
 
+INVESTING.COM. **Cotações e dados históricos — ações e fundos imobiliários da
+B3**. Disponível em: https://br.investing.com/. Acesso em: ago. 2026.
+
 KARNER, G. **Resource estimation for Objectory projects**. Kista: Objective Systems
 SF AB, 1993.
 

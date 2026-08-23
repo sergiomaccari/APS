@@ -73,8 +73,9 @@ de rede da sala do clube.
 - **Software de desenvolvimento:** linguagem C++ (padrão C++20), framework Qt 6
   (Widgets, Charts, Sql e Test), SGBD SQLite 3, sistema de build CMake,
   versionamento Git com hospedagem no GitHub e editores Qt Creator / VS Code.
-- **Dados:** arquivos CSV de cotações históricas obtidos do site da B3 e das
-  corretoras dos participantes.
+- **Dados:** arquivos CSV de cotações históricas obtidos do site da B3, de
+  portais de dados de mercado (como o Investing.com) e das corretoras dos
+  participantes.
 - **Bibliografia técnica:** obras de engenharia de software, UML e análise técnica
   listadas no Capítulo 6.
 

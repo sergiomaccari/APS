@@ -141,8 +141,8 @@ membros assumam a manutenção.
 7. **Como serão obtidos os dados de cotações dos ativos?**
 
 Por arquivos CSV no padrão brasileiro (datas dd/mm/aaaa e vírgula decimal),
-exportados do site da B3 ou das corretoras e importados no sistema pelo
-administrador.
+exportados do site da B3, de portais de dados de mercado como o Investing.com
+ou das corretoras, e importados no sistema pelo administrador.
 
 ## 2.4 Questões Operacionais
 

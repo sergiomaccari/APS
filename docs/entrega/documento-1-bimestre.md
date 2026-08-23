@@ -49,7 +49,7 @@
 **Histórico de Modificações**
 
 | Data | Versão | Descrição | Autor |
-|---|---|---|---|
+|-------|------|----------------------------------|------------------|
 | 18/08/26 | 0.1 | Definição do projeto e do escopo | Sergio, Arthur, Leonardo e Thales 🟦 |
 | 19/08/26 | 0.2 | Criação das questões e entrevista com o cliente | Sergio 🟦 |
 | 19/08/26 | 0.3 | Definição dos requisitos e regras de negócio | Sergio 🟦 |
@@ -60,6 +60,14 @@
 
 🟦 *[Equipe: ajustar autores e datas de cada etapa antes da entrega — o professor
 usa este quadro para ver a divisão de trabalho do grupo.]*
+
+```{=openxml}
+<w:p><w:r><w:br w:type="page"/></w:r></w:p>
+```
+
+```{=latex}
+\newpage
+```
 
 ```{=openxml}
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="28"/></w:rPr><w:t>SUMÁRIO</w:t></w:r></w:p>
@@ -467,8 +475,8 @@ membros assumam a manutenção.
 7. **Como serão obtidos os dados de cotações dos ativos?**
 
 Por arquivos CSV no padrão brasileiro (datas dd/mm/aaaa e vírgula decimal),
-exportados do site da B3 ou das corretoras e importados no sistema pelo
-administrador.
+exportados do site da B3, de portais de dados de mercado como o Investing.com
+ou das corretoras, e importados no sistema pelo administrador.
 
 ## 2.4 Questões Operacionais
 
@@ -796,8 +804,9 @@ de rede da sala do clube.
 - **Software de desenvolvimento:** linguagem C++ (padrão C++20), framework Qt 6
   (Widgets, Charts, Sql e Test), SGBD SQLite 3, sistema de build CMake,
   versionamento Git com hospedagem no GitHub e editores Qt Creator / VS Code.
-- **Dados:** arquivos CSV de cotações históricas obtidos do site da B3 e das
-  corretoras dos participantes.
+- **Dados:** arquivos CSV de cotações históricas obtidos do site da B3, de
+  portais de dados de mercado (como o Investing.com) e das corretoras dos
+  participantes.
 - **Bibliografia técnica:** obras de engenharia de software, UML e análise técnica
   listadas no Capítulo 6.
 
@@ -878,59 +887,38 @@ cada elemento indicada entre parênteses — `(ator)`, `(sistema)`, `(classe X)`
 campos e as mensagens reproduzidos nos quadros a seguir correspondem exatamente ao
 comportamento implementado no sistema Analisador B3.
 
----
-
 **Quadro 1. Descrição do caso de uso UC001.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC001: Fazer login |
 | **Atores** | Ator principal: Administrador / Investidor |
 | **Descrição** | Caso de uso executado quando o usuário precisa se identificar no sistema para obter acesso às funcionalidades correspondentes ao seu papel. |
 | **Pré-condições** | O usuário deve possuir cadastro no sistema; o banco de dados deve estar acessível. |
 | **Pós-condições** | Sessão aberta com o usuário autenticado e janela principal exibindo apenas as opções permitidas ao seu papel. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (administrador ou investidor) inicia o Analisador B3. (ator) | |
 | | 2 - O sistema apresenta a tela de entrada com os campos: e-mail (classe Usuario), senha (classe Usuario), e com as opções Entrar e Cancelar. (sistema) |
 | 3 - O ator informa o e-mail e a senha e seleciona Entrar. (ator) | |
 | | 4 - O sistema verifica as informações conforme as Regras de Negócio RN001 e RN004. (sistema) (4a)(4b) |
 | | 5 - O sistema recupera o usuário correspondente ao e-mail informado e compara o resumo SHA-256 da senha com o valor armazenado. (sistema) (classe Usuario) |
 | | 6 - O sistema abre a sessão, registra o usuário logado com seu papel (classe Usuario) e apresenta a janela principal com as opções permitidas ao papel. (sistema) (atributo) |
-
-**Regras de negócio**
-
-1. **RN001** — Todos os campos obrigatórios do formulário devem estar preenchidos: o e-mail e a senha são obrigatórios.
-2. **RN004** — A senha é comparada pelo resumo SHA-256 de (sal + senha); a senha em texto puro nunca é armazenada nem trafegada.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso, finalizando a aplicação.
-
-**Fluxo de exceção**
-
-- **4a** - Caso o e-mail ou a senha não tenham sido preenchidos, o sistema exibe a mensagem "Informe e-mail e senha.", limpa o campo de senha e retorna ao passo 3 do fluxo básico.
-- **4b** - Caso não exista usuário com o e-mail informado ou o resumo da senha não confira, o sistema exibe a mensagem "E-mail ou senha inválidos.", limpa o campo de senha, posiciona o cursor nesse campo e retorna ao passo 3 do fluxo básico. A mensagem é propositalmente genérica, para não revelar se o e-mail existe no cadastro.
-
----
+| **Regras de negócio** | RN001 — Todos os campos obrigatórios do formulário devem estar preenchidos: o e-mail e a senha são obrigatórios. |
+| | RN004 — A senha é comparada pelo resumo SHA-256 de (sal + senha); a senha em texto puro nunca é armazenada nem trafegada. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso, finalizando a aplicação. |
+| **Fluxo de exceção** | 4a - Caso o e-mail ou a senha não tenham sido preenchidos, o sistema exibe a mensagem "Informe e-mail e senha.", limpa o campo de senha e retorna ao passo 3 do fluxo básico. |
+| | 4b - Caso não exista usuário com o e-mail informado ou o resumo da senha não confira, o sistema exibe a mensagem "E-mail ou senha inválidos.", limpa o campo de senha, posiciona o cursor nesse campo e retorna ao passo 3 do fluxo básico. A mensagem é propositalmente genérica, para não revelar se o e-mail existe no cadastro. |
 
 **Quadro 2. Descrição do caso de uso UC002.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC002: Cadastrar ativo |
 | **Atores** | Ator principal: Administrador |
 | **Descrição** | Caso de uso executado quando o administrador necessita incluir no cadastro uma nova ação ou um novo fundo imobiliário a ser acompanhado pelo sistema. |
 | **Pré-condições** | O administrador deve estar autenticado no sistema (UC001); o usuário autenticado deve possuir o papel Administrador. |
 | **Pós-condições** | Ativo gravado no cadastro e apresentado na listagem de ativos. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (administrador) acessa a opção Ativos e seleciona Novo ativo. (ator) | |
 | | 2 - O sistema apresenta o formulário de cadastro com os campos: tipo (Ação ou Fundo Imobiliário), ticker (classe Ativo), nome (classe Ativo), setor (classe Ativo), preço/lucro (classe Acao), dividend yield (classe Acao / classe FundoImobiliario), valor de mercado (classe Acao), valor patrimonial por cota (classe FundoImobiliario) e segmento (classe FundoImobiliario). (sistema) |
 | 3 - O ator seleciona o tipo do ativo. (ator) | |
@@ -938,40 +926,25 @@ comportamento implementado no sistema Analisador B3.
 | 5 - O ator preenche os campos e seleciona Salvar. (ator) | |
 | | 6 - O sistema verifica as informações conforme as Regras de Negócio RN001 e RN005. (sistema) (6a)(6b)(6c)(6d)(6e) |
 | | 7 - O sistema normaliza o ticker para caixa alta, grava o ativo com seus atributos ticker, nome da empresa, setor e fundamentos (atributo) (classe Acao / classe FundoImobiliario), atualiza a listagem e exibe a mensagem "Ativo <ticker> cadastrado com sucesso.". (sistema) |
-
-**Regras de negócio**
-
-1. **RN001** — Todos os campos obrigatórios do formulário devem estar preenchidos: ticker, nome e setor são obrigatórios.
-2. **RN005** — O ticker deve ter de 4 a 6 caracteres alfanuméricos (letras e números) e ser único no cadastro.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso.
-
-**Fluxo de exceção**
-
-- **6a** - Caso o ticker ou o nome não tenham sido preenchidos, o sistema exibe a mensagem "Preencha ao menos o ticker e o nome do ativo." e retorna ao passo 5 do fluxo básico.
-- **6b** - Caso o ticker não tenha de 4 a 6 caracteres entre letras e números, o sistema exibe a mensagem "Ticker inválido: use de 4 a 6 caracteres entre letras e números (ex.: PETR4)." e retorna ao passo 5 do fluxo básico.
-- **6c** - Caso o nome da empresa ou do fundo esteja vazio, o sistema exibe a mensagem "Informe o nome da empresa ou do fundo." e retorna ao passo 5 do fluxo básico.
-- **6d** - Caso o setor esteja vazio, o sistema exibe a mensagem "Informe o setor do ativo." e retorna ao passo 5 do fluxo básico.
-- **6e** - Caso já exista ativo cadastrado com o mesmo ticker, o sistema exibe a mensagem "Já existe um ativo cadastrado com o ticker <ticker>." e retorna ao passo 5 do fluxo básico.
-
----
+| **Regras de negócio** | RN001 — Todos os campos obrigatórios do formulário devem estar preenchidos: ticker, nome e setor são obrigatórios. |
+| | RN005 — O ticker deve ter de 4 a 6 caracteres alfanuméricos (letras e números) e ser único no cadastro. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso. |
+| **Fluxo de exceção** | 6a - Caso o ticker ou o nome não tenham sido preenchidos, o sistema exibe a mensagem "Preencha ao menos o ticker e o nome do ativo." e retorna ao passo 5 do fluxo básico. |
+| | 6b - Caso o ticker não tenha de 4 a 6 caracteres entre letras e números, o sistema exibe a mensagem "Ticker inválido: use de 4 a 6 caracteres entre letras e números (ex.: PETR4)." e retorna ao passo 5 do fluxo básico. |
+| | 6c - Caso o nome da empresa ou do fundo esteja vazio, o sistema exibe a mensagem "Informe o nome da empresa ou do fundo." e retorna ao passo 5 do fluxo básico. |
+| | 6d - Caso o setor esteja vazio, o sistema exibe a mensagem "Informe o setor do ativo." e retorna ao passo 5 do fluxo básico. |
+| | 6e - Caso já exista ativo cadastrado com o mesmo ticker, o sistema exibe a mensagem "Já existe um ativo cadastrado com o ticker <ticker>." e retorna ao passo 5 do fluxo básico. |
 
 **Quadro 3. Descrição do caso de uso UC003.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC003: Atualizar ativo |
 | **Atores** | Ator principal: Administrador |
 | **Descrição** | Caso de uso executado quando o administrador necessita corrigir ou atualizar os dados cadastrais e os fundamentos de um ativo já existente. |
 | **Pré-condições** | O administrador deve estar autenticado no sistema (UC001); deve existir ao menos um ativo cadastrado. |
 | **Pós-condições** | Ativo atualizado no cadastro e listagem reapresentada com os novos valores. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (administrador) acessa a opção Ativos. (ator) | |
 | | 2 - O sistema apresenta a listagem com as colunas: identificador (classe Ativo), ticker (classe Ativo), nome (classe Ativo), setor (classe Ativo), tipo (classe Acao / classe FundoImobiliario), dividend yield (classe Acao / classe FundoImobiliario), índice de valor (classe Ativo) e quantidade de cotações (classe Cotacao). (sistema) |
 | 3 - O ator seleciona um ativo da listagem e escolhe Editar, ou aplica duplo clique sobre a linha. (ator) | |
@@ -979,74 +952,44 @@ comportamento implementado no sistema Analisador B3.
 | 5 - O ator altera os campos desejados e seleciona Salvar. (ator) | |
 | | 6 - O sistema verifica as informações conforme as Regras de Negócio RN001 e RN005. (sistema) (6a)(6b)(6c)(6d) |
 | | 7 - O sistema grava as alterações no ativo (atributo), atualiza a listagem e exibe a mensagem "Ativo <ticker> atualizado.". (sistema) |
-
-**Regras de negócio**
-
-1. **RN001** — Todos os campos obrigatórios do formulário devem estar preenchidos: ticker, nome e setor são obrigatórios.
-2. **RN005** — O ticker deve ter de 4 a 6 caracteres alfanuméricos e ser único; na atualização, o próprio ativo em edição é desconsiderado na verificação de unicidade.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso.
-
-**Fluxo de exceção**
-
-- **4a** - Caso o ativo selecionado não seja mais encontrado no cadastro, o sistema exibe a mensagem "O ativo selecionado não foi encontrado.", recarrega a listagem e encerra o caso de uso.
-- **6a** - Caso o ticker ou o nome tenham sido apagados, o sistema exibe a mensagem "Preencha ao menos o ticker e o nome do ativo." e retorna ao passo 5 do fluxo básico.
-- **6b** - Caso o ticker não tenha de 4 a 6 caracteres entre letras e números, o sistema exibe a mensagem "Ticker inválido: use de 4 a 6 caracteres entre letras e números (ex.: PETR4)." e retorna ao passo 5 do fluxo básico.
-- **6c** - Caso o setor esteja vazio, o sistema exibe a mensagem "Informe o setor do ativo." e retorna ao passo 5 do fluxo básico.
-- **6d** - Caso o ticker informado já pertença a outro ativo, o sistema exibe a mensagem "Já existe um ativo cadastrado com o ticker <ticker>." e retorna ao passo 5 do fluxo básico.
-
----
+| **Regras de negócio** | RN001 — Todos os campos obrigatórios do formulário devem estar preenchidos: ticker, nome e setor são obrigatórios. |
+| | RN005 — O ticker deve ter de 4 a 6 caracteres alfanuméricos e ser único; na atualização, o próprio ativo em edição é desconsiderado na verificação de unicidade. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso. |
+| **Fluxo de exceção** | 4a - Caso o ativo selecionado não seja mais encontrado no cadastro, o sistema exibe a mensagem "O ativo selecionado não foi encontrado.", recarrega a listagem e encerra o caso de uso. |
+| | 6a - Caso o ticker ou o nome tenham sido apagados, o sistema exibe a mensagem "Preencha ao menos o ticker e o nome do ativo." e retorna ao passo 5 do fluxo básico. |
+| | 6b - Caso o ticker não tenha de 4 a 6 caracteres entre letras e números, o sistema exibe a mensagem "Ticker inválido: use de 4 a 6 caracteres entre letras e números (ex.: PETR4)." e retorna ao passo 5 do fluxo básico. |
+| | 6c - Caso o setor esteja vazio, o sistema exibe a mensagem "Informe o setor do ativo." e retorna ao passo 5 do fluxo básico. |
+| | 6d - Caso o ticker informado já pertença a outro ativo, o sistema exibe a mensagem "Já existe um ativo cadastrado com o ticker <ticker>." e retorna ao passo 5 do fluxo básico. |
 
 **Quadro 4. Descrição do caso de uso UC004.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC004: Remover ativo |
 | **Atores** | Ator principal: Administrador |
 | **Descrição** | Caso de uso executado quando o administrador necessita excluir do cadastro um ativo que não será mais acompanhado pelo sistema. |
 | **Pré-condições** | O administrador deve estar autenticado no sistema (UC001); o ativo a ser removido deve existir no cadastro. |
 | **Pós-condições** | Ativo removido do cadastro, juntamente com as cotações, posições, alertas e recomendações a ele vinculados. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (administrador) acessa a opção Ativos, seleciona um ativo da listagem e escolhe Remover. (ator) | |
 | | 2 - O sistema apresenta a confirmação "Remover <ticker> (<nome>)? Esta ação também apaga as cotações, posições, alertas e recomendações vinculadas e não pode ser desfeita.", exibindo o ticker (classe Ativo) e o nome da empresa (classe Ativo). (sistema) |
 | 3 - O ator confirma a remoção. (ator) | |
 | | 4 - O sistema exclui o ativo e os registros dependentes, atualiza a listagem e exibe a mensagem "Ativo <ticker> removido.". (sistema) (atributo) (4a)(4b) |
-
-**Regras de negócio**
-
-1. **RN001** — A remoção só é habilitada quando há um ativo selecionado na listagem; sem seleção, os botões Editar e Remover permanecem desabilitados.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona Não na confirmação: o sistema descarta a operação e encerra o caso de uso, mantendo o ativo no cadastro.
-
-**Fluxo de exceção**
-
-- **4a** - Caso nenhum ativo válido esteja selecionado, o sistema exibe a mensagem "Selecione um ativo válido para remover." e encerra o caso de uso.
-- **4b** - Caso o banco de dados recuse a exclusão, o sistema exibe a mensagem de erro devolvida pela camada de persistência, mantém o ativo no cadastro e retorna ao passo 1 do fluxo básico.
-
----
+| **Regras de negócio** | RN001 — A remoção só é habilitada quando há um ativo selecionado na listagem; sem seleção, os botões Editar e Remover permanecem desabilitados. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona Não na confirmação: o sistema descarta a operação e encerra o caso de uso, mantendo o ativo no cadastro. |
+| **Fluxo de exceção** | 4a - Caso nenhum ativo válido esteja selecionado, o sistema exibe a mensagem "Selecione um ativo válido para remover." e encerra o caso de uso. |
+| | 4b - Caso o banco de dados recuse a exclusão, o sistema exibe a mensagem de erro devolvida pela camada de persistência, mantém o ativo no cadastro e retorna ao passo 1 do fluxo básico. |
 
 **Quadro 5. Descrição do caso de uso UC005.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC005: Importar cotações |
 | **Atores** | Ator principal: Administrador |
 | **Descrição** | Caso de uso executado quando o administrador necessita carregar no sistema o histórico de cotações de um ativo a partir de um arquivo CSV, de forma transacional. |
 | **Pré-condições** | O administrador deve estar autenticado no sistema (UC001); deve existir ao menos um ativo cadastrado (UC002); o arquivo CSV deve estar acessível no sistema de arquivos. |
 | **Pós-condições** | Cotações do arquivo gravadas para o ativo escolhido, sem duplicidades, e registro da importação incluído no histórico com seu estado, linhas lidas e linhas inseridas. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (administrador) acessa a opção Importar cotações. (ator) | |
 | | 2 - O sistema apresenta a tela de importação com o formato esperado ("Data;Abertura;Maxima;Minima;Fechamento;Volume", data em dd/mm/aaaa e decimal com vírgula), a lista de ativos cadastrados (classe Ativo), o campo do caminho do arquivo (classe Importacao) e o histórico das últimas importações com arquivo (classe Importacao), estado (classe Importacao), linhas lidas (classe Importacao), linhas inseridas (classe Importacao), data e hora de execução (classe Importacao) e mensagem de erro (classe Importacao). (sistema) (2a) |
 | 3 - O ator seleciona o ativo de destino e escolhe o arquivo por meio da opção Escolher..., filtrando arquivos com extensão .csv. (ator) | |
@@ -1056,56 +999,38 @@ comportamento implementado no sistema Analisador B3.
 | | 7 - O sistema valida a primeira linha como cabeçalho e, em seguida, converte cada linha subsequente em uma cotação com data (classe Cotacao), abertura (classe Cotacao), máxima (classe Cotacao), mínima (classe Cotacao), fechamento (classe Cotacao) e volume (classe Cotacao), conforme as Regras de Negócio RN007, RN008 e RN009. (sistema) (7a)(7b)(7c)(7d)(7e)(7f)(7g)(7h) |
 | | 8 - O sistema abre uma transação e grava em lote as cotações validadas, ignorando aquelas cuja data já exista para o mesmo ativo, conforme as Regras de Negócio RN010 e RN011. (sistema) (atributo) (8a)(8b) |
 | | 9 - O sistema conclui o registro de importação com as linhas lidas (atributo) e as linhas inseridas (atributo) (classe Importacao), confirma a transação, atualiza o histórico e exibe o resumo "Importação concluída: <n> linha(s) lida(s), <n> inserida(s), <n> ignorada(s) por duplicidade.". (sistema) |
-
-**Regras de negócio**
-
-1. **RN007** — O arquivo de cotações deve ter o cabeçalho e as 6 colunas esperadas, separadas por ponto e vírgula.
-2. **RN008** — A data deve estar no formato dd/mm/aaaa e os valores no padrão decimal brasileiro, com vírgula como separador decimal e ponto como separador de milhar.
-3. **RN009** — Em cada cotação, a mínima deve ser menor ou igual à abertura e ao fechamento, que por sua vez devem ser menores ou iguais à máxima, e todos os preços devem ser maiores que zero.
-4. **RN010** — Cotação de mesma data e mesmo ativo é ignorada, sem duplicar o registro já existente.
-5. **RN011** — Qualquer erro estrutural rejeita o arquivo inteiro: nenhuma linha é gravada.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário cancela a janela de seleção de arquivo: o sistema descarta a escolha, mantém o caminho anterior e encerra o caso de uso sem importar.
-
-**Fluxo alternativo 2**
-
-* No passo 3, o ator seleciona Importar pasta inteira e escolhe um diretório: o sistema percorre todos os arquivos .csv do diretório em ordem alfabética, associa cada arquivo ao ativo cujo ticker corresponde ao nome do arquivo (classe Ativo) e executa os passos 6 a 9 para cada um deles, acumulando o total de linhas lidas, inseridas e ignoradas e relacionando ao final os erros de cada arquivo. Caso o diretório não exista, o sistema exibe "Diretório <caminho> não encontrado."; caso não haja arquivos .csv, exibe "Nenhum arquivo .csv encontrado em <caminho>."; e, para cada arquivo sem ativo correspondente, acrescenta "<arquivo>: nenhum ativo cadastrado com o ticker <ticker>.".
-
-**Fluxo de exceção**
-
-- **2a** - Caso não exista nenhum ativo cadastrado, o sistema desabilita a opção Importar arquivo, exibe a mensagem "Cadastre um ativo antes de importar cotações." e encerra o caso de uso.
-- **6a** - Caso o campo do arquivo esteja vazio, o sistema exibe a mensagem "Escolha um arquivo .csv para importar." e retorna ao passo 3 do fluxo básico.
-- **6b** - Caso nenhum ativo esteja selecionado, o sistema exibe a mensagem "Selecione o ativo de destino." e retorna ao passo 3 do fluxo básico.
-- **6c** - Caso o ativo informado não exista mais no cadastro, ou o arquivo não possa ser aberto para leitura, o sistema registra a importação como Rejeitada com a mensagem "Ativo informado não existe no cadastro." ou "Não foi possível abrir o arquivo <caminho>.", conforme o caso, e retorna ao passo 3 do fluxo básico.
-- **7a** - Caso a primeira linha não seja um cabeçalho reconhecível, o sistema interrompe a leitura, registra o erro "Linha 1: cabeçalho inválido. Esperado "Data;Abertura;Maxima;Minima;Fechamento;Volume"." e desvia para o passo de rejeição descrito em 7h.
-- **7b** - Caso uma linha não possua exatamente 6 colunas, o sistema registra o erro "Linha <n>: esperadas 6 colunas separadas por ';', encontradas <n>." e prossegue a leitura das demais linhas para relatar todos os erros do arquivo.
-- **7c** - Caso a data de uma linha não esteja no formato dd/MM/aaaa, o sistema registra o erro "Linha <n>: data "<valor>" fora do formato dd/MM/aaaa." e prossegue a leitura.
-- **7d** - Caso alguma coluna de preço ou de volume não contenha um número válido, o sistema registra o erro "Linha <n>: valor numérico inválido em uma das colunas de preço ou volume." e prossegue a leitura.
-- **7e** - Caso algum preço seja menor ou igual a zero, o sistema registra o erro "Linha <n>: preços devem ser maiores que zero."; caso a máxima seja menor que a mínima, registra "Linha <n>: máxima (<valor>) menor que a mínima (<valor>)."; caso a abertura ou o fechamento fiquem fora do intervalo entre a mínima e a máxima, registra "Linha <n>: abertura e fechamento devem ficar entre a mínima e a máxima."; caso o volume seja negativo, registra "Linha <n>: volume negativo.". Em todos os casos o sistema prossegue a leitura.
-- **7f** - Caso a mesma data apareça duas vezes no próprio arquivo, o sistema registra o erro "Linha <n>: data <dd/MM/aaaa> repetida no próprio arquivo." e prossegue a leitura.
-- **7g** - Caso o arquivo não contenha nenhuma cotação válida, o sistema registra a importação como Rejeitada com a mensagem "O arquivo não contém nenhuma cotação válida." e encerra o caso de uso.
-- **7h** - Caso tenha sido registrado ao menos um erro nos desvios 7a a 7f, o sistema rejeita o arquivo inteiro sem gravar nenhuma cotação, grava o registro de importação no estado Rejeitada com a primeira mensagem de erro (atributo) (classe Importacao), apresenta a lista completa de erros e exibe o resumo "Importação rejeitada: <n> erro(s) encontrado(s). Nenhuma cotação foi gravada.", retornando ao passo 3 do fluxo básico.
-- **8a** - Caso a transação não possa ser iniciada, o sistema registra a importação como Rejeitada com a mensagem devolvida pelo banco de dados e retorna ao passo 3 do fluxo básico.
-- **8b** - Caso a gravação em lote falhe, o sistema desfaz a transação, zera as linhas inseridas e ignoradas, registra a importação como Rejeitada com a mensagem "Falha ao gravar as cotações do arquivo." ou com o erro devolvido pelo banco e retorna ao passo 3 do fluxo básico.
-
----
+| **Regras de negócio** | RN007 — O arquivo de cotações deve ter o cabeçalho e as 6 colunas esperadas, separadas por ponto e vírgula. |
+| | RN008 — A data deve estar no formato dd/mm/aaaa e os valores no padrão decimal brasileiro, com vírgula como separador decimal e ponto como separador de milhar. |
+| | RN009 — Em cada cotação, a mínima deve ser menor ou igual à abertura e ao fechamento, que por sua vez devem ser menores ou iguais à máxima, e todos os preços devem ser maiores que zero. |
+| | RN010 — Cotação de mesma data e mesmo ativo é ignorada, sem duplicar o registro já existente. |
+| | RN011 — Qualquer erro estrutural rejeita o arquivo inteiro: nenhuma linha é gravada. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário cancela a janela de seleção de arquivo: o sistema descarta a escolha, mantém o caminho anterior e encerra o caso de uso sem importar. |
+| **Fluxo alternativo 2** | * No passo 3, o ator seleciona Importar pasta inteira e escolhe um diretório: o sistema percorre todos os arquivos .csv do diretório em ordem alfabética, associa cada arquivo ao ativo cujo ticker corresponde ao nome do arquivo (classe Ativo) e executa os passos 6 a 9 para cada um deles, acumulando o total de linhas lidas, inseridas e ignoradas e relacionando ao final os erros de cada arquivo. Caso o diretório não exista, o sistema exibe "Diretório <caminho> não encontrado."; caso não haja arquivos .csv, exibe "Nenhum arquivo .csv encontrado em <caminho>."; e, para cada arquivo sem ativo correspondente, acrescenta "<arquivo>: nenhum ativo cadastrado com o ticker <ticker>.". |
+| **Fluxo de exceção** | 2a - Caso não exista nenhum ativo cadastrado, o sistema desabilita a opção Importar arquivo, exibe a mensagem "Cadastre um ativo antes de importar cotações." e encerra o caso de uso. |
+| | 6a - Caso o campo do arquivo esteja vazio, o sistema exibe a mensagem "Escolha um arquivo .csv para importar." e retorna ao passo 3 do fluxo básico. |
+| | 6b - Caso nenhum ativo esteja selecionado, o sistema exibe a mensagem "Selecione o ativo de destino." e retorna ao passo 3 do fluxo básico. |
+| | 6c - Caso o ativo informado não exista mais no cadastro, ou o arquivo não possa ser aberto para leitura, o sistema registra a importação como Rejeitada com a mensagem "Ativo informado não existe no cadastro." ou "Não foi possível abrir o arquivo <caminho>.", conforme o caso, e retorna ao passo 3 do fluxo básico. |
+| | 7a - Caso a primeira linha não seja um cabeçalho reconhecível, o sistema interrompe a leitura, registra o erro "Linha 1: cabeçalho inválido. Esperado "Data;Abertura;Maxima;Minima;Fechamento;Volume"." e desvia para o passo de rejeição descrito em 7h. |
+| | 7b - Caso uma linha não possua exatamente 6 colunas, o sistema registra o erro "Linha <n>: esperadas 6 colunas separadas por ';', encontradas <n>." e prossegue a leitura das demais linhas para relatar todos os erros do arquivo. |
+| | 7c - Caso a data de uma linha não esteja no formato dd/MM/aaaa, o sistema registra o erro "Linha <n>: data "<valor>" fora do formato dd/MM/aaaa." e prossegue a leitura. |
+| | 7d - Caso alguma coluna de preço ou de volume não contenha um número válido, o sistema registra o erro "Linha <n>: valor numérico inválido em uma das colunas de preço ou volume." e prossegue a leitura. |
+| | 7e - Caso algum preço seja menor ou igual a zero, o sistema registra o erro "Linha <n>: preços devem ser maiores que zero."; caso a máxima seja menor que a mínima, registra "Linha <n>: máxima (<valor>) menor que a mínima (<valor>)."; caso a abertura ou o fechamento fiquem fora do intervalo entre a mínima e a máxima, registra "Linha <n>: abertura e fechamento devem ficar entre a mínima e a máxima."; caso o volume seja negativo, registra "Linha <n>: volume negativo.". Em todos os casos o sistema prossegue a leitura. |
+| | 7f - Caso a mesma data apareça duas vezes no próprio arquivo, o sistema registra o erro "Linha <n>: data <dd/MM/aaaa> repetida no próprio arquivo." e prossegue a leitura. |
+| | 7g - Caso o arquivo não contenha nenhuma cotação válida, o sistema registra a importação como Rejeitada com a mensagem "O arquivo não contém nenhuma cotação válida." e encerra o caso de uso. |
+| | 7h - Caso tenha sido registrado ao menos um erro nos desvios 7a a 7f, o sistema rejeita o arquivo inteiro sem gravar nenhuma cotação, grava o registro de importação no estado Rejeitada com a primeira mensagem de erro (atributo) (classe Importacao), apresenta a lista completa de erros e exibe o resumo "Importação rejeitada: <n> erro(s) encontrado(s). Nenhuma cotação foi gravada.", retornando ao passo 3 do fluxo básico. |
+| | 8a - Caso a transação não possa ser iniciada, o sistema registra a importação como Rejeitada com a mensagem devolvida pelo banco de dados e retorna ao passo 3 do fluxo básico. |
+| | 8b - Caso a gravação em lote falhe, o sistema desfaz a transação, zera as linhas inseridas e ignoradas, registra a importação como Rejeitada com a mensagem "Falha ao gravar as cotações do arquivo." ou com o erro devolvido pelo banco e retorna ao passo 3 do fluxo básico. |
 
 **Quadro 6. Descrição do caso de uso UC006.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC006: Configurar regra de análise |
 | **Atores** | Ator principal: Administrador |
 | **Descrição** | Caso de uso executado quando o administrador necessita ajustar os parâmetros de uma regra de análise ou ativá-la e desativá-la, definindo quais estratégias participam da geração das recomendações. |
 | **Pré-condições** | O administrador deve estar autenticado no sistema (UC001); as regras de análise devem estar registradas no banco de dados. |
 | **Pós-condições** | Regra gravada com os novos parâmetros e com o novo estado de ativação, passando a valer nas próximas análises. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (administrador) acessa a opção Regras de análise. (ator) | |
 | | 2 - O sistema apresenta a listagem das regras com o nome da regra (classe RegraConfigurada), o estado ativa ou inativa (classe RegraConfigurada), o primeiro parâmetro (classe RegraConfigurada), o segundo parâmetro (classe RegraConfigurada) e o critério descrito pela própria estratégia já configurada (classe RegraAnalise). (sistema) (2a) |
 | 3 - O ator seleciona uma regra e escolhe Editar parâmetros, ou aplica duplo clique sobre a linha. (ator) | |
@@ -1113,44 +1038,26 @@ comportamento implementado no sistema Analisador B3.
 | 5 - O ator altera os parâmetros e o estado de ativação e seleciona Salvar. (ator) | |
 | | 6 - O sistema verifica as informações conforme as Regras de Negócio RN001 e RN018. (sistema) (6a)(6b) |
 | | 7 - O sistema grava a regra com o novo parâmetro principal (atributo), o novo parâmetro secundário (atributo) e o novo estado de ativação (atributo) (classe RegraConfigurada), atualiza a listagem, exibe a mensagem "Regra <nome> atualizada." e notifica as telas de análise para recalcular com a nova configuração. (sistema) |
-
-**Regras de negócio**
-
-1. **RN001** — Todos os campos obrigatórios do formulário devem estar preenchidos: a regra deve possuir nome e os dois parâmetros devem ter valor informado.
-2. **RN018** — Somente regras ativas participam da análise; regras inativas permanecem cadastradas, mas são ignoradas pelo motor de análise.
-3. **RN019** — Uma regra sem dados suficientes se abstém, sem pontuar; a alteração de parâmetros pode fazer com que a regra passe a se abster para determinados ativos.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso.
-
-**Fluxo alternativo 2**
-
-* No passo 3, o ator seleciona uma regra e escolhe Ativar / desativar: o sistema inverte o estado de ativação da regra (classe RegraConfigurada), grava a alteração (atributo), atualiza a listagem e exibe a mensagem "Regra <nome> agora está ativa." ou "Regra <nome> agora está inativa.", conforme o novo estado.
-
-**Fluxo de exceção**
-
-- **2a** - Caso nenhuma regra esteja cadastrada, o sistema exibe a mensagem "Nenhuma regra cadastrada: o motor usará a configuração padrão embutida." e mantém a tela sem itens selecionáveis.
-- **4a** - Caso a regra selecionada não seja mais encontrada, o sistema recarrega a listagem e encerra o caso de uso.
-- **6a** - Caso os parâmetros informados sejam inválidos, isto é, negativos ou com nome de regra ausente, o sistema exibe a mensagem "Parâmetros inválidos: use valores não negativos." e retorna ao passo 5 do fluxo básico.
-- **6b** - Caso o banco de dados recuse a gravação, o sistema exibe a mensagem de erro devolvida pela camada de persistência e retorna ao passo 5 do fluxo básico.
-
----
+| **Regras de negócio** | RN001 — Todos os campos obrigatórios do formulário devem estar preenchidos: a regra deve possuir nome e os dois parâmetros devem ter valor informado. |
+| | RN018 — Somente regras ativas participam da análise; regras inativas permanecem cadastradas, mas são ignoradas pelo motor de análise. |
+| | RN019 — Uma regra sem dados suficientes se abstém, sem pontuar; a alteração de parâmetros pode fazer com que a regra passe a se abster para determinados ativos. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso. |
+| **Fluxo alternativo 2** | * No passo 3, o ator seleciona uma regra e escolhe Ativar / desativar: o sistema inverte o estado de ativação da regra (classe RegraConfigurada), grava a alteração (atributo), atualiza a listagem e exibe a mensagem "Regra <nome> agora está ativa." ou "Regra <nome> agora está inativa.", conforme o novo estado. |
+| **Fluxo de exceção** | 2a - Caso nenhuma regra esteja cadastrada, o sistema exibe a mensagem "Nenhuma regra cadastrada: o motor usará a configuração padrão embutida." e mantém a tela sem itens selecionáveis. |
+| | 4a - Caso a regra selecionada não seja mais encontrada, o sistema recarrega a listagem e encerra o caso de uso. |
+| | 6a - Caso os parâmetros informados sejam inválidos, isto é, negativos ou com nome de regra ausente, o sistema exibe a mensagem "Parâmetros inválidos: use valores não negativos." e retorna ao passo 5 do fluxo básico. |
+| | 6b - Caso o banco de dados recuse a gravação, o sistema exibe a mensagem de erro devolvida pela camada de persistência e retorna ao passo 5 do fluxo básico. |
 
 **Quadro 7. Descrição do caso de uso UC007.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC007: Gerenciar usuários |
 | **Atores** | Ator principal: Administrador |
 | **Descrição** | Caso de uso executado quando o administrador necessita cadastrar, alterar ou remover usuários do sistema, definindo o papel de cada um. |
 | **Pré-condições** | O administrador deve estar autenticado no sistema (UC001); o usuário autenticado deve possuir o papel Administrador. |
 | **Pós-condições** | Cadastro de usuários atualizado, preservada a existência de ao menos um administrador no sistema. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (administrador) acessa a opção Usuários. (ator) | |
 | | 2 - O sistema apresenta a listagem de usuários com o identificador (classe Usuario), o nome (classe Usuario), o e-mail (classe Usuario) e o papel (classe Usuario). (sistema) |
 | 3 - O ator seleciona Novo usuário. (ator) | |
@@ -1158,90 +1065,51 @@ comportamento implementado no sistema Analisador B3.
 | 5 - O ator preenche os campos e seleciona Salvar. (ator) | |
 | | 6 - O sistema verifica as informações conforme as Regras de Negócio RN001, RN002 e RN003. (sistema) (6a)(6b)(6c)(6d) |
 | | 7 - O sistema normaliza o e-mail para caixa baixa, calcula o resumo SHA-256 da senha conforme a Regra de Negócio RN004, grava o usuário (atributo) (classe Usuario), atualiza a listagem e exibe a mensagem "Usuário <e-mail> cadastrado.". (sistema) |
-
-**Regras de negócio**
-
-1. **RN001** — Todos os campos obrigatórios do formulário devem estar preenchidos: nome, e-mail e senha são obrigatórios no cadastro.
-2. **RN002** — O e-mail deve ser único no sistema.
-3. **RN003** — A senha deve ter no mínimo 6 caracteres.
-4. **RN004** — A senha é comparada e armazenada apenas pelo resumo SHA-256 de (sal + senha).
-5. **RN006** — O último administrador não pode ser removido nem rebaixado ao papel de investidor.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso.
-
-**Fluxo alternativo 2**
-
-* No passo 3, o ator seleciona um usuário da listagem e escolhe Editar: o sistema apresenta o formulário preenchido com o nome (classe Usuario), o e-mail (classe Usuario) e o papel (classe Usuario), com o campo de senha vazio e a orientação "A senha só é alterada se o campo for preenchido (mínimo de 6 caracteres)."; ao confirmar, o sistema grava as alterações (atributo), altera a senha somente se o campo tiver sido preenchido e exibe a mensagem "Usuário atualizado.".
-
-**Fluxo alternativo 3**
-
-* No passo 3, o ator seleciona um usuário da listagem e escolhe Remover: o sistema apresenta a confirmação "Remover o usuário selecionado? As carteiras e alertas dele também serão apagados."; confirmada a remoção, o sistema exclui o usuário e seus registros dependentes, atualiza a listagem e exibe a mensagem "Usuário removido."; caso o ator responda Não, o sistema descarta a operação e encerra o caso de uso.
-
-**Fluxo de exceção**
-
-- **6a** - Caso o nome esteja vazio, o sistema exibe a mensagem "Informe o nome do usuário." e retorna ao passo 5 do fluxo básico.
-- **6b** - Caso o e-mail não tenha formato válido, o sistema exibe a mensagem "Informe um e-mail válido." e retorna ao passo 5 do fluxo básico.
-- **6c** - Caso a senha tenha menos de 6 caracteres, o sistema exibe a mensagem "A senha deve ter ao menos 6 caracteres." e retorna ao passo 5 do fluxo básico.
-- **6d** - Caso já exista usuário com o e-mail informado, o sistema exibe a mensagem "Já existe um usuário com o e-mail <e-mail>." no cadastro, ou "O e-mail <e-mail> já pertence a outro usuário." na edição, e retorna ao passo 5 do fluxo básico.
-- **6e** - Caso o ator tente rebaixar o único administrador do sistema para o papel Investidor, o sistema exibe a mensagem "Este é o único administrador: o papel não pode ser alterado." e retorna ao passo 5 do fluxo básico, conforme a Regra de Negócio RN006.
-- **6f** - Caso o ator tente remover o único administrador do sistema, o sistema exibe a mensagem "O último administrador do sistema não pode ser removido." e encerra a remoção, conforme a Regra de Negócio RN006.
-- **6g** - Caso o ator tente remover o próprio usuário com o qual está autenticado, o sistema exibe a mensagem "Você não pode remover o usuário com o qual está logado." e encerra a remoção.
-- **6h** - Caso o usuário selecionado não seja mais encontrado, o sistema exibe a mensagem "Usuário não encontrado.", recarrega a listagem e encerra o caso de uso.
-
----
+| **Regras de negócio** | RN001 — Todos os campos obrigatórios do formulário devem estar preenchidos: nome, e-mail e senha são obrigatórios no cadastro. |
+| | RN002 — O e-mail deve ser único no sistema. |
+| | RN003 — A senha deve ter no mínimo 6 caracteres. |
+| | RN004 — A senha é comparada e armazenada apenas pelo resumo SHA-256 de (sal + senha). |
+| | RN006 — O último administrador não pode ser removido nem rebaixado ao papel de investidor. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso. |
+| **Fluxo alternativo 2** | * No passo 3, o ator seleciona um usuário da listagem e escolhe Editar: o sistema apresenta o formulário preenchido com o nome (classe Usuario), o e-mail (classe Usuario) e o papel (classe Usuario), com o campo de senha vazio e a orientação "A senha só é alterada se o campo for preenchido (mínimo de 6 caracteres)."; ao confirmar, o sistema grava as alterações (atributo), altera a senha somente se o campo tiver sido preenchido e exibe a mensagem "Usuário atualizado.". |
+| **Fluxo alternativo 3** | * No passo 3, o ator seleciona um usuário da listagem e escolhe Remover: o sistema apresenta a confirmação "Remover o usuário selecionado? As carteiras e alertas dele também serão apagados."; confirmada a remoção, o sistema exclui o usuário e seus registros dependentes, atualiza a listagem e exibe a mensagem "Usuário removido."; caso o ator responda Não, o sistema descarta a operação e encerra o caso de uso. |
+| **Fluxo de exceção** | 6a - Caso o nome esteja vazio, o sistema exibe a mensagem "Informe o nome do usuário." e retorna ao passo 5 do fluxo básico. |
+| | 6b - Caso o e-mail não tenha formato válido, o sistema exibe a mensagem "Informe um e-mail válido." e retorna ao passo 5 do fluxo básico. |
+| | 6c - Caso a senha tenha menos de 6 caracteres, o sistema exibe a mensagem "A senha deve ter ao menos 6 caracteres." e retorna ao passo 5 do fluxo básico. |
+| | 6d - Caso já exista usuário com o e-mail informado, o sistema exibe a mensagem "Já existe um usuário com o e-mail <e-mail>." no cadastro, ou "O e-mail <e-mail> já pertence a outro usuário." na edição, e retorna ao passo 5 do fluxo básico. |
+| | 6e - Caso o ator tente rebaixar o único administrador do sistema para o papel Investidor, o sistema exibe a mensagem "Este é o único administrador: o papel não pode ser alterado." e retorna ao passo 5 do fluxo básico, conforme a Regra de Negócio RN006. |
+| | 6f - Caso o ator tente remover o único administrador do sistema, o sistema exibe a mensagem "O último administrador do sistema não pode ser removido." e encerra a remoção, conforme a Regra de Negócio RN006. |
+| | 6g - Caso o ator tente remover o próprio usuário com o qual está autenticado, o sistema exibe a mensagem "Você não pode remover o usuário com o qual está logado." e encerra a remoção. |
+| | 6h - Caso o usuário selecionado não seja mais encontrado, o sistema exibe a mensagem "Usuário não encontrado.", recarrega a listagem e encerra o caso de uso. |
 
 **Quadro 8. Descrição do caso de uso UC008.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC008: Buscar ativos |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o usuário necessita localizar um ativo no cadastro informando parte do seu ticker ou do seu nome. |
 | **Pré-condições** | O usuário deve estar autenticado no sistema (UC001); deve existir ao menos um ativo cadastrado. |
 | **Pós-condições** | Listagem apresentada somente com os ativos que atendem ao termo pesquisado. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) digita no campo de busca parte do ticker ou do nome do ativo procurado. (ator) | |
 | | 2 - O sistema consulta o cadastro comparando o termo informado com o ticker (classe Ativo) e com o nome da empresa (classe Ativo), sem diferenciar maiúsculas de minúsculas, e reapresenta a listagem apenas com os ativos correspondentes, exibindo ticker (classe Ativo), nome (classe Ativo), setor (classe Ativo), tipo (classe Acao / classe FundoImobiliario), dividend yield (classe Acao / classe FundoImobiliario), índice de valor (classe Ativo) e quantidade de cotações (classe Cotacao). (sistema) (2a)(2b) |
-
-**Regras de negócio**
-
-1. **RN001** — Quando o campo de busca está vazio, o sistema apresenta a listagem completa dos ativos cadastrados.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário limpa o campo de busca: o sistema descarta o termo informado e reapresenta a listagem completa dos ativos.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento o usuário seleciona Recarregar: o sistema consulta novamente o cadastro e reapresenta a listagem aplicando o termo de busca vigente.
-
-**Fluxo de exceção**
-
-- **2a** - Caso nenhum ativo atenda ao termo informado, o sistema exibe a mensagem "Nenhum ativo encontrado para "<termo>"." e apresenta a listagem vazia, retornando ao passo 1 do fluxo básico.
-- **2b** - Caso não exista nenhum ativo cadastrado, o sistema exibe a mensagem "Nenhum ativo cadastrado. Use "Novo ativo" para começar." e encerra o caso de uso.
-
----
+| **Regras de negócio** | RN001 — Quando o campo de busca está vazio, o sistema apresenta a listagem completa dos ativos cadastrados. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário limpa o campo de busca: o sistema descarta o termo informado e reapresenta a listagem completa dos ativos. |
+| **Fluxo alternativo 2** | * A qualquer momento o usuário seleciona Recarregar: o sistema consulta novamente o cadastro e reapresenta a listagem aplicando o termo de busca vigente. |
+| **Fluxo de exceção** | 2a - Caso nenhum ativo atenda ao termo informado, o sistema exibe a mensagem "Nenhum ativo encontrado para "<termo>"." e apresenta a listagem vazia, retornando ao passo 1 do fluxo básico. |
+| | 2b - Caso não exista nenhum ativo cadastrado, o sistema exibe a mensagem "Nenhum ativo cadastrado. Use "Novo ativo" para começar." e encerra o caso de uso. |
 
 **Quadro 9. Descrição do caso de uso UC009.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC009: Visualizar painel de análise do ativo |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o investidor necessita acompanhar a evolução das cotações de um ativo, com médias móveis, indicadores técnicos do período e a recomendação vigente. |
 | **Pré-condições** | O usuário deve estar autenticado no sistema (UC001); deve existir ao menos um ativo cadastrado (UC002); devem existir cotações importadas para o ativo escolhido (UC005). |
 | **Pós-condições** | Gráfico de cotações, indicadores do período e recomendação vigente apresentados para o ativo e o período selecionados. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) acessa a opção Painel de análise. (ator) | |
 | | 2 - O sistema apresenta a lista dos ativos cadastrados, identificados por ticker e nome (classe Ativo), e a lista de períodos com as opções Últimos 30 pregões, Últimos 90 pregões, Últimos 180 pregões, Último ano e Série completa. (sistema) (2a) |
 | 3 - O ator seleciona o ativo e o período desejados. (ator) | |
@@ -1249,44 +1117,28 @@ comportamento implementado no sistema Analisador B3.
 | | 5 - O sistema calcula as médias móveis simples de 9 e de 21 pregões (classe CalculadoraIndicadores) e desenha o gráfico de candles com as duas médias sobrepostas. (sistema) |
 | | 6 - O sistema calcula e apresenta os cartões de indicadores do período: último fechamento com a respectiva data (classe Cotacao), variação percentual do período (classe CalculadoraIndicadores), índice de força relativa de 14 pregões com a leitura sobrevendido, faixa neutra ou sobrecomprado (classe CalculadoraIndicadores) e volatilidade anualizada (classe CalculadoraIndicadores). (sistema) (6a) |
 | | 7 - O sistema consulta a recomendação vigente do ativo e apresenta o selo com o tipo Compra, Venda ou Neutro (classe Recomendacao) e a pontuação (classe Recomendacao), acompanhado da justificativa que cita as regras e os números que a sustentaram (classe Recomendacao). (sistema) (7a) |
-
-**Regras de negócio**
-
-1. **RN015** — A pontuação de uma recomendação varia de −1 a +1.
-2. **RN016** — Pontuação maior ou igual a +0,25 corresponde a Compra; menor ou igual a −0,25 corresponde a Venda; entre esses limites, Neutro.
-3. **RN019** — Uma regra ou um indicador sem dados suficientes se abstém, sem pontuar; nesse caso o cartão correspondente é apresentado vazio.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona Analisar agora: o sistema executa o caso de uso UC011 para o ativo selecionado, invalida a recomendação anterior conforme a Regra de Negócio RN017, publica a nova recomendação (classe Recomendacao) e redesenha o painel com o novo selo e a nova justificativa.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento o usuário seleciona Ver detalhes: o sistema encerra este caso de uso e abre o caso de uso UC010 para o ativo selecionado.
-
-**Fluxo de exceção**
-
-- **2a** - Caso não exista nenhum ativo cadastrado, o sistema desabilita as opções Analisar agora e Ver detalhes, apresenta a mensagem "Nenhum ativo cadastrado." na área do gráfico, limpa os cartões de indicadores e encerra o caso de uso.
-- **4a** - Caso o ativo selecionado não seja encontrado no cadastro, o sistema apresenta a mensagem "Ativo não encontrado." na área do gráfico e encerra o caso de uso.
-- **4b** - Caso não existam cotações importadas para o ativo no período, o sistema apresenta a mensagem "Sem cotações importadas para este ativo." na área do gráfico e retorna ao passo 3 do fluxo básico.
-- **6a** - Caso a série seja curta demais para o cálculo de um indicador, o sistema apresenta o cartão correspondente vazio, sem interromper a exibição dos demais.
-- **7a** - Caso não exista recomendação vigente para o ativo, o sistema apresenta o selo "Sem recomendação" e o texto "Nenhuma recomendação vigente para <ticker>. Use "Analisar agora" para gerar uma com base nas regras ativas.", retornando ao passo 3 do fluxo básico.
-- **7b** - Caso o ator selecione Analisar agora e a geração falhe, o sistema exibe em uma caixa de aviso a mensagem devolvida pelo serviço de recomendação, como "Ativo não encontrado no cadastro." ou "Não foi possível publicar a recomendação gerada.", e retorna ao passo 3 do fluxo básico.
+| **Regras de negócio** | RN015 — A pontuação de uma recomendação varia de −1 a +1. |
+| | RN016 — Pontuação maior ou igual a +0,25 corresponde a Compra; menor ou igual a −0,25 corresponde a Venda; entre esses limites, Neutro. |
+| | RN019 — Uma regra ou um indicador sem dados suficientes se abstém, sem pontuar; nesse caso o cartão correspondente é apresentado vazio. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona Analisar agora: o sistema executa o caso de uso UC011 para o ativo selecionado, invalida a recomendação anterior conforme a Regra de Negócio RN017, publica a nova recomendação (classe Recomendacao) e redesenha o painel com o novo selo e a nova justificativa. |
+| **Fluxo alternativo 2** | * A qualquer momento o usuário seleciona Ver detalhes: o sistema encerra este caso de uso e abre o caso de uso UC010 para o ativo selecionado. |
+| **Fluxo de exceção** | 2a - Caso não exista nenhum ativo cadastrado, o sistema desabilita as opções Analisar agora e Ver detalhes, apresenta a mensagem "Nenhum ativo cadastrado." na área do gráfico, limpa os cartões de indicadores e encerra o caso de uso. |
+| | 4a - Caso o ativo selecionado não seja encontrado no cadastro, o sistema apresenta a mensagem "Ativo não encontrado." na área do gráfico e encerra o caso de uso. |
+| | 4b - Caso não existam cotações importadas para o ativo no período, o sistema apresenta a mensagem "Sem cotações importadas para este ativo." na área do gráfico e retorna ao passo 3 do fluxo básico. |
+| | 6a - Caso a série seja curta demais para o cálculo de um indicador, o sistema apresenta o cartão correspondente vazio, sem interromper a exibição dos demais. |
+| | 7a - Caso não exista recomendação vigente para o ativo, o sistema apresenta o selo "Sem recomendação" e o texto "Nenhuma recomendação vigente para <ticker>. Use "Analisar agora" para gerar uma com base nas regras ativas.", retornando ao passo 3 do fluxo básico. |
+| | 7b - Caso o ator selecione Analisar agora e a geração falhe, o sistema exibe em uma caixa de aviso a mensagem devolvida pelo serviço de recomendação, como "Ativo não encontrado no cadastro." ou "Não foi possível publicar a recomendação gerada.", e retorna ao passo 3 do fluxo básico. |
 
 **Quadro 10. Descrição do caso de uso UC010.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC010: Visualizar detalhes do ativo |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o investidor necessita examinar os fundamentos, o histórico de cotações e o parecer de cada regra de análise de um ativo específico. |
 | **Pré-condições** | Usuário autenticado no sistema; existir ao menos um ativo cadastrado; recomendável haver cotações importadas para o ativo. |
 | **Pós-condições** | Fundamentos, gráfico de fechamento, histórico de cotações e pareceres por regra do ativo escolhido apresentados ao investidor. Nenhuma informação é gravada. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Detalhes do ativo" na navegação lateral. (ator) | |
 | | 2 - O sistema carrega a lista de ativos cadastrados e preenche o seletor com o rótulo completo, composto por ticker (classe Ativo) e nomeEmpresa (classe Ativo). (sistema) (2a) |
 | 3 - O ator escolhe o ativo desejado no seletor. (ator) | |
@@ -1294,42 +1146,26 @@ comportamento implementado no sistema Analisador B3.
 | | 5 - O sistema recupera o histórico completo de cotações do ativo e desenha o gráfico de linha da série de fechamento, identificada por "TICKER - fechamento" (classe Cotacao). (sistema) |
 | | 6 - O sistema preenche a tabela com as 60 cotações mais recentes, da mais nova para a mais antiga, exibindo data, abertura, maxima, minima, fechamento (classe Cotacao), a variação percentual do dia e o volume (classe Cotacao), com a variação destacada em verde na alta e em vermelho na baixa. (sistema) |
 | | 7 - O sistema solicita ao motor de análise a reavaliação individual das regras ativas para o ativo e apresenta, no quadro "Pareceres por regra (Strategy)", a numeração, a regraAplicada, o tipo, a pontuacao e a justificativa de cada parecer (classe Recomendacao). (sistema) (7a) |
-
-**Regras de negócio**
-
-- **RN015** — A pontuação de uma recomendação varia de −1 a +1; os pareceres exibidos no passo 7 respeitam esse intervalo.
-- **RN018** — Somente regras ativas participam da análise; regras desativadas não geram parecer no quadro do passo 7.
-- **RN019** — Uma regra sem dados suficientes se abstém, sem pontuar, e por isso não aparece na lista de pareceres.
-- **REU002** — Ganho e perda devem ser distinguíveis por cor e por sinal numérico, o que orienta a formatação da coluna de variação no passo 6.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona outro ativo no seletor: o sistema repete os passos 4 a 7 para o ativo recém-escolhido.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento o usuário chega a esta tela a partir do painel de análise, por meio da ação de detalhamento do ativo: o sistema posiciona o seletor no ativo recebido e executa os passos 4 a 7.
-
-**Fluxo de exceção**
-
-- **2a** - Caso não exista nenhum ativo cadastrado, o sistema exibe "Nenhum ativo cadastrado." no quadro de fundamentos, apresenta a mensagem "Sem ativo selecionado." na área do gráfico, mantém a tabela e o quadro de pareceres vazios e encerra o caso de uso.
-- **4a** - Caso o ativo selecionado tenha sido removido do cadastro por outro usuário entre os passos 2 e 4, o sistema exibe "Ativo não encontrado." e encerra o caso de uso, retornando ao passo 3 quando o ator escolher outro ativo.
-- **7a** - Caso nenhuma regra ativa consiga opinar sobre o ativo, o sistema exibe "Nenhuma regra ativa conseguiu opinar sobre TICKER. Verifique se há cotações importadas e fundamentos cadastrados." no quadro de pareceres e encerra o caso de uso.
+| **Regras de negócio** | RN015 — A pontuação de uma recomendação varia de −1 a +1; os pareceres exibidos no passo 7 respeitam esse intervalo. |
+| | RN018 — Somente regras ativas participam da análise; regras desativadas não geram parecer no quadro do passo 7. |
+| | RN019 — Uma regra sem dados suficientes se abstém, sem pontuar, e por isso não aparece na lista de pareceres. |
+| | REU002 — Ganho e perda devem ser distinguíveis por cor e por sinal numérico, o que orienta a formatação da coluna de variação no passo 6. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona outro ativo no seletor: o sistema repete os passos 4 a 7 para o ativo recém-escolhido. |
+| **Fluxo alternativo 2** | * A qualquer momento o usuário chega a esta tela a partir do painel de análise, por meio da ação de detalhamento do ativo: o sistema posiciona o seletor no ativo recebido e executa os passos 4 a 7. |
+| **Fluxo de exceção** | 2a - Caso não exista nenhum ativo cadastrado, o sistema exibe "Nenhum ativo cadastrado." no quadro de fundamentos, apresenta a mensagem "Sem ativo selecionado." na área do gráfico, mantém a tabela e o quadro de pareceres vazios e encerra o caso de uso. |
+| | 4a - Caso o ativo selecionado tenha sido removido do cadastro por outro usuário entre os passos 2 e 4, o sistema exibe "Ativo não encontrado." e encerra o caso de uso, retornando ao passo 3 quando o ator escolher outro ativo. |
+| | 7a - Caso nenhuma regra ativa consiga opinar sobre o ativo, o sistema exibe "Nenhuma regra ativa conseguiu opinar sobre TICKER. Verifique se há cotações importadas e fundamentos cadastrados." no quadro de pareceres e encerra o caso de uso. |
 
 **Quadro 11. Descrição do caso de uso UC011.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC011: Gerar recomendações |
 | **Atores** | Ator principal: Investidor (o Administrador também executa o caso de uso) |
 | **Descrição** | Caso de uso executado quando o usuário solicita ao sistema o parecer consolidado das regras de análise ativas, publicando uma recomendação de compra, venda ou neutralidade para os ativos cadastrados. |
 | **Pré-condições** | Usuário autenticado no sistema; existir ao menos um ativo cadastrado; existir ao menos uma regra de análise ativa; recomendável haver cotações importadas e fundamentos preenchidos. |
 | **Pós-condições** | Uma recomendação no estado Vigente publicada para cada ativo analisado, com pontuação, tipo, regras aplicadas e justificativa gravadas; as recomendações anteriores dos mesmos ativos passam ao estado Invalidada. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Recomendações" na navegação lateral. (ator) | |
 | | 2 - O sistema apresenta a lista de recomendações vigentes e o esclarecimento de que a pontuação varia de −1 (venda) a +1 (compra), de que entre −0,25 e +0,25 não há sinal claro e de que o parecer é apoio à decisão, não recomendação de investimento (classe Recomendacao). (sistema) |
 | 3 - O ator aciona a opção "Gerar para todos os ativos". (ator) | |
@@ -1343,47 +1179,31 @@ comportamento implementado no sistema Analisador B3.
 | | 11 - O sistema invalida a recomendação vigente anterior do mesmo ativo, conforme a Regra de Negócio RN017. (sistema) (11a) |
 | | 12 - O sistema transita a nova recomendação do estado Gerada para Vigente e grava ativoId, tipo, justificativa, regraAplicada, geradaEm, estado e pontuacao (classe Recomendacao). (sistema) (atributo) (12a) |
 | | 13 - O sistema repete os passos 5 a 12 para os demais ativos, atualiza a listagem de recomendações vigentes e informa "N recomendação(ões) publicada(s)." (sistema) |
-
-**Regras de negócio**
-
-- **RN015** — A pontuação de uma recomendação varia de −1 a +1; o valor consolidado é truncado a esse intervalo antes de ser gravado.
-- **RN016** — Pontuação maior ou igual a +0,25 é classificada como Compra; menor ou igual a −0,25 como Venda; entre os dois limiares, Neutro.
-- **RN017** — Ao publicar nova recomendação, a anterior do mesmo ativo é invalidada, de modo que nunca existam duas recomendações vigentes para o mesmo ativo.
-- **RN018** — Somente regras ativas participam da análise.
-- **RN019** — Uma regra sem dados suficientes se abstém, sem pontuar: a regra de cruzamento de médias se abstém quando não há dois pontos de cada média ou quando as médias estão praticamente coladas; a regra de força relativa se abstém quando o índice não pode ser calculado ou está na faixa neutra; a regra de dividend yield se abstém quando o indicador não está cadastrado; a regra de preço sobre lucro se abstém quando o ativo não é ação ou quando o indicador não é positivo.
-- **RNF006** — Toda recomendação deve exibir a regra e os números que a justificaram.
-- **REU004** — O sistema deve indicar claramente que as recomendações são apoio à decisão, não aconselhamento financeiro, conforme o texto exibido no passo 2.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário aciona a opção "Analisar agora" no painel de análise: o sistema executa os passos 5 a 12 apenas para o ativo selecionado naquela tela e redesenha o selo de recomendação e a justificativa correspondentes.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento o usuário altera as regras de análise na tela de administração: o sistema informa na barra de status "Regras alteradas: gere as recomendações novamente para aplicá-las.", sem alterar as recomendações já publicadas.
-
-**Fluxo de exceção**
-
-- **4a** - Caso não exista nenhum ativo cadastrado, nenhuma recomendação é publicada e o sistema exibe "Nenhuma recomendação foi gerada. Verifique se há ativos cadastrados:" seguido do detalhamento do último erro registrado, encerrando o caso de uso.
-- **5a** - Caso o ativo tenha sido removido do cadastro durante o processamento, o sistema registra "Ativo não encontrado no cadastro.", descarta o ativo e retorna ao passo 5 para o próximo ativo da lista.
-- **7a** - Caso nenhuma regra ativa consiga opinar sobre o ativo, o sistema atribui pontuação 0,00, tipo Neutro, regra aplicada "Nenhuma regra aplicável" e a justificativa "Nenhuma das N regras ativas pôde opinar sobre TICKER. Verifique se o ativo possui histórico de cotações importado e fundamentos cadastrados.", prosseguindo no passo 11.
-- **11a** - Caso a invalidação da recomendação anterior falhe, o sistema registra a mensagem devolvida pelo banco de dados, não publica a nova recomendação — para não deixar duas vigentes para o mesmo ativo — e retorna ao passo 5 para o próximo ativo.
-- **12a** - Caso a transição de estado seja recusada, o sistema exibe "Não foi possível publicar a recomendação gerada." e retorna ao passo 5; caso a gravação falhe, o sistema registra a mensagem devolvida pelo banco de dados e retorna ao passo 5.
+| **Regras de negócio** | RN015 — A pontuação de uma recomendação varia de −1 a +1; o valor consolidado é truncado a esse intervalo antes de ser gravado. |
+| | RN016 — Pontuação maior ou igual a +0,25 é classificada como Compra; menor ou igual a −0,25 como Venda; entre os dois limiares, Neutro. |
+| | RN017 — Ao publicar nova recomendação, a anterior do mesmo ativo é invalidada, de modo que nunca existam duas recomendações vigentes para o mesmo ativo. |
+| | RN018 — Somente regras ativas participam da análise. |
+| | RN019 — Uma regra sem dados suficientes se abstém, sem pontuar: a regra de cruzamento de médias se abstém quando não há dois pontos de cada média ou quando as médias estão praticamente coladas; a regra de força relativa se abstém quando o índice não pode ser calculado ou está na faixa neutra; a regra de dividend yield se abstém quando o indicador não está cadastrado; a regra de preço sobre lucro se abstém quando o ativo não é ação ou quando o indicador não é positivo. |
+| | RNF006 — Toda recomendação deve exibir a regra e os números que a justificaram. |
+| | REU004 — O sistema deve indicar claramente que as recomendações são apoio à decisão, não aconselhamento financeiro, conforme o texto exibido no passo 2. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário aciona a opção "Analisar agora" no painel de análise: o sistema executa os passos 5 a 12 apenas para o ativo selecionado naquela tela e redesenha o selo de recomendação e a justificativa correspondentes. |
+| **Fluxo alternativo 2** | * A qualquer momento o usuário altera as regras de análise na tela de administração: o sistema informa na barra de status "Regras alteradas: gere as recomendações novamente para aplicá-las.", sem alterar as recomendações já publicadas. |
+| **Fluxo de exceção** | 4a - Caso não exista nenhum ativo cadastrado, nenhuma recomendação é publicada e o sistema exibe "Nenhuma recomendação foi gerada. Verifique se há ativos cadastrados:" seguido do detalhamento do último erro registrado, encerrando o caso de uso. |
+| | 5a - Caso o ativo tenha sido removido do cadastro durante o processamento, o sistema registra "Ativo não encontrado no cadastro.", descarta o ativo e retorna ao passo 5 para o próximo ativo da lista. |
+| | 7a - Caso nenhuma regra ativa consiga opinar sobre o ativo, o sistema atribui pontuação 0,00, tipo Neutro, regra aplicada "Nenhuma regra aplicável" e a justificativa "Nenhuma das N regras ativas pôde opinar sobre TICKER. Verifique se o ativo possui histórico de cotações importado e fundamentos cadastrados.", prosseguindo no passo 11. |
+| | 11a - Caso a invalidação da recomendação anterior falhe, o sistema registra a mensagem devolvida pelo banco de dados, não publica a nova recomendação — para não deixar duas vigentes para o mesmo ativo — e retorna ao passo 5 para o próximo ativo. |
+| | 12a - Caso a transição de estado seja recusada, o sistema exibe "Não foi possível publicar a recomendação gerada." e retorna ao passo 5; caso a gravação falhe, o sistema registra a mensagem devolvida pelo banco de dados e retorna ao passo 5. |
 
 **Quadro 12. Descrição do caso de uso UC012.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC012: Visualizar recomendações vigentes |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o investidor necessita consultar as recomendações vigentes e a justificativa que as sustenta. |
 | **Pré-condições** | Usuário autenticado no sistema; existir ao menos uma recomendação vigente publicada pelo caso de uso UC011. |
 | **Pós-condições** | Recomendações vigentes e a justificativa da recomendação selecionada apresentadas ao investidor. Nenhuma informação é gravada. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Recomendações" na navegação lateral. (ator) | |
 | | 2 - O sistema recupera as recomendações no estado Vigente e apresenta, para cada uma, o ticker (classe Ativo), o tipo, a pontuacao, a data de geração e as regras aplicadas (classe Recomendacao), destacando Compra em verde, Venda em vermelho e Neutro em cinza. (sistema) (2a) (2b) |
 | 3 - O ator seleciona uma linha da tabela. (ator) | |
@@ -1391,38 +1211,25 @@ comportamento implementado no sistema Analisador B3.
 | | 5 - O sistema reavalia as regras ativas com os dados atuais e acrescenta ao quadro a seção "--- Reavaliação regra por regra (dados atuais) ---", com regraAplicada, tipo e pontuacao de cada parecer (classe Recomendacao). (sistema) |
 | 6 - O ator aciona a opção "Abrir no painel", ou dá duplo clique sobre a linha. (ator) | |
 | | 7 - O sistema apresenta o painel de análise já posicionado no ativo da recomendação selecionada (classe Ativo). (sistema) |
-
-**Regras de negócio**
-
-- **RN016** — Pontuação maior ou igual a +0,25 é Compra; menor ou igual a −0,25 é Venda; entre elas, Neutro — critério refletido nas cores da coluna de recomendação.
-- **RN018** — Somente regras ativas participam da reavaliação apresentada no passo 5.
-- **RNF006** — Toda recomendação deve exibir a regra e os números que a justificaram.
-- **REU002** — Ganho e perda devem ser distinguíveis por cor e por sinal numérico.
-- **REU004** — O sistema deve indicar claramente que as recomendações são apoio à decisão, não aconselhamento financeiro.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário aciona a opção "Gerar para todos os ativos": o sistema executa o caso de uso UC011 e retorna a este fluxo no passo 2, com a listagem atualizada.
-
-**Fluxo de exceção**
-
-- **2a** - Caso não exista nenhuma recomendação vigente, o sistema apresenta a tabela vazia e a mensagem "Nenhuma recomendação vigente. Use "Gerar para todos os ativos"." e encerra o caso de uso.
-- **2b** - Caso o ativo de uma recomendação tenha sido removido do cadastro, o sistema exibe "(removido)" na coluna Ativo daquela linha e prossegue no passo 3; a ação "Abrir no painel" não localiza o ativo e o painel permanece inalterado.
+| **Regras de negócio** | RN016 — Pontuação maior ou igual a +0,25 é Compra; menor ou igual a −0,25 é Venda; entre elas, Neutro — critério refletido nas cores da coluna de recomendação. |
+| | RN018 — Somente regras ativas participam da reavaliação apresentada no passo 5. |
+| | RNF006 — Toda recomendação deve exibir a regra e os números que a justificaram. |
+| | REU002 — Ganho e perda devem ser distinguíveis por cor e por sinal numérico. |
+| | REU004 — O sistema deve indicar claramente que as recomendações são apoio à decisão, não aconselhamento financeiro. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário aciona a opção "Gerar para todos os ativos": o sistema executa o caso de uso UC011 e retorna a este fluxo no passo 2, com a listagem atualizada. |
+| **Fluxo de exceção** | 2a - Caso não exista nenhuma recomendação vigente, o sistema apresenta a tabela vazia e a mensagem "Nenhuma recomendação vigente. Use "Gerar para todos os ativos"." e encerra o caso de uso. |
+| | 2b - Caso o ativo de uma recomendação tenha sido removido do cadastro, o sistema exibe "(removido)" na coluna Ativo daquela linha e prossegue no passo 3; a ação "Abrir no painel" não localiza o ativo e o painel permanece inalterado. |
 
 **Quadro 13. Descrição do caso de uso UC013.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC013: Comprar ativo |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o investidor necessita registrar na carteira a compra de um ativo, criando uma nova posição ou incorporando a compra a uma posição existente. |
 | **Pré-condições** | Usuário autenticado no sistema; existir ao menos um ativo cadastrado; o investidor possuir carteira principal, criada automaticamente no primeiro acesso à tela. |
 | **Pós-condições** | Posição criada com quantidade e preço médio informados, ou posição existente atualizada com a nova quantidade e o preço médio ponderado recalculado; tabela e resumo da carteira atualizados. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Minha carteira" na navegação lateral e aciona a opção "Comprar". (ator) | |
 | | 2 - O sistema localiza a carteira principal do usuário, criando-a com o nome "Carteira Principal" e a data corrente caso ainda não exista (classe Carteira). (sistema) (2a) |
 | | 3 - O sistema monta a lista de ativos disponíveis, com ticker e nomeEmpresa (classe Ativo), e o preço sugerido de cada um a partir do fechamento da última cotação importada (classe Cotacao). (sistema) (3a) |
@@ -1433,43 +1240,27 @@ comportamento implementado no sistema Analisador B3.
 | | 8 - Existindo posição, o sistema recalcula o precoMedio pela média ponderada entre o custo atual e o custo da nova compra, soma a quantidade e grava a posição atualizada (classe Posicao). (sistema) (atributo) (8a) |
 | | 9 - Não existindo posição, o sistema grava uma nova posição com carteiraId, ativoId, quantidade, precoMedio e compradaEm (classe Posicao). (sistema) (atributo) (9a) |
 | | 10 - O sistema atualiza a tabela e o resumo consolidado da carteira, conforme o caso de uso UC015. (sistema) |
-
-**Regras de negócio**
-
-- **RN001** — Todos os campos obrigatórios do formulário devem estar preenchidos.
-- **RN013** — A compra de ativo já existente recalcula o preço médio ponderado, somando o custo da posição atual ao custo da nova compra e dividindo pela quantidade total.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento o usuário troca o ativo selecionado no formulário: o sistema substitui o preço unitário pelo fechamento da última cotação do novo ativo e exibe "Preço sugerido: último fechamento importado." ou, quando não houver cotação, "Sem cotação importada: informe o preço pago."
-
-**Fluxo de exceção**
-
-- **2a** - Caso a carteira não possa ser localizada nem criada, o sistema exibe a mensagem de erro devolvida pelo serviço — "Usuário inválido." ou a mensagem do banco de dados — e encerra o caso de uso.
-- **3a** - Caso não exista nenhum ativo cadastrado, o sistema exibe "Nenhum ativo cadastrado para comprar." e encerra o caso de uso.
-- **6a** - Caso a carteira ou o ativo não estejam identificados, o sistema exibe "Selecione a carteira e o ativo." e retorna ao passo 4.
-- **6b** - Caso a quantidade informada não seja maior que zero, o sistema exibe "A quantidade comprada deve ser maior que zero."; caso o preço informado não seja maior que zero, exibe "O preço de compra deve ser maior que zero."; em ambos os casos retorna ao passo 4.
-- **8a** - Caso a incorporação à posição existente não possa ser concluída, o sistema exibe "Não foi possível incorporar a compra à posição existente." e retorna ao passo 4; caso a gravação falhe, exibe a mensagem devolvida pelo banco de dados e retorna ao passo 4.
-- **9a** - Caso a gravação da nova posição falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 4.
+| **Regras de negócio** | RN001 — Todos os campos obrigatórios do formulário devem estar preenchidos. |
+| | RN013 — A compra de ativo já existente recalcula o preço médio ponderado, somando o custo da posição atual ao custo da nova compra e dividindo pela quantidade total. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso. |
+| **Fluxo alternativo 2** | * A qualquer momento o usuário troca o ativo selecionado no formulário: o sistema substitui o preço unitário pelo fechamento da última cotação do novo ativo e exibe "Preço sugerido: último fechamento importado." ou, quando não houver cotação, "Sem cotação importada: informe o preço pago." |
+| **Fluxo de exceção** | 2a - Caso a carteira não possa ser localizada nem criada, o sistema exibe a mensagem de erro devolvida pelo serviço — "Usuário inválido." ou a mensagem do banco de dados — e encerra o caso de uso. |
+| | 3a - Caso não exista nenhum ativo cadastrado, o sistema exibe "Nenhum ativo cadastrado para comprar." e encerra o caso de uso. |
+| | 6a - Caso a carteira ou o ativo não estejam identificados, o sistema exibe "Selecione a carteira e o ativo." e retorna ao passo 4. |
+| | 6b - Caso a quantidade informada não seja maior que zero, o sistema exibe "A quantidade comprada deve ser maior que zero."; caso o preço informado não seja maior que zero, exibe "O preço de compra deve ser maior que zero."; em ambos os casos retorna ao passo 4. |
+| | 8a - Caso a incorporação à posição existente não possa ser concluída, o sistema exibe "Não foi possível incorporar a compra à posição existente." e retorna ao passo 4; caso a gravação falhe, exibe a mensagem devolvida pelo banco de dados e retorna ao passo 4. |
+| | 9a - Caso a gravação da nova posição falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 4. |
 
 **Quadro 14. Descrição do caso de uso UC014.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC014: Vender ativo |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o investidor necessita registrar a venda, total ou parcial, de uma posição existente na carteira. |
 | **Pré-condições** | Usuário autenticado no sistema; existir ao menos uma posição na carteira do investidor. |
 | **Pós-condições** | Quantidade da posição reduzida pela quantidade vendida, mantido o preço médio; posição removida da carteira quando a quantidade chegar a zero; tabela e resumo da carteira atualizados. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Minha carteira" na navegação lateral e aciona a opção "Vender". (ator) | |
 | | 2 - O sistema monta a lista de posições da carteira, com ticker e nomeEmpresa (classe Ativo), quantidade e preço atual de cada posição (classe Posicao). (sistema) (2a) |
 | | 3 - O sistema apresenta o formulário de venda com os campos: ativo (classe Ativo) e quantidade (classe Posicao), limitando a quantidade máxima à posição existente e exibindo "Posição atual: N unidade(s)." (sistema) |
@@ -1478,44 +1269,28 @@ comportamento implementado no sistema Analisador B3.
 | | 6 - O sistema subtrai a quantidade vendida da quantidade da posição, mantendo o precoMedio inalterado (classe Posicao). (sistema) (atributo) (6a) |
 | | 7 - Estando a posição zerada, o sistema a remove da carteira, conforme a Regra de Negócio RN014; caso contrário, grava a posição com a nova quantidade (classe Posicao). (sistema) (atributo) (7a) |
 | | 8 - O sistema atualiza a tabela e o resumo consolidado da carteira, conforme o caso de uso UC015. (sistema) |
-
-**Regras de negócio**
-
-- **RN001** — Todos os campos obrigatórios do formulário devem estar preenchidos.
-- **RN012** — A quantidade vendida não pode exceder a posição existente.
-- **RN014** — Posição zerada é removida da carteira.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento o usuário troca a posição selecionada no formulário: o sistema reajusta o limite máximo de quantidade e atualiza o texto "Posição atual: N unidade(s)."
-
-**Fluxo de exceção**
-
-- **2a** - Caso a carteira não possua nenhuma posição, o sistema exibe "Não há posições na carteira." e encerra o caso de uso.
-- **5a** - Caso a quantidade informada não seja maior que zero, o sistema exibe "A quantidade vendida deve ser maior que zero." e retorna ao passo 3.
-- **5b** - Caso a posição escolhida não exista mais na carteira, o sistema exibe "Não há posição desse ativo na carteira." e retorna ao passo 3.
-- **5c** - Caso a quantidade informada exceda a posição existente, o sistema exibe "Você possui apenas N unidade(s); não é possível vender M." e retorna ao passo 3.
-- **6a** - Caso a baixa da quantidade não possa ser concluída, o sistema exibe "Não foi possível registrar a venda." e retorna ao passo 3.
-- **7a** - Caso a remoção ou a gravação da posição falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 3.
+| **Regras de negócio** | RN001 — Todos os campos obrigatórios do formulário devem estar preenchidos. |
+| | RN012 — A quantidade vendida não pode exceder a posição existente. |
+| | RN014 — Posição zerada é removida da carteira. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso. |
+| **Fluxo alternativo 2** | * A qualquer momento o usuário troca a posição selecionada no formulário: o sistema reajusta o limite máximo de quantidade e atualiza o texto "Posição atual: N unidade(s)." |
+| **Fluxo de exceção** | 2a - Caso a carteira não possua nenhuma posição, o sistema exibe "Não há posições na carteira." e encerra o caso de uso. |
+| | 5a - Caso a quantidade informada não seja maior que zero, o sistema exibe "A quantidade vendida deve ser maior que zero." e retorna ao passo 3. |
+| | 5b - Caso a posição escolhida não exista mais na carteira, o sistema exibe "Não há posição desse ativo na carteira." e retorna ao passo 3. |
+| | 5c - Caso a quantidade informada exceda a posição existente, o sistema exibe "Você possui apenas N unidade(s); não é possível vender M." e retorna ao passo 3. |
+| | 6a - Caso a baixa da quantidade não possa ser concluída, o sistema exibe "Não foi possível registrar a venda." e retorna ao passo 3. |
+| | 7a - Caso a remoção ou a gravação da posição falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 3. |
 
 **Quadro 15. Descrição do caso de uso UC015.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC015: Visualizar resultado da carteira |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o investidor necessita acompanhar o valor investido, o valor atual e o resultado de cada posição e do total da carteira. |
 | **Pré-condições** | Usuário autenticado no sistema; recomendável haver posições registradas e cotações importadas para os ativos da carteira. |
 | **Pós-condições** | Posições e resumo consolidado da carteira apresentados ao investidor. Nenhuma informação é gravada, exceto a criação automática da carteira principal no primeiro acesso. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Minha carteira" na navegação lateral. (ator) | |
 | | 2 - O sistema localiza a carteira principal do usuário pelo usuarioId; não a encontrando, grava uma nova carteira com nome "Carteira Principal" e criadaEm igual à data corrente (classe Carteira). (sistema) (atributo) (2a) |
 | | 3 - O sistema recupera as posições da carteira, com quantidade, precoMedio e o custo total de cada uma (classe Posicao). (sistema) |
@@ -1523,43 +1298,27 @@ comportamento implementado no sistema Analisador B3.
 | | 5 - O sistema calcula, por posição, o valor investido, o valor atual, o lucro ou prejuízo e a rentabilidade percentual (classe Posicao). (sistema) |
 | | 6 - O sistema apresenta a tabela com ticker, nome do ativo, quantidade, preço médio, preço atual, valor investido, valor atual e resultado, destacando o resultado em verde quando positivo ou nulo e em vermelho quando negativo. (sistema) |
 | | 7 - O sistema soma o valor investido e o valor atual de todas as posições, calcula o resultado consolidado e a rentabilidade percentual da carteira e apresenta a linha "Investido: R$ X   Valor atual: R$ Y   Resultado: R$ Z (W%)" com a mesma distinção de cor. (sistema) (7a) |
-
-**Regras de negócio**
-
-- **RN013** — A compra de ativo já existente recalcula o preço médio ponderado, base do valor investido apresentado.
-- **RN014** — Posição zerada é removida da carteira e por isso não figura no resumo.
-- **RNF001** — O sistema deve funcionar sem conexão com a internet, usando as cotações já importadas — o preço atual provém sempre da última cotação importada.
-- **REU002** — Ganho e perda devem ser distinguíveis por cor e por sinal numérico.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário aciona a opção "Recarregar": o sistema repete os passos 3 a 7 com os dados mais recentes.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento o sistema conclui a importação de cotações: as telas dependentes são atualizadas e este caso de uso é reexecutado a partir do passo 3.
-
-**Fluxo de exceção**
-
-- **2a** - Caso a carteira não possa ser localizada nem criada, o sistema exibe a mensagem de erro devolvida pelo serviço — "Usuário inválido." ou a mensagem do banco de dados — e encerra o caso de uso.
-- **4a** - Caso o ativo de uma posição tenha sido removido do cadastro, o sistema exibe "(removido)" na coluna Ticker e prossegue no passo 5.
-- **4b** - Caso o ativo não possua cotação importada, o sistema exibe "sem cotação" na coluna Preço atual, adota o preço médio como preço atual e prossegue no passo 5, resultando em lucro ou prejuízo nulo para aquela posição.
-- **7a** - Caso a carteira não possua nenhuma posição, o sistema exibe "Carteira vazia. Use "Comprar" para registrar a primeira posição.", desabilita a opção "Vender" e encerra o caso de uso.
+| **Regras de negócio** | RN013 — A compra de ativo já existente recalcula o preço médio ponderado, base do valor investido apresentado. |
+| | RN014 — Posição zerada é removida da carteira e por isso não figura no resumo. |
+| | RNF001 — O sistema deve funcionar sem conexão com a internet, usando as cotações já importadas — o preço atual provém sempre da última cotação importada. |
+| | REU002 — Ganho e perda devem ser distinguíveis por cor e por sinal numérico. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário aciona a opção "Recarregar": o sistema repete os passos 3 a 7 com os dados mais recentes. |
+| **Fluxo alternativo 2** | * A qualquer momento o sistema conclui a importação de cotações: as telas dependentes são atualizadas e este caso de uso é reexecutado a partir do passo 3. |
+| **Fluxo de exceção** | 2a - Caso a carteira não possa ser localizada nem criada, o sistema exibe a mensagem de erro devolvida pelo serviço — "Usuário inválido." ou a mensagem do banco de dados — e encerra o caso de uso. |
+| | 4a - Caso o ativo de uma posição tenha sido removido do cadastro, o sistema exibe "(removido)" na coluna Ticker e prossegue no passo 5. |
+| | 4b - Caso o ativo não possua cotação importada, o sistema exibe "sem cotação" na coluna Preço atual, adota o preço médio como preço atual e prossegue no passo 5, resultando em lucro ou prejuízo nulo para aquela posição. |
+| | 7a - Caso a carteira não possua nenhuma posição, o sistema exibe "Carteira vazia. Use "Comprar" para registrar a primeira posição.", desabilita a opção "Vender" e encerra o caso de uso. |
 
 **Quadro 16. Descrição do caso de uso UC016.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC016: Cadastrar alerta |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o investidor necessita monitorar uma condição de preço ou de variação diária sobre um ativo, para ser notificado quando ela for satisfeita. |
 | **Pré-condições** | Usuário autenticado no sistema; existir ao menos um ativo cadastrado. |
 | **Pós-condições** | Alerta gravado no estado Ativo, vinculado ao usuário e ao ativo, com a condição e o valor de referência informados, passando a ser avaliado pelo caso de uso UC017. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Alertas" na navegação lateral e aciona a opção "Novo alerta". (ator) | |
 | | 2 - O sistema monta a lista de ativos disponíveis, com ticker e nomeEmpresa (classe Ativo), e o fechamento da última cotação importada de cada um (classe Cotacao). (sistema) (2a) |
 | | 3 - O sistema apresenta o formulário com os campos: ativo (classe Ativo), condicao (classe Alerta) — com as opções "Preço acima de", "Preço abaixo de" e "Variação diária acima de" — e valorReferencia (classe Alerta). (sistema) |
@@ -1568,47 +1327,28 @@ comportamento implementado no sistema Analisador B3.
 | | 6 - O sistema valida as informações conforme as Regras de Negócio RN001 e RN022. (sistema) (6a) (6b) |
 | | 7 - O sistema grava o alerta com usuarioId, ativoId, condicao, valorReferencia, estado igual a Ativo e criadoEm igual à data corrente (classe Alerta). (sistema) (atributo) (7a) |
 | | 8 - O sistema atualiza a listagem de alertas e informa "Alerta criado e em monitoramento." (sistema) |
-
-**Regras de negócio**
-
-- **RN001** — Todos os campos obrigatórios do formulário devem estar preenchidos.
-- **RN020** — O alerta só dispara quando a condição é satisfeita pela última cotação; o alerta recém-criado nasce no estado Ativo, apenas monitorando.
-- **RN022** — O valor de referência do alerta deve ser maior que zero.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento o usuário troca o ativo ou a condição no formulário: o sistema recalcula a sugestão do valor de referência e ajusta a apresentação do campo, exibindo o prefixo "R$ " para as condições de preço e o sufixo " %" para a condição de variação.
-
-**Fluxo alternativo 3**
-
-* A qualquer momento o usuário seleciona um alerta na listagem e aciona "Remover": o sistema solicita a confirmação "Remover definitivamente o alerta selecionado?" e, confirmada, exclui o alerta e atualiza a listagem; recusada, mantém o alerta e encerra o caso de uso.
-
-**Fluxo de exceção**
-
-- **2a** - Caso não exista nenhum ativo cadastrado, o sistema exibe "Cadastre um ativo antes de criar alertas." e encerra o caso de uso.
-- **4a** - Caso o ativo escolhido não possua cotações importadas, o sistema exibe "Este ativo ainda não tem cotações importadas: o alerta só será avaliado depois da importação." e prossegue no passo 5.
-- **6a** - Caso o ativo do alerta não esteja identificado, o sistema exibe "Selecione o ativo do alerta." e retorna ao passo 3; caso o ativo não seja localizado no cadastro, exibe "Ativo não encontrado no cadastro." e retorna ao passo 3.
-- **6b** - Caso o valor de referência não seja maior que zero, o sistema exibe "O valor de referência deve ser maior que zero." e retorna ao passo 3.
-- **7a** - Caso a gravação do alerta falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 3.
+| **Regras de negócio** | RN001 — Todos os campos obrigatórios do formulário devem estar preenchidos. |
+| | RN020 — O alerta só dispara quando a condição é satisfeita pela última cotação; o alerta recém-criado nasce no estado Ativo, apenas monitorando. |
+| | RN022 — O valor de referência do alerta deve ser maior que zero. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona cancelar: o sistema descarta as informações digitadas e encerra o caso de uso. |
+| **Fluxo alternativo 2** | * A qualquer momento o usuário troca o ativo ou a condição no formulário: o sistema recalcula a sugestão do valor de referência e ajusta a apresentação do campo, exibindo o prefixo "R$ " para as condições de preço e o sufixo " %" para a condição de variação. |
+| **Fluxo alternativo 3** | * A qualquer momento o usuário seleciona um alerta na listagem e aciona "Remover": o sistema solicita a confirmação "Remover definitivamente o alerta selecionado?" e, confirmada, exclui o alerta e atualiza a listagem; recusada, mantém o alerta e encerra o caso de uso. |
+| **Fluxo de exceção** | 2a - Caso não exista nenhum ativo cadastrado, o sistema exibe "Cadastre um ativo antes de criar alertas." e encerra o caso de uso. |
+| | 4a - Caso o ativo escolhido não possua cotações importadas, o sistema exibe "Este ativo ainda não tem cotações importadas: o alerta só será avaliado depois da importação." e prossegue no passo 5. |
+| | 6a - Caso o ativo do alerta não esteja identificado, o sistema exibe "Selecione o ativo do alerta." e retorna ao passo 3; caso o ativo não seja localizado no cadastro, exibe "Ativo não encontrado no cadastro." e retorna ao passo 3. |
+| | 6b - Caso o valor de referência não seja maior que zero, o sistema exibe "O valor de referência deve ser maior que zero." e retorna ao passo 3. |
+| | 7a - Caso a gravação do alerta falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 3. |
 
 **Quadro 17. Descrição do caso de uso UC017.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC017: Avaliar e disparar alertas |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o sistema confronta os alertas em monitoramento com a última cotação importada de cada ativo, dispara os que tiveram a condição satisfeita e notifica os observadores registrados. |
 | **Pré-condições** | Usuário autenticado no sistema; existir ao menos um alerta no estado Ativo; existir cotação importada para o ativo monitorado. |
 | **Pós-condições** | Alertas com condição satisfeita transitados do estado Ativo para Disparado, com a data e a hora do disparo gravadas; observadores notificados e notificação apresentada na barra de status; alertas não satisfeitos permanecem no estado Ativo. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Alertas" na navegação lateral e aciona a opção "Avaliar agora". (ator) | |
 | | 2 - O sistema recupera os alertas do usuário que estão no estado Ativo, com ativoId, condicao e valorReferencia (classe Alerta). (sistema) (2a) |
 | | 3 - Para cada alerta monitorado, o sistema recupera a última cotação importada do ativo (classe Cotacao). (sistema) (3a) |
@@ -1620,66 +1360,41 @@ comportamento implementado no sistema Analisador B3.
 | | 9 - A janela principal, na condição de observador concreto, apresenta na barra de status, por 15 segundos, a mensagem "Alerta disparado: TICKER - CONDIÇÃO (valor observado: X)." (sistema) (classe Ativo) (classe Alerta) |
 | | 10 - O sistema repete os passos 3 a 9 para os demais alertas monitorados. (sistema) |
 | | 11 - O sistema atualiza a listagem de alertas, com o novo estado e a data e hora do disparo, e informa "N alerta(s) disparado(s)." (sistema) (10a) |
-
-**Regras de negócio**
-
-- **RN020** — O alerta só dispara quando a condição é satisfeita pela última cotação: o valor observado deve ser maior que o valor de referência na condição "Preço acima de", menor na condição "Preço abaixo de", e maior em módulo na condição "Variação diária acima de", de modo que uma queda expressiva também satisfaça a condição de variação.
-- **RN021** — Somente alerta já disparado pode ser arquivado; o ciclo de vida da classe Alerta é Ativo → Disparado → Arquivado, e a transição para Disparado só é aceita a partir do estado Ativo.
-- **RNF001** — O sistema deve funcionar sem conexão com a internet, usando as cotações já importadas: a avaliação usa sempre a última cotação existente na base.
-- **RNF007** — O sistema deve responder às interações da interface em menos de 2 segundos com 5 anos de histórico.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário conclui o login e a janela principal é apresentada: 400 milissegundos após a exibição o sistema executa automaticamente os passos 2 a 10, atualiza a tela de alertas e, não havendo disparo, apresenta "Nenhum alerta pendente." na barra de status.
-
-**Fluxo alternativo 2**
-
-* A qualquer momento a janela principal é encerrada: o sistema remove a janela da lista de observadores, de modo que nenhuma notificação seja enviada a uma janela em destruição.
-
-**Fluxo de exceção**
-
-- **2a** - Caso o usuário não possua alertas no estado Ativo, nenhuma condição é avaliada e o sistema exibe "Nenhum alerta atingiu a condição nesta avaliação.", encerrando o caso de uso.
-- **3a** - Caso o ativo do alerta não possua cotação importada, o alerta permanece no estado Ativo, em monitoramento, e o sistema retorna ao passo 3 para o próximo alerta.
-- **5a** - Caso a condição não seja satisfeita pelo valor observado, o alerta permanece no estado Ativo e o sistema retorna ao passo 3 para o próximo alerta.
-- **6a** - Caso o alerta não esteja no estado Ativo no momento da transição, a máquina de estados recusa o disparo, nenhuma alteração é gravada e o sistema retorna ao passo 3 para o próximo alerta.
-- **7a** - Caso a gravação do alerta disparado falhe, o sistema registra a mensagem devolvida pelo banco de dados, não contabiliza o disparo nem notifica os observadores, e retorna ao passo 3 para o próximo alerta.
-- **8a** - Caso o ativo do alerta não seja localizado no cadastro, o disparo permanece gravado, porém nenhuma notificação é enviada, e o sistema retorna ao passo 3 para o próximo alerta.
-- **10a** - Caso nenhum alerta tenha sido disparado na avaliação, o sistema exibe "Nenhum alerta atingiu a condição nesta avaliação." em lugar da contagem de disparos.
+| **Regras de negócio** | RN020 — O alerta só dispara quando a condição é satisfeita pela última cotação: o valor observado deve ser maior que o valor de referência na condição "Preço acima de", menor na condição "Preço abaixo de", e maior em módulo na condição "Variação diária acima de", de modo que uma queda expressiva também satisfaça a condição de variação. |
+| | RN021 — Somente alerta já disparado pode ser arquivado; o ciclo de vida da classe Alerta é Ativo → Disparado → Arquivado, e a transição para Disparado só é aceita a partir do estado Ativo. |
+| | RNF001 — O sistema deve funcionar sem conexão com a internet, usando as cotações já importadas: a avaliação usa sempre a última cotação existente na base. |
+| | RNF007 — O sistema deve responder às interações da interface em menos de 2 segundos com 5 anos de histórico. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário conclui o login e a janela principal é apresentada: 400 milissegundos após a exibição o sistema executa automaticamente os passos 2 a 10, atualiza a tela de alertas e, não havendo disparo, apresenta "Nenhum alerta pendente." na barra de status. |
+| **Fluxo alternativo 2** | * A qualquer momento a janela principal é encerrada: o sistema remove a janela da lista de observadores, de modo que nenhuma notificação seja enviada a uma janela em destruição. |
+| **Fluxo de exceção** | 2a - Caso o usuário não possua alertas no estado Ativo, nenhuma condição é avaliada e o sistema exibe "Nenhum alerta atingiu a condição nesta avaliação.", encerrando o caso de uso. |
+| | 3a - Caso o ativo do alerta não possua cotação importada, o alerta permanece no estado Ativo, em monitoramento, e o sistema retorna ao passo 3 para o próximo alerta. |
+| | 5a - Caso a condição não seja satisfeita pelo valor observado, o alerta permanece no estado Ativo e o sistema retorna ao passo 3 para o próximo alerta. |
+| | 6a - Caso o alerta não esteja no estado Ativo no momento da transição, a máquina de estados recusa o disparo, nenhuma alteração é gravada e o sistema retorna ao passo 3 para o próximo alerta. |
+| | 7a - Caso a gravação do alerta disparado falhe, o sistema registra a mensagem devolvida pelo banco de dados, não contabiliza o disparo nem notifica os observadores, e retorna ao passo 3 para o próximo alerta. |
+| | 8a - Caso o ativo do alerta não seja localizado no cadastro, o disparo permanece gravado, porém nenhuma notificação é enviada, e o sistema retorna ao passo 3 para o próximo alerta. |
+| | 10a - Caso nenhum alerta tenha sido disparado na avaliação, o sistema exibe "Nenhum alerta atingiu a condição nesta avaliação." em lugar da contagem de disparos. |
 
 **Quadro 18. Descrição do caso de uso UC018.**
 
 | | |
-|---|---|
+|----------------------|--------------------------------------------|
 | **Nome** | UC018: Arquivar alerta |
 | **Atores** | Ator principal: Investidor |
 | **Descrição** | Caso de uso executado quando o investidor necessita retirar do acompanhamento corrente um alerta que já foi disparado, preservando o seu registro histórico. |
 | **Pré-condições** | Usuário autenticado no sistema; existir ao menos um alerta do investidor no estado Disparado. |
 | **Pós-condições** | Alerta transitado do estado Disparado para Arquivado, mantidos a condição, o valor de referência e a data e hora do disparo; listagem de alertas atualizada. |
-
-**Fluxo básico**
-
-| Ações dos atores | Ações do sistema |
-|---|---|
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
 | 1 - O ator (investidor) seleciona a opção "Alertas" na navegação lateral. (ator) | |
 | | 2 - O sistema apresenta os alertas do usuário com ticker (classe Ativo), descrição da condicao e do valorReferencia, estado, criadoEm e disparadoEm (classe Alerta), além do fechamento e da data da última cotação do ativo (classe Cotacao), destacando o estado Ativo em verde e o estado Disparado em laranja. (sistema) |
 | 3 - O ator seleciona na tabela o alerta já disparado e aciona a opção "Arquivar". (ator) | |
 | | 4 - O sistema valida a transição conforme a Regra de Negócio RN021. (sistema) (4a) (4b) |
 | | 5 - O sistema altera o estado do alerta para Arquivado e grava a alteração (classe Alerta). (sistema) (atributo) (5a) |
 | | 6 - O sistema atualiza a listagem e informa "Alerta arquivado." (sistema) |
-
-**Regras de negócio**
-
-- **RN021** — Somente alerta já disparado pode ser arquivado: a transição para Arquivado é aceita apenas a partir do estado Disparado, conforme o ciclo de vida Ativo → Disparado → Arquivado da classe Alerta.
-
-**Fluxo alternativo 1**
-
-* A qualquer momento o usuário seleciona o alerta e aciona "Remover": o sistema solicita a confirmação "Remover definitivamente o alerta selecionado?" e, confirmada, exclui o alerta em lugar de arquivá-lo, encerrando este caso de uso.
-
-**Fluxo de exceção**
-
-- **4a** - Caso o alerta não seja localizado, o sistema exibe "Alerta não encontrado." em vermelho na área de mensagens e retorna ao passo 2.
-- **4b** - Caso o alerta esteja no estado Ativo ou Arquivado, o sistema recusa a transição e exibe "Somente alertas já disparados podem ser arquivados (estado atual: ESTADO)." em vermelho, retornando ao passo 2.
-- **5a** - Caso a gravação do alerta arquivado falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 2.
+| **Regras de negócio** | RN021 — Somente alerta já disparado pode ser arquivado: a transição para Arquivado é aceita apenas a partir do estado Disparado, conforme o ciclo de vida Ativo → Disparado → Arquivado da classe Alerta. |
+| **Fluxo alternativo 1** | * A qualquer momento o usuário seleciona o alerta e aciona "Remover": o sistema solicita a confirmação "Remover definitivamente o alerta selecionado?" e, confirmada, exclui o alerta em lugar de arquivá-lo, encerrando este caso de uso. |
+| **Fluxo de exceção** | 4a - Caso o alerta não seja localizado, o sistema exibe "Alerta não encontrado." em vermelho na área de mensagens e retorna ao passo 2. |
+| | 4b - Caso o alerta esteja no estado Ativo ou Arquivado, o sistema recusa a transição e exibe "Somente alertas já disparados podem ser arquivados (estado atual: ESTADO)." em vermelho, retornando ao passo 2. |
+| | 5a - Caso a gravação do alerta arquivado falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 2. |
 
 ### Diagrama de Classes
 
@@ -1754,41 +1469,38 @@ superclasse `Ativo`, acrescentando os seus atributos próprios. O quadro da clas
 `Ativo` é apresentado apenas a título de documentação da raiz da hierarquia, uma vez que
 essa classe não é instanciada diretamente pelo sistema.
 
----
 
 **Quadro 19. Dicionário de informações da classe Usuario.**
 
 *Usuario: identifica quem acessa o sistema, define o seu perfil de acesso e é o proprietário das carteiras e dos alertas.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único do usuário, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo: 1 a 9.223.372.036.854.775.807 |
 | m_nome | Nome completo do usuário | 60 | Alfanumérico (QString) | 1{X}60 | Contínuo |
 | m_email | Endereço de correio eletrônico, chave natural usada no login | 80 | Alfanumérico (QString) | 1{X}80 | Contínuo, no padrão `usuario@dominio.ext` |
 | m_senhaHash | Resumo criptográfico SHA-256 do sal concatenado à senha; a senha em texto puro nunca é armazenada | 64 | Alfanumérico (QString) | {X}64 | Contínuo: dígitos hexadecimais de 0 a f |
 | m_papel | Perfil de acesso do usuário no sistema | 4 | Enumerado (PapelUsuario) | {A}13 | Discreto: Investidor = consulta análises, mantém carteira e alertas; Administrador = também mantém ativos, importa cotações, configura regras e gerencia usuários |
 
----
 
 **Quadro 20. Dicionário de informações da classe Ativo (abstrata).**
 
 *Ativo: raiz abstrata da hierarquia de ativos negociados na B3; concentra os dados de identificação comuns a ações e a fundos imobiliários.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único do ativo, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ticker | Código de negociação do ativo na bolsa | 6 | Alfanumérico (QString) | 4{X}6 | Contínuo: de 4 a 6 caracteres alfanuméricos, único no sistema (RN005) |
 | m_nomeEmpresa | Razão social ou nome de pregão do emissor do ativo | 80 | Alfanumérico (QString) | 1{X}80 | Contínuo |
 | m_setor | Setor econômico de atuação do emissor | 40 | Alfanumérico (QString) | {X}40 | Contínuo |
 
----
 
 **Quadro 21. Dicionário de informações da classe Acao.**
 
 *Acao: ação negociada na B3; especializa Ativo acrescentando os fundamentos Preço/Lucro, Dividend Yield e Valor de Mercado.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único do ativo, herdado de Ativo | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ticker | Código de negociação do ativo na bolsa, herdado de Ativo | 6 | Alfanumérico (QString) | 4{X}6 | Contínuo: de 4 a 6 caracteres alfanuméricos, único no sistema |
 | m_nomeEmpresa | Razão social da companhia emissora, herdado de Ativo | 80 | Alfanumérico (QString) | 1{X}80 | Contínuo |
@@ -1799,14 +1511,13 @@ essa classe não é instanciada diretamente pelo sistema.
 | PRECO_LUCRO_REFERENCIA | Constante de classe: índice Preço/Lucro de referência (10,0) acima do qual a pontuação fundamentalista é reduzida à metade no cálculo de indiceValor() | 8 | Numérico (double, constante) | {9}4,99 | Contínuo: valor fixo 10,00 |
 | DIVIDEND_YIELD_MAXIMO | Constante de classe: Dividend Yield (8,0%) que já garante pontuação máxima no critério de proventos | 8 | Numérico (double, constante) | {9}3,99 | Contínuo: valor fixo 8,00 |
 
----
 
 **Quadro 22. Dicionário de informações da classe FundoImobiliario.**
 
 *FundoImobiliario: fundo de investimento imobiliário negociado na B3; especializa Ativo acrescentando Dividend Yield, Valor Patrimonial por Cota e segmento de atuação.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único do ativo, herdado de Ativo | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ticker | Código de negociação do fundo na bolsa, herdado de Ativo | 6 | Alfanumérico (QString) | 4{X}6 | Contínuo: de 4 a 6 caracteres alfanuméricos, único no sistema |
 | m_nomeEmpresa | Nome do fundo, herdado de Ativo | 80 | Alfanumérico (QString) | 1{X}80 | Contínuo |
@@ -1817,14 +1528,13 @@ essa classe não é instanciada diretamente pelo sistema.
 | DIVIDEND_YIELD_MAXIMO | Constante de classe: Dividend Yield (12,0%) que já garante pontuação máxima no critério de rendimentos | 8 | Numérico (double, constante) | {9}3,99 | Contínuo: valor fixo 12,00 |
 | VALOR_PATRIMONIAL_REFERENCIA | Constante de classe: valor patrimonial por cota de referência (R$ 200,00) para pontuação máxima de solidez | 8 | Numérico (double, constante) | {9}6,99 | Contínuo: valor fixo 200,00 |
 
----
 
 **Quadro 23. Dicionário de informações da classe Cotacao.**
 
 *Cotacao: cotação diária de um ativo no formato candle OHLCV (abertura, máxima, mínima, fechamento e volume); é a base de todos os cálculos técnicos do sistema.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único da cotação, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ativoId | Identificador do ativo a que a cotação pertence | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
 | m_data | Data do pregão a que se refere a cotação | 10 | Data (QDate) | dd/mm/aaaa | Contínuo: 01/01/1990 até a data corrente |
@@ -1834,40 +1544,37 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_fechamento | Preço do último negócio do pregão, em reais; é o valor usado nos indicadores técnicos | 8 | Numérico (double) | {9}9,99 | Contínuo: maior que R$ 0,00 |
 | m_volume | Quantidade total de títulos negociados no pregão | 8 | Numérico (qint64) | {9}18 | Contínuo: maior ou igual a zero |
 
----
 
 **Quadro 24. Dicionário de informações da classe Indicador.**
 
 *Indicador: valor de um indicador técnico calculado para uma data específica da série histórica, produzido pela CalculadoraIndicadores.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | nome | Nome do indicador, formado pela sigla e pelo período utilizado | 20 | Alfanumérico (QString) | 1{X}20 | Discreto: MMS n = média móvel simples de n períodos; MME n = média móvel exponencial de n períodos; RSI n = índice de força relativa de n períodos |
 | data | Data do pregão a que o valor calculado se refere | 10 | Data (QDate) | dd/mm/aaaa | Contínuo |
 | valor | Valor numérico calculado do indicador na data | 8 | Numérico (double) | {9}9,99 | Contínuo: preços em reais para as médias móveis; 0,00 a 100,00 para o RSI |
 
----
 
 **Quadro 25. Dicionário de informações da classe Carteira.**
 
 *Carteira: carteira de investimentos de um usuário; agrega, por composição, as posições dos ativos que ele possui.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único da carteira, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_usuarioId | Identificador do usuário proprietário da carteira | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Usuario |
 | m_nome | Nome atribuído à carteira pelo usuário | 40 | Alfanumérico (QString) | 1{X}40 | Contínuo |
 | m_criadaEm | Data de criação da carteira | 10 | Data (QDate) | dd/mm/aaaa | Contínuo |
 | m_posicoes | Coleção das posições que compõem a carteira, uma por ativo distinto | Variável | Objeto (Posicao) | — | Discreto: instâncias válidas da classe Posicao vinculadas a esta carteira |
 
----
 
 **Quadro 26. Dicionário de informações da classe Posicao.**
 
 *Posicao: posição de um ativo dentro de uma carteira, com a quantidade detida, o preço médio ponderado de aquisição e a data da compra.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único da posição, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_carteiraId | Identificador da carteira a que a posição pertence | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Carteira |
 | m_ativoId | Identificador do ativo detido na posição | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
@@ -1875,14 +1582,13 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_precoMedio | Preço médio ponderado de aquisição do ativo, em reais, recalculado a cada nova compra (RN013) | 8 | Numérico (double) | {9}9,99 | Contínuo: maior que R$ 0,00 |
 | m_compradaEm | Data da compra que originou a posição | 10 | Data (QDate) | dd/mm/aaaa | Contínuo |
 
----
 
 **Quadro 27. Dicionário de informações da classe Alerta.**
 
 *Alerta: condição de preço ou de variação cadastrada por um usuário sobre um ativo, monitorada pelo sistema a cada nova cotação.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único do alerta, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_usuarioId | Identificador do usuário que cadastrou o alerta | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Usuario |
 | m_ativoId | Identificador do ativo monitorado pelo alerta | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
@@ -1892,14 +1598,13 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_criadoEm | Data de cadastro do alerta | 10 | Data (QDate) | dd/mm/aaaa | Contínuo |
 | m_disparadoEm | Data e hora do disparo do alerta; permanece nulo enquanto o alerta não dispara | 19 | Data e hora (QDateTime) | dd/mm/aaaa hh:mm:ss | Contínuo, admitindo valor nulo |
 
----
 
 **Quadro 28. Dicionário de informações da classe Recomendacao.**
 
 *Recomendacao: parecer de compra, venda ou neutralidade gerado pelo MotorAnalise para um ativo, acompanhado da pontuação e da justificativa numérica que o sustentam.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único da recomendação, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ativoId | Identificador do ativo a que a recomendação se refere | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
 | m_tipo | Tipo do parecer emitido | 4 | Enumerado (TipoRecomendacao) | {A}7 | Discreto: Compra = pontuação maior ou igual a +0,25; Venda = pontuação menor ou igual a −0,25; Neutro = pontuação entre os dois limiares (RN016) |
@@ -1910,28 +1615,26 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_pontuacao | Pontuação agregada das regras que opinaram: negativa indica venda, positiva indica compra e próxima de zero indica ausência de sinal claro | 8 | Numérico (double) | −9,99 a 9,99 | Contínuo: −1,00 a +1,00 (RN015) |
 | LIMIAR_DECISAO | Constante de classe: limiar de pontuação (0,25) que separa o parecer Neutro dos pareceres de Compra e de Venda | 8 | Numérico (double, constante) | 9,99 | Contínuo: valor fixo 0,25 |
 
----
 
 **Quadro 29. Dicionário de informações da classe RegraConfigurada.**
 
 *RegraConfigurada: configuração persistida de uma regra de análise; permite ligar, desligar e reparametrizar as estratégias do motor sem recompilar o sistema.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único da configuração, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_nomeRegra | Nome canônico da estratégia, que deve coincidir com o nome devolvido por RegraAnalise::nome() | 60 | Alfanumérico (QString) | 1{X}60 | Discreto: Cruzamento de Medias Moveis; Indice de Forca Relativa; Dividend Yield; Preco sobre Lucro |
 | m_ativa | Indica se a regra participa da análise; somente as regras ativas são executadas (RN018) | 1 | Lógico (bool) | [Sim \| Não] | Discreto: 1 = Sim, regra em uso; 0 = Não, regra desligada |
 | m_parametroPrincipal | Primeiro parâmetro da regra; o significado depende da estratégia: período da média curta, limite de sobrevenda, Dividend Yield mínimo ou Preço/Lucro atrativo | 8 | Numérico (double) | {9}4,99 | Contínuo: maior ou igual a zero |
 | m_parametroSecundario | Segundo parâmetro da regra: período da média longa, limite de sobrecompra, Dividend Yield excelente ou Preço/Lucro elevado | 8 | Numérico (double) | {9}4,99 | Contínuo: maior ou igual a zero |
 
----
 
 **Quadro 30. Dicionário de informações da classe Importacao.**
 
 *Importacao: registro de auditoria de uma carga de cotações a partir de arquivo CSV, com o resultado da validação e as contagens de linhas processadas.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_id | Identificador único da importação, gerado pelo banco de dados | 8 | Numérico (qint64) | 1{9} | Contínuo |
 | m_ativoId | Identificador do ativo cujas cotações foram importadas | 8 | Numérico (qint64) | 1{9} | Discreto: identificadores existentes na classe Ativo |
 | m_arquivo | Caminho completo do arquivo CSV processado | 255 | Alfanumérico (QString) | 1{X}255 | Contínuo |
@@ -1941,175 +1644,159 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_mensagemErro | Motivo da rejeição, indicando a linha e a causa do problema, em português (REU003) | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a importação é concluída com sucesso |
 | m_executadaEm | Data e hora em que a importação foi processada | 19 | Data e hora (QDateTime) | dd/mm/aaaa hh:mm:ss | Contínuo, admitindo valor nulo enquanto pendente |
 
----
 
 **Quadro 31. Dicionário de informações da interface RegraAnalise.**
 
 *RegraAnalise: interface do padrão de projeto Strategy; define o contrato que toda regra de análise deve cumprir para ser combinada pelo MotorAnalise. Por ser uma interface, não possui atributos, sendo descrita por suas operações.*
 
 | Método | Descrição | Retorno | Parâmetros | Domínio do retorno |
-|---|---|---|---|---|
+|------------|----------------------------|----------|----------------|----------------|
 | nome() | Nome canônico da regra; deve ser idêntico ao gravado em RegraConfigurada para que a fábrica do motor localize a estratégia | Alfanumérico (QString) | — | Discreto: Cruzamento de Medias Moveis; Indice de Forca Relativa; Dividend Yield; Preco sobre Lucro |
 | descricao() | Explicação do critério aplicado pela regra, exibida ao administrador na tela de configuração de regras | Alfanumérico (QString) | — | Contínuo: até 255 caracteres |
 | configurar() | Ajusta os parâmetros da estratégia com os valores lidos de RegraConfigurada | Sem retorno (void) | parametroPrincipal, parametroSecundario (double) | — |
 | avaliar() | Avalia o ativo diante da sua série histórica e devolve a recomendação justificada, ou nenhuma opinião quando os dados são insuficientes ou o critério não se aplica ao tipo do ativo (RN019) | Objeto opcional (Recomendacao) | ativo (Ativo), historico (coleção de Cotacao) | Discreto: instância de Recomendacao com pontuação de −1,00 a +1,00, ou ausência de parecer |
 
----
 
 **Quadro 32. Dicionário de informações da classe RegraCruzamentoMedias.**
 
 *RegraCruzamentoMedias: estratégia técnica que compara duas médias móveis; sinaliza compra quando a média curta cruza para cima da média longa e venda no cruzamento inverso.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_periodoCurto | Quantidade de pregões da média móvel curta, configurada pelo parâmetro principal da regra | 4 | Numérico (int) | {9}3 | Contínuo: 2 a 200 pregões; valor padrão 9 |
 | m_periodoLongo | Quantidade de pregões da média móvel longa, configurada pelo parâmetro secundário da regra | 4 | Numérico (int) | {9}3 | Contínuo: maior que m_periodoCurto, até 200 pregões; valor padrão 21 |
 
----
 
 **Quadro 33. Dicionário de informações da classe RegraRsi.**
 
 *RegraRsi: estratégia técnica baseada no Índice de Força Relativa de Wilder; indica compra em situação de sobrevenda e venda em situação de sobrecompra.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_limiteSobrevenda | Valor do RSI abaixo do qual o ativo é considerado descontado, gerando sinal de compra | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00; valor padrão 30,00 |
 | m_limiteSobrecompra | Valor do RSI acima do qual o ativo é considerado esticado, gerando sinal de venda | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00, maior que m_limiteSobrevenda; valor padrão 70,00 |
 | m_periodo | Quantidade de pregões usada no cálculo do RSI | 4 | Numérico (int) | {9}3 | Contínuo: 2 a 200 pregões; valor padrão 14 |
 
----
 
 **Quadro 34. Dicionário de informações da classe RegraDividendYield.**
 
 *RegraDividendYield: estratégia fundamentalista que avalia o percentual de proventos distribuídos; aplica-se tanto a ações quanto a fundos imobiliários, lendo o fundamento de forma polimórfica.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_dividendYieldMinimo | Dividend Yield a partir do qual o ativo passa a ser considerado atrativo | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00; valor padrão 6,00 |
 | m_dividendYieldExcelente | Dividend Yield a partir do qual o ativo recebe a pontuação máxima do critério | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00, maior que m_dividendYieldMinimo; valor padrão 10,00 |
 
----
 
 **Quadro 35. Dicionário de informações da classe RegraPrecoLucro.**
 
 *RegraPrecoLucro: estratégia fundamentalista que avalia o índice Preço/Lucro; aplica-se somente a ações e abstém-se de opinar quando o ativo é um fundo imobiliário.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_precoLucroAtrativo | Índice Preço/Lucro até o qual a ação é considerada barata, gerando sinal de compra | 8 | Numérico (double) | {9}4,99 | Contínuo: maior que 0,00; valor padrão 8,00 |
 | m_precoLucroElevado | Índice Preço/Lucro a partir do qual a ação é considerada cara, gerando sinal de venda | 8 | Numérico (double) | {9}4,99 | Contínuo: maior que m_precoLucroAtrativo; valor padrão 20,00 |
 
----
 
 **Quadro 36. Dicionário de informações da classe MotorAnalise.**
 
 *MotorAnalise: contexto do padrão Strategy; guarda as estratégias ativas, executa cada uma delas sobre o ativo e agrega os pareceres em uma única recomendação justificada.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_regras | Coleção das estratégias de análise registradas no motor, na ordem de execução; o motor assume a propriedade dos objetos | Variável | Objeto (RegraAnalise) | — | Discreto: instâncias de RegraCruzamentoMedias, RegraRsi, RegraDividendYield e RegraPrecoLucro correspondentes às regras ativas |
 
----
 
 **Quadro 37. Dicionário de informações da classe CalculadoraIndicadores.**
 
 *CalculadoraIndicadores: classe utilitária de cálculos técnicos sobre séries históricas ordenadas por data; todas as suas operações são estáticas, de modo que ela mantém apenas a constante de anualização.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | PREGOES_POR_ANO | Constante de classe: quantidade de pregões considerada em um ano (252), usada na anualização da volatilidade | 4 | Numérico (int, constante) | {9}3 | Contínuo: valor fixo 252 |
 
----
 
 **Quadro 38. Dicionário de informações da classe BancoDeDados.**
 
 *BancoDeDados: fachada única de acesso ao banco SQLite (padrão Singleton); abre a conexão, aplica as migrações versionadas e oferece controle explícito de transação às operações que precisam ser atômicas.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_conexao | Conexão aberta com o banco de dados, compartilhada por todos os repositórios | Variável | Objeto (QSqlDatabase) | — | Discreto: conexão aberta ou conexão inválida |
 | m_caminhoBanco | Caminho do arquivo de banco de dados em uso | 255 | Alfanumérico (QString) | 1{X}255 | Contínuo |
 | m_ultimoErro | Mensagem do último erro ocorrido na abertura, na migração ou no controle de transação | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando não há erro |
 | NOME_CONEXAO | Constante de classe: nome lógico da conexão Qt utilizada pela aplicação | 20 | Alfanumérico (QString, constante) | {X}20 | Discreto: valor fixo `analisador-b3` |
 
----
 
 **Quadro 39. Dicionário de informações da classe RepositorioUsuario.**
 
 *RepositorioUsuario: repositório da tabela usuario; converte objetos Usuario em linhas do banco e vice-versa, isolando o restante do sistema do SQL e utilizando sempre consultas parametrizadas.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações de gravação, remoção ou consulta de usuários | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
----
 
 **Quadro 40. Dicionário de informações da classe RepositorioAtivo.**
 
 *RepositorioAtivo: repositório da tabela ativo; grava e recupera a hierarquia Ativo, Acao e FundoImobiliario em uma única relação, usando a coluna tipo como discriminador e devolvendo a subclasse concreta correspondente.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre ativos, inclusive na verificação de unicidade do ticker | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
----
 
 **Quadro 41. Dicionário de informações da classe RepositorioCotacao.**
 
 *RepositorioCotacao: repositório da tabela cotacao; grava as séries históricas em lote de forma idempotente, apoiando-se no índice de unicidade por ativo e data, e devolve os históricos ordenados por data crescente.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na inserção em lote ou nas consultas de série histórica | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
----
 
 **Quadro 42. Dicionário de informações da classe RepositorioCarteira.**
 
 *RepositorioCarteira: repositório das tabelas carteira e posicao; por serem uma composição no domínio, toda carteira recuperada já vem com as suas posições carregadas, e a gravação de posição atualiza a existente em vez de duplicá-la.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre carteiras e posições | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
----
 
 **Quadro 43. Dicionário de informações da classe RepositorioAlerta.**
 
 *RepositorioAlerta: repositório da tabela alerta; preserva no banco os textos canônicos do estado e da condição, mantendo válida a máquina de estados do domínio.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre alertas | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
----
 
 **Quadro 44. Dicionário de informações da classe RepositorioRecomendacao.**
 
 *RepositorioRecomendacao: repositório da tabela recomendacao; guarda a saída do MotorAnalise e invalida as recomendações anteriores do ativo quando uma nova análise é publicada.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na gravação, na consulta ou na invalidação de recomendações | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
----
 
 **Quadro 45. Dicionário de informações da classe RepositorioRegra.**
 
 *RepositorioRegra: repositório da tabela regra_configurada; é a fonte dos parâmetros com que o MotorAnalise monta as estratégias, permitindo ligar, desligar e reparametrizar regras sem recompilar o sistema.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre as configurações de regras | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
----
 
 **Quadro 46. Dicionário de informações da classe RepositorioImportacao.**
 
 *RepositorioImportacao: repositório da tabela importacao; mantém o histórico de auditoria das cargas de arquivos CSV, com o estado final e as contagens de linhas de cada execução.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
-|---|---|---|---|---|---|
+|------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na gravação ou na consulta do histórico de importações | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 **Quadro 47. Dicionário de informações da classe ServicoAutenticacao.**
@@ -2662,6 +2349,9 @@ reutilizáveis de software orientado a objetos**. Porto Alegre: Bookman, 2000.
 
 GRENNING, J. **Planning Poker or how to avoid analysis paralysis while release
 planning**. Hawthorn Woods: Renaissance Software Consulting, 2002.
+
+INVESTING.COM. **Cotações e dados históricos — ações e fundos imobiliários da
+B3**. Disponível em: https://br.investing.com/. Acesso em: ago. 2026.
 
 KARNER, G. **Resource estimation for Objectory projects**. Kista: Objective Systems
 SF AB, 1993.
