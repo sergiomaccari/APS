@@ -85,3 +85,23 @@ o modelo `PlanodoProjeto.doc` do professor.
 
 > Spec aprovada — planejamento detalhado liberado. Ajustes de requisito passam por
 > atualização desta spec antes do código.
+
+## Extensão de escopo aprovada pelo Sergio (19/08/2026)
+
+1. **[RF020] Sincronização online de cotações** — botão na tela de importação
+   (Administrador) que busca, para cada ativo cadastrado, apenas o período
+   posterior à última cotação local e grava pela mesma via transacional da
+   importação. Papel **complementar**: a importação por CSV continua sendo o
+   caminho primário e o sistema segue integralmente funcional offline (RNF008).
+   Fonte de dados: ver ADR 0003.
+2. **[RF021] Backtesting das regras de análise** — a partir da tela de regras
+   (Administrador), reexecutar o motor em cada ponto do histórico e medir, por
+   regra e consolidado, o número de sinais, a taxa de acerto e o retorno médio
+   no horizonte configurável (padrão: 10 pregões).
+3. **Peso por regra** — `regra_configurada` ganha `peso` (> 0, padrão 1,0);
+   a pontuação final passa a ser média ponderada das regras que opinaram.
+
+Critérios de aceite adicionais: sincronizar sem internet exibe erro claro e não
+altera dados; sincronizar duas vezes seguidas não duplica nada; backtesting de
+ativo sem histórico suficiente informa a ausência em vez de falhar; documentos
+regenerados com UC019/UC020 (quadros, diagramas, dicionário e UCP atualizados).
