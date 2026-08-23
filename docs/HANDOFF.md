@@ -140,7 +140,7 @@ item concluído; nunca versionar `inicio.txt`, `APS/` nem material do
 `claude-automacoes`.
 
 **Toolchain (já instalada em 19/08):** gcc 12, CMake, Qt 6.4.2 (base + charts),
-`libqt6sql6-sqlite`; pandoc estático em `/tmp/pandoc/pandoc-3.10.2/bin/pandoc`
+`libqt6sql6-sqlite`; pandoc estático em `~/bin/pandoc` (persistente)
 (re-baixar se o /tmp for limpo: https://github.com/jgm/pandoc/releases).
 
 ## Fatos a não re-descobrir
