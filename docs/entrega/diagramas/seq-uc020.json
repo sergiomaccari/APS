@@ -1,0 +1,45 @@
+{
+  "tipo": "sequencia",
+  "moldura": "sd UC020",
+  "participantes": [
+    {"id": "u", "nome": ": Administrador", "ator": true},
+    {"id": "tela", "nome": ": TelaRegras"},
+    {"id": "dlg", "nome": ": DialogoBacktest"},
+    {"id": "repoAtivo", "nome": ": RepositorioAtivo"},
+    {"id": "repoRegra", "nome": ": RepositorioRegra"},
+    {"id": "repoCot", "nome": ": RepositorioCotacao"},
+    {"id": "bt", "nome": ": Backtester"},
+    {"id": "motor", "nome": ": MotorAnalise"}
+  ],
+  "mensagens": [
+    {"de": "u", "para": "tela", "rotulo": "1: clicar em \"Backtesting…\""},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: abrirBacktest()"},
+    {"de": "tela", "para": "dlg", "rotulo": "1.2: DialogoBacktest(contexto)"},
+    {"de": "dlg", "para": "repoAtivo", "rotulo": "1.2.1: listarTodos()"},
+    {"de": "repoAtivo", "para": "dlg", "rotulo": "ativos cadastrados", "retorno": true},
+    {"de": "tela", "para": "dlg", "rotulo": "1.3: exec()"},
+    {"de": "dlg", "para": "u", "rotulo": "formulário de backtesting", "retorno": true},
+
+    {"de": "u", "para": "dlg", "rotulo": "2: escolher o ativo e o horizonte"},
+    {"de": "u", "para": "dlg", "rotulo": "3: clicar em \"Executar backtesting\""},
+    {"de": "dlg", "para": "repoRegra", "rotulo": "3.1: listarAtivas()"},
+    {"de": "repoRegra", "para": "dlg", "rotulo": "regras ativas", "retorno": true},
+    {"de": "dlg", "para": "bt", "rotulo": "3.2: Backtester(regras)"},
+    {"de": "dlg", "para": "repoAtivo", "rotulo": "3.3: listarTodos()"},
+    {"de": "dlg", "para": "repoCot", "rotulo": "3.4: *[cada ativo do filtro] listarPorAtivo(id)"},
+    {"de": "repoCot", "para": "dlg", "rotulo": "histórico do ativo", "retorno": true},
+    {"de": "dlg", "para": "bt", "rotulo": "3.5: executar(ativo, historico, horizonte)"},
+    {"de": "bt", "para": "motor", "rotulo": "3.5.1: comRegrasPadrao(regras)"},
+    {"de": "bt", "para": "bt", "rotulo": "3.5.2: validar histórico mínimo"},
+    {"de": "bt", "para": "bt", "rotulo": "3.5.3: *[para cada pregão t] recorte = mid(0, t + 1)"},
+    {"de": "bt", "para": "motor", "rotulo": "3.5.4: analisar(ativo, recorte)"},
+    {"de": "motor", "para": "bt", "rotulo": "parecer consolidado", "retorno": true},
+    {"de": "bt", "para": "motor", "rotulo": "3.5.5: avaliarRegrasIndividualmente(ativo, recorte)"},
+    {"de": "motor", "para": "bt", "rotulo": "parecer de cada regra", "retorno": true},
+    {"de": "bt", "para": "bt", "rotulo": "3.5.6: contabilizar(tipo, retorno) (RN024)"},
+    {"de": "bt", "para": "dlg", "rotulo": "ResultadoBacktest", "retorno": true},
+    {"de": "dlg", "para": "dlg", "rotulo": "3.6: acrescentarResultado(resultado)"},
+    {"de": "dlg", "para": "dlg", "rotulo": "3.7: mostrarMensagem(resumo)"},
+    {"de": "dlg", "para": "u", "rotulo": "tabela com sinais, acertos, taxa de acerto e retorno médio", "retorno": true}
+  ]
+}

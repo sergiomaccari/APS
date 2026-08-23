@@ -81,3 +81,11 @@ Seguindo a convenção da disciplina, cada caso de uso possui Diagramas de Estad
 ![Figura {{F:est-uc018-telaalertas}}. Diagrama de Estados da classe TelaAlertas para o [UC018].](figuras/est-uc018-telaalertas.png)
 
 ![Figura {{F:est-uc018-repositorioalerta}}. Diagrama de Estados da classe RepositorioAlerta para o [UC018].](figuras/est-uc018-repositorioalerta.png)
+
+![Figura {{F:est-uc019-telaimportacao}}. Diagrama de Estados da classe TelaImportacao para o [UC019].](figuras/est-uc019-telaimportacao.png)
+
+![Figura {{F:est-uc019-servicosincronizacao}}. Diagrama de Estados da classe ServicoSincronizacao para o [UC019].](figuras/est-uc019-servicosincronizacao.png)
+
+![Figura {{F:est-uc020-dialogobacktest}}. Diagrama de Estados da classe DialogoBacktest para o [UC020].](figuras/est-uc020-dialogobacktest.png)
+
+![Figura {{F:est-uc020-backtester}}. Diagrama de Estados da classe Backtester para o [UC020].](figuras/est-uc020-backtester.png)

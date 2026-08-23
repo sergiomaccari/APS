@@ -204,6 +204,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ativa | Indica se a regra participa da análise; somente as regras ativas são executadas (RN018) | 1 | Lógico (bool) | [Sim \| Não] | Discreto: 1 = Sim, regra em uso; 0 = Não, regra desligada |
 | m_parametroPrincipal | Primeiro parâmetro da regra; o significado depende da estratégia: período da média curta, limite de sobrevenda, Dividend Yield mínimo ou Preço/Lucro atrativo | 8 | Numérico (double) | {9}4,99 | Contínuo: maior ou igual a zero |
 | m_parametroSecundario | Segundo parâmetro da regra: período da média longa, limite de sobrecompra, Dividend Yield excelente ou Preço/Lucro elevado | 8 | Numérico (double) | {9}4,99 | Contínuo: maior ou igual a zero |
+| m_peso | Peso da regra na média ponderada com que o MotorAnalise consolida os pareceres; deve ser maior que zero (RN025) | 8 | Numérico (double) | 9,9 | Contínuo: maior que 0,0, de 0,1 a 5,0 na tela de configuração; valor padrão 1,0 |
 
 ---
 
@@ -299,6 +300,49 @@ essa classe não é instanciada diretamente pelo sistema.
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
 |---|---|---|---|---|---|
 | PREGOES_POR_ANO | Constante de classe: quantidade de pregões considerada em um ano (252), usada na anualização da volatilidade | 4 | Numérico (int, constante) | {9}3 | Contínuo: valor fixo 252 |
+
+---
+
+**Quadro {{Q}}. Dicionário de informações da classe Backtester.**
+
+*Backtester: reexecuta o MotorAnalise em cada ponto da série histórica já importada, como se aquele pregão fosse o mais recente, e confere o parecer emitido contra o comportamento do preço nos pregões seguintes (RF021); é uma classe pura, que não conhece banco de dados nem interface gráfica.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+|---|---|---|---|---|---|
+| m_regras | Coleção das configurações de regras com que o motor é remontado a cada ponto do histórico avaliado | Variável | Objeto (RegraConfigurada) | — | Discreto: instâncias válidas da classe RegraConfigurada |
+| HORIZONTE_PADRAO | Constante de classe: quantidade de pregões à frente considerada para medir o resultado de um sinal (10) | 4 | Numérico (int, constante) | {9}2 | Contínuo: valor fixo 10 |
+| MINIMO_DE_PREGOES | Constante de classe: quantidade de pregões de histórico exigida antes do primeiro sinal (30), para que as médias móveis e o RSI tenham série suficiente para se formar | 4 | Numérico (int, constante) | {9}2 | Contínuo: valor fixo 30 |
+| NOME_CONSOLIDADO | Constante de classe: rótulo da linha do parecer consolidado nos resultados apurados | 30 | Alfanumérico (QString, constante) | {X}30 | Discreto: valor fixo `Consolidado (média ponderada)` |
+
+---
+
+**Quadro {{Q}}. Dicionário de informações da classe ResultadoBacktestRegra.**
+
+*ResultadoBacktestRegra: estrutura de dados com o desempenho histórico de uma única regra, ou do parecer consolidado, apurado pelo Backtester ao longo de todo o período avaliado.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+|---|---|---|---|---|---|
+| regra | Nome canônico da regra a que a apuração se refere, ou o rótulo do parecer consolidado | 60 | Alfanumérico (QString) | 1{X}60 | Discreto: Cruzamento de Medias Moveis; Indice de Forca Relativa; Dividend Yield; Preco sobre Lucro; Consolidado (média ponderada) |
+| sinais | Quantidade de pareceres diferentes de Neutro emitidos ao longo do histórico; pareceres Neutro não são sinal e não entram na contabilidade (RN024) | 4 | Numérico (int) | {9}9 | Contínuo: maior ou igual a zero |
+| acertos | Quantidade de sinais cuja direção se confirmou no horizonte avaliado: Compra com retorno futuro positivo e Venda com retorno futuro negativo (RN024) | 4 | Numérico (int) | {9}9 | Contínuo: de zero até o valor de sinais |
+| somaDosRetornos | Soma dos retornos obtidos ao seguir cada sinal, expressa em fração e não em percentual; a venda contribui com o retorno de sinal invertido | 8 | Numérico (double) | −{9}9,99 a {9}9,99 | Contínuo |
+| taxaDeAcerto() | Operação derivada: proporção de acertos sobre os sinais emitidos; devolve zero quando não houve sinal | 8 | Numérico (double, calculado) | 9,99 | Contínuo: 0,00 a 1,00 |
+| retornoMedio() | Operação derivada: retorno médio por sinal, em fração, obtido da divisão da soma dos retornos pelo número de sinais; devolve zero quando não houve sinal | 8 | Numérico (double, calculado) | −9,99 a 9,99 | Contínuo |
+
+---
+
+**Quadro {{Q}}. Dicionário de informações da classe ResultadoBacktest.**
+
+*ResultadoBacktest: estrutura de dados com o resultado completo do backtesting de um ativo, reunindo a apuração consolidada e a apuração de cada regra ativa, apresentadas no DialogoBacktest.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+|---|---|---|---|---|---|
+| ticker | Código de negociação do ativo submetido ao backtesting | 6 | Alfanumérico (QString) | 4{X}6 | Discreto: tickers cadastrados na classe Ativo |
+| pregoesAvaliados | Quantidade de pregões em que houve reavaliação das regras ao longo do histórico | 4 | Numérico (int) | {9}9 | Contínuo: maior ou igual a zero |
+| horizonte | Quantidade de pregões à frente usada para medir o resultado de cada sinal | 4 | Numérico (int) | {9}2 | Contínuo: 1 a 60 pregões; valor padrão 10 |
+| consolidado | Apuração do parecer consolidado do motor, isto é, da média ponderada de todas as regras ativas (RN025) | Variável | Objeto (ResultadoBacktestRegra) | — | Discreto: instância válida de ResultadoBacktestRegra |
+| porRegra | Coleção com uma apuração por regra ativa, na ordem em que o motor as registrou | Variável | Objeto (ResultadoBacktestRegra) | — | Discreto: instâncias válidas de ResultadoBacktestRegra |
+| observacao | Motivo pelo qual o ativo não pôde ser avaliado, como histórico curto demais; permanece vazio quando a avaliação foi realizada | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando o ativo foi avaliado |
 
 ---
 

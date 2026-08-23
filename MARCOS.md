@@ -31,7 +31,8 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | Testes automatizados (61 casos) | ✅ | Qt Test + ctest |
 | Documentação de uso (README + guia de build) | ✅ | roteiro de demonstração em 7 passos |
 | Revisão adversarial (2 rodadas) | ✅ | ver `LOG.md` de 19/08 |
-| **Compilar, testar e rodar** | ✅ | Qt 6.4.2: build limpo, 67 testes passando, sistema executando com dados reais |
+| **Compilar, testar e rodar** | ✅ | Qt 6.4.2: build limpo, 5 alvos de teste passando, sistema executando com dados reais |
+| Sincronização online (RF020) + backtesting e pesos (RF021) | ✅ | 23/08: Yahoo Finance com janela incremental (1.245 cotações reais na fumaça); Backtester com RN024; média ponderada |
 | Capturas das telas (figuras do documento) | ✅ | alvo `capturar-telas` gera 12 PNGs em `capturas/` |
 
 ### Documentos entregáveis (branch `teste-de-desenvolvimento`, em `docs/entrega/`)
@@ -45,6 +46,7 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | `documento-1-bimestre.md/.docx` | ✅ minuta | 37 figuras, 83 quadros/tabelas |
 | `documento-2-bimestre.md/.docx` | ✅ minuta | 136 figuras, 83 quadros/tabelas |
 | Revisão da equipe + pendências 🟦 dos documentos | ⬜ | cliente fictício, sessão real de Planning Poker (Figura 1), autores do histórico |
+| ⚠️ Limpeza do histórico público (material Driva) | ❌ bloqueado | aguarda aprovação do Sergio — ver HANDOFF pendência 0 |
 
 ## Notas
 

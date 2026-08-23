@@ -1,0 +1,26 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC019",
+  "folgaColunas": 260, "folgaLinhas": 200,
+  "elementos": [
+    {"id": "impo", "tipo": "classe", "nome": ": RepositorioImportacao", "col": 3, "linha": -1},
+    {"id": "adm", "tipo": "ator", "nome": ": Administrador", "col": 0, "linha": 0},
+    {"id": "tela", "tipo": "classe", "nome": ": TelaImportacao", "col": 1, "linha": 0},
+    {"id": "serv", "tipo": "classe", "nome": ": ServicoSincronizacao", "col": 2, "linha": 0},
+    {"id": "fonte", "tipo": "classe", "nome": ": FonteYahooFinance", "col": 3, "linha": 0},
+    {"id": "bd", "tipo": "classe", "nome": ": BancoDeDados", "col": 1, "linha": 1},
+    {"id": "cot", "tipo": "classe", "nome": ": RepositorioCotacao", "col": 2, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "adm", "para": "tela", "rotulo": "1: sincronizar online"},
+    {"de": "tela", "para": "serv", "rotulo": "1.1: sincronizarTodos()"},
+    {"de": "tela", "para": "tela", "rotulo": "1.2: carregarHistorico()",
+     "via": [{"col": 0.42, "linha": 0.10}, {"col": 0.42, "linha": 0.30}, {"col": 0.92, "linha": 0.30}]},
+    {"de": "serv", "para": "serv", "rotulo": "1.1.1: RepositorioAtivo::listarTodos()\n1.1.3: inicioDaJanela(ultima, hoje)\n*[para cada ativo]",
+     "via": [{"col": 1.45, "linha": -0.18}, {"col": 1.45, "linha": -0.58}, {"col": 1.95, "linha": -0.58}]},
+    {"de": "serv", "para": "cot", "rotulo": "1.1.2: buscarUltima(ativoId)\n1.1.6: inserirEmLote(cotacoes)"},
+    {"de": "serv", "para": "fonte", "rotulo": "1.1.4: buscar(ticker, ativoId,\nde, hoje)"},
+    {"de": "serv", "para": "bd", "rotulo": "1.1.5: iniciarTransacao()\n1.1.8: confirmar()"},
+    {"de": "serv", "para": "impo", "rotulo": "1.1.7: salvar(registro de auditoria)"}
+  ]
+}

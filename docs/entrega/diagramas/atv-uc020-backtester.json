@@ -1,0 +1,45 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC020 | Backtester | Percorrendo os pregões",
+  "folgaColunas": 84,
+  "folgaLinhas": 74,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "t = MINIMO_DE_PREGOES − 1 e\nultimoPonto = total − 1 − horizonteEfetivo", "col": 1.2, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "texto": "fechamento(t) > 0 ?", "col": 2.5, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "retorno = fechamento(t + horizonteEfetivo)\n/ fechamento(t) − 1", "col": 3.8, "linha": 0},
+    {"id": "a3", "tipo": "acao", "texto": "recorte = historico.mid(0, t + 1):\nsó o passado do pregão t\n++pregoesAvaliados", "col": 5.1, "linha": 0},
+
+    {"id": "a4", "tipo": "acao", "texto": "consolidada = motor->analisar(ativo, recorte)\npareceres = motor->avaliarRegras\nIndividualmente(ativo, recorte)", "col": 5.1, "linha": 1},
+    {"id": "d2", "tipo": "decisao", "texto": "tipo ≠ Neutro ?", "col": 3.8, "linha": 1},
+
+    {"id": "d4", "tipo": "decisao", "texto": "t ≤ ultimoPonto ?", "col": 2.5, "linha": 2},
+    {"id": "a5", "tipo": "acao", "texto": "++sinais na apuração da\nregra e na consolidada", "col": 3.8, "linha": 2},
+    {"id": "d3", "tipo": "decisao", "texto": "acertou a direção ?", "col": 5.1, "linha": 2},
+
+    {"id": "a6", "tipo": "acao", "texto": "++acertos", "col": 5.1, "linha": 3},
+    {"id": "a7", "tipo": "acao", "texto": "somaDosRetornos += retorno na Compra\ne −= retorno na Venda", "col": 3.8, "linha": 3},
+
+    {"id": "a8", "tipo": "acao", "texto": "taxaDeAcerto() = acertos / sinais e\nretornoMedio() = somaDosRetornos / sinais,\npor regra e no parecer consolidado", "col": 1.2, "linha": 2},
+    {"id": "f", "tipo": "final", "col": 0, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "d1", "rotulo": "*[para cada\npregão t]"},
+    {"de": "d1", "para": "a2", "rotulo": "[fechamento\nválido]"},
+    {"de": "a2", "para": "a3"},
+    {"de": "a3", "para": "a4"},
+    {"de": "a4", "para": "d2", "rotulo": "*[cada parecer]"},
+    {"de": "d2", "para": "a5", "rotulo": "[Compra\nou Venda]"},
+    {"de": "a5", "para": "d3"},
+    {"de": "d3", "para": "a6", "rotulo": "[Compra com retorno > 0 ou\nVenda com retorno < 0] (RN024)"},
+    {"de": "d3", "para": "a7", "rotulo": "[errou a direção]"},
+    {"de": "a6", "para": "a7"},
+    {"de": "a7", "para": "d4"},
+    {"de": "d2", "para": "d4", "rotulo": "[Neutro:\nnão é sinal]"},
+    {"de": "d1", "para": "d4", "rotulo": "[fechamento ≤ 0]\npula o pregão", "via": [{"col": 2.78, "linha": 0.5}, {"col": 2.78, "linha": 1.5}]},
+    {"de": "d4", "para": "d1", "rotulo": "[sim] / ++t", "via": [{"col": 2.22, "linha": 1.5}, {"col": 2.22, "linha": 0.5}]},
+    {"de": "d4", "para": "a8", "rotulo": "[não]"},
+    {"de": "a8", "para": "f", "rotulo": "devolver"}
+  ]
+}

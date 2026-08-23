@@ -1,0 +1,25 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC020 | DialogoBacktest",
+  "folgaColunas": 120,
+  "folgaLinhas": 90,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "mont", "tipo": "estado", "nome": "Montando o formulário", "texto": "entry / preencher o seletor com listarTodos()\nentry / horizonte = HORIZONTE_PADRAO (10 pregões)\ndo / desabilitar o botão quando não há ativo", "col": 1, "linha": 0},
+    {"id": "conf", "tipo": "estado", "nome": "Configurando o backtesting", "texto": "do / aguardar o ativo (ou \"Todos os ativos\")\ndo / aguardar o horizonte, de 1 a 60 pregões", "col": 2, "linha": 0},
+    {"id": "exec", "tipo": "estado", "nome": "Executando o backtesting", "texto": "entry / clearSpans() e setRowCount(0)\ndo / listarAtivas() e montar o Backtester\ndo / *[cada ativo do filtro] listarPorAtivo(id)\ndo / backtester.executar(ativo, historico, horizonte)", "col": 2, "linha": 1},
+    {"id": "exib", "tipo": "estado", "nome": "Exibindo os resultados", "texto": "entry / acrescentarResultado() por ativo avaliado\ndo / destacar a linha do parecer consolidado\ndo / mostrarMensagem(resumo da execução)\nexit / resizeRowsToContents()", "col": 1, "linha": 1},
+    {"id": "fech", "tipo": "estado", "nome": "Fechado", "texto": "exit / reject()", "col": 0, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 0, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "mont", "rotulo": "DialogoBacktest\n(contexto)"},
+    {"de": "mont", "para": "conf", "rotulo": "exec()"},
+    {"de": "conf", "para": "exec", "rotulo": "clicou \"Executar backtesting\"\n[há ativo cadastrado]"},
+    {"de": "exec", "para": "exib", "rotulo": "apuração\nconcluída"},
+    {"de": "exib", "para": "conf", "rotulo": "trocou o ativo\nou o horizonte", "via": [{"col": 1.72, "linha": 0.52}]},
+    {"de": "exib", "para": "fech", "rotulo": "clicou\n\"Fechar\""},
+    {"de": "conf", "para": "fech", "rotulo": "clicou \"Fechar\" [sem executar]", "via": [{"col": 1.5, "linha": 0.5}, {"col": 0, "linha": 0.5}]},
+    {"de": "fech", "para": "f", "rotulo": "devolver\nQDialog::Rejected"}
+  ]
+}

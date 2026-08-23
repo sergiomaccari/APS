@@ -13,6 +13,13 @@ geradas em `docs/entrega/` (`documento-1-bimestre.md/.docx` e
 
 ## Pendências 🟦 (input humano)
 
+0. **⚠️ URGENTE — limpar o histórico público:** `docs/analises/metodologia-hub.md`,
+   `perfil-github.md` e `veterano-teste-driva.md` (material da Driva + nome de um
+   candidato) ficaram no histórico já publicado. Já saíram do versionamento
+   (`2aaf4c9`), mas a reescrita exige aprovação do Sergio. Sugestão no terminal:
+   `! pip install git-filter-repo && git filter-repo --invert-paths --path docs/analises/metodologia-hub.md --path docs/analises/perfil-github.md --path docs/analises/veterano-teste-driva.md && git push --force origin main teste-de-desenvolvimento`
+   (guardar um clone de backup antes; os arquivos locais são preservados por
+   estarem no .gitignore — conferir com `git status` após o filter-repo).
 1. **Socializar com Arthur/Leo/Thales:** tema A + stack (aprovados pelo Sergio em
    18/08) e o cliente fictício assumido nos documentos ("Clube de Investimentos
    Neoville", coordenador Prof. Marcos R. Andrade — trocar se a equipe entrevistar

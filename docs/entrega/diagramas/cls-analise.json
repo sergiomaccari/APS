@@ -4,6 +4,20 @@
   "folgaColunas": 70,
   "folgaLinhas": 56,
   "elementos": [
+    {"id": "backtester", "tipo": "classe", "nome": "Backtester", "col": 1, "linha": -1,
+     "atributos": ["- regras : QVector<RegraConfigurada>",
+                   "+ HORIZONTE_PADRAO : int = 10 {static}",
+                   "+ MINIMO_DE_PREGOES : int = 30 {static}",
+                   "+ NOME_CONSOLIDADO : QString {static}"],
+     "metodos": ["+ Backtester(regras)",
+                 "+ executar(ativo, historico, horizonte)"]},
+
+    {"id": "resbt", "tipo": "classe", "nome": "ResultadoBacktest", "col": 3, "linha": -1,
+     "atributos": ["- ticker : QString", "- pregoesAvaliados : int",
+                   "- horizonte : int", "- consolidado : ResultadoBacktestRegra",
+                   "- porRegra : QVector<ResultadoBacktestRegra>",
+                   "- observacao : QString"]},
+
     {"id": "regracfg", "tipo": "classe", "nome": "RegraConfigurada", "col": 0, "linha": 0,
      "atributos": ["- nomeRegra : QString", "- ativa : bool",
                    "- parametroPrincipal : double"]},
@@ -56,6 +70,9 @@
      "texto": "Todos os métodos de\nCalculadoraIndicadores são\nestáticos e assumem o histórico\nordenado por data crescente."}
   ],
   "ligacoes": [
+    {"de": "backtester", "para": "motor", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "backtester", "para": "resbt", "tipo": "tracejada", "rotulo": "<<produz>>"},
+
     {"de": "motor", "para": "regracfg", "tipo": "tracejada", "rotulo": "<<use>>"},
     {"de": "motor", "para": "iregra", "tipo": "agregacao",
      "rotuloOrigem": "1", "rotuloDestino": "*"},

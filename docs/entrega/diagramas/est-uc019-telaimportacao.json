@@ -1,0 +1,33 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC019 | TelaImportacao",
+  "folgaColunas": 92,
+  "folgaLinhas": 60,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "pronta", "tipo": "estado", "nome": "Pronta para sincronizar",
+     "texto": "entry / habilitarOperacoes(\ntrue)\ndo / aguardar clique em\n\"Sincronizar online\"", "col": 1, "linha": 0},
+    {"id": "sincronizando", "tipo": "estado", "nome": "Sincronizando",
+     "texto": "entry / habilitarOperacoes(\nfalse)\nentry / setOverrideCursor(\nWaitCursor)\ndo / sincronizarTodos()", "col": 2, "linha": 0},
+    {"id": "reabilitando", "tipo": "estado", "nome": "Reabilitando a tela",
+     "texto": "do / restoreOverrideCursor()\ndo / habilitarOperacoes(true)\ndo / avaliar sucesso", "col": 3, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 4, "linha": 0},
+    {"id": "relatorio", "tipo": "estado", "nome": "Exibindo relatório",
+     "texto": "do / relatar(resumo,\nmensagens)\ndo / carregarHistorico()\ndo / emit cotacoes\nImportadas()", "col": 5, "linha": 0},
+    {"id": "falhas", "tipo": "estado", "nome": "Relatando falhas",
+     "texto": "do / relatar(resumo,\nmensagens, false)\ndo / listar ativo e motivo\n(RNF008)", "col": 4, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 0, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "pronta", "rotulo": "abrir a\ntela"},
+    {"de": "pronta", "para": "sincronizando", "rotulo": "sincronizar\nOnline()"},
+    {"de": "sincronizando", "para": "reabilitando", "rotulo": "resultado\ndevolvido"},
+    {"de": "reabilitando", "para": "d"},
+    {"de": "d", "para": "relatorio", "rotulo": "[ativosProcessados > 0\ne ativosComFalha == 0]"},
+    {"de": "d", "para": "falhas", "rotulo": "[nenhum ativo ou\nalgum ativo falhou]"},
+    {"de": "falhas", "para": "pronta", "rotulo": "corrigir a conexão", "via": [{"col": 1.6, "linha": 1}]},
+    {"de": "relatorio", "para": "pronta", "rotulo": "nova sincronização",
+     "via": [{"col": 5, "linha": 1.62}, {"col": 1, "linha": 1.62}]},
+    {"de": "pronta", "para": "f", "rotulo": "fechar a tela"}
+  ]
+}

@@ -14,6 +14,8 @@
      "col": 4, "linha": 0},
     {"id": "notaobs", "tipo": "nota", "col": 5, "linha": 0,
      "texto": "Observer: JanelaPrincipal\nimplementa\nObservadorAlerta."},
+    {"id": "telaimp", "tipo": "classe", "nome": "TelaImportacao", "estereotipo": "<<fronteira>>",
+     "col": 6, "linha": 0},
 
     {"id": "sautent", "tipo": "classe", "nome": "ServicoAutenticacao", "estereotipo": "<<controle>>",
      "col": 0, "linha": 1},
@@ -27,6 +29,14 @@
      "col": 4, "linha": 1},
     {"id": "srecom", "tipo": "classe", "nome": "ServicoRecomendacao", "estereotipo": "<<controle>>",
      "col": 5, "linha": 1},
+    {"id": "ssinc", "tipo": "classe", "nome": "ServicoSincronizacao", "estereotipo": "<<controle>>",
+     "col": 6, "linha": 1},
+
+    {"id": "ifonte", "tipo": "classe", "nome": "FonteCotacoesRemota", "estereotipo": "<<interface>>",
+     "col": 6, "linha": 1.5},
+    {"id": "yahoo", "tipo": "classe", "nome": "FonteYahooFinance", "col": 6, "linha": 2},
+    {"id": "notastrategy", "tipo": "nota", "col": 6, "linha": 3,
+     "texto": "2ª aplicação do Strategy:\nfonte de dados plugável."},
 
     {"id": "motor", "tipo": "classe", "nome": "MotorAnalise", "col": 4, "linha": 1.5},
     {"id": "calc", "tipo": "classe", "nome": "CalculadoraIndicadores", "col": 5, "linha": 1.5},
@@ -51,6 +61,11 @@
     {"de": "repob", "para": "banco", "tipo": "tracejada", "rotulo": "<<use>>"},
     {"de": "srecom", "para": "motor", "tipo": "tracejada", "rotulo": "<<use>>"},
     {"de": "salerta", "para": "janela", "tipo": "tracejada", "rotulo": "notifica (Observer)"},
-    {"de": "notaobs", "para": "janela", "tipo": "tracejada"}
+    {"de": "notaobs", "para": "janela", "tipo": "tracejada"},
+
+    {"de": "telaimp", "para": "ssinc", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "ssinc", "para": "ifonte", "tipo": "tracejada", "rotulo": "<<use>>"},
+    {"de": "yahoo", "para": "ifonte", "tipo": "realizacao"},
+    {"de": "notastrategy", "para": "yahoo", "tipo": "tracejada"}
   ]
 }

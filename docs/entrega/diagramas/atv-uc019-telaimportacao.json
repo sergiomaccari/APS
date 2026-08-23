@@ -1,0 +1,28 @@
+{
+  "tipo": "grade",
+  "moldura": "act UC019 | TelaImportacao | Sincronizando",
+  "folgaColunas": 66,
+  "folgaLinhas": 110,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "a1", "tipo": "acao", "texto": "habilitarOperacoes(false)\nQApplication::setOverride\nCursor(Qt::WaitCursor)", "col": 1, "linha": 0},
+    {"id": "a2", "tipo": "acao", "texto": "resultado = contexto\n.servicoSincronizacao\n.sincronizarTodos()", "col": 2, "linha": 0},
+    {"id": "a3", "tipo": "acao", "texto": "QApplication::restore\nOverrideCursor()\nhabilitarOperacoes(true)", "col": 3, "linha": 0},
+    {"id": "a4", "tipo": "acao", "texto": "sucesso =\nresultado.ativosProcessados > 0\ne resultado.ativosComFalha == 0", "col": 4, "linha": 0},
+    {"id": "a5", "tipo": "acao", "texto": "relatar(resultado.resumo(),\nresultado.mensagens, sucesso)\ncarregarHistorico()", "col": 5, "linha": 0},
+    {"id": "d", "tipo": "decisao", "col": 6, "linha": 0},
+    {"id": "a6", "tipo": "acao", "texto": "emit cotacoesImportadas()", "col": 4, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 6, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "a1"},
+    {"de": "a1", "para": "a2"},
+    {"de": "a2", "para": "a3"},
+    {"de": "a3", "para": "a4"},
+    {"de": "a4", "para": "a5"},
+    {"de": "a5", "para": "d"},
+    {"de": "d", "para": "a6", "rotulo": "[resultado\n.cotacoesInseridas > 0]"},
+    {"de": "d", "para": "f", "rotulo": "[nenhuma\ncotação nova]"},
+    {"de": "a6", "para": "f"}
+  ]
+}

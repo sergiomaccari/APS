@@ -1,0 +1,29 @@
+{
+  "tipo": "grade",
+  "moldura": "com UC020",
+  "folgaColunas": 200,
+  "folgaLinhas": 100,
+  "elementos": [
+    {"id": "u", "tipo": "ator", "nome": ": Administrador", "col": 0, "linha": 1},
+    {"id": "tela", "tipo": "objeto", "estereotipo": "telaRegras :", "nome": "TelaRegras", "col": 1, "linha": 0},
+    {"id": "dlg", "tipo": "objeto", "estereotipo": "dialogoBacktest :", "nome": "DialogoBacktest", "col": 1, "linha": 2},
+    {"id": "repoAtivo", "tipo": "objeto", "estereotipo": "repositorioAtivo :", "nome": "RepositorioAtivo", "col": 2, "linha": 0},
+    {"id": "repoRegra", "tipo": "objeto", "estereotipo": "repositorioRegra :", "nome": "RepositorioRegra", "col": 2, "linha": 1},
+    {"id": "repoCot", "tipo": "objeto", "estereotipo": "repositorioCotacao :", "nome": "RepositorioCotacao", "col": 2, "linha": 2},
+    {"id": "bt", "tipo": "objeto", "estereotipo": "backtester :", "nome": "Backtester", "col": 2, "linha": 3},
+    {"id": "motor", "tipo": "objeto", "estereotipo": "motor :", "nome": "MotorAnalise", "col": 3, "linha": 4}
+  ],
+  "ligacoes": [
+    {"de": "u", "para": "tela", "rotulo": "1: clicar em \"Backtesting…\""},
+    {"de": "u", "para": "dlg", "rotulo": "2: escolher o ativo e o horizonte\n3: clicar em \"Executar backtesting\""},
+    {"de": "tela", "para": "tela", "rotulo": "1.1: abrirBacktest()", "via": [{"col": 1.12, "linha": 0.55}, {"col": 1.42, "linha": 0.55}]},
+    {"de": "tela", "para": "dlg", "rotulo": "1.2: DialogoBacktest(contexto)\n1.3: exec()"},
+    {"de": "dlg", "para": "repoAtivo", "rotulo": "1.2.1: listarTodos()\n3.3: listarTodos()"},
+    {"de": "dlg", "para": "repoRegra", "rotulo": "3.1: listarAtivas()"},
+    {"de": "dlg", "para": "repoCot", "rotulo": "3.4: *[cada ativo]\nlistarPorAtivo(id)"},
+    {"de": "dlg", "para": "dlg", "rotulo": "3.6: acrescentarResultado(resultado)\n3.7: mostrarMensagem(resumo)", "via": [{"col": 0.6, "linha": 2.4}, {"col": 0.9, "linha": 2.4}]},
+    {"de": "dlg", "para": "bt", "rotulo": "3.2: Backtester(regras)\n3.5: executar(ativo, historico, horizonte)"},
+    {"de": "bt", "para": "bt", "rotulo": "3.5.2: validar histórico mínimo\n3.5.3: *[cada pregão t] recorte = mid(0, t + 1)\n3.5.6: contabilizar(tipo, retorno) (RN024)", "via": [{"col": 1.86, "linha": 3.5}, {"col": 2.14, "linha": 3.5}]},
+    {"de": "bt", "para": "motor", "rotulo": "3.5.1: comRegrasPadrao(regras)\n3.5.4: analisar(ativo, recorte)\n3.5.5: avaliarRegrasIndividualmente()", "via": [{"col": 3, "linha": 3}]}
+  ]
+}

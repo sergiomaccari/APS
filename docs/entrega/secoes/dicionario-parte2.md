@@ -118,6 +118,51 @@
 | m_repositorioRegra | Referência ao repositório de regras configuradas, de onde são lidas as regras ativas e os seus parâmetros | N/A | RepositorioRegra& | Objeto | N/A |
 | m_ultimoErro | Mensagem do último erro ocorrido na geração da recomendação | 255 | QString | Alfanumérico | N/A |
 
+**Quadro {{Q}}. Dicionário de informações da interface FonteCotacoesRemota.**
+
+*Interface que abstrai o provedor remoto de cotações diárias (RF020), isolando o ServicoSincronizacao da API concreta: hoje a implementação é a FonteYahooFinance, e trocar de provedor não exige alteração no serviço nem na interface gráfica; nos testes, a mesma interface permite injetar uma fonte falsa, sem rede. Por ser uma interface, não possui atributos, sendo descrita por suas operações.*
+
+| Método | Descrição | Retorno | Parâmetros | Domínio do retorno |
+| :---- | :---- | :---- | :---- | :---- |
+| nome() | Nome legível do provedor, empregado no registro de auditoria e nas mensagens apresentadas ao administrador | Alfanumérico (QString) | — | Contínuo: até 60 caracteres |
+| buscar() | Baixa as cotações diárias do ticker no intervalo informado, já com o identificador do ativo preenchido em cada candle; não grava nada no banco de dados e nunca lança exceção, devolvendo falso com a causa em erro nas falhas de rede ou de formato (RNF008) | Lógico (bool) | ticker (QString), ativoId (qint64), de e ate (QDate), destino (coleção de Cotacao), erro (QString) | Discreto: 1 = Sim, cotações obtidas; 0 = Não, falha descrita em erro |
+| ~FonteCotacoesRemota() | Destrutor virtual, necessário para a destruição correta das fontes concretas por meio da interface | Sem retorno | — | — |
+
+**Quadro {{Q}}. Dicionário de informações da classe FonteYahooFinance.**
+
+*Implementação concreta da FonteCotacoesRemota apoiada na chart API v8 do Yahoo Finance: monta um pedido por ativo, com intervalo diário e o sufixo `.SA` dos tickers da B3, e converte a resposta JSON em cotações do domínio. A requisição é síncrona, pois a sincronização é disparada por um clique; a conversão do JSON é estática e pura, para poder ser testada sem rede.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| TEMPO_LIMITE_MS | Constante de classe com o tempo máximo de espera pela resposta da API, em milissegundos. Valor 15000 | 4 | int | Numérico | Discreto |
+| SUFIXO_B3 | Constante de classe com o sufixo acrescentado aos tickers brasileiros na API do Yahoo. Valor `.SA` | 3 | QString | Alfanumérico | Discreto |
+| m_rede | Gerenciador de acesso à rede utilizado nas requisições ao endpoint do provedor | N/A | QNetworkAccessManager\* | Objeto | N/A |
+
+**Quadro {{Q}}. Dicionário de informações da classe ServicoSincronizacao.**
+
+*Responsável pela sincronização online das cotações (RF020), complementar à importação de arquivos CSV. Para cada ativo cadastrado calcula a janela faltante — do dia seguinte à última cotação local até hoje —, pede somente esse intervalo à fonte remota e grava o resultado de forma transacional, reaproveitando a inserção idempotente da importação, de modo que acionar a sincronização duas vezes não duplica pregões (RN023). A falha de um ativo nunca interrompe os demais (RNF008), e cada tentativa é registrada na tabela de importações, que assim guarda a auditoria única do CSV e da sincronização.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| JANELA_INICIAL_DIAS | Constante de classe com a quantidade de dias de histórico buscada quando o ativo ainda não possui nenhuma cotação local (RN023). Valor 365 | 4 | int | Numérico | Discreto |
+| m_repositorioAtivo | Referência ao repositório de ativos, injetada pelo Contexto; fornece a relação dos ativos a sincronizar e os respectivos tickers | N/A | RepositorioAtivo& | Objeto | N/A |
+| m_repositorioCotacao | Referência ao repositório de cotações, usada para obter a última cotação local de cada ativo e gravar as cotações baixadas | N/A | RepositorioCotacao& | Objeto | N/A |
+| m_repositorioImportacao | Referência ao repositório de importações, onde é registrada a auditoria de cada sincronização, com o estado Concluida ou Rejeitada | N/A | RepositorioImportacao& | Objeto | N/A |
+| m_fonte | Referência à fonte remota de cotações, declarada pela interface FonteCotacoesRemota para permitir a troca de provedor e o uso de fonte falsa nos testes | N/A | FonteCotacoesRemota& | Objeto | N/A |
+
+**Quadro {{Q}}. Dicionário de informações da classe ResultadoSincronizacao.**
+
+*Estrutura de dados devolvida pelo ServicoSincronizacao ao término da sincronização; reúne as contagens da operação e a relação de mensagens por ativo apresentada na TelaImportacao.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| ativosProcessados | Quantidade de ativos cujas cotações foram efetivamente atualizadas | 4 | int | Numérico | Discreto |
+| ativosComFalha | Quantidade de ativos que falharam, por indisponibilidade da rede ou erro do provedor; a falha de um ativo não interrompe os demais (RNF008) | 4 | int | Numérico | Discreto |
+| cotacoesInseridas | Quantidade total de cotações novas gravadas no banco de dados | 4 | int | Numérico | Discreto |
+| cotacoesIgnoradas | Quantidade de cotações descartadas por já existirem para o mesmo ativo e a mesma data (RN023) | 4 | int | Numérico | Discreto |
+| mensagens | Lista com uma linha por ativo, no formato `PETR4: 12 novas, 0 ignoradas`, ou com o motivo da falha | N/A | QStringList | Lista de texto | N/A |
+| resumo() | Método que devolve o texto consolidado da operação, pronto para exibição no rótulo de resumo da TelaImportacao | N/A | QString | Método | N/A |
+
 **Quadro {{Q}}. Dicionário de informações da classe Contexto.**
 
 *Contexto da aplicação: é o proprietário dos repositórios e dos serviços e torna explícita a injeção de dependência entre as camadas, pois as telas recebem uma referência ao Contexto e nunca criam repositórios. Os repositórios são declarados antes dos serviços para garantir a ordem correta de inicialização e destruição.*
@@ -139,6 +184,8 @@
 | servicoCarteira | Serviço de operações e de consolidação da carteira | N/A | ServicoCarteira | Objeto | N/A |
 | servicoAlerta | Serviço de monitoramento e disparo de alertas | N/A | ServicoAlerta | Objeto | N/A |
 | servicoRecomendacao | Serviço de geração e publicação de recomendações | N/A | ServicoRecomendacao | Objeto | N/A |
+| fonteCotacoes | Fonte remota de cotações empregada na sincronização online, declarada antes do serviço que a recebe por referência (RF020) | N/A | FonteYahooFinance | Objeto | N/A |
+| servicoSincronizacao | Serviço de sincronização online das cotações, que baixa da fonte remota apenas o período faltante de cada ativo | N/A | ServicoSincronizacao | Objeto | N/A |
 
 **Quadro {{Q}}. Dicionário de informações da classe JanelaPrincipal.**
 
@@ -261,21 +308,24 @@
 
 **Quadro {{Q}}. Dicionário de informações da classe TelaImportacao.**
 
-*Tela de importação de cotações, exclusiva do administrador (UC005): permite importar um arquivo CSV para um ativo específico ou um diretório inteiro, casando o nome TICKER.csv com o cadastro, e exibe o relatório completo da operação e o histórico das importações anteriores.*
+*Tela de importação de cotações, exclusiva do administrador (UC005): permite importar um arquivo CSV para um ativo específico ou um diretório inteiro, casando o nome TICKER.csv com o cadastro, e exibe o relatório completo da operação e o histórico das importações anteriores. Oferece também a sincronização online das cotações (UC019), atalho opcional que baixa da fonte remota apenas o período faltante de cada ativo; o arquivo CSV permanece como caminho primário, pois a sincronização pode falhar na ausência de rede (RNF008).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_campoAtivo | Seletor do ativo de destino das cotações do arquivo | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
 | m_campoArquivo | Campo com o caminho do arquivo CSV escolhido | 255 | Objeto (QLineEdit\*) | Componente gráfico | N/A |
+| m_botaoEscolher | Botão que abre o seletor de arquivos para a escolha do CSV a importar | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_botaoImportar | Botão que aciona a importação do arquivo selecionado | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
+| m_botaoDiretorio | Botão que aciona a importação de um diretório inteiro, casando cada arquivo TICKER.csv com o ativo cadastrado | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
+| m_botaoSincronizar | Botão que aciona a sincronização online das cotações (UC019, RF020), habilitado somente quando há ativo cadastrado e desabilitado enquanto a operação está em andamento | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_rotuloResumo | Rótulo com o resumo da operação: linhas lidas, inseridas e ignoradas | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_areaErros | Área de texto com a relação dos erros, indicando a linha e o motivo de cada recusa (REU003) | N/A | Objeto (QPlainTextEdit\*) | Componente gráfico | N/A |
 | m_tabelaHistorico | Tabela do histórico das importações, com arquivo, estado, contagens e data de execução | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 
 **Quadro {{Q}}. Dicionário de informações da classe TelaRegras.**
 
-*Tela de configuração das regras de análise, exclusiva do administrador (UC006): permite ativar, desativar e reparametrizar as estratégias sem recompilar o sistema, uma vez que o MotorAnalise lê essas configurações a cada análise (RN018).*
+*Tela de configuração das regras de análise, exclusiva do administrador (UC006): permite ativar, desativar e reparametrizar as estratégias sem recompilar o sistema, uma vez que o MotorAnalise lê essas configurações a cada análise (RN018). É também o ponto de entrada do backtesting (UC020), que mede no histórico já importado o desempenho da configuração vigente.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
 | :---- | :---- | :---- | :---- | :---- | :---- |
@@ -283,6 +333,7 @@
 | m_tabela | Tabela das regras configuradas, com nome, situação de ativação e parâmetros | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 | m_botaoEditar | Botão de edição dos parâmetros da regra selecionada | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_botaoAlternar | Botão que ativa ou desativa a regra selecionada | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
+| m_botaoBacktest | Botão que abre o DialogoBacktest para avaliar no histórico o desempenho da configuração de regras vigente (UC020, RF021) | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_rotuloMensagem | Rótulo de retorno das operações de configuração | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
 **Quadro {{Q}}. Dicionário de informações da classe TelaUsuarios.**
@@ -379,7 +430,22 @@
 | m_campoAtiva | Caixa de seleção que define se a regra participa das análises (RN018) | N/A | Objeto (QCheckBox\*) | Componente gráfico | N/A |
 | m_campoPrincipal | Campo do primeiro parâmetro da regra, com duas casas decimais e faixa de 0,00 a 100.000,00 | N/A | Objeto (QDoubleSpinBox\*) | Componente gráfico | N/A |
 | m_campoSecundario | Campo do segundo parâmetro da regra, com duas casas decimais e faixa de 0,00 a 100.000,00 | N/A | Objeto (QDoubleSpinBox\*) | Componente gráfico | N/A |
+| m_campoPeso | Campo do peso da regra na média ponderada do MotorAnalise, com uma casa decimal e faixa de 0,1 a 5,0, de modo que o peso é sempre maior que zero (RN025) | N/A | Objeto (QDoubleSpinBox\*) | Componente gráfico | N/A |
 | m_rotuloDescricao | Rótulo explicativo do significado dos parâmetros da regra em configuração | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
+
+**Quadro {{Q}}. Dicionário de informações da classe DialogoBacktest.**
+
+*Diálogo de backtesting das regras de análise (UC020, RF021), aberto pela TelaRegras: permite escolher um ativo, ou todos, e o horizonte de avaliação, e apresenta, regra por regra, quantos sinais a configuração vigente teria emitido no histórico importado, quantos acertaram a direção (RN024) e qual o retorno médio. O cálculo permanece no Backtester; ao diálogo cabe apenas a coleta dos dados nos repositórios e a apresentação dos resultados.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| m_contexto | Referência ao contexto da aplicação, por onde o diálogo alcança os repositórios de ativos, de cotações e de regras | N/A | Contexto& | Objeto | N/A |
+| m_campoAtivo | Seletor do ativo avaliado, com a opção de submeter todos os ativos cadastrados | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
+| m_campoHorizonte | Campo do horizonte de avaliação, em pregões à frente, com faixa de 1 a 60 e valor inicial igual a Backtester::HORIZONTE\_PADRAO | N/A | Objeto (QSpinBox\*) | Componente gráfico | N/A |
+| m_botaoExecutar | Botão que aciona a execução do backtesting com o ativo e o horizonte escolhidos | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
+| m_tabela | Tabela dos resultados, com uma linha por regra e a linha do parecer consolidado em destaque, apresentando sinais, acertos, taxa de acerto e retorno médio | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
+| m_rotuloMensagem | Rótulo de retorno da operação, informando o andamento ou o motivo de o ativo não ter sido avaliado | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
+| m_rotuloRodape | Rótulo do rodapé com a explicação da convenção de acerto adotada na apuração (RN024) | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
 **Quadro {{Q}}. Dicionário de informações da classe DialogoUsuario.**
 

@@ -1,0 +1,40 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC019 | ServicoSincronizacao",
+  "folgaColunas": 88,
+  "folgaLinhas": 140,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "ocioso", "tipo": "estado", "nome": "Ocioso",
+     "texto": "do / aguardar pedido", "col": 1, "linha": 0},
+    {"id": "ativo", "tipo": "estado", "nome": "Sincronizando ativo",
+     "texto": "entry / listarTodos() na 1ª vez\nentry / ++ativosProcessados\ndo / buscarUltima(ativoId)\ndo / inicioDaJanela(ultima,\nhoje) (RN023)", "col": 2, "linha": 0},
+    {"id": "d1", "tipo": "decisao", "col": 3, "linha": 0},
+    {"id": "consultando", "tipo": "estado", "nome": "Consultando fonte remota",
+     "texto": "do / fonte.buscar(ticker,\nativoId, de, hoje)\ndo / converterJson(corpo)", "col": 4, "linha": 0},
+    {"id": "d2", "tipo": "decisao", "col": 5, "linha": 0},
+    {"id": "gravando", "tipo": "estado", "nome": "Gravando em transação",
+     "texto": "entry / banco.iniciarTransacao()\ndo / inserirEmLote(baixadas)", "col": 6, "linha": 0},
+    {"id": "auditoria", "tipo": "estado", "nome": "Registrando auditoria",
+     "texto": "do / registro.concluir(lidas,\ninseridas) ou rejeitar(erro)\ndo / repositorioImportacao\n.salvar(registro)\ndo / banco.confirmar() ou\ndesfazer()", "col": 5, "linha": 1},
+    {"id": "resumo", "tipo": "estado", "nome": "Consolidando resumo",
+     "texto": "do / somar inseridas e\nignoradas\ndo / montar resumo()", "col": 1, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 0, "linha": 1}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "ocioso", "rotulo": "criar()"},
+    {"de": "ocioso", "para": "ativo", "rotulo": "sincronizarTodos()"},
+    {"de": "ativo", "para": "d1"},
+    {"de": "d1", "para": "consultando", "rotulo": "[de <= hoje]"},
+    {"de": "d1", "para": "ativo", "rotulo": "[de > hoje] /\n\"já atualizado\" (RN023)",
+     "via": [{"col": 3, "linha": 0.5}, {"col": 2.4, "linha": 0.5}]},
+    {"de": "consultando", "para": "d2", "rotulo": "resposta\nrecebida"},
+    {"de": "d2", "para": "gravando", "rotulo": "[cotações\nbaixadas]"},
+    {"de": "d2", "para": "auditoria", "rotulo": "[falha de rede ou\nformato] (RNF008)\n++ativosComFalha"},
+    {"de": "gravando", "para": "auditoria", "rotulo": "[lote gravado] / concluir()\n[falha no lote] / desfazer()"},
+    {"de": "auditoria", "para": "ativo", "rotulo": "próximo ativo",
+     "via": [{"col": 5, "linha": 1.72}, {"col": 2, "linha": 1.72}]},
+    {"de": "ativo", "para": "resumo", "rotulo": "[fim da lista\nde ativos]"},
+    {"de": "resumo", "para": "f", "rotulo": "devolver\nResultado\nSincronizacao"}
+  ]
+}

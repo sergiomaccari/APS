@@ -40,3 +40,7 @@ ligações entre eles. Há um diagrama por caso de uso.
 ![Figura {{F:com-uc017}}. Diagrama de comunicação para o [UC017].](figuras/com-uc017.png)
 
 ![Figura {{F:com-uc018}}. Diagrama de comunicação para o [UC018].](figuras/com-uc018.png)
+
+![Figura {{F:com-uc019}}. Diagrama de comunicação para o [UC019].](figuras/com-uc019.png)
+
+![Figura {{F:com-uc020}}. Diagrama de comunicação para o [UC020].](figuras/com-uc020.png)

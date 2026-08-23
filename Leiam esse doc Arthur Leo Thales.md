@@ -175,6 +175,26 @@ quadros de UC são as strings literais do código).
    isso para ver a divisão do grupo.
 4. **Ler e revisar**: são os documentos que valem 8,0 pontos em cada bimestre.
 
+## 4d. Novidades de 23/08 — feedback aplicado + 2 funcionalidades novas
+
+- **Todas as correções de formatação que vocês apontaram foram aplicadas** (quadros
+  como tabela única, colunas proporcionais, sem tabela quebrada entre páginas,
+  cabeçalho corrido, sumário em página própria, Investing.com citado). Duas ficaram
+  de fora com justificativa: a legenda de quadro/tabela fica ACIMA (é assim no modelo
+  do professor e na ABNT — figuras continuam com legenda abaixo) e os FIIs ficam
+  (sem eles a herança `Ativo → Acao/FundoImobiliario` perde o sentido, e ela é o
+  coração do requisito de POO).
+- **Sincronizar online (RF020):** botão na tela de importação que baixa só o período
+  faltante de cada ativo (Yahoo Finance, sem token). Testado com dados reais:
+  1.245 cotações; rodar duas vezes não duplica nada. O CSV continua sendo o caminho
+  primário — offline tudo funciona igual.
+- **Backtesting + pesos (RF021):** as regras agora têm peso na média do parecer, e o
+  botão "Backtesting…" na tela de regras mede sinais, taxa de acerto e retorno médio
+  de cada regra sobre o histórico. Ótimo material para a apresentação.
+- Tudo já está na **`main`** (as branches foram unificadas) e os documentos foram
+  regenerados com UC019/UC020, quadros, diagramas e UCP atualizados (206 UUCP →
+  161,09 UCP; poker proposto 132 h).
+
 ## 5. O que a equipe precisa decidir/fazer
 
 1. **Aprovar (ou vetar) o tema** — ler o ADR 0001 (`docs/decisoes/`) com a análise

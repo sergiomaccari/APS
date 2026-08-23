@@ -14,6 +14,8 @@
     {"id": "uc005", "tipo": "casodeuso", "texto": "UC005\nImportar cotações", "col": 1, "linha": 4},
     {"id": "uc006", "tipo": "casodeuso", "texto": "UC006\nConfigurar regra\nde análise", "col": 1, "linha": 5},
     {"id": "uc007", "tipo": "casodeuso", "texto": "UC007\nGerenciar usuários", "col": 1, "linha": 6},
+    {"id": "uc019", "tipo": "casodeuso", "texto": "UC019\nSincronizar cotações\nonline", "col": 1, "linha": 7},
+    {"id": "uc020", "tipo": "casodeuso", "texto": "UC020\nExecutar backtesting\ndas regras", "col": 1, "linha": 8},
 
     {"id": "uc008", "tipo": "casodeuso", "texto": "UC008\nBuscar ativos", "col": 2, "linha": 0},
     {"id": "uc009", "tipo": "casodeuso", "texto": "UC009\nVisualizar painel de análise", "col": 2, "linha": 1},
@@ -37,6 +39,10 @@
     {"de": "adm", "para": "uc005", "tipo": "associacao"},
     {"de": "adm", "para": "uc006", "tipo": "associacao"},
     {"de": "adm", "para": "uc007", "tipo": "associacao"},
+    {"de": "adm", "para": "uc019", "tipo": "associacao",
+     "via": [{"col": 0.42, "linha": 3.6}, {"col": 0.42, "linha": 7}]},
+    {"de": "adm", "para": "uc020", "tipo": "associacao",
+     "via": [{"col": 0.30, "linha": 3.8}, {"col": 0.30, "linha": 8}]},
     {"de": "adm", "para": "uc011", "tipo": "associacao",
      "via": [{"col": 0.5, "linha": 3.5}, {"col": 1.55, "linha": 3.5}]},
 

@@ -1,0 +1,27 @@
+{
+  "tipo": "grade",
+  "moldura": "stm UC020 | Backtester",
+  "folgaColunas": 200,
+  "folgaLinhas": 90,
+  "elementos": [
+    {"id": "i", "tipo": "inicial", "col": 0, "linha": 0},
+    {"id": "prep", "tipo": "estado", "nome": "Preparando a apuração", "texto": "entry / horizonteEfetivo = horizonte > 0\n          ? horizonte : HORIZONTE_PADRAO\ndo / MotorAnalise::comRegrasPadrao(regras)\ndo / uma linha por regra + Consolidado", "col": 1, "linha": 0},
+    {"id": "val", "tipo": "estado", "nome": "Validando o histórico", "texto": "do / minimoNecessario = MINIMO_DE_PREGOES\n          + horizonteEfetivo\ndo / comparar com o tamanho do histórico", "col": 2, "linha": 0},
+    {"id": "perc", "tipo": "estado", "nome": "Percorrendo os pregões", "texto": "do / recorte = historico.mid(0, t + 1)\ndo / motor->analisar(ativo, recorte)\ndo / avaliarRegrasIndividualmente(ativo, recorte)\ndo / contabilizar(tipo, retorno) (RN024)", "col": 3, "linha": 0},
+    {"id": "insuf", "tipo": "estado", "nome": "Histórico insuficiente", "texto": "entry / observacao explica quantos\n          pregões faltam\nexit / devolver a apuração zerada", "col": 1, "linha": 1},
+    {"id": "semval", "tipo": "estado", "nome": "Sem pregão válido", "texto": "entry / observacao \"as cotações do período\n          não têm preços válidos\"", "col": 2, "linha": 1},
+    {"id": "cons", "tipo": "estado", "nome": "Consolidando as métricas", "texto": "do / taxaDeAcerto() = acertos / sinais\ndo / retornoMedio() = somaDosRetornos / sinais\nexit / preencher consolidado e porRegra", "col": 3, "linha": 1},
+    {"id": "f", "tipo": "final", "col": 2, "linha": 2}
+  ],
+  "ligacoes": [
+    {"de": "i", "para": "prep", "rotulo": "executar(ativo,\nhistorico, horizonte)"},
+    {"de": "prep", "para": "val", "rotulo": "motor montado"},
+    {"de": "val", "para": "perc", "rotulo": "[histórico ≥\nminimoNecessario]"},
+    {"de": "val", "para": "insuf", "rotulo": "[histórico <\nminimoNecessario]"},
+    {"de": "perc", "para": "cons", "rotulo": "fim do histórico\n[pregoesAvaliados > 0]"},
+    {"de": "perc", "para": "semval", "rotulo": "[pregoesAvaliados = 0]"},
+    {"de": "cons", "para": "f", "rotulo": "devolver o\nResultadoBacktest"},
+    {"de": "semval", "para": "f", "rotulo": "devolver com\na observação"},
+    {"de": "insuf", "para": "f", "rotulo": "devolver com\na observação"}
+  ]
+}

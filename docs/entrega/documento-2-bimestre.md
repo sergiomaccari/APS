@@ -133,105 +133,117 @@ Figura 34. Diagrama de sequência para o [UC015].
 Figura 35. Diagrama de sequência para o [UC016].  
 Figura 36. Diagrama de sequência para o [UC017].  
 Figura 37. Diagrama de sequência para o [UC018].  
-Figura 38. Diagrama de comunicação para o [UC001].  
-Figura 39. Diagrama de comunicação para o [UC002].  
-Figura 40. Diagrama de comunicação para o [UC003].  
-Figura 41. Diagrama de comunicação para o [UC004].  
-Figura 42. Diagrama de comunicação para o [UC005].  
-Figura 43. Diagrama de comunicação para o [UC006].  
-Figura 44. Diagrama de comunicação para o [UC007].  
-Figura 45. Diagrama de comunicação para o [UC008].  
-Figura 46. Diagrama de comunicação para o [UC009].  
-Figura 47. Diagrama de comunicação para o [UC010].  
-Figura 48. Diagrama de comunicação para o [UC011].  
-Figura 49. Diagrama de comunicação para o [UC012].  
-Figura 50. Diagrama de comunicação para o [UC013].  
-Figura 51. Diagrama de comunicação para o [UC014].  
-Figura 52. Diagrama de comunicação para o [UC015].  
-Figura 53. Diagrama de comunicação para o [UC016].  
-Figura 54. Diagrama de comunicação para o [UC017].  
-Figura 55. Diagrama de comunicação para o [UC018].  
-Figura 56. Diagrama Entidade-Relacionamento do banco de dados.  
-Figura 57. Diagrama de Estados da classe TelaLogin para o [UC001].  
-Figura 58. Diagrama de Estados da classe ServicoAutenticacao para o [UC001].  
-Figura 59. Diagrama de Estados da classe DialogoAtivo para o [UC002].  
-Figura 60. Diagrama de Estados da classe ServicoAtivo para o [UC002].  
-Figura 61. Diagrama de Estados da classe TelaAtivos para o [UC003].  
-Figura 62. Diagrama de Estados da classe ServicoAtivo para o [UC003].  
-Figura 63. Diagrama de Estados da classe TelaAtivos para o [UC004].  
-Figura 64. Diagrama de Estados da classe RepositorioAtivo para o [UC004].  
-Figura 65. Diagrama de Estados da classe TelaImportacao para o [UC005].  
-Figura 66. Diagrama de Estados da classe ServicoImportacao para o [UC005].  
-Figura 67. Diagrama de Estados da classe Importacao para o [UC005].  
-Figura 68. Diagrama de Estados da classe TelaRegras para o [UC006].  
-Figura 69. Diagrama de Estados da classe RepositorioRegra para o [UC006].  
-Figura 70. Diagrama de Estados da classe TelaUsuarios para o [UC007].  
-Figura 71. Diagrama de Estados da classe ServicoAutenticacao para o [UC007].  
-Figura 72. Diagrama de Estados da classe TelaAtivos para o [UC008].  
-Figura 73. Diagrama de Estados da classe RepositorioAtivo para o [UC008].  
-Figura 74. Diagrama de Estados da classe TelaDashboard para o [UC009].  
-Figura 75. Diagrama de Estados da classe CalculadoraIndicadores para o [UC009].  
-Figura 76. Diagrama de Estados da classe TelaDetalheAtivo para o [UC010].  
-Figura 77. Diagrama de Estados da classe RepositorioCotacao para o [UC010].  
-Figura 78. Diagrama de Estados da classe TelaRecomendacoes para o [UC011].  
-Figura 79. Diagrama de Estados da classe MotorAnalise para o [UC011].  
-Figura 80. Diagrama de Estados da classe Recomendacao para o [UC011].  
-Figura 81. Diagrama de Estados da classe TelaRecomendacoes para o [UC012].  
-Figura 82. Diagrama de Estados da classe RepositorioRecomendacao para o [UC012].  
-Figura 83. Diagrama de Estados da classe DialogoOperacao para o [UC013].  
-Figura 84. Diagrama de Estados da classe ServicoCarteira para o [UC013].  
-Figura 85. Diagrama de Estados da classe TelaCarteira para o [UC014].  
-Figura 86. Diagrama de Estados da classe ServicoCarteira para o [UC014].  
-Figura 87. Diagrama de Estados da classe Posicao para o [UC014].  
-Figura 88. Diagrama de Estados da classe TelaCarteira para o [UC015].  
-Figura 89. Diagrama de Estados da classe ServicoCarteira para o [UC015].  
-Figura 90. Diagrama de Estados da classe DialogoAlerta para o [UC016].  
-Figura 91. Diagrama de Estados da classe ServicoAlerta para o [UC016].  
-Figura 92. Diagrama de Estados da classe JanelaPrincipal para o [UC017].  
-Figura 93. Diagrama de Estados da classe ServicoAlerta para o [UC017].  
-Figura 94. Diagrama de Estados da classe Alerta para o [UC017].  
-Figura 95. Diagrama de Estados da classe TelaAlertas para o [UC018].  
-Figura 96. Diagrama de Estados da classe RepositorioAlerta para o [UC018].  
-Figura 97. Diagrama de Atividades para o estado "Autenticando", dentro do Diagrama de Estados para a classe TelaLogin em [UC001].  
-Figura 98. Diagrama de Atividades para o estado "Conferindo credenciais", dentro do Diagrama de Estados para a classe ServicoAutenticacao em [UC001].  
-Figura 99. Diagrama de Atividades para o estado "Montando ativo", dentro do Diagrama de Estados para a classe DialogoAtivo em [UC002].  
-Figura 100. Diagrama de Atividades para o estado "Validando ativo", dentro do Diagrama de Estados para a classe ServicoAtivo em [UC002].  
-Figura 101. Diagrama de Atividades para o estado "Editando no diálogo", dentro do Diagrama de Estados para a classe TelaAtivos em [UC003].  
-Figura 102. Diagrama de Atividades para o estado "Validando alteração", dentro do Diagrama de Estados para a classe ServicoAtivo em [UC003].  
-Figura 103. Diagrama de Atividades para o estado "Confirmando remoção", dentro do Diagrama de Estados para a classe TelaAtivos em [UC004].  
-Figura 104. Diagrama de Atividades para o estado "Executando exclusão", dentro do Diagrama de Estados para a classe RepositorioAtivo em [UC004].  
-Figura 105. Diagrama de Atividades para o estado "Importando", dentro do Diagrama de Estados para a classe TelaImportacao em [UC005].  
-Figura 106. Diagrama de Atividades para o estado "Validando linhas", dentro do Diagrama de Estados para a classe ServicoImportacao em [UC005].  
-Figura 107. Diagrama de Atividades para o estado "Validando", dentro do Diagrama de Estados para a classe Importacao em [UC005].  
-Figura 108. Diagrama de Atividades para o estado "Editando parâmetros", dentro do Diagrama de Estados para a classe TelaRegras em [UC006].  
-Figura 109. Diagrama de Atividades para o estado "Montando comando", dentro do Diagrama de Estados para a classe RepositorioRegra em [UC006].  
-Figura 110. Diagrama de Atividades para o estado "Editando no diálogo", dentro do Diagrama de Estados para a classe TelaUsuarios em [UC007].  
-Figura 111. Diagrama de Atividades para o estado "Validando dados", dentro do Diagrama de Estados para a classe ServicoAutenticacao em [UC007].  
-Figura 112. Diagrama de Atividades para o estado "Filtrando ativos", dentro do Diagrama de Estados para a classe TelaAtivos em [UC008].  
-Figura 113. Diagrama de Atividades para o estado "Montando objetos", dentro do Diagrama de Estados para a classe RepositorioAtivo em [UC008].  
-Figura 114. Diagrama de Atividades para o estado "Calculando indicadores", dentro do Diagrama de Estados para a classe TelaDashboard em [UC009].  
-Figura 115. Diagrama de Atividades para o estado "Calculando a série", dentro do Diagrama de Estados para a classe CalculadoraIndicadores em [UC009].  
-Figura 116. Diagrama de Atividades para o estado "Exibindo detalhes", dentro do Diagrama de Estados para a classe TelaDetalheAtivo em [UC010].  
-Figura 117. Diagrama de Atividades para o estado "Consultando cotações", dentro do Diagrama de Estados para a classe RepositorioCotacao em [UC010].  
-Figura 118. Diagrama de Atividades para o estado "Gerando recomendações", dentro do Diagrama de Estados para a classe TelaRecomendacoes em [UC011].  
-Figura 119. Diagrama de Atividades para o estado "Consolidando parecer", dentro do Diagrama de Estados para a classe MotorAnalise em [UC011].  
-Figura 120. Diagrama de Atividades para o estado "Vigente", dentro do Diagrama de Estados para a classe Recomendacao em [UC011].  
-Figura 121. Diagrama de Atividades para o estado "Detalhando justificativa", dentro do Diagrama de Estados para a classe TelaRecomendacoes em [UC012].  
-Figura 122. Diagrama de Atividades para o estado "Consultando vigentes", dentro do Diagrama de Estados para a classe RepositorioRecomendacao em [UC012].  
-Figura 123. Diagrama de Atividades para o estado "Editando a compra", dentro do Diagrama de Estados para a classe DialogoOperacao em [UC013].  
-Figura 124. Diagrama de Atividades para o estado "Atualizando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC013].  
-Figura 125. Diagrama de Atividades para o estado "Registrando a venda", dentro do Diagrama de Estados para a classe TelaCarteira em [UC014].  
-Figura 126. Diagrama de Atividades para o estado "Verificando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC014].  
-Figura 127. Diagrama de Atividades para o estado "Aberta", dentro do Diagrama de Estados para a classe Posicao em [UC014].  
-Figura 128. Diagrama de Atividades para o estado "Calculando o resumo", dentro do Diagrama de Estados para a classe TelaCarteira em [UC015].  
-Figura 129. Diagrama de Atividades para o estado "Avaliando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC015].  
-Figura 130. Diagrama de Atividades para o estado "Sugerindo o valor de referência", dentro do Diagrama de Estados para a classe DialogoAlerta em [UC016].  
-Figura 131. Diagrama de Atividades para o estado "Validando o alerta", dentro do Diagrama de Estados para a classe ServicoAlerta em [UC016].  
-Figura 132. Diagrama de Atividades para o estado "Notificando na barra de status", dentro do Diagrama de Estados para a classe JanelaPrincipal em [UC017].  
-Figura 133. Diagrama de Atividades para o estado "Avaliando a condição", dentro do Diagrama de Estados para a classe ServicoAlerta em [UC017].  
-Figura 134. Diagrama de Atividades para o estado "Ativo", dentro do Diagrama de Estados para a classe Alerta em [UC017].  
-Figura 135. Diagrama de Atividades para o estado "Arquivando o alerta", dentro do Diagrama de Estados para a classe TelaAlertas em [UC018].  
-Figura 136. Diagrama de Atividades para o estado "Gravando o estado", dentro do Diagrama de Estados para a classe RepositorioAlerta em [UC018].  
+Figura 38. Diagrama de sequência para o [UC019].  
+Figura 39. Diagrama de sequência para o [UC020].  
+Figura 40. Diagrama de comunicação para o [UC001].  
+Figura 41. Diagrama de comunicação para o [UC002].  
+Figura 42. Diagrama de comunicação para o [UC003].  
+Figura 43. Diagrama de comunicação para o [UC004].  
+Figura 44. Diagrama de comunicação para o [UC005].  
+Figura 45. Diagrama de comunicação para o [UC006].  
+Figura 46. Diagrama de comunicação para o [UC007].  
+Figura 47. Diagrama de comunicação para o [UC008].  
+Figura 48. Diagrama de comunicação para o [UC009].  
+Figura 49. Diagrama de comunicação para o [UC010].  
+Figura 50. Diagrama de comunicação para o [UC011].  
+Figura 51. Diagrama de comunicação para o [UC012].  
+Figura 52. Diagrama de comunicação para o [UC013].  
+Figura 53. Diagrama de comunicação para o [UC014].  
+Figura 54. Diagrama de comunicação para o [UC015].  
+Figura 55. Diagrama de comunicação para o [UC016].  
+Figura 56. Diagrama de comunicação para o [UC017].  
+Figura 57. Diagrama de comunicação para o [UC018].  
+Figura 58. Diagrama de comunicação para o [UC019].  
+Figura 59. Diagrama de comunicação para o [UC020].  
+Figura 60. Diagrama Entidade-Relacionamento do banco de dados.  
+Figura 61. Diagrama de Estados da classe TelaLogin para o [UC001].  
+Figura 62. Diagrama de Estados da classe ServicoAutenticacao para o [UC001].  
+Figura 63. Diagrama de Estados da classe DialogoAtivo para o [UC002].  
+Figura 64. Diagrama de Estados da classe ServicoAtivo para o [UC002].  
+Figura 65. Diagrama de Estados da classe TelaAtivos para o [UC003].  
+Figura 66. Diagrama de Estados da classe ServicoAtivo para o [UC003].  
+Figura 67. Diagrama de Estados da classe TelaAtivos para o [UC004].  
+Figura 68. Diagrama de Estados da classe RepositorioAtivo para o [UC004].  
+Figura 69. Diagrama de Estados da classe TelaImportacao para o [UC005].  
+Figura 70. Diagrama de Estados da classe ServicoImportacao para o [UC005].  
+Figura 71. Diagrama de Estados da classe Importacao para o [UC005].  
+Figura 72. Diagrama de Estados da classe TelaRegras para o [UC006].  
+Figura 73. Diagrama de Estados da classe RepositorioRegra para o [UC006].  
+Figura 74. Diagrama de Estados da classe TelaUsuarios para o [UC007].  
+Figura 75. Diagrama de Estados da classe ServicoAutenticacao para o [UC007].  
+Figura 76. Diagrama de Estados da classe TelaAtivos para o [UC008].  
+Figura 77. Diagrama de Estados da classe RepositorioAtivo para o [UC008].  
+Figura 78. Diagrama de Estados da classe TelaDashboard para o [UC009].  
+Figura 79. Diagrama de Estados da classe CalculadoraIndicadores para o [UC009].  
+Figura 80. Diagrama de Estados da classe TelaDetalheAtivo para o [UC010].  
+Figura 81. Diagrama de Estados da classe RepositorioCotacao para o [UC010].  
+Figura 82. Diagrama de Estados da classe TelaRecomendacoes para o [UC011].  
+Figura 83. Diagrama de Estados da classe MotorAnalise para o [UC011].  
+Figura 84. Diagrama de Estados da classe Recomendacao para o [UC011].  
+Figura 85. Diagrama de Estados da classe TelaRecomendacoes para o [UC012].  
+Figura 86. Diagrama de Estados da classe RepositorioRecomendacao para o [UC012].  
+Figura 87. Diagrama de Estados da classe DialogoOperacao para o [UC013].  
+Figura 88. Diagrama de Estados da classe ServicoCarteira para o [UC013].  
+Figura 89. Diagrama de Estados da classe TelaCarteira para o [UC014].  
+Figura 90. Diagrama de Estados da classe ServicoCarteira para o [UC014].  
+Figura 91. Diagrama de Estados da classe Posicao para o [UC014].  
+Figura 92. Diagrama de Estados da classe TelaCarteira para o [UC015].  
+Figura 93. Diagrama de Estados da classe ServicoCarteira para o [UC015].  
+Figura 94. Diagrama de Estados da classe DialogoAlerta para o [UC016].  
+Figura 95. Diagrama de Estados da classe ServicoAlerta para o [UC016].  
+Figura 96. Diagrama de Estados da classe JanelaPrincipal para o [UC017].  
+Figura 97. Diagrama de Estados da classe ServicoAlerta para o [UC017].  
+Figura 98. Diagrama de Estados da classe Alerta para o [UC017].  
+Figura 99. Diagrama de Estados da classe TelaAlertas para o [UC018].  
+Figura 100. Diagrama de Estados da classe RepositorioAlerta para o [UC018].  
+Figura 101. Diagrama de Estados da classe TelaImportacao para o [UC019].  
+Figura 102. Diagrama de Estados da classe ServicoSincronizacao para o [UC019].  
+Figura 103. Diagrama de Estados da classe DialogoBacktest para o [UC020].  
+Figura 104. Diagrama de Estados da classe Backtester para o [UC020].  
+Figura 105. Diagrama de Atividades para o estado "Autenticando", dentro do Diagrama de Estados para a classe TelaLogin em [UC001].  
+Figura 106. Diagrama de Atividades para o estado "Conferindo credenciais", dentro do Diagrama de Estados para a classe ServicoAutenticacao em [UC001].  
+Figura 107. Diagrama de Atividades para o estado "Montando ativo", dentro do Diagrama de Estados para a classe DialogoAtivo em [UC002].  
+Figura 108. Diagrama de Atividades para o estado "Validando ativo", dentro do Diagrama de Estados para a classe ServicoAtivo em [UC002].  
+Figura 109. Diagrama de Atividades para o estado "Editando no diálogo", dentro do Diagrama de Estados para a classe TelaAtivos em [UC003].  
+Figura 110. Diagrama de Atividades para o estado "Validando alteração", dentro do Diagrama de Estados para a classe ServicoAtivo em [UC003].  
+Figura 111. Diagrama de Atividades para o estado "Confirmando remoção", dentro do Diagrama de Estados para a classe TelaAtivos em [UC004].  
+Figura 112. Diagrama de Atividades para o estado "Executando exclusão", dentro do Diagrama de Estados para a classe RepositorioAtivo em [UC004].  
+Figura 113. Diagrama de Atividades para o estado "Importando", dentro do Diagrama de Estados para a classe TelaImportacao em [UC005].  
+Figura 114. Diagrama de Atividades para o estado "Validando linhas", dentro do Diagrama de Estados para a classe ServicoImportacao em [UC005].  
+Figura 115. Diagrama de Atividades para o estado "Validando", dentro do Diagrama de Estados para a classe Importacao em [UC005].  
+Figura 116. Diagrama de Atividades para o estado "Editando parâmetros", dentro do Diagrama de Estados para a classe TelaRegras em [UC006].  
+Figura 117. Diagrama de Atividades para o estado "Montando comando", dentro do Diagrama de Estados para a classe RepositorioRegra em [UC006].  
+Figura 118. Diagrama de Atividades para o estado "Editando no diálogo", dentro do Diagrama de Estados para a classe TelaUsuarios em [UC007].  
+Figura 119. Diagrama de Atividades para o estado "Validando dados", dentro do Diagrama de Estados para a classe ServicoAutenticacao em [UC007].  
+Figura 120. Diagrama de Atividades para o estado "Filtrando ativos", dentro do Diagrama de Estados para a classe TelaAtivos em [UC008].  
+Figura 121. Diagrama de Atividades para o estado "Montando objetos", dentro do Diagrama de Estados para a classe RepositorioAtivo em [UC008].  
+Figura 122. Diagrama de Atividades para o estado "Calculando indicadores", dentro do Diagrama de Estados para a classe TelaDashboard em [UC009].  
+Figura 123. Diagrama de Atividades para o estado "Calculando a série", dentro do Diagrama de Estados para a classe CalculadoraIndicadores em [UC009].  
+Figura 124. Diagrama de Atividades para o estado "Exibindo detalhes", dentro do Diagrama de Estados para a classe TelaDetalheAtivo em [UC010].  
+Figura 125. Diagrama de Atividades para o estado "Consultando cotações", dentro do Diagrama de Estados para a classe RepositorioCotacao em [UC010].  
+Figura 126. Diagrama de Atividades para o estado "Gerando recomendações", dentro do Diagrama de Estados para a classe TelaRecomendacoes em [UC011].  
+Figura 127. Diagrama de Atividades para o estado "Consolidando parecer", dentro do Diagrama de Estados para a classe MotorAnalise em [UC011].  
+Figura 128. Diagrama de Atividades para o estado "Vigente", dentro do Diagrama de Estados para a classe Recomendacao em [UC011].  
+Figura 129. Diagrama de Atividades para o estado "Detalhando justificativa", dentro do Diagrama de Estados para a classe TelaRecomendacoes em [UC012].  
+Figura 130. Diagrama de Atividades para o estado "Consultando vigentes", dentro do Diagrama de Estados para a classe RepositorioRecomendacao em [UC012].  
+Figura 131. Diagrama de Atividades para o estado "Editando a compra", dentro do Diagrama de Estados para a classe DialogoOperacao em [UC013].  
+Figura 132. Diagrama de Atividades para o estado "Atualizando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC013].  
+Figura 133. Diagrama de Atividades para o estado "Registrando a venda", dentro do Diagrama de Estados para a classe TelaCarteira em [UC014].  
+Figura 134. Diagrama de Atividades para o estado "Verificando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC014].  
+Figura 135. Diagrama de Atividades para o estado "Aberta", dentro do Diagrama de Estados para a classe Posicao em [UC014].  
+Figura 136. Diagrama de Atividades para o estado "Calculando o resumo", dentro do Diagrama de Estados para a classe TelaCarteira em [UC015].  
+Figura 137. Diagrama de Atividades para o estado "Avaliando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC015].  
+Figura 138. Diagrama de Atividades para o estado "Sugerindo o valor de referência", dentro do Diagrama de Estados para a classe DialogoAlerta em [UC016].  
+Figura 139. Diagrama de Atividades para o estado "Validando o alerta", dentro do Diagrama de Estados para a classe ServicoAlerta em [UC016].  
+Figura 140. Diagrama de Atividades para o estado "Notificando na barra de status", dentro do Diagrama de Estados para a classe JanelaPrincipal em [UC017].  
+Figura 141. Diagrama de Atividades para o estado "Avaliando a condição", dentro do Diagrama de Estados para a classe ServicoAlerta em [UC017].  
+Figura 142. Diagrama de Atividades para o estado "Ativo", dentro do Diagrama de Estados para a classe Alerta em [UC017].  
+Figura 143. Diagrama de Atividades para o estado "Arquivando o alerta", dentro do Diagrama de Estados para a classe TelaAlertas em [UC018].  
+Figura 144. Diagrama de Atividades para o estado "Gravando o estado", dentro do Diagrama de Estados para a classe RepositorioAlerta em [UC018].  
+Figura 145. Diagrama de Atividades para o estado "Sincronizando", dentro do Diagrama de Estados para a classe TelaImportacao em [UC019].  
+Figura 146. Diagrama de Atividades para o estado "Sincronizando ativo", dentro do Diagrama de Estados para a classe ServicoSincronizacao em [UC019].  
+Figura 147. Diagrama de Atividades para o estado "Executando o backtesting", dentro do Diagrama de Estados para a classe DialogoBacktest em [UC020].  
+Figura 148. Diagrama de Atividades para o estado "Percorrendo os pregões", dentro do Diagrama de Estados para a classe Backtester em [UC020].  
 
 
 ```{=openxml}
@@ -267,66 +279,76 @@ Quadro 15. Descrição do caso de uso UC015.
 Quadro 16. Descrição do caso de uso UC016.  
 Quadro 17. Descrição do caso de uso UC017.  
 Quadro 18. Descrição do caso de uso UC018.  
-Quadro 19. Dicionário de informações da classe Usuario.  
-Quadro 20. Dicionário de informações da classe Ativo (abstrata).  
-Quadro 21. Dicionário de informações da classe Acao.  
-Quadro 22. Dicionário de informações da classe FundoImobiliario.  
-Quadro 23. Dicionário de informações da classe Cotacao.  
-Quadro 24. Dicionário de informações da classe Indicador.  
-Quadro 25. Dicionário de informações da classe Carteira.  
-Quadro 26. Dicionário de informações da classe Posicao.  
-Quadro 27. Dicionário de informações da classe Alerta.  
-Quadro 28. Dicionário de informações da classe Recomendacao.  
-Quadro 29. Dicionário de informações da classe RegraConfigurada.  
-Quadro 30. Dicionário de informações da classe Importacao.  
-Quadro 31. Dicionário de informações da interface RegraAnalise.  
-Quadro 32. Dicionário de informações da classe RegraCruzamentoMedias.  
-Quadro 33. Dicionário de informações da classe RegraRsi.  
-Quadro 34. Dicionário de informações da classe RegraDividendYield.  
-Quadro 35. Dicionário de informações da classe RegraPrecoLucro.  
-Quadro 36. Dicionário de informações da classe MotorAnalise.  
-Quadro 37. Dicionário de informações da classe CalculadoraIndicadores.  
-Quadro 38. Dicionário de informações da classe BancoDeDados.  
-Quadro 39. Dicionário de informações da classe RepositorioUsuario.  
-Quadro 40. Dicionário de informações da classe RepositorioAtivo.  
-Quadro 41. Dicionário de informações da classe RepositorioCotacao.  
-Quadro 42. Dicionário de informações da classe RepositorioCarteira.  
-Quadro 43. Dicionário de informações da classe RepositorioAlerta.  
-Quadro 44. Dicionário de informações da classe RepositorioRecomendacao.  
-Quadro 45. Dicionário de informações da classe RepositorioRegra.  
-Quadro 46. Dicionário de informações da classe RepositorioImportacao.  
-Quadro 47. Dicionário de informações da classe ServicoAutenticacao.  
-Quadro 48. Dicionário de informações da classe ServicoAtivo.  
-Quadro 49. Dicionário de informações da classe ServicoImportacao.  
-Quadro 50. Dicionário de informações da classe ResultadoImportacao.  
-Quadro 51. Dicionário de informações da classe ServicoCarteira.  
-Quadro 52. Dicionário de informações da classe ResumoCarteira.  
-Quadro 53. Dicionário de informações da classe LinhaResumoCarteira.  
-Quadro 54. Dicionário de informações da classe ServicoAlerta.  
-Quadro 55. Dicionário de informações da classe ObservadorAlerta.  
-Quadro 56. Dicionário de informações da classe ServicoRecomendacao.  
-Quadro 57. Dicionário de informações da classe Contexto.  
-Quadro 58. Dicionário de informações da classe JanelaPrincipal.  
-Quadro 59. Dicionário de informações da classe TelaLogin.  
-Quadro 60. Dicionário de informações da classe TelaDashboard.  
-Quadro 61. Dicionário de informações da classe TelaDetalheAtivo.  
-Quadro 62. Dicionário de informações da classe TelaRecomendacoes.  
-Quadro 63. Dicionário de informações da classe TelaCarteira.  
-Quadro 64. Dicionário de informações da classe TelaAlertas.  
-Quadro 65. Dicionário de informações da classe TelaAtivos.  
-Quadro 66. Dicionário de informações da classe TelaImportacao.  
-Quadro 67. Dicionário de informações da classe TelaRegras.  
-Quadro 68. Dicionário de informações da classe TelaUsuarios.  
-Quadro 69. Dicionário de informações da classe DialogoAtivo.  
-Quadro 70. Dicionário de informações da classe DialogoOperacao.  
-Quadro 71. Dicionário de informações da classe OpcaoOperacao.  
-Quadro 72. Dicionário de informações da classe DialogoAlerta.  
-Quadro 73. Dicionário de informações da classe OpcaoAlerta.  
-Quadro 74. Dicionário de informações da classe DialogoRegra.  
-Quadro 75. Dicionário de informações da classe DialogoUsuario.  
-Quadro 76. Dicionário de informações da classe CartaoIndicador.  
-Quadro 77. Dicionário de informações da classe GraficoCandlestick.  
-Quadro 78. Dicionário de informações da classe GraficoLinha.  
+Quadro 19. Descrição do caso de uso UC019.  
+Quadro 20. Descrição do caso de uso UC020.  
+Quadro 21. Dicionário de informações da classe Usuario.  
+Quadro 22. Dicionário de informações da classe Ativo (abstrata).  
+Quadro 23. Dicionário de informações da classe Acao.  
+Quadro 24. Dicionário de informações da classe FundoImobiliario.  
+Quadro 25. Dicionário de informações da classe Cotacao.  
+Quadro 26. Dicionário de informações da classe Indicador.  
+Quadro 27. Dicionário de informações da classe Carteira.  
+Quadro 28. Dicionário de informações da classe Posicao.  
+Quadro 29. Dicionário de informações da classe Alerta.  
+Quadro 30. Dicionário de informações da classe Recomendacao.  
+Quadro 31. Dicionário de informações da classe RegraConfigurada.  
+Quadro 32. Dicionário de informações da classe Importacao.  
+Quadro 33. Dicionário de informações da interface RegraAnalise.  
+Quadro 34. Dicionário de informações da classe RegraCruzamentoMedias.  
+Quadro 35. Dicionário de informações da classe RegraRsi.  
+Quadro 36. Dicionário de informações da classe RegraDividendYield.  
+Quadro 37. Dicionário de informações da classe RegraPrecoLucro.  
+Quadro 38. Dicionário de informações da classe MotorAnalise.  
+Quadro 39. Dicionário de informações da classe CalculadoraIndicadores.  
+Quadro 40. Dicionário de informações da classe Backtester.  
+Quadro 41. Dicionário de informações da classe ResultadoBacktestRegra.  
+Quadro 42. Dicionário de informações da classe ResultadoBacktest.  
+Quadro 43. Dicionário de informações da classe BancoDeDados.  
+Quadro 44. Dicionário de informações da classe RepositorioUsuario.  
+Quadro 45. Dicionário de informações da classe RepositorioAtivo.  
+Quadro 46. Dicionário de informações da classe RepositorioCotacao.  
+Quadro 47. Dicionário de informações da classe RepositorioCarteira.  
+Quadro 48. Dicionário de informações da classe RepositorioAlerta.  
+Quadro 49. Dicionário de informações da classe RepositorioRecomendacao.  
+Quadro 50. Dicionário de informações da classe RepositorioRegra.  
+Quadro 51. Dicionário de informações da classe RepositorioImportacao.  
+Quadro 52. Dicionário de informações da classe ServicoAutenticacao.  
+Quadro 53. Dicionário de informações da classe ServicoAtivo.  
+Quadro 54. Dicionário de informações da classe ServicoImportacao.  
+Quadro 55. Dicionário de informações da classe ResultadoImportacao.  
+Quadro 56. Dicionário de informações da classe ServicoCarteira.  
+Quadro 57. Dicionário de informações da classe ResumoCarteira.  
+Quadro 58. Dicionário de informações da classe LinhaResumoCarteira.  
+Quadro 59. Dicionário de informações da classe ServicoAlerta.  
+Quadro 60. Dicionário de informações da classe ObservadorAlerta.  
+Quadro 61. Dicionário de informações da classe ServicoRecomendacao.  
+Quadro 62. Dicionário de informações da interface FonteCotacoesRemota.  
+Quadro 63. Dicionário de informações da classe FonteYahooFinance.  
+Quadro 64. Dicionário de informações da classe ServicoSincronizacao.  
+Quadro 65. Dicionário de informações da classe ResultadoSincronizacao.  
+Quadro 66. Dicionário de informações da classe Contexto.  
+Quadro 67. Dicionário de informações da classe JanelaPrincipal.  
+Quadro 68. Dicionário de informações da classe TelaLogin.  
+Quadro 69. Dicionário de informações da classe TelaDashboard.  
+Quadro 70. Dicionário de informações da classe TelaDetalheAtivo.  
+Quadro 71. Dicionário de informações da classe TelaRecomendacoes.  
+Quadro 72. Dicionário de informações da classe TelaCarteira.  
+Quadro 73. Dicionário de informações da classe TelaAlertas.  
+Quadro 74. Dicionário de informações da classe TelaAtivos.  
+Quadro 75. Dicionário de informações da classe TelaImportacao.  
+Quadro 76. Dicionário de informações da classe TelaRegras.  
+Quadro 77. Dicionário de informações da classe TelaUsuarios.  
+Quadro 78. Dicionário de informações da classe DialogoAtivo.  
+Quadro 79. Dicionário de informações da classe DialogoOperacao.  
+Quadro 80. Dicionário de informações da classe OpcaoOperacao.  
+Quadro 81. Dicionário de informações da classe DialogoAlerta.  
+Quadro 82. Dicionário de informações da classe OpcaoAlerta.  
+Quadro 83. Dicionário de informações da classe DialogoRegra.  
+Quadro 84. Dicionário de informações da classe DialogoBacktest.  
+Quadro 85. Dicionário de informações da classe DialogoUsuario.  
+Quadro 86. Dicionário de informações da classe CartaoIndicador.  
+Quadro 87. Dicionário de informações da classe GraficoCandlestick.  
+Quadro 88. Dicionário de informações da classe GraficoLinha.  
 
 
 ```{=openxml}
@@ -650,6 +672,8 @@ demandas, foram definidos os seguintes requisitos funcionais:
 - [RF017] O investidor deve ser capaz de cadastrar alertas de preço.
 - [RF018] O sistema deve disparar e notificar os alertas cuja condição foi satisfeita.
 - [RF019] O investidor deve ser capaz de arquivar alertas já disparados.
+- [RF020] O administrador deve ser capaz de sincronizar cotações online, com o sistema baixando apenas o período posterior à última cotação de cada ativo.
+- [RF021] O administrador deve ser capaz de executar o backtesting das regras de análise, medindo a taxa de acerto e o retorno médio de cada regra sobre o histórico.
 
 Considerando a implementação do sistema, também foram levantados requisitos não
 funcionais:
@@ -661,6 +685,7 @@ funcionais:
 - [RNF005] Somente o administrador deve acessar as telas de administração.
 - [RNF006] Toda recomendação deve exibir a regra e os números que a justificaram.
 - [RNF007] O sistema deve responder às interações da interface em menos de 2 segundos com 5 anos de histórico carregado.
+- [RNF008] A sincronização online deve ser opcional: sem conexão o sistema apenas informa a indisponibilidade e todas as demais funções seguem operando com os dados locais.
 
 Para definir limitações técnicas ao desenvolvimento do sistema, foram elaboradas as
 restrições de projeto:
@@ -712,14 +737,17 @@ Tabela 1.
 | [RF017] | 5 |
 | [RF018] | 8 |
 | [RF019] | 3 |
-| **Total** | **116** |
+| [RF020] | 8 |
+| [RF021] | 8 |
+| **Total** | **132** |
 
 Assim, a estimativa de esforço total para o desenvolvimento e cumprimento de todos
-os requisitos funcionais foi de **116 horas** — cerca de 29 horas por integrante ao
+os requisitos funcionais foi de **132 horas** — cerca de 33 horas por integrante ao
 longo do bimestre. As maiores estimativas couberam à importação transacional de
 cotações [RF005], ao painel gráfico com indicadores [RF009] e ao motor de
 recomendações [RF012], por concentrarem validações, cálculo numérico e regras de
-negócio.
+negócio, seguidas da sincronização online [RF020] e do backtesting [RF021], que
+envolvem integração externa e reprocessamento do histórico.
 
 ### Verificação complementar com Pontos de Caso de Uso (UCP)
 
@@ -762,10 +790,12 @@ número de transações de seu fluxo de eventos:
 | UC016 Cadastrar alerta | 5 | Médio | 10 |
 | UC017 Avaliar e disparar alertas | 7 | Complexo | 15 |
 | UC018 Arquivar alerta | 3 | Simples | 5 |
-| **UUCW** | | | **180** |
+| UC019 Sincronizar cotações online | 6 | Médio | 10 |
+| UC020 Executar backtesting das regras | 6 | Médio | 10 |
+| **UUCW** | | | **200** |
 
 Com isso, os pontos de caso de uso não ajustados são
-UUCP = UAW + UUCW = 6 + 180 = **186**.
+UUCP = UAW + UUCW = 6 + 200 = **206**.
 
 **Passo 3 — Fatores técnicos (TCF).**
 
@@ -810,17 +840,17 @@ quanto maior o valor, mais eles reduzem a produtividade estimada.
 ECF = 1,4 − (0,03 × 16,0) = **0,92**.
 
 **Passo 5 — Cálculo final.**
-UCP = UUCP × TCF × ECF = 186 × 0,85 × 0,92 = **145,45 pontos**.
+UCP = UUCP × TCF × ECF = 206 × 0,85 × 0,92 = **161,09 pontos**.
 
 Aplicando a taxa clássica de Karner, de 20 horas por ponto, o esforço seria de
-2.909 horas — valor coerente com um projeto industrial completo (levantamento,
+3.222 horas — valor coerente com um projeto industrial completo (levantamento,
 gestão, testes formais, implantação e garantia), conduzido por equipe alocada em
 tempo integral. Para o recorte desta disciplina, a leitura relevante do UCP é
 relativa: os casos de uso classificados como complexos (UC005, UC009, UC011 e
 UC017) correspondem exatamente aos requisitos com as maiores cartas no Planning
 Poker ([RF005], [RF009], [RF012] e [RF018]), o que dá consistência às duas
 técnicas. Adotamos como compromisso operacional a estimativa do Planning Poker
-(116 horas de implementação), usando o UCP como medida de tamanho funcional e como
+(132 horas de implementação), usando o UCP como medida de tamanho funcional e como
 verificação da classificação de esforço entre os casos de uso.
 
 
@@ -1496,6 +1526,84 @@ comportamento implementado no sistema Analisador B3.
 | | 4b - Caso o alerta esteja no estado Ativo ou Arquivado, o sistema recusa a transição e exibe "Somente alertas já disparados podem ser arquivados (estado atual: ESTADO)." em vermelho, retornando ao passo 2. |
 | | 5a - Caso a gravação do alerta arquivado falhe, o sistema exibe a mensagem devolvida pelo banco de dados e retorna ao passo 2. |
 
+**Quadro 19. Descrição do caso de uso UC019.**
+
+| | |
+|----------------------|--------------------------------------------|
+| **Nome** | UC019: Sincronizar cotações online |
+| **Atores** | Ator principal: Administrador |
+| **Descrição** | Caso de uso executado quando o administrador necessita atualizar as cotações dos ativos cadastrados diretamente da fonte online, baixando apenas o período que falta em cada ativo, sem depender do arquivo CSV. |
+| **Pré-condições** | O administrador deve estar autenticado no sistema (UC001); deve existir ao menos um ativo cadastrado (UC002); o computador deve possuir conexão com a internet e backend TLS disponível para o Qt. |
+| **Pós-condições** | Cotações do período faltante gravadas para cada ativo atualizado, sem duplicar pregões já existentes; um registro de auditoria por tentativa de sincronização na classe Importacao; histórico de importações e telas dependentes das cotações atualizados. |
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
+| 1 - O ator (administrador) seleciona a opção "Importar cotações" na navegação lateral e aciona a opção "Sincronizar online". (ator) | |
+| | 2 - O sistema desabilita as opções de importação e de sincronização e apresenta o cursor de espera, de modo que a consulta em curso não seja disparada novamente. (sistema) |
+| | 3 - O sistema recupera todos os ativos cadastrados (classe Ativo). (sistema) (3a) |
+| | 4 - Para cada ativo, o sistema recupera a última cotação gravada (classe Cotacao) e calcula o início da janela faltante: o dia seguinte à data da última cotação ou, quando o ativo ainda não possui histórico, 365 dias antes da data corrente, conforme a Regra de Negócio RN023. (sistema) (atributo) |
+| | 5 - O sistema monta a consulta à fonte remota, acrescentando o sufixo ".SA" ao ticker (classe Ativo) e delimitando o intervalo entre o início da janela e a data corrente (classe FonteYahooFinance). (sistema) (5a) |
+| | 6 - O sistema requisita à fonte remota as cotações diárias do intervalo, aguardando no máximo 15 segundos pela resposta (classe FonteCotacoesRemota). (sistema) (6a) (6b) |
+| | 7 - O sistema converte a resposta recebida em cotações do domínio, arredondando abertura, maxima, minima e fechamento aos centavos e convertendo o volume (classe Cotacao), descartando os pregões com campo ausente ou com valores inconsistentes e ordenando a série por data crescente. (sistema) (atributo) (7a) (7b) |
+| | 8 - O sistema abre uma transação e grava em lote as cotações baixadas, ignorando aquelas cuja data já exista para o mesmo ativo, conforme a Regra de Negócio RN010. (sistema) (atributo) (8a) |
+| | 9 - O sistema registra a auditoria da sincronização, identificando a origem no campo arquivo como "Yahoo Finance (TICKER)", gravando linhasLidas e linhasInseridas e transitando o registro para o estado Concluida (classe Importacao). (sistema) (atributo) (9a) |
+| | 10 - O sistema confirma a transação, acumula as cotações inseridas e as ignoradas e acrescenta ao relatório a linha "TICKER: N novas, M ignoradas". (sistema) (10a) |
+| | 11 - O sistema repete os passos 4 a 10 para os demais ativos cadastrados, sem interromper a sincronização quando um ativo isolado falha, conforme o Requisito Não Funcional RNF008. (sistema) |
+| | 12 - O sistema reabilita as opções, recarrega o histórico de importações e apresenta em verde o resumo "Sincronização online: X ativo(s) verificado(s), Y cotação(ões) nova(s), Z ignorada(s) por já existirem.", seguido do detalhamento por ativo. (sistema) (12a) |
+| | 13 - Havendo ao menos uma cotação nova, o sistema avisa as demais telas para que recarreguem os dados dependentes das cotações. (sistema) |
+| **Regras de negócio** | RN010 — Cotação de mesma data e mesmo ativo é ignorada, sem duplicar o registro já existente: a gravação em lote adota o mesmo critério da importação por arquivo, de modo que acionar a sincronização duas vezes seguidas não duplica pregões. |
+| | RN023 — A sincronização busca apenas o período posterior à última cotação local — do dia seguinte à última cotação gravada até a data corrente — ou os últimos 365 dias quando o ativo ainda não possui cotação, e nunca duplica pregões. |
+| | RNF001 — O sistema deve funcionar sem conexão com a internet: a importação por CSV permanece como caminho primário e independe deste caso de uso. |
+| | RNF008 — A sincronização online é opcional: sem internet o sistema apenas informa e todas as demais funções seguem operando; a falha de um ativo nunca interrompe os demais. |
+| **Fluxo alternativo 1** | * A qualquer momento a última cotação gravada de um ativo já alcança a data corrente: o sistema não gasta requisição com esse ativo, acrescenta ao relatório a linha "TICKER: já atualizado (última cotação em DD/MM/AAAA)." e retorna ao passo 4 para o próximo ativo. |
+| **Fluxo alternativo 2** | * A qualquer momento o administrador prefere o caminho offline: aciona "Importar arquivo" ou "Importar pasta inteira" e executa o caso de uso UC005, que grava as mesmas cotações a partir de arquivos CSV, sem consultar a fonte online. |
+| **Fluxo de exceção** | 3a - Caso não exista nenhum ativo cadastrado, a opção "Sincronizar online" permanece desabilitada; acionada a sincronização sem ativos, nenhuma requisição é feita e o sistema exibe o resumo "Nenhum ativo cadastrado para sincronizar." com o detalhamento "Nenhum ativo cadastrado: cadastre os ativos antes de sincronizar.", encerrando o caso de uso. |
+| | 5a - Caso o ativo esteja sem ticker, o sistema registra "Ativo sem ticker: impossível consultar a fonte online."; caso o intervalo calculado seja inválido, registra "Intervalo de datas inválido para a consulta online."; em ambos os casos contabiliza o ativo com falha e retorna ao passo 4 para o próximo ativo. |
+| | 6a - Caso o computador não possua backend TLS (OpenSSL) disponível para o Qt, o sistema não realiza a consulta e registra "Este computador não tem backend TLS (OpenSSL) disponível para o Qt; a sincronização online exige HTTPS. Use a importação por CSV.", contabiliza o ativo com falha e retorna ao passo 4, conforme o Requisito Não Funcional RNF008. |
+| | 6b - Caso não haja conexão com a internet ou a fonte não responda, o sistema registra "A fonte online não respondeu em 15 segundos." no esgotamento do tempo limite, ou "Falha de rede ao consultar a fonte online: DESCRIÇÃO." nas demais falhas; contabiliza o ativo com falha, acrescenta ao relatório a linha "TICKER: falha — MOTIVO", grava a auditoria no estado Rejeitada com o motivo (classe Importacao) e retorna ao passo 4 para o próximo ativo. |
+| | 7a - Caso a resposta esteja fora do formato esperado, o sistema registra "Resposta da fonte não é um JSON válido (DETALHE).", "Resposta da fonte fora do formato esperado (sem "chart").", "A fonte não devolveu nenhum resultado para o ativo." ou "Resposta da fonte sem o bloco de preços (indicators.quote)."; caso a própria fonte recuse a consulta sem esclarecer, registra a descrição devolvida por ela ou "a fonte recusou a consulta sem detalhar o motivo."; em todos os casos o ativo é contabilizado com falha, a auditoria é gravada no estado Rejeitada e o sistema retorna ao passo 4. |
+| | 7b - Caso não tenha havido pregão no intervalo consultado — fim de semana ou feriado prolongado —, a fonte devolve a série vazia, nada é gravado nem auditado e o sistema acrescenta ao relatório a linha "TICKER: nenhuma cotação nova entre DD/MM/AAAA e DD/MM/AAAA.", retornando ao passo 4 para o próximo ativo. |
+| | 8a - Caso a transação não possa ser iniciada ou a gravação em lote falhe, o sistema desfaz a transação, grava a auditoria no estado Rejeitada com o motivo — "Falha ao gravar as cotações baixadas." ou a mensagem devolvida pelo banco de dados —, acrescenta ao relatório a linha "TICKER: falha ao gravar — MOTIVO" e retorna ao passo 4 para o próximo ativo. |
+| | 9a - Caso a gravação do próprio registro de auditoria falhe, o sistema desfaz a transação — para que as cotações do ativo não fiquem gravadas sem auditoria — e retorna ao passo 4 com a mensagem devolvida pelo repositório de importações. |
+| | 10a - Caso a confirmação da transação seja recusada, o sistema desfaz a transação, registra a mensagem devolvida pelo banco de dados e retorna ao passo 4 para o próximo ativo. |
+| | 12a - Caso ao menos um ativo não tenha podido ser atualizado, o sistema acrescenta ao resumo a frase "N ativo(s) não puderam ser atualizados." e apresenta o texto em vermelho, mantendo gravadas as cotações dos ativos bem-sucedidos. |
+
+**Quadro 20. Descrição do caso de uso UC020.**
+
+| | |
+|----------------------|--------------------------------------------|
+| **Nome** | UC020: Executar backtesting das regras |
+| **Atores** | Ator principal: Administrador |
+| **Descrição** | Caso de uso executado quando o administrador necessita medir o desempenho histórico das regras de análise, reaplicando-as em cada pregão do histórico importado e conferindo cada sinal emitido contra o que o preço fez no horizonte escolhido. |
+| **Pré-condições** | O administrador deve estar autenticado no sistema (UC001); deve existir ao menos um ativo cadastrado (UC002); deve existir ao menos uma regra de análise ativa; o ativo avaliado deve possuir histórico de cotações importado com pelo menos 30 pregões de formação mais o horizonte escolhido. |
+| **Pós-condições** | Quantidade de sinais, quantidade de acertos, taxa de acerto e retorno médio apresentados para cada regra ativa e para o parecer consolidado de cada ativo avaliado. Nenhuma informação é gravada. |
+| **Fluxo básico — Ações dos atores** | **Ações do sistema** |
+| 1 - O ator (administrador) seleciona a opção "Regras de análise" na navegação lateral e aciona a opção "Backtesting…". (ator) | |
+| | 2 - O sistema apresenta a janela "Backtesting das regras" com a explicação "As regras ativas são reaplicadas em cada pregão do histórico importado, usando apenas os dados disponíveis naquela data. Cada sinal é conferido contra o que o preço fez no horizonte escolhido." e o rodapé "Backtesting reexecuta as regras em cada ponto do histórico e mede o resultado no horizonte escolhido. Apoio ao estudo, não é garantia de resultado futuro.", conforme o Requisito de Usabilidade REU004. (sistema) (2a) |
+| | 3 - O sistema preenche o seletor de ativo com a opção "Todos os ativos" e com o rótulo completo de cada ativo cadastrado, composto por ticker e nomeEmpresa (classe Ativo), e apresenta o campo de horizonte com o valor padrão de 10 pregões, limitado ao intervalo de 1 a 60. (sistema) |
+| 4 - O ator escolhe o ativo — um em particular ou todos —, informa o horizonte de avaliação e aciona a opção "Executar backtesting". (ator) | |
+| | 5 - O sistema recupera as regras de análise em estado ativo, com nomeRegra, parametroPrincipal, parametroSecundario e peso (classe RegraConfigurada), conforme as Regras de Negócio RN018 e RN025. (sistema) |
+| | 6 - O sistema monta o motor de análise uma única vez, instanciando a estratégia de cada regra configurada, e prepara uma linha de apuração por regra registrada, além da linha "Consolidado (média ponderada)" (classe Backtester). (sistema) |
+| | 7 - Para cada ativo selecionado, o sistema recupera o histórico completo de cotações, ordenado por data crescente (classe Cotacao). (sistema) |
+| | 8 - O sistema percorre o histórico a partir do 30º pregão até o último pregão que ainda comporta o horizonte informado e, em cada ponto, recorta a série com tudo o que estava disponível naquela data, de modo que nenhum dado futuro participe da decisão das regras. (sistema) (8a) (8b) |
+| | 9 - O sistema calcula o retorno realizado entre o fechamento do pregão do sinal e o fechamento do pregão situado ao fim do horizonte (classe Cotacao). (sistema) (atributo) |
+| | 10 - O sistema reaplica o motor sobre o recorte, obtendo o parecer consolidado e o parecer individual de cada regra ativa, com tipo, pontuacao e regraAplicada (classe Recomendacao), conforme a Regra de Negócio RN019. (sistema) |
+| | 11 - O sistema contabiliza cada parecer conforme a Regra de Negócio RN024: pareceres Neutro não constituem sinal; pareceres Compra e Venda acrescentam um sinal, somam o retorno de quem seguisse o sinal — com o valor invertido na venda — e contam um acerto quando a direção se confirmou. (sistema) (atributo) |
+| | 12 - O sistema repete os passos 9 a 11 para os demais pregões do histórico e os passos 7 a 11 para os demais ativos selecionados. (sistema) |
+| | 13 - O sistema apresenta a tabela com Ativo, Regra, Sinais, Acertos, Taxa de acerto e Retorno médio, uma linha por regra e a linha consolidada em negrito, com a taxa em percentual inteiro e o retorno médio com sinal, destacado em verde quando positivo e em vermelho quando negativo, conforme o Requisito de Usabilidade REU002. (sistema) |
+| | 14 - O sistema informa "N ativo(s) avaliado(s) com M regra(s) ativa(s) e horizonte de H pregão(ões)." (sistema) (14a) |
+| **Regras de negócio** | RN016 — Pontuação maior ou igual a +0,25 é Compra; menor ou igual a −0,25 é Venda; entre os dois limiares, Neutro — critério que define se o parecer consolidado de cada pregão constitui sinal. |
+| | RN018 — Somente regras ativas participam da análise; regras desativadas não recebem linha na apuração. |
+| | RN019 — Uma regra sem dados suficientes se abstém, sem pontuar: naquele pregão ela não emite parecer e, portanto, nenhum sinal lhe é contabilizado. |
+| | RN024 — No backtesting, Compra acerta quando o retorno no horizonte é positivo e Venda acerta quando é negativo; pareceres Neutro não geram sinal. O retorno acumulado é o de quem seguiu o sinal, de modo que operar vendido em uma queda conta como ganho. |
+| | RN025 — O peso de uma regra deve ser maior que zero e a pontuação consolidada é a média ponderada pelos pesos, base da linha "Consolidado (média ponderada)". |
+| | REU002 — Ganho e perda devem ser distinguíveis por cor e por sinal numérico, o que orienta a formatação da coluna Retorno médio no passo 13. |
+| | REU004 — O sistema deve indicar claramente que as recomendações são apoio à decisão, não aconselhamento financeiro, conforme o rodapé apresentado no passo 2. |
+| **Fluxo alternativo 1** | * A qualquer momento o administrador troca o ativo ou o horizonte e aciona novamente "Executar backtesting": o sistema limpa a tabela e repete os passos 5 a 14 com a nova configuração. |
+| **Fluxo alternativo 2** | * A qualquer momento o administrador edita os parâmetros de uma regra ou a ativa e desativa na tela de regras e reabre o backtesting: o sistema utiliza a configuração que está valendo naquele momento, permitindo comparar o efeito do ajuste sobre o mesmo histórico. |
+| **Fluxo de exceção** | 2a - Caso não exista nenhum ativo cadastrado, o sistema desabilita a opção "Executar backtesting" e exibe "Nenhum ativo cadastrado: cadastre ativos e importe cotações para usar o backtesting.", encerrando o caso de uso. |
+| | 8a - Caso o histórico do ativo não alcance os 30 pregões de formação mais o horizonte informado, nenhum pregão é avaliado e o sistema apresenta, em linha única para aquele ativo, a observação "Histórico com apenas N pregão(ões). O backtesting exige M: 30 para as regras se formarem e mais H para medir o resultado de cada sinal.", prosseguindo no passo 7 para o próximo ativo. |
+| | 8b - Caso nenhum pregão possa ser avaliado por não haver preço de fechamento válido no período, o sistema apresenta, em linha única para aquele ativo, a observação "Nenhum pregão pôde ser avaliado: as cotações do período não têm preços válidos.", prosseguindo no passo 7 para o próximo ativo. |
+| | 14a - Caso nenhum ativo tenha sido avaliado — por exemplo, quando o ativo escolhido foi removido do cadastro entre os passos 3 e 4 —, o sistema apresenta a tabela vazia com a mensagem "Nenhum ativo selecionado para o backtesting." e encerra o caso de uso. |
+
 ### Diagrama de Classes
 
 O sistema é organizado em camadas: as telas (Qt Widgets) conversam com serviços,
@@ -1570,7 +1678,7 @@ superclasse `Ativo`, acrescentando os seus atributos próprios. O quadro da clas
 essa classe não é instanciada diretamente pelo sistema.
 
 
-**Quadro 19. Dicionário de informações da classe Usuario.**
+**Quadro 21. Dicionário de informações da classe Usuario.**
 
 *Usuario: identifica quem acessa o sistema, define o seu perfil de acesso e é o proprietário das carteiras e dos alertas.*
 
@@ -1583,7 +1691,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_papel | Perfil de acesso do usuário no sistema | 4 | Enumerado (PapelUsuario) | {A}13 | Discreto: Investidor = consulta análises, mantém carteira e alertas; Administrador = também mantém ativos, importa cotações, configura regras e gerencia usuários |
 
 
-**Quadro 20. Dicionário de informações da classe Ativo (abstrata).**
+**Quadro 22. Dicionário de informações da classe Ativo (abstrata).**
 
 *Ativo: raiz abstrata da hierarquia de ativos negociados na B3; concentra os dados de identificação comuns a ações e a fundos imobiliários.*
 
@@ -1595,7 +1703,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_setor | Setor econômico de atuação do emissor | 40 | Alfanumérico (QString) | {X}40 | Contínuo |
 
 
-**Quadro 21. Dicionário de informações da classe Acao.**
+**Quadro 23. Dicionário de informações da classe Acao.**
 
 *Acao: ação negociada na B3; especializa Ativo acrescentando os fundamentos Preço/Lucro, Dividend Yield e Valor de Mercado.*
 
@@ -1612,7 +1720,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | DIVIDEND_YIELD_MAXIMO | Constante de classe: Dividend Yield (8,0%) que já garante pontuação máxima no critério de proventos | 8 | Numérico (double, constante) | {9}3,99 | Contínuo: valor fixo 8,00 |
 
 
-**Quadro 22. Dicionário de informações da classe FundoImobiliario.**
+**Quadro 24. Dicionário de informações da classe FundoImobiliario.**
 
 *FundoImobiliario: fundo de investimento imobiliário negociado na B3; especializa Ativo acrescentando Dividend Yield, Valor Patrimonial por Cota e segmento de atuação.*
 
@@ -1629,7 +1737,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | VALOR_PATRIMONIAL_REFERENCIA | Constante de classe: valor patrimonial por cota de referência (R$ 200,00) para pontuação máxima de solidez | 8 | Numérico (double, constante) | {9}6,99 | Contínuo: valor fixo 200,00 |
 
 
-**Quadro 23. Dicionário de informações da classe Cotacao.**
+**Quadro 25. Dicionário de informações da classe Cotacao.**
 
 *Cotacao: cotação diária de um ativo no formato candle OHLCV (abertura, máxima, mínima, fechamento e volume); é a base de todos os cálculos técnicos do sistema.*
 
@@ -1645,7 +1753,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_volume | Quantidade total de títulos negociados no pregão | 8 | Numérico (qint64) | {9}18 | Contínuo: maior ou igual a zero |
 
 
-**Quadro 24. Dicionário de informações da classe Indicador.**
+**Quadro 26. Dicionário de informações da classe Indicador.**
 
 *Indicador: valor de um indicador técnico calculado para uma data específica da série histórica, produzido pela CalculadoraIndicadores.*
 
@@ -1656,7 +1764,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | valor | Valor numérico calculado do indicador na data | 8 | Numérico (double) | {9}9,99 | Contínuo: preços em reais para as médias móveis; 0,00 a 100,00 para o RSI |
 
 
-**Quadro 25. Dicionário de informações da classe Carteira.**
+**Quadro 27. Dicionário de informações da classe Carteira.**
 
 *Carteira: carteira de investimentos de um usuário; agrega, por composição, as posições dos ativos que ele possui.*
 
@@ -1669,7 +1777,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_posicoes | Coleção das posições que compõem a carteira, uma por ativo distinto | Variável | Objeto (Posicao) | — | Discreto: instâncias válidas da classe Posicao vinculadas a esta carteira |
 
 
-**Quadro 26. Dicionário de informações da classe Posicao.**
+**Quadro 28. Dicionário de informações da classe Posicao.**
 
 *Posicao: posição de um ativo dentro de uma carteira, com a quantidade detida, o preço médio ponderado de aquisição e a data da compra.*
 
@@ -1683,7 +1791,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_compradaEm | Data da compra que originou a posição | 10 | Data (QDate) | dd/mm/aaaa | Contínuo |
 
 
-**Quadro 27. Dicionário de informações da classe Alerta.**
+**Quadro 29. Dicionário de informações da classe Alerta.**
 
 *Alerta: condição de preço ou de variação cadastrada por um usuário sobre um ativo, monitorada pelo sistema a cada nova cotação.*
 
@@ -1699,7 +1807,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_disparadoEm | Data e hora do disparo do alerta; permanece nulo enquanto o alerta não dispara | 19 | Data e hora (QDateTime) | dd/mm/aaaa hh:mm:ss | Contínuo, admitindo valor nulo |
 
 
-**Quadro 28. Dicionário de informações da classe Recomendacao.**
+**Quadro 30. Dicionário de informações da classe Recomendacao.**
 
 *Recomendacao: parecer de compra, venda ou neutralidade gerado pelo MotorAnalise para um ativo, acompanhado da pontuação e da justificativa numérica que o sustentam.*
 
@@ -1716,7 +1824,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | LIMIAR_DECISAO | Constante de classe: limiar de pontuação (0,25) que separa o parecer Neutro dos pareceres de Compra e de Venda | 8 | Numérico (double, constante) | 9,99 | Contínuo: valor fixo 0,25 |
 
 
-**Quadro 29. Dicionário de informações da classe RegraConfigurada.**
+**Quadro 31. Dicionário de informações da classe RegraConfigurada.**
 
 *RegraConfigurada: configuração persistida de uma regra de análise; permite ligar, desligar e reparametrizar as estratégias do motor sem recompilar o sistema.*
 
@@ -1727,9 +1835,10 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ativa | Indica se a regra participa da análise; somente as regras ativas são executadas (RN018) | 1 | Lógico (bool) | [Sim \| Não] | Discreto: 1 = Sim, regra em uso; 0 = Não, regra desligada |
 | m_parametroPrincipal | Primeiro parâmetro da regra; o significado depende da estratégia: período da média curta, limite de sobrevenda, Dividend Yield mínimo ou Preço/Lucro atrativo | 8 | Numérico (double) | {9}4,99 | Contínuo: maior ou igual a zero |
 | m_parametroSecundario | Segundo parâmetro da regra: período da média longa, limite de sobrecompra, Dividend Yield excelente ou Preço/Lucro elevado | 8 | Numérico (double) | {9}4,99 | Contínuo: maior ou igual a zero |
+| m_peso | Peso da regra na média ponderada com que o MotorAnalise consolida os pareceres; deve ser maior que zero (RN025) | 8 | Numérico (double) | 9,9 | Contínuo: maior que 0,0, de 0,1 a 5,0 na tela de configuração; valor padrão 1,0 |
 
 
-**Quadro 30. Dicionário de informações da classe Importacao.**
+**Quadro 32. Dicionário de informações da classe Importacao.**
 
 *Importacao: registro de auditoria de uma carga de cotações a partir de arquivo CSV, com o resultado da validação e as contagens de linhas processadas.*
 
@@ -1745,7 +1854,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_executadaEm | Data e hora em que a importação foi processada | 19 | Data e hora (QDateTime) | dd/mm/aaaa hh:mm:ss | Contínuo, admitindo valor nulo enquanto pendente |
 
 
-**Quadro 31. Dicionário de informações da interface RegraAnalise.**
+**Quadro 33. Dicionário de informações da interface RegraAnalise.**
 
 *RegraAnalise: interface do padrão de projeto Strategy; define o contrato que toda regra de análise deve cumprir para ser combinada pelo MotorAnalise. Por ser uma interface, não possui atributos, sendo descrita por suas operações.*
 
@@ -1757,7 +1866,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | avaliar() | Avalia o ativo diante da sua série histórica e devolve a recomendação justificada, ou nenhuma opinião quando os dados são insuficientes ou o critério não se aplica ao tipo do ativo (RN019) | Objeto opcional (Recomendacao) | ativo (Ativo), historico (coleção de Cotacao) | Discreto: instância de Recomendacao com pontuação de −1,00 a +1,00, ou ausência de parecer |
 
 
-**Quadro 32. Dicionário de informações da classe RegraCruzamentoMedias.**
+**Quadro 34. Dicionário de informações da classe RegraCruzamentoMedias.**
 
 *RegraCruzamentoMedias: estratégia técnica que compara duas médias móveis; sinaliza compra quando a média curta cruza para cima da média longa e venda no cruzamento inverso.*
 
@@ -1767,7 +1876,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_periodoLongo | Quantidade de pregões da média móvel longa, configurada pelo parâmetro secundário da regra | 4 | Numérico (int) | {9}3 | Contínuo: maior que m_periodoCurto, até 200 pregões; valor padrão 21 |
 
 
-**Quadro 33. Dicionário de informações da classe RegraRsi.**
+**Quadro 35. Dicionário de informações da classe RegraRsi.**
 
 *RegraRsi: estratégia técnica baseada no Índice de Força Relativa de Wilder; indica compra em situação de sobrevenda e venda em situação de sobrecompra.*
 
@@ -1778,7 +1887,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_periodo | Quantidade de pregões usada no cálculo do RSI | 4 | Numérico (int) | {9}3 | Contínuo: 2 a 200 pregões; valor padrão 14 |
 
 
-**Quadro 34. Dicionário de informações da classe RegraDividendYield.**
+**Quadro 36. Dicionário de informações da classe RegraDividendYield.**
 
 *RegraDividendYield: estratégia fundamentalista que avalia o percentual de proventos distribuídos; aplica-se tanto a ações quanto a fundos imobiliários, lendo o fundamento de forma polimórfica.*
 
@@ -1788,7 +1897,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_dividendYieldExcelente | Dividend Yield a partir do qual o ativo recebe a pontuação máxima do critério | 8 | Numérico (double) | {9}3,99 | Contínuo: 0,00 a 100,00, maior que m_dividendYieldMinimo; valor padrão 10,00 |
 
 
-**Quadro 35. Dicionário de informações da classe RegraPrecoLucro.**
+**Quadro 37. Dicionário de informações da classe RegraPrecoLucro.**
 
 *RegraPrecoLucro: estratégia fundamentalista que avalia o índice Preço/Lucro; aplica-se somente a ações e abstém-se de opinar quando o ativo é um fundo imobiliário.*
 
@@ -1798,7 +1907,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_precoLucroElevado | Índice Preço/Lucro a partir do qual a ação é considerada cara, gerando sinal de venda | 8 | Numérico (double) | {9}4,99 | Contínuo: maior que m_precoLucroAtrativo; valor padrão 20,00 |
 
 
-**Quadro 36. Dicionário de informações da classe MotorAnalise.**
+**Quadro 38. Dicionário de informações da classe MotorAnalise.**
 
 *MotorAnalise: contexto do padrão Strategy; guarda as estratégias ativas, executa cada uma delas sobre o ativo e agrega os pareceres em uma única recomendação justificada.*
 
@@ -1807,7 +1916,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_regras | Coleção das estratégias de análise registradas no motor, na ordem de execução; o motor assume a propriedade dos objetos | Variável | Objeto (RegraAnalise) | — | Discreto: instâncias de RegraCruzamentoMedias, RegraRsi, RegraDividendYield e RegraPrecoLucro correspondentes às regras ativas |
 
 
-**Quadro 37. Dicionário de informações da classe CalculadoraIndicadores.**
+**Quadro 39. Dicionário de informações da classe CalculadoraIndicadores.**
 
 *CalculadoraIndicadores: classe utilitária de cálculos técnicos sobre séries históricas ordenadas por data; todas as suas operações são estáticas, de modo que ela mantém apenas a constante de anualização.*
 
@@ -1816,7 +1925,47 @@ essa classe não é instanciada diretamente pelo sistema.
 | PREGOES_POR_ANO | Constante de classe: quantidade de pregões considerada em um ano (252), usada na anualização da volatilidade | 4 | Numérico (int, constante) | {9}3 | Contínuo: valor fixo 252 |
 
 
-**Quadro 38. Dicionário de informações da classe BancoDeDados.**
+**Quadro 40. Dicionário de informações da classe Backtester.**
+
+*Backtester: reexecuta o MotorAnalise em cada ponto da série histórica já importada, como se aquele pregão fosse o mais recente, e confere o parecer emitido contra o comportamento do preço nos pregões seguintes (RF021); é uma classe pura, que não conhece banco de dados nem interface gráfica.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+|------------|------------------------------|------|------------|----------|--------------|
+| m_regras | Coleção das configurações de regras com que o motor é remontado a cada ponto do histórico avaliado | Variável | Objeto (RegraConfigurada) | — | Discreto: instâncias válidas da classe RegraConfigurada |
+| HORIZONTE_PADRAO | Constante de classe: quantidade de pregões à frente considerada para medir o resultado de um sinal (10) | 4 | Numérico (int, constante) | {9}2 | Contínuo: valor fixo 10 |
+| MINIMO_DE_PREGOES | Constante de classe: quantidade de pregões de histórico exigida antes do primeiro sinal (30), para que as médias móveis e o RSI tenham série suficiente para se formar | 4 | Numérico (int, constante) | {9}2 | Contínuo: valor fixo 30 |
+| NOME_CONSOLIDADO | Constante de classe: rótulo da linha do parecer consolidado nos resultados apurados | 30 | Alfanumérico (QString, constante) | {X}30 | Discreto: valor fixo `Consolidado (média ponderada)` |
+
+
+**Quadro 41. Dicionário de informações da classe ResultadoBacktestRegra.**
+
+*ResultadoBacktestRegra: estrutura de dados com o desempenho histórico de uma única regra, ou do parecer consolidado, apurado pelo Backtester ao longo de todo o período avaliado.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+|------------|------------------------------|------|------------|----------|--------------|
+| regra | Nome canônico da regra a que a apuração se refere, ou o rótulo do parecer consolidado | 60 | Alfanumérico (QString) | 1{X}60 | Discreto: Cruzamento de Medias Moveis; Indice de Forca Relativa; Dividend Yield; Preco sobre Lucro; Consolidado (média ponderada) |
+| sinais | Quantidade de pareceres diferentes de Neutro emitidos ao longo do histórico; pareceres Neutro não são sinal e não entram na contabilidade (RN024) | 4 | Numérico (int) | {9}9 | Contínuo: maior ou igual a zero |
+| acertos | Quantidade de sinais cuja direção se confirmou no horizonte avaliado: Compra com retorno futuro positivo e Venda com retorno futuro negativo (RN024) | 4 | Numérico (int) | {9}9 | Contínuo: de zero até o valor de sinais |
+| somaDosRetornos | Soma dos retornos obtidos ao seguir cada sinal, expressa em fração e não em percentual; a venda contribui com o retorno de sinal invertido | 8 | Numérico (double) | −{9}9,99 a {9}9,99 | Contínuo |
+| taxaDeAcerto() | Operação derivada: proporção de acertos sobre os sinais emitidos; devolve zero quando não houve sinal | 8 | Numérico (double, calculado) | 9,99 | Contínuo: 0,00 a 1,00 |
+| retornoMedio() | Operação derivada: retorno médio por sinal, em fração, obtido da divisão da soma dos retornos pelo número de sinais; devolve zero quando não houve sinal | 8 | Numérico (double, calculado) | −9,99 a 9,99 | Contínuo |
+
+
+**Quadro 42. Dicionário de informações da classe ResultadoBacktest.**
+
+*ResultadoBacktest: estrutura de dados com o resultado completo do backtesting de um ativo, reunindo a apuração consolidada e a apuração de cada regra ativa, apresentadas no DialogoBacktest.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+|------------|------------------------------|------|------------|----------|--------------|
+| ticker | Código de negociação do ativo submetido ao backtesting | 6 | Alfanumérico (QString) | 4{X}6 | Discreto: tickers cadastrados na classe Ativo |
+| pregoesAvaliados | Quantidade de pregões em que houve reavaliação das regras ao longo do histórico | 4 | Numérico (int) | {9}9 | Contínuo: maior ou igual a zero |
+| horizonte | Quantidade de pregões à frente usada para medir o resultado de cada sinal | 4 | Numérico (int) | {9}2 | Contínuo: 1 a 60 pregões; valor padrão 10 |
+| consolidado | Apuração do parecer consolidado do motor, isto é, da média ponderada de todas as regras ativas (RN025) | Variável | Objeto (ResultadoBacktestRegra) | — | Discreto: instância válida de ResultadoBacktestRegra |
+| porRegra | Coleção com uma apuração por regra ativa, na ordem em que o motor as registrou | Variável | Objeto (ResultadoBacktestRegra) | — | Discreto: instâncias válidas de ResultadoBacktestRegra |
+| observacao | Motivo pelo qual o ativo não pôde ser avaliado, como histórico curto demais; permanece vazio quando a avaliação foi realizada | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando o ativo foi avaliado |
+
+
+**Quadro 43. Dicionário de informações da classe BancoDeDados.**
 
 *BancoDeDados: fachada única de acesso ao banco SQLite (padrão Singleton); abre a conexão, aplica as migrações versionadas e oferece controle explícito de transação às operações que precisam ser atômicas.*
 
@@ -1828,7 +1977,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | NOME_CONEXAO | Constante de classe: nome lógico da conexão Qt utilizada pela aplicação | 20 | Alfanumérico (QString, constante) | {X}20 | Discreto: valor fixo `analisador-b3` |
 
 
-**Quadro 39. Dicionário de informações da classe RepositorioUsuario.**
+**Quadro 44. Dicionário de informações da classe RepositorioUsuario.**
 
 *RepositorioUsuario: repositório da tabela usuario; converte objetos Usuario em linhas do banco e vice-versa, isolando o restante do sistema do SQL e utilizando sempre consultas parametrizadas.*
 
@@ -1837,7 +1986,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações de gravação, remoção ou consulta de usuários | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
-**Quadro 40. Dicionário de informações da classe RepositorioAtivo.**
+**Quadro 45. Dicionário de informações da classe RepositorioAtivo.**
 
 *RepositorioAtivo: repositório da tabela ativo; grava e recupera a hierarquia Ativo, Acao e FundoImobiliario em uma única relação, usando a coluna tipo como discriminador e devolvendo a subclasse concreta correspondente.*
 
@@ -1846,7 +1995,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre ativos, inclusive na verificação de unicidade do ticker | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
-**Quadro 41. Dicionário de informações da classe RepositorioCotacao.**
+**Quadro 46. Dicionário de informações da classe RepositorioCotacao.**
 
 *RepositorioCotacao: repositório da tabela cotacao; grava as séries históricas em lote de forma idempotente, apoiando-se no índice de unicidade por ativo e data, e devolve os históricos ordenados por data crescente.*
 
@@ -1855,7 +2004,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na inserção em lote ou nas consultas de série histórica | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
-**Quadro 42. Dicionário de informações da classe RepositorioCarteira.**
+**Quadro 47. Dicionário de informações da classe RepositorioCarteira.**
 
 *RepositorioCarteira: repositório das tabelas carteira e posicao; por serem uma composição no domínio, toda carteira recuperada já vem com as suas posições carregadas, e a gravação de posição atualiza a existente em vez de duplicá-la.*
 
@@ -1864,7 +2013,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre carteiras e posições | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
-**Quadro 43. Dicionário de informações da classe RepositorioAlerta.**
+**Quadro 48. Dicionário de informações da classe RepositorioAlerta.**
 
 *RepositorioAlerta: repositório da tabela alerta; preserva no banco os textos canônicos do estado e da condição, mantendo válida a máquina de estados do domínio.*
 
@@ -1873,7 +2022,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre alertas | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
-**Quadro 44. Dicionário de informações da classe RepositorioRecomendacao.**
+**Quadro 49. Dicionário de informações da classe RepositorioRecomendacao.**
 
 *RepositorioRecomendacao: repositório da tabela recomendacao; guarda a saída do MotorAnalise e invalida as recomendações anteriores do ativo quando uma nova análise é publicada.*
 
@@ -1882,7 +2031,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na gravação, na consulta ou na invalidação de recomendações | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
-**Quadro 45. Dicionário de informações da classe RepositorioRegra.**
+**Quadro 50. Dicionário de informações da classe RepositorioRegra.**
 
 *RepositorioRegra: repositório da tabela regra_configurada; é a fonte dos parâmetros com que o MotorAnalise monta as estratégias, permitindo ligar, desligar e reparametrizar regras sem recompilar o sistema.*
 
@@ -1891,7 +2040,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_ultimoErro | Mensagem do último erro de banco ocorrido nas operações sobre as configurações de regras | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
 
-**Quadro 46. Dicionário de informações da classe RepositorioImportacao.**
+**Quadro 51. Dicionário de informações da classe RepositorioImportacao.**
 
 *RepositorioImportacao: repositório da tabela importacao; mantém o histórico de auditoria das cargas de arquivos CSV, com o estado final e as contagens de linhas de cada execução.*
 
@@ -1899,7 +2048,7 @@ essa classe não é instanciada diretamente pelo sistema.
 |------------|------------------------------|------|------------|----------|--------------|
 | m_ultimoErro | Mensagem do último erro de banco ocorrido na gravação ou na consulta do histórico de importações | 255 | Alfanumérico (QString) | {X}255 | Contínuo; vazio quando a última operação teve sucesso |
 
-**Quadro 47. Dicionário de informações da classe ServicoAutenticacao.**
+**Quadro 52. Dicionário de informações da classe ServicoAutenticacao.**
 
 *Concentra as regras de negócio de autenticação e de gestão de usuários: valida credenciais, aplica o resumo criptográfico SHA-256 sobre o sal concatenado à senha (RN004), garante a unicidade do e-mail (RN002), o tamanho mínimo da senha (RN003) e impede a remoção ou o rebaixamento do último administrador (RN006).*
 
@@ -1910,7 +2059,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_repositorio | Referência ao repositório de usuários, injetada pelo Contexto; é por ela que o serviço consulta e grava os dados persistidos | N/A | RepositorioUsuario& | Objeto | N/A |
 | m_ultimoErro | Mensagem do último erro de validação ou de persistência, recuperada pela interface gráfica por meio de `ultimoErro()` | 255 | QString | Alfanumérico | N/A |
 
-**Quadro 48. Dicionário de informações da classe ServicoAtivo.**
+**Quadro 53. Dicionário de informações da classe ServicoAtivo.**
 
 *Concentra as regras de negócio do cadastro de ativos, validando o formato e a unicidade do ticker (RN005) e os campos obrigatórios (RN001); devolve os ativos como ponteiros para a classe base Ativo, preservando o polimorfismo entre Acao e FundoImobiliario.*
 
@@ -1919,7 +2068,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_repositorio | Referência ao repositório de ativos, injetada pelo Contexto; realiza a leitura e a gravação dos ativos no banco de dados | N/A | RepositorioAtivo& | Objeto | N/A |
 | m_ultimoErro | Mensagem do último erro de validação ou de persistência, exibida pela tela que solicitou a operação | 255 | QString | Alfanumérico | N/A |
 
-**Quadro 49. Dicionário de informações da classe ServicoImportacao.**
+**Quadro 54. Dicionário de informações da classe ServicoImportacao.**
 
 *Responsável pela carga de cotações a partir de arquivos CSV no padrão brasileiro. A operação é transacional: o arquivo inteiro é lido e validado em memória antes de qualquer escrita, de modo que um único erro estrutural rejeita todo o arquivo (RN011); cotações de mesma data e mesmo ativo são ignoradas, tornando a importação idempotente (RN010).*
 
@@ -1932,7 +2081,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_repositorioImportacao | Referência ao repositório de importações, onde é registrado o histórico de cada execução com o respectivo estado | N/A | RepositorioImportacao& | Objeto | N/A |
 | m_ultimoErro | Mensagem do último erro ocorrido na importação | 255 | QString | Alfanumérico | N/A |
 
-**Quadro 50. Dicionário de informações da classe ResultadoImportacao.**
+**Quadro 55. Dicionário de informações da classe ResultadoImportacao.**
 
 *Estrutura de dados devolvida pelo ServicoImportacao ao término de cada carga; reúne o desfecho da operação e os números que alimentam o relatório apresentado na TelaImportacao.*
 
@@ -1944,7 +2093,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | linhasIgnoradas | Quantidade de cotações descartadas por já existirem para o mesmo ativo e a mesma data (RN010) | 4 | int | Numérico | Discreto |
 | erros | Lista das mensagens de erro, cada uma indicando o número da linha e o motivo da recusa (REU003) | N/A | QStringList | Lista de texto | N/A |
 
-**Quadro 51. Dicionário de informações da classe ServicoCarteira.**
+**Quadro 56. Dicionário de informações da classe ServicoCarteira.**
 
 *Concentra as regras de negócio da carteira de investimentos: a compra recalcula o preço médio ponderado da posição (RN013), a venda nunca excede a quantidade existente (RN012) e a posição zerada é removida (RN014). O resumo consolidado cruza as posições com a última cotação de cada ativo para apurar o lucro ou o prejuízo.*
 
@@ -1955,7 +2104,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_repositorioAtivo | Referência ao repositório de ativos, usada para obter o ticker e o nome exibidos em cada linha do resumo | N/A | RepositorioAtivo& | Objeto | N/A |
 | m_ultimoErro | Mensagem do último erro de validação, exibida pela TelaCarteira | 255 | QString | Alfanumérico | N/A |
 
-**Quadro 52. Dicionário de informações da classe ResumoCarteira.**
+**Quadro 57. Dicionário de informações da classe ResumoCarteira.**
 
 *Estrutura de dados com o resultado consolidado da carteira, calculada por ServicoCarteira::calcularResumo e apresentada no rodapé da TelaCarteira (RF016).*
 
@@ -1967,7 +2116,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | rentabilidadePercentual | Relação percentual entre o lucro ou prejuízo e o valor investido | 8 | double | Decimal (%) | Contínuo |
 | linhas | Coleção das linhas detalhadas do resumo, uma por posição da carteira | N/A | QVector\<LinhaResumoCarteira\> | Lista de objetos | N/A |
 
-**Quadro 53. Dicionário de informações da classe LinhaResumoCarteira.**
+**Quadro 58. Dicionário de informações da classe LinhaResumoCarteira.**
 
 *Estrutura de dados que representa uma linha do resumo da carteira: reúne os dados da posição e os valores calculados a partir da última cotação do ativo.*
 
@@ -1985,7 +2134,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | rentabilidadePercentual | Relação percentual entre o lucro ou prejuízo e o valor investido da posição | 8 | double | Decimal (%) | Contínuo |
 | temCotacao | Indica se existe cotação importada para o ativo; quando falso, os valores de mercado não são apurados | 1 | bool | Lógico | Discreto |
 
-**Quadro 54. Dicionário de informações da classe ServicoAlerta.**
+**Quadro 59. Dicionário de informações da classe ServicoAlerta.**
 
 *Responsável pelo monitoramento dos alertas de preço e sujeito do padrão Observer: compara cada alerta monitorado com a última cotação do ativo, dispara os que satisfazem a condição (RN020) e notifica os observadores registrados, sem conhecer a janela concreta que exibirá a mensagem.*
 
@@ -1997,7 +2146,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_observadores | Coleção dos observadores registrados que serão notificados a cada disparo de alerta (padrão Observer) | N/A | std::vector\<ObservadorAlerta\*\> | Lista de ponteiros | N/A |
 | m_ultimoErro | Mensagem do último erro de validação, como o valor de referência não positivo (RN022) | 255 | QString | Alfanumérico | N/A |
 
-**Quadro 55. Dicionário de informações da classe ObservadorAlerta.**
+**Quadro 60. Dicionário de informações da classe ObservadorAlerta.**
 
 *Interface abstrata do padrão Observer. Não possui atributos: declara apenas a operação de notificação que as classes interessadas em receber os disparos de alerta devem implementar — no sistema, a JanelaPrincipal.*
 
@@ -2006,7 +2155,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | alertaDisparado(alerta, ativo, valorObservado) | Método virtual puro chamado uma vez por alerta disparado, recebendo o alerta, o ativo correspondente e o valor que satisfez a condição | N/A | void | Método | N/A |
 | ~ObservadorAlerta() | Destrutor virtual, necessário para a destruição correta dos observadores concretos por meio da interface | N/A | virtual | Método | N/A |
 
-**Quadro 56. Dicionário de informações da classe ServicoRecomendacao.**
+**Quadro 61. Dicionário de informações da classe ServicoRecomendacao.**
 
 *Orquestra o motor de análise: monta o MotorAnalise com as regras ativas do banco (RN018), gera a recomendação do ativo e administra o seu ciclo de vida, publicando a nova recomendação como vigente e invalidando a anterior do mesmo ativo (RN017).*
 
@@ -2019,7 +2168,52 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_repositorioRegra | Referência ao repositório de regras configuradas, de onde são lidas as regras ativas e os seus parâmetros | N/A | RepositorioRegra& | Objeto | N/A |
 | m_ultimoErro | Mensagem do último erro ocorrido na geração da recomendação | 255 | QString | Alfanumérico | N/A |
 
-**Quadro 57. Dicionário de informações da classe Contexto.**
+**Quadro 62. Dicionário de informações da interface FonteCotacoesRemota.**
+
+*Interface que abstrai o provedor remoto de cotações diárias (RF020), isolando o ServicoSincronizacao da API concreta: hoje a implementação é a FonteYahooFinance, e trocar de provedor não exige alteração no serviço nem na interface gráfica; nos testes, a mesma interface permite injetar uma fonte falsa, sem rede. Por ser uma interface, não possui atributos, sendo descrita por suas operações.*
+
+| Método | Descrição | Retorno | Parâmetros | Domínio do retorno |
+| :---- | :---- | :---- | :---- | :---- |
+| nome() | Nome legível do provedor, empregado no registro de auditoria e nas mensagens apresentadas ao administrador | Alfanumérico (QString) | — | Contínuo: até 60 caracteres |
+| buscar() | Baixa as cotações diárias do ticker no intervalo informado, já com o identificador do ativo preenchido em cada candle; não grava nada no banco de dados e nunca lança exceção, devolvendo falso com a causa em erro nas falhas de rede ou de formato (RNF008) | Lógico (bool) | ticker (QString), ativoId (qint64), de e ate (QDate), destino (coleção de Cotacao), erro (QString) | Discreto: 1 = Sim, cotações obtidas; 0 = Não, falha descrita em erro |
+| ~FonteCotacoesRemota() | Destrutor virtual, necessário para a destruição correta das fontes concretas por meio da interface | Sem retorno | — | — |
+
+**Quadro 63. Dicionário de informações da classe FonteYahooFinance.**
+
+*Implementação concreta da FonteCotacoesRemota apoiada na chart API v8 do Yahoo Finance: monta um pedido por ativo, com intervalo diário e o sufixo `.SA` dos tickers da B3, e converte a resposta JSON em cotações do domínio. A requisição é síncrona, pois a sincronização é disparada por um clique; a conversão do JSON é estática e pura, para poder ser testada sem rede.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| TEMPO_LIMITE_MS | Constante de classe com o tempo máximo de espera pela resposta da API, em milissegundos. Valor 15000 | 4 | int | Numérico | Discreto |
+| SUFIXO_B3 | Constante de classe com o sufixo acrescentado aos tickers brasileiros na API do Yahoo. Valor `.SA` | 3 | QString | Alfanumérico | Discreto |
+| m_rede | Gerenciador de acesso à rede utilizado nas requisições ao endpoint do provedor | N/A | QNetworkAccessManager\* | Objeto | N/A |
+
+**Quadro 64. Dicionário de informações da classe ServicoSincronizacao.**
+
+*Responsável pela sincronização online das cotações (RF020), complementar à importação de arquivos CSV. Para cada ativo cadastrado calcula a janela faltante — do dia seguinte à última cotação local até hoje —, pede somente esse intervalo à fonte remota e grava o resultado de forma transacional, reaproveitando a inserção idempotente da importação, de modo que acionar a sincronização duas vezes não duplica pregões (RN023). A falha de um ativo nunca interrompe os demais (RNF008), e cada tentativa é registrada na tabela de importações, que assim guarda a auditoria única do CSV e da sincronização.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| JANELA_INICIAL_DIAS | Constante de classe com a quantidade de dias de histórico buscada quando o ativo ainda não possui nenhuma cotação local (RN023). Valor 365 | 4 | int | Numérico | Discreto |
+| m_repositorioAtivo | Referência ao repositório de ativos, injetada pelo Contexto; fornece a relação dos ativos a sincronizar e os respectivos tickers | N/A | RepositorioAtivo& | Objeto | N/A |
+| m_repositorioCotacao | Referência ao repositório de cotações, usada para obter a última cotação local de cada ativo e gravar as cotações baixadas | N/A | RepositorioCotacao& | Objeto | N/A |
+| m_repositorioImportacao | Referência ao repositório de importações, onde é registrada a auditoria de cada sincronização, com o estado Concluida ou Rejeitada | N/A | RepositorioImportacao& | Objeto | N/A |
+| m_fonte | Referência à fonte remota de cotações, declarada pela interface FonteCotacoesRemota para permitir a troca de provedor e o uso de fonte falsa nos testes | N/A | FonteCotacoesRemota& | Objeto | N/A |
+
+**Quadro 65. Dicionário de informações da classe ResultadoSincronizacao.**
+
+*Estrutura de dados devolvida pelo ServicoSincronizacao ao término da sincronização; reúne as contagens da operação e a relação de mensagens por ativo apresentada na TelaImportacao.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| ativosProcessados | Quantidade de ativos cujas cotações foram efetivamente atualizadas | 4 | int | Numérico | Discreto |
+| ativosComFalha | Quantidade de ativos que falharam, por indisponibilidade da rede ou erro do provedor; a falha de um ativo não interrompe os demais (RNF008) | 4 | int | Numérico | Discreto |
+| cotacoesInseridas | Quantidade total de cotações novas gravadas no banco de dados | 4 | int | Numérico | Discreto |
+| cotacoesIgnoradas | Quantidade de cotações descartadas por já existirem para o mesmo ativo e a mesma data (RN023) | 4 | int | Numérico | Discreto |
+| mensagens | Lista com uma linha por ativo, no formato `PETR4: 12 novas, 0 ignoradas`, ou com o motivo da falha | N/A | QStringList | Lista de texto | N/A |
+| resumo() | Método que devolve o texto consolidado da operação, pronto para exibição no rótulo de resumo da TelaImportacao | N/A | QString | Método | N/A |
+
+**Quadro 66. Dicionário de informações da classe Contexto.**
 
 *Contexto da aplicação: é o proprietário dos repositórios e dos serviços e torna explícita a injeção de dependência entre as camadas, pois as telas recebem uma referência ao Contexto e nunca criam repositórios. Os repositórios são declarados antes dos serviços para garantir a ordem correta de inicialização e destruição.*
 
@@ -2040,8 +2234,10 @@ essa classe não é instanciada diretamente pelo sistema.
 | servicoCarteira | Serviço de operações e de consolidação da carteira | N/A | ServicoCarteira | Objeto | N/A |
 | servicoAlerta | Serviço de monitoramento e disparo de alertas | N/A | ServicoAlerta | Objeto | N/A |
 | servicoRecomendacao | Serviço de geração e publicação de recomendações | N/A | ServicoRecomendacao | Objeto | N/A |
+| fonteCotacoes | Fonte remota de cotações empregada na sincronização online, declarada antes do serviço que a recebe por referência (RF020) | N/A | FonteYahooFinance | Objeto | N/A |
+| servicoSincronizacao | Serviço de sincronização online das cotações, que baixa da fonte remota apenas o período faltante de cada ativo | N/A | ServicoSincronizacao | Objeto | N/A |
 
-**Quadro 58. Dicionário de informações da classe JanelaPrincipal.**
+**Quadro 67. Dicionário de informações da classe JanelaPrincipal.**
 
 *Janela principal do sistema, composta por uma navegação lateral e por uma pilha de páginas com as telas; os itens exibidos dependem do papel do usuário autenticado (REU001, RNF005). Implementa a interface ObservadorAlerta e, por isso, é o observador concreto do padrão Observer: recebe do ServicoAlerta cada disparo e o apresenta na barra de estado (RF018).*
 
@@ -2062,7 +2258,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_telaUsuarios | Página de gestão de usuários, exclusiva do administrador (UC007) | N/A | Objeto (TelaUsuarios\*) | Componente gráfico | N/A |
 | m_desejaTrocarUsuario | Indica que a janela foi fechada pela ação "Trocar usuário", para que o programa principal reabra a tela de login | 1 | bool | Lógico | Discreto |
 
-**Quadro 59. Dicionário de informações da classe TelaLogin.**
+**Quadro 68. Dicionário de informações da classe TelaLogin.**
 
 *Tela de autenticação, apresentada como diálogo modal antes da janela principal (UC001); se o usuário cancelar, a aplicação encerra sem abrir o sistema. A mensagem de erro não revela qual dos dois campos falhou.*
 
@@ -2075,7 +2271,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_rotuloErro | Rótulo que exibe a mensagem de credenciais inválidas | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_usuarioAutenticado | Usuário devolvido pelo serviço após a autenticação bem-sucedida; válido somente depois do aceite do diálogo | N/A | Usuario | Objeto | N/A |
 
-**Quadro 60. Dicionário de informações da classe TelaDashboard.**
+**Quadro 69. Dicionário de informações da classe TelaDashboard.**
 
 *Painel principal do investidor (UC009): apresenta o gráfico de candles com as médias móveis sobrepostas (RF009), os cartões com os indicadores técnicos do período (RF010) e a recomendação vigente do ativo com a justificativa completa (RNF006).*
 
@@ -2096,7 +2292,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_selo | Rótulo em destaque com o tipo da recomendação vigente: Compra, Venda ou Neutro (RN016) | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_justificativa | Área de texto com a justificativa da recomendação, incluindo a regra aplicada e os números que a sustentam (RNF006) | N/A | Objeto (QTextBrowser\*) | Componente gráfico | N/A |
 
-**Quadro 61. Dicionário de informações da classe TelaDetalheAtivo.**
+**Quadro 70. Dicionário de informações da classe TelaDetalheAtivo.**
 
 *Tela de detalhe do ativo (UC010): exibe os fundamentos cadastrados, o gráfico de linha do preço de fechamento, a tabela com as cotações mais recentes e o parecer de cada regra de análise, detalhando o padrão Strategy regra por regra (RF011).*
 
@@ -2110,7 +2306,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_tabelaCotacoes | Tabela com data, abertura, máxima, mínima, fechamento e volume das cotações importadas | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 | m_pareceres | Área de texto com o parecer individual de cada regra de análise aplicada ao ativo | N/A | Objeto (QTextBrowser\*) | Componente gráfico | N/A |
 
-**Quadro 62. Dicionário de informações da classe TelaRecomendacoes.**
+**Quadro 71. Dicionário de informações da classe TelaRecomendacoes.**
 
 *Tela das recomendações vigentes (UC012): apresenta a lista consolidada por ativo e, no painel lateral, o detalhamento do parecer de cada regra do padrão Strategy, atendendo à exigência de que toda recomendação exiba a regra e os números que a justificaram (RNF006).*
 
@@ -2122,7 +2318,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_rotuloMensagem | Rótulo de retorno das operações, informando êxito ou erro da geração das recomendações | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_botaoAbrir | Botão que solicita a abertura do painel de análise no ativo selecionado | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 
-**Quadro 63. Dicionário de informações da classe TelaCarteira.**
+**Quadro 72. Dicionário de informações da classe TelaCarteira.**
 
 *Tela da carteira do investidor (UC013, UC014 e UC015): lista as posições com preço médio, preço atual e lucro ou prejuízo destacado por cor e por sinal (REU002), e apresenta o resumo consolidado no rodapé.*
 
@@ -2135,7 +2331,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_rotuloMensagem | Rótulo de retorno das operações de compra e de venda | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_botaoVender | Botão de venda, habilitado somente quando há uma posição selecionada | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 
-**Quadro 64. Dicionário de informações da classe TelaAlertas.**
+**Quadro 73. Dicionário de informações da classe TelaAlertas.**
 
 *Tela de alertas do investidor (UC016, UC017 e UC018): permite cadastrar, remover e arquivar alertas e acionar a avaliação, que percorre os alertas monitorados e dispara os que atingiram a condição; as notificações chegam à JanelaPrincipal pelo padrão Observer.*
 
@@ -2147,7 +2343,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_botaoRemover | Botão de exclusão do alerta selecionado | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_rotuloMensagem | Rótulo de retorno das operações, com o número de alertas disparados na avaliação | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 65. Dicionário de informações da classe TelaAtivos.**
+**Quadro 74. Dicionário de informações da classe TelaAtivos.**
 
 *Tela de manutenção do cadastro de ativos, exclusiva do administrador (UC002, UC003, UC004 e UC008): lista os ativos com os seus fundamentos e a quantidade de cotações importadas, permitindo cadastrar, editar, remover e filtrar por ticker ou por nome.*
 
@@ -2160,23 +2356,26 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_botaoRemover | Botão de remoção do ativo selecionado | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_rotuloMensagem | Rótulo de retorno das operações de cadastro, edição e remoção | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 66. Dicionário de informações da classe TelaImportacao.**
+**Quadro 75. Dicionário de informações da classe TelaImportacao.**
 
-*Tela de importação de cotações, exclusiva do administrador (UC005): permite importar um arquivo CSV para um ativo específico ou um diretório inteiro, casando o nome TICKER.csv com o cadastro, e exibe o relatório completo da operação e o histórico das importações anteriores.*
+*Tela de importação de cotações, exclusiva do administrador (UC005): permite importar um arquivo CSV para um ativo específico ou um diretório inteiro, casando o nome TICKER.csv com o cadastro, e exibe o relatório completo da operação e o histórico das importações anteriores. Oferece também a sincronização online das cotações (UC019), atalho opcional que baixa da fonte remota apenas o período faltante de cada ativo; o arquivo CSV permanece como caminho primário, pois a sincronização pode falhar na ausência de rede (RNF008).*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | m_contexto | Referência ao contexto da aplicação | N/A | Contexto& | Objeto | N/A |
 | m_campoAtivo | Seletor do ativo de destino das cotações do arquivo | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
 | m_campoArquivo | Campo com o caminho do arquivo CSV escolhido | 255 | Objeto (QLineEdit\*) | Componente gráfico | N/A |
+| m_botaoEscolher | Botão que abre o seletor de arquivos para a escolha do CSV a importar | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_botaoImportar | Botão que aciona a importação do arquivo selecionado | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
+| m_botaoDiretorio | Botão que aciona a importação de um diretório inteiro, casando cada arquivo TICKER.csv com o ativo cadastrado | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
+| m_botaoSincronizar | Botão que aciona a sincronização online das cotações (UC019, RF020), habilitado somente quando há ativo cadastrado e desabilitado enquanto a operação está em andamento | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_rotuloResumo | Rótulo com o resumo da operação: linhas lidas, inseridas e ignoradas | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_areaErros | Área de texto com a relação dos erros, indicando a linha e o motivo de cada recusa (REU003) | N/A | Objeto (QPlainTextEdit\*) | Componente gráfico | N/A |
 | m_tabelaHistorico | Tabela do histórico das importações, com arquivo, estado, contagens e data de execução | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 
-**Quadro 67. Dicionário de informações da classe TelaRegras.**
+**Quadro 76. Dicionário de informações da classe TelaRegras.**
 
-*Tela de configuração das regras de análise, exclusiva do administrador (UC006): permite ativar, desativar e reparametrizar as estratégias sem recompilar o sistema, uma vez que o MotorAnalise lê essas configurações a cada análise (RN018).*
+*Tela de configuração das regras de análise, exclusiva do administrador (UC006): permite ativar, desativar e reparametrizar as estratégias sem recompilar o sistema, uma vez que o MotorAnalise lê essas configurações a cada análise (RN018). É também o ponto de entrada do backtesting (UC020), que mede no histórico já importado o desempenho da configuração vigente.*
 
 | Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
 | :---- | :---- | :---- | :---- | :---- | :---- |
@@ -2184,9 +2383,10 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_tabela | Tabela das regras configuradas, com nome, situação de ativação e parâmetros | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
 | m_botaoEditar | Botão de edição dos parâmetros da regra selecionada | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_botaoAlternar | Botão que ativa ou desativa a regra selecionada | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
+| m_botaoBacktest | Botão que abre o DialogoBacktest para avaliar no histórico o desempenho da configuração de regras vigente (UC020, RF021) | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_rotuloMensagem | Rótulo de retorno das operações de configuração | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 68. Dicionário de informações da classe TelaUsuarios.**
+**Quadro 77. Dicionário de informações da classe TelaUsuarios.**
 
 *Tela de gestão de usuários, exclusiva do administrador (UC007): apresenta os usuários cadastrados e aciona o cadastro, a edição e a remoção; as regras de negócio de unicidade do e-mail, tamanho mínimo da senha e proteção do último administrador permanecem no ServicoAutenticacao.*
 
@@ -2198,7 +2398,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_botaoRemover | Botão de remoção do usuário selecionado, sujeito à proteção do último administrador (RN006) | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
 | m_rotuloMensagem | Rótulo de retorno das operações de cadastro, edição e remoção | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 69. Dicionário de informações da classe DialogoAtivo.**
+**Quadro 78. Dicionário de informações da classe DialogoAtivo.**
 
 *Diálogo de cadastro e de edição de ativos: o tipo escolhido determina quais campos de fundamentos ficam habilitados e qual subclasse concreta de Ativo é construída, evidenciando o polimorfismo entre Acao e FundoImobiliario.*
 
@@ -2221,7 +2421,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_rotuloSegmento | Rótulo do campo de segmento, oculto quando o tipo escolhido é ação | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_idEmEdicao | Identificador do ativo em edição, preservado na construção do objeto; vale zero no cadastro de ativo novo | 8 | qint64 | Numérico | Discreto |
 
-**Quadro 70. Dicionário de informações da classe DialogoOperacao.**
+**Quadro 79. Dicionário de informações da classe DialogoOperacao.**
 
 *Diálogo de compra e de venda de ativos na carteira: o mesmo formulário atende às duas operações; no modo Compra solicita preço e data, e no modo Venda limita a quantidade à posição existente e dispensa o preço, pois a venda apenas reduz a posição registrada (RN012).*
 
@@ -2237,7 +2437,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_rotuloData | Rótulo do campo de data, oculto no modo Venda | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_rotuloLimite | Rótulo informativo com a quantidade máxima disponível para venda do ativo escolhido | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 71. Dicionário de informações da classe OpcaoOperacao.**
+**Quadro 80. Dicionário de informações da classe OpcaoOperacao.**
 
 *Estrutura de dados que descreve um ativo oferecido no DialogoOperacao, com o preço sugerido e o limite de quantidade aplicáveis à operação.*
 
@@ -2248,7 +2448,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | precoSugerido | Preço proposto para a compra, obtido da última cotação importada do ativo | 8 | double | Decimal (R$) | Contínuo |
 | quantidadeMaxima | Quantidade máxima passível de venda, igual à posição existente na carteira | 4 | int | Numérico | Discreto |
 
-**Quadro 72. Dicionário de informações da classe DialogoAlerta.**
+**Quadro 81. Dicionário de informações da classe DialogoAlerta.**
 
 *Diálogo de cadastro de alerta de preço: reúne o ativo monitorado, a condição de disparo e o valor de referência, que deve ser maior que zero (RN022). As condições oferecidas correspondem aos valores da enumeração TipoCondicaoAlerta do domínio.*
 
@@ -2260,7 +2460,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_campoValor | Campo do valor de referência comparado à última cotação do ativo (RN020) | N/A | Objeto (QDoubleSpinBox\*) | Componente gráfico | N/A |
 | m_rotuloAjuda | Rótulo auxiliar com a sugestão baseada no último fechamento do ativo escolhido | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 73. Dicionário de informações da classe OpcaoAlerta.**
+**Quadro 82. Dicionário de informações da classe OpcaoAlerta.**
 
 *Estrutura de dados que descreve um ativo oferecido no DialogoAlerta, com o último fechamento usado como valor sugerido para a condição.*
 
@@ -2270,7 +2470,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | rotulo | Texto apresentado no seletor, formado pelo ticker e pelo nome do ativo | 130 | QString | Alfanumérico | Contínuo |
 | ultimoFechamento | Preço de fechamento da última cotação importada, proposto como valor de referência | 8 | double | Decimal (R$) | Contínuo |
 
-**Quadro 74. Dicionário de informações da classe DialogoRegra.**
+**Quadro 83. Dicionário de informações da classe DialogoRegra.**
 
 *Diálogo de configuração de uma regra de análise do padrão Strategy. O nome da regra não é editável, pois é a chave que o MotorAnalise utiliza para instanciar a estratégia concreta; são ajustáveis apenas os parâmetros e a situação de ativação.*
 
@@ -2280,9 +2480,24 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_campoAtiva | Caixa de seleção que define se a regra participa das análises (RN018) | N/A | Objeto (QCheckBox\*) | Componente gráfico | N/A |
 | m_campoPrincipal | Campo do primeiro parâmetro da regra, com duas casas decimais e faixa de 0,00 a 100.000,00 | N/A | Objeto (QDoubleSpinBox\*) | Componente gráfico | N/A |
 | m_campoSecundario | Campo do segundo parâmetro da regra, com duas casas decimais e faixa de 0,00 a 100.000,00 | N/A | Objeto (QDoubleSpinBox\*) | Componente gráfico | N/A |
+| m_campoPeso | Campo do peso da regra na média ponderada do MotorAnalise, com uma casa decimal e faixa de 0,1 a 5,0, de modo que o peso é sempre maior que zero (RN025) | N/A | Objeto (QDoubleSpinBox\*) | Componente gráfico | N/A |
 | m_rotuloDescricao | Rótulo explicativo do significado dos parâmetros da regra em configuração | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 75. Dicionário de informações da classe DialogoUsuario.**
+**Quadro 84. Dicionário de informações da classe DialogoBacktest.**
+
+*Diálogo de backtesting das regras de análise (UC020, RF021), aberto pela TelaRegras: permite escolher um ativo, ou todos, e o horizonte de avaliação, e apresenta, regra por regra, quantos sinais a configuração vigente teria emitido no histórico importado, quantos acertaram a direção (RN024) e qual o retorno médio. O cálculo permanece no Backtester; ao diálogo cabe apenas a coleta dos dados nos repositórios e a apresentação dos resultados.*
+
+| Atributo | Descrição | Tamanho | Tipo | Formato | Domínio |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| m_contexto | Referência ao contexto da aplicação, por onde o diálogo alcança os repositórios de ativos, de cotações e de regras | N/A | Contexto& | Objeto | N/A |
+| m_campoAtivo | Seletor do ativo avaliado, com a opção de submeter todos os ativos cadastrados | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
+| m_campoHorizonte | Campo do horizonte de avaliação, em pregões à frente, com faixa de 1 a 60 e valor inicial igual a Backtester::HORIZONTE\_PADRAO | N/A | Objeto (QSpinBox\*) | Componente gráfico | N/A |
+| m_botaoExecutar | Botão que aciona a execução do backtesting com o ativo e o horizonte escolhidos | N/A | Objeto (QPushButton\*) | Componente gráfico | N/A |
+| m_tabela | Tabela dos resultados, com uma linha por regra e a linha do parecer consolidado em destaque, apresentando sinais, acertos, taxa de acerto e retorno médio | N/A | Objeto (QTableWidget\*) | Componente gráfico | N/A |
+| m_rotuloMensagem | Rótulo de retorno da operação, informando o andamento ou o motivo de o ativo não ter sido avaliado | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
+| m_rotuloRodape | Rótulo do rodapé com a explicação da convenção de acerto adotada na apuração (RN024) | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
+
+**Quadro 85. Dicionário de informações da classe DialogoUsuario.**
 
 *Diálogo de cadastro e de edição de usuários, exclusivo do administrador: no cadastro a senha é obrigatória e, na edição, deixar o campo em branco mantém a senha atual.*
 
@@ -2296,7 +2511,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_campoPapel | Seletor do papel do usuário: Administrador ou Investidor | N/A | Objeto (QComboBox\*) | Componente gráfico | N/A |
 | m_rotuloAjuda | Rótulo auxiliar que informa as regras de preenchimento da senha conforme o modo do diálogo | N/A | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 76. Dicionário de informações da classe CartaoIndicador.**
+**Quadro 86. Dicionário de informações da classe CartaoIndicador.**
 
 *Componente gráfico compacto para a apresentação de um indicador no painel: exibe o título, o valor em destaque e uma linha de detalhe que pode ser colorida conforme o sinal do número, atendendo à exigência de distinguir ganho e perda por cor e por sinal (REU002).*
 
@@ -2306,7 +2521,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | m_rotuloValor | Rótulo com o valor principal do indicador, em destaque tipográfico | 20 | Objeto (QLabel\*) | Componente gráfico | N/A |
 | m_rotuloDetalhe | Rótulo com a informação complementar, colorido em verde para valores positivos, em vermelho para negativos e em cinza para zero | 40 | Objeto (QLabel\*) | Componente gráfico | N/A |
 
-**Quadro 77. Dicionário de informações da classe GraficoCandlestick.**
+**Quadro 87. Dicionário de informações da classe GraficoCandlestick.**
 
 *Componente gráfico que desenha o gráfico de candles (abertura, máxima, mínima e fechamento) com as médias móveis sobrepostas, construído com o módulo Qt Charts (RF009). Ao instalar um gráfico novo, destrói explicitamente o anterior, pois a troca do gráfico apenas libera a posse do objeto substituído.*
 
@@ -2314,7 +2529,7 @@ essa classe não é instanciada diretamente pelo sistema.
 | :---- | :---- | :---- | :---- | :---- | :---- |
 | MAXIMO_ROTULOS_EIXO | Constante de classe com o número máximo de rótulos exibidos no eixo de datas, para preservar a legibilidade. Valor 12 | 4 | int | Numérico | Discreto |
 
-**Quadro 78. Dicionário de informações da classe GraficoLinha.**
+**Quadro 88. Dicionário de informações da classe GraficoLinha.**
 
 *Componente gráfico que desenha a linha do preço de fechamento do ativo, utilizado na tela de detalhe e em visualizações secundárias (RF011). Assim como o gráfico de candles, destrói o gráfico anterior a cada redesenho, evitando o vazamento de memória.*
 
@@ -2379,6 +2594,10 @@ hierarquicamente e os retornos relevantes aparecem tracejados.
 
 ![Figura 37. Diagrama de sequência para o [UC018].](figuras/seq-uc018.png)
 
+![Figura 38. Diagrama de sequência para o [UC019].](figuras/seq-uc019.png)
+
+![Figura 39. Diagrama de sequência para o [UC020].](figuras/seq-uc020.png)
+
 ### Diagramas de Comunicação
 
 Os Diagramas de Comunicação apresentam as mesmas interações dos Diagramas de
@@ -2386,41 +2605,45 @@ Sequência sob a ótica da estrutura: os objetos participantes aparecem como uma
 de colaboração e as mensagens, numeradas na mesma ordem da sequência, percorrem as
 ligações entre eles. Há um diagrama por caso de uso.
 
-![Figura 38. Diagrama de comunicação para o [UC001].](figuras/com-uc001.png)
+![Figura 40. Diagrama de comunicação para o [UC001].](figuras/com-uc001.png)
 
-![Figura 39. Diagrama de comunicação para o [UC002].](figuras/com-uc002.png)
+![Figura 41. Diagrama de comunicação para o [UC002].](figuras/com-uc002.png)
 
-![Figura 40. Diagrama de comunicação para o [UC003].](figuras/com-uc003.png)
+![Figura 42. Diagrama de comunicação para o [UC003].](figuras/com-uc003.png)
 
-![Figura 41. Diagrama de comunicação para o [UC004].](figuras/com-uc004.png)
+![Figura 43. Diagrama de comunicação para o [UC004].](figuras/com-uc004.png)
 
-![Figura 42. Diagrama de comunicação para o [UC005].](figuras/com-uc005.png)
+![Figura 44. Diagrama de comunicação para o [UC005].](figuras/com-uc005.png)
 
-![Figura 43. Diagrama de comunicação para o [UC006].](figuras/com-uc006.png)
+![Figura 45. Diagrama de comunicação para o [UC006].](figuras/com-uc006.png)
 
-![Figura 44. Diagrama de comunicação para o [UC007].](figuras/com-uc007.png)
+![Figura 46. Diagrama de comunicação para o [UC007].](figuras/com-uc007.png)
 
-![Figura 45. Diagrama de comunicação para o [UC008].](figuras/com-uc008.png)
+![Figura 47. Diagrama de comunicação para o [UC008].](figuras/com-uc008.png)
 
-![Figura 46. Diagrama de comunicação para o [UC009].](figuras/com-uc009.png)
+![Figura 48. Diagrama de comunicação para o [UC009].](figuras/com-uc009.png)
 
-![Figura 47. Diagrama de comunicação para o [UC010].](figuras/com-uc010.png)
+![Figura 49. Diagrama de comunicação para o [UC010].](figuras/com-uc010.png)
 
-![Figura 48. Diagrama de comunicação para o [UC011].](figuras/com-uc011.png)
+![Figura 50. Diagrama de comunicação para o [UC011].](figuras/com-uc011.png)
 
-![Figura 49. Diagrama de comunicação para o [UC012].](figuras/com-uc012.png)
+![Figura 51. Diagrama de comunicação para o [UC012].](figuras/com-uc012.png)
 
-![Figura 50. Diagrama de comunicação para o [UC013].](figuras/com-uc013.png)
+![Figura 52. Diagrama de comunicação para o [UC013].](figuras/com-uc013.png)
 
-![Figura 51. Diagrama de comunicação para o [UC014].](figuras/com-uc014.png)
+![Figura 53. Diagrama de comunicação para o [UC014].](figuras/com-uc014.png)
 
-![Figura 52. Diagrama de comunicação para o [UC015].](figuras/com-uc015.png)
+![Figura 54. Diagrama de comunicação para o [UC015].](figuras/com-uc015.png)
 
-![Figura 53. Diagrama de comunicação para o [UC016].](figuras/com-uc016.png)
+![Figura 55. Diagrama de comunicação para o [UC016].](figuras/com-uc016.png)
 
-![Figura 54. Diagrama de comunicação para o [UC017].](figuras/com-uc017.png)
+![Figura 56. Diagrama de comunicação para o [UC017].](figuras/com-uc017.png)
 
-![Figura 55. Diagrama de comunicação para o [UC018].](figuras/com-uc018.png)
+![Figura 57. Diagrama de comunicação para o [UC018].](figuras/com-uc018.png)
+
+![Figura 58. Diagrama de comunicação para o [UC019].](figuras/com-uc019.png)
+
+![Figura 59. Diagrama de comunicação para o [UC020].](figuras/com-uc020.png)
 
 ### Mapeamento para o Diagrama Entidade-Relacionamento
 
@@ -2443,175 +2666,191 @@ de mapeamento adotadas foram:
 - **Enumerações** (papel do usuário, estado do alerta, tipo da recomendação)
   viram colunas `TEXT` com domínio controlado pela aplicação, legíveis no banco.
 
-![Figura 56. Diagrama Entidade-Relacionamento do banco de dados.](figuras/der-banco.png)
+![Figura 60. Diagrama Entidade-Relacionamento do banco de dados.](figuras/der-banco.png)
 
 ### Diagramas de Estados
 
 Seguindo a convenção da disciplina, cada caso de uso possui Diagramas de Estados das suas classes participantes relevantes — a classe de fronteira (tela ou diálogo) e a classe de controle (serviço ou repositório) — derivados do respectivo Diagrama de Sequência. Além deles, são apresentadas as máquinas de estado das classes de domínio que possuem ciclo de vida próprio implementado no sistema: Importacao (UC005), Recomendacao (UC011), Posicao (UC014) e Alerta (UC017). As transições seguem a notação `evento [guarda] / ação`, com os eventos correspondendo aos métodos reais das classes.
 
-![Figura 57. Diagrama de Estados da classe TelaLogin para o [UC001].](figuras/est-uc001-telalogin.png)
+![Figura 61. Diagrama de Estados da classe TelaLogin para o [UC001].](figuras/est-uc001-telalogin.png)
 
-![Figura 58. Diagrama de Estados da classe ServicoAutenticacao para o [UC001].](figuras/est-uc001-servicoautenticacao.png)
+![Figura 62. Diagrama de Estados da classe ServicoAutenticacao para o [UC001].](figuras/est-uc001-servicoautenticacao.png)
 
-![Figura 59. Diagrama de Estados da classe DialogoAtivo para o [UC002].](figuras/est-uc002-dialogoativo.png)
+![Figura 63. Diagrama de Estados da classe DialogoAtivo para o [UC002].](figuras/est-uc002-dialogoativo.png)
 
-![Figura 60. Diagrama de Estados da classe ServicoAtivo para o [UC002].](figuras/est-uc002-servicoativo.png)
+![Figura 64. Diagrama de Estados da classe ServicoAtivo para o [UC002].](figuras/est-uc002-servicoativo.png)
 
-![Figura 61. Diagrama de Estados da classe TelaAtivos para o [UC003].](figuras/est-uc003-telaativos.png)
+![Figura 65. Diagrama de Estados da classe TelaAtivos para o [UC003].](figuras/est-uc003-telaativos.png)
 
-![Figura 62. Diagrama de Estados da classe ServicoAtivo para o [UC003].](figuras/est-uc003-servicoativo.png)
+![Figura 66. Diagrama de Estados da classe ServicoAtivo para o [UC003].](figuras/est-uc003-servicoativo.png)
 
-![Figura 63. Diagrama de Estados da classe TelaAtivos para o [UC004].](figuras/est-uc004-telaativos.png)
+![Figura 67. Diagrama de Estados da classe TelaAtivos para o [UC004].](figuras/est-uc004-telaativos.png)
 
-![Figura 64. Diagrama de Estados da classe RepositorioAtivo para o [UC004].](figuras/est-uc004-repositorioativo.png)
+![Figura 68. Diagrama de Estados da classe RepositorioAtivo para o [UC004].](figuras/est-uc004-repositorioativo.png)
 
-![Figura 65. Diagrama de Estados da classe TelaImportacao para o [UC005].](figuras/est-uc005-telaimportacao.png)
+![Figura 69. Diagrama de Estados da classe TelaImportacao para o [UC005].](figuras/est-uc005-telaimportacao.png)
 
-![Figura 66. Diagrama de Estados da classe ServicoImportacao para o [UC005].](figuras/est-uc005-servicoimportacao.png)
+![Figura 70. Diagrama de Estados da classe ServicoImportacao para o [UC005].](figuras/est-uc005-servicoimportacao.png)
 
-![Figura 67. Diagrama de Estados da classe Importacao para o [UC005].](figuras/est-uc005-importacao.png)
+![Figura 71. Diagrama de Estados da classe Importacao para o [UC005].](figuras/est-uc005-importacao.png)
 
-![Figura 68. Diagrama de Estados da classe TelaRegras para o [UC006].](figuras/est-uc006-telaregras.png)
+![Figura 72. Diagrama de Estados da classe TelaRegras para o [UC006].](figuras/est-uc006-telaregras.png)
 
-![Figura 69. Diagrama de Estados da classe RepositorioRegra para o [UC006].](figuras/est-uc006-repositorioregra.png)
+![Figura 73. Diagrama de Estados da classe RepositorioRegra para o [UC006].](figuras/est-uc006-repositorioregra.png)
 
-![Figura 70. Diagrama de Estados da classe TelaUsuarios para o [UC007].](figuras/est-uc007-telausuarios.png)
+![Figura 74. Diagrama de Estados da classe TelaUsuarios para o [UC007].](figuras/est-uc007-telausuarios.png)
 
-![Figura 71. Diagrama de Estados da classe ServicoAutenticacao para o [UC007].](figuras/est-uc007-servicoautenticacao.png)
+![Figura 75. Diagrama de Estados da classe ServicoAutenticacao para o [UC007].](figuras/est-uc007-servicoautenticacao.png)
 
-![Figura 72. Diagrama de Estados da classe TelaAtivos para o [UC008].](figuras/est-uc008-telaativos.png)
+![Figura 76. Diagrama de Estados da classe TelaAtivos para o [UC008].](figuras/est-uc008-telaativos.png)
 
-![Figura 73. Diagrama de Estados da classe RepositorioAtivo para o [UC008].](figuras/est-uc008-repositorioativo.png)
+![Figura 77. Diagrama de Estados da classe RepositorioAtivo para o [UC008].](figuras/est-uc008-repositorioativo.png)
 
-![Figura 74. Diagrama de Estados da classe TelaDashboard para o [UC009].](figuras/est-uc009-teladashboard.png)
+![Figura 78. Diagrama de Estados da classe TelaDashboard para o [UC009].](figuras/est-uc009-teladashboard.png)
 
-![Figura 75. Diagrama de Estados da classe CalculadoraIndicadores para o [UC009].](figuras/est-uc009-calculadoraindicadores.png)
+![Figura 79. Diagrama de Estados da classe CalculadoraIndicadores para o [UC009].](figuras/est-uc009-calculadoraindicadores.png)
 
-![Figura 76. Diagrama de Estados da classe TelaDetalheAtivo para o [UC010].](figuras/est-uc010-teladetalheativo.png)
+![Figura 80. Diagrama de Estados da classe TelaDetalheAtivo para o [UC010].](figuras/est-uc010-teladetalheativo.png)
 
-![Figura 77. Diagrama de Estados da classe RepositorioCotacao para o [UC010].](figuras/est-uc010-repositoriocotacao.png)
+![Figura 81. Diagrama de Estados da classe RepositorioCotacao para o [UC010].](figuras/est-uc010-repositoriocotacao.png)
 
-![Figura 78. Diagrama de Estados da classe TelaRecomendacoes para o [UC011].](figuras/est-uc011-telarecomendacoes.png)
+![Figura 82. Diagrama de Estados da classe TelaRecomendacoes para o [UC011].](figuras/est-uc011-telarecomendacoes.png)
 
-![Figura 79. Diagrama de Estados da classe MotorAnalise para o [UC011].](figuras/est-uc011-motoranalise.png)
+![Figura 83. Diagrama de Estados da classe MotorAnalise para o [UC011].](figuras/est-uc011-motoranalise.png)
 
-![Figura 80. Diagrama de Estados da classe Recomendacao para o [UC011].](figuras/est-uc011-recomendacao.png)
+![Figura 84. Diagrama de Estados da classe Recomendacao para o [UC011].](figuras/est-uc011-recomendacao.png)
 
-![Figura 81. Diagrama de Estados da classe TelaRecomendacoes para o [UC012].](figuras/est-uc012-telarecomendacoes.png)
+![Figura 85. Diagrama de Estados da classe TelaRecomendacoes para o [UC012].](figuras/est-uc012-telarecomendacoes.png)
 
-![Figura 82. Diagrama de Estados da classe RepositorioRecomendacao para o [UC012].](figuras/est-uc012-repositoriorecomendacao.png)
+![Figura 86. Diagrama de Estados da classe RepositorioRecomendacao para o [UC012].](figuras/est-uc012-repositoriorecomendacao.png)
 
-![Figura 83. Diagrama de Estados da classe DialogoOperacao para o [UC013].](figuras/est-uc013-dialogooperacao.png)
+![Figura 87. Diagrama de Estados da classe DialogoOperacao para o [UC013].](figuras/est-uc013-dialogooperacao.png)
 
-![Figura 84. Diagrama de Estados da classe ServicoCarteira para o [UC013].](figuras/est-uc013-servicocarteira.png)
+![Figura 88. Diagrama de Estados da classe ServicoCarteira para o [UC013].](figuras/est-uc013-servicocarteira.png)
 
-![Figura 85. Diagrama de Estados da classe TelaCarteira para o [UC014].](figuras/est-uc014-telacarteira.png)
+![Figura 89. Diagrama de Estados da classe TelaCarteira para o [UC014].](figuras/est-uc014-telacarteira.png)
 
-![Figura 86. Diagrama de Estados da classe ServicoCarteira para o [UC014].](figuras/est-uc014-servicocarteira.png)
+![Figura 90. Diagrama de Estados da classe ServicoCarteira para o [UC014].](figuras/est-uc014-servicocarteira.png)
 
-![Figura 87. Diagrama de Estados da classe Posicao para o [UC014].](figuras/est-uc014-posicao.png)
+![Figura 91. Diagrama de Estados da classe Posicao para o [UC014].](figuras/est-uc014-posicao.png)
 
-![Figura 88. Diagrama de Estados da classe TelaCarteira para o [UC015].](figuras/est-uc015-telacarteira.png)
+![Figura 92. Diagrama de Estados da classe TelaCarteira para o [UC015].](figuras/est-uc015-telacarteira.png)
 
-![Figura 89. Diagrama de Estados da classe ServicoCarteira para o [UC015].](figuras/est-uc015-servicocarteira.png)
+![Figura 93. Diagrama de Estados da classe ServicoCarteira para o [UC015].](figuras/est-uc015-servicocarteira.png)
 
-![Figura 90. Diagrama de Estados da classe DialogoAlerta para o [UC016].](figuras/est-uc016-dialogoalerta.png)
+![Figura 94. Diagrama de Estados da classe DialogoAlerta para o [UC016].](figuras/est-uc016-dialogoalerta.png)
 
-![Figura 91. Diagrama de Estados da classe ServicoAlerta para o [UC016].](figuras/est-uc016-servicoalerta.png)
+![Figura 95. Diagrama de Estados da classe ServicoAlerta para o [UC016].](figuras/est-uc016-servicoalerta.png)
 
-![Figura 92. Diagrama de Estados da classe JanelaPrincipal para o [UC017].](figuras/est-uc017-janelaprincipal.png)
+![Figura 96. Diagrama de Estados da classe JanelaPrincipal para o [UC017].](figuras/est-uc017-janelaprincipal.png)
 
-![Figura 93. Diagrama de Estados da classe ServicoAlerta para o [UC017].](figuras/est-uc017-servicoalerta.png)
+![Figura 97. Diagrama de Estados da classe ServicoAlerta para o [UC017].](figuras/est-uc017-servicoalerta.png)
 
-![Figura 94. Diagrama de Estados da classe Alerta para o [UC017].](figuras/est-uc017-alerta.png)
+![Figura 98. Diagrama de Estados da classe Alerta para o [UC017].](figuras/est-uc017-alerta.png)
 
-![Figura 95. Diagrama de Estados da classe TelaAlertas para o [UC018].](figuras/est-uc018-telaalertas.png)
+![Figura 99. Diagrama de Estados da classe TelaAlertas para o [UC018].](figuras/est-uc018-telaalertas.png)
 
-![Figura 96. Diagrama de Estados da classe RepositorioAlerta para o [UC018].](figuras/est-uc018-repositorioalerta.png)
+![Figura 100. Diagrama de Estados da classe RepositorioAlerta para o [UC018].](figuras/est-uc018-repositorioalerta.png)
+
+![Figura 101. Diagrama de Estados da classe TelaImportacao para o [UC019].](figuras/est-uc019-telaimportacao.png)
+
+![Figura 102. Diagrama de Estados da classe ServicoSincronizacao para o [UC019].](figuras/est-uc019-servicosincronizacao.png)
+
+![Figura 103. Diagrama de Estados da classe DialogoBacktest para o [UC020].](figuras/est-uc020-dialogobacktest.png)
+
+![Figura 104. Diagrama de Estados da classe Backtester para o [UC020].](figuras/est-uc020-backtester.png)
 
 ### Diagramas de Atividades
 
 Cada Diagrama de Estados tem seu estado principal detalhado por um Diagrama de Atividades, conforme a convenção da disciplina. As ações correspondem aos passos reais dos métodos implementados, e as decisões reproduzem as validações e regras de negócio citadas na especificação dos casos de uso.
 
-![Figura 97. Diagrama de Atividades para o estado "Autenticando", dentro do Diagrama de Estados para a classe TelaLogin em [UC001].](figuras/atv-uc001-telalogin.png)
+![Figura 105. Diagrama de Atividades para o estado "Autenticando", dentro do Diagrama de Estados para a classe TelaLogin em [UC001].](figuras/atv-uc001-telalogin.png)
 
-![Figura 98. Diagrama de Atividades para o estado "Conferindo credenciais", dentro do Diagrama de Estados para a classe ServicoAutenticacao em [UC001].](figuras/atv-uc001-servicoautenticacao.png)
+![Figura 106. Diagrama de Atividades para o estado "Conferindo credenciais", dentro do Diagrama de Estados para a classe ServicoAutenticacao em [UC001].](figuras/atv-uc001-servicoautenticacao.png)
 
-![Figura 99. Diagrama de Atividades para o estado "Montando ativo", dentro do Diagrama de Estados para a classe DialogoAtivo em [UC002].](figuras/atv-uc002-dialogoativo.png)
+![Figura 107. Diagrama de Atividades para o estado "Montando ativo", dentro do Diagrama de Estados para a classe DialogoAtivo em [UC002].](figuras/atv-uc002-dialogoativo.png)
 
-![Figura 100. Diagrama de Atividades para o estado "Validando ativo", dentro do Diagrama de Estados para a classe ServicoAtivo em [UC002].](figuras/atv-uc002-servicoativo.png)
+![Figura 108. Diagrama de Atividades para o estado "Validando ativo", dentro do Diagrama de Estados para a classe ServicoAtivo em [UC002].](figuras/atv-uc002-servicoativo.png)
 
-![Figura 101. Diagrama de Atividades para o estado "Editando no diálogo", dentro do Diagrama de Estados para a classe TelaAtivos em [UC003].](figuras/atv-uc003-telaativos.png)
+![Figura 109. Diagrama de Atividades para o estado "Editando no diálogo", dentro do Diagrama de Estados para a classe TelaAtivos em [UC003].](figuras/atv-uc003-telaativos.png)
 
-![Figura 102. Diagrama de Atividades para o estado "Validando alteração", dentro do Diagrama de Estados para a classe ServicoAtivo em [UC003].](figuras/atv-uc003-servicoativo.png)
+![Figura 110. Diagrama de Atividades para o estado "Validando alteração", dentro do Diagrama de Estados para a classe ServicoAtivo em [UC003].](figuras/atv-uc003-servicoativo.png)
 
-![Figura 103. Diagrama de Atividades para o estado "Confirmando remoção", dentro do Diagrama de Estados para a classe TelaAtivos em [UC004].](figuras/atv-uc004-telaativos.png)
+![Figura 111. Diagrama de Atividades para o estado "Confirmando remoção", dentro do Diagrama de Estados para a classe TelaAtivos em [UC004].](figuras/atv-uc004-telaativos.png)
 
-![Figura 104. Diagrama de Atividades para o estado "Executando exclusão", dentro do Diagrama de Estados para a classe RepositorioAtivo em [UC004].](figuras/atv-uc004-repositorioativo.png)
+![Figura 112. Diagrama de Atividades para o estado "Executando exclusão", dentro do Diagrama de Estados para a classe RepositorioAtivo em [UC004].](figuras/atv-uc004-repositorioativo.png)
 
-![Figura 105. Diagrama de Atividades para o estado "Importando", dentro do Diagrama de Estados para a classe TelaImportacao em [UC005].](figuras/atv-uc005-telaimportacao.png)
+![Figura 113. Diagrama de Atividades para o estado "Importando", dentro do Diagrama de Estados para a classe TelaImportacao em [UC005].](figuras/atv-uc005-telaimportacao.png)
 
-![Figura 106. Diagrama de Atividades para o estado "Validando linhas", dentro do Diagrama de Estados para a classe ServicoImportacao em [UC005].](figuras/atv-uc005-servicoimportacao.png)
+![Figura 114. Diagrama de Atividades para o estado "Validando linhas", dentro do Diagrama de Estados para a classe ServicoImportacao em [UC005].](figuras/atv-uc005-servicoimportacao.png)
 
-![Figura 107. Diagrama de Atividades para o estado "Validando", dentro do Diagrama de Estados para a classe Importacao em [UC005].](figuras/atv-uc005-importacao.png)
+![Figura 115. Diagrama de Atividades para o estado "Validando", dentro do Diagrama de Estados para a classe Importacao em [UC005].](figuras/atv-uc005-importacao.png)
 
-![Figura 108. Diagrama de Atividades para o estado "Editando parâmetros", dentro do Diagrama de Estados para a classe TelaRegras em [UC006].](figuras/atv-uc006-telaregras.png)
+![Figura 116. Diagrama de Atividades para o estado "Editando parâmetros", dentro do Diagrama de Estados para a classe TelaRegras em [UC006].](figuras/atv-uc006-telaregras.png)
 
-![Figura 109. Diagrama de Atividades para o estado "Montando comando", dentro do Diagrama de Estados para a classe RepositorioRegra em [UC006].](figuras/atv-uc006-repositorioregra.png)
+![Figura 117. Diagrama de Atividades para o estado "Montando comando", dentro do Diagrama de Estados para a classe RepositorioRegra em [UC006].](figuras/atv-uc006-repositorioregra.png)
 
-![Figura 110. Diagrama de Atividades para o estado "Editando no diálogo", dentro do Diagrama de Estados para a classe TelaUsuarios em [UC007].](figuras/atv-uc007-telausuarios.png)
+![Figura 118. Diagrama de Atividades para o estado "Editando no diálogo", dentro do Diagrama de Estados para a classe TelaUsuarios em [UC007].](figuras/atv-uc007-telausuarios.png)
 
-![Figura 111. Diagrama de Atividades para o estado "Validando dados", dentro do Diagrama de Estados para a classe ServicoAutenticacao em [UC007].](figuras/atv-uc007-servicoautenticacao.png)
+![Figura 119. Diagrama de Atividades para o estado "Validando dados", dentro do Diagrama de Estados para a classe ServicoAutenticacao em [UC007].](figuras/atv-uc007-servicoautenticacao.png)
 
-![Figura 112. Diagrama de Atividades para o estado "Filtrando ativos", dentro do Diagrama de Estados para a classe TelaAtivos em [UC008].](figuras/atv-uc008-telaativos.png)
+![Figura 120. Diagrama de Atividades para o estado "Filtrando ativos", dentro do Diagrama de Estados para a classe TelaAtivos em [UC008].](figuras/atv-uc008-telaativos.png)
 
-![Figura 113. Diagrama de Atividades para o estado "Montando objetos", dentro do Diagrama de Estados para a classe RepositorioAtivo em [UC008].](figuras/atv-uc008-repositorioativo.png)
+![Figura 121. Diagrama de Atividades para o estado "Montando objetos", dentro do Diagrama de Estados para a classe RepositorioAtivo em [UC008].](figuras/atv-uc008-repositorioativo.png)
 
-![Figura 114. Diagrama de Atividades para o estado "Calculando indicadores", dentro do Diagrama de Estados para a classe TelaDashboard em [UC009].](figuras/atv-uc009-teladashboard.png)
+![Figura 122. Diagrama de Atividades para o estado "Calculando indicadores", dentro do Diagrama de Estados para a classe TelaDashboard em [UC009].](figuras/atv-uc009-teladashboard.png)
 
-![Figura 115. Diagrama de Atividades para o estado "Calculando a série", dentro do Diagrama de Estados para a classe CalculadoraIndicadores em [UC009].](figuras/atv-uc009-calculadoraindicadores.png)
+![Figura 123. Diagrama de Atividades para o estado "Calculando a série", dentro do Diagrama de Estados para a classe CalculadoraIndicadores em [UC009].](figuras/atv-uc009-calculadoraindicadores.png)
 
-![Figura 116. Diagrama de Atividades para o estado "Exibindo detalhes", dentro do Diagrama de Estados para a classe TelaDetalheAtivo em [UC010].](figuras/atv-uc010-teladetalheativo.png)
+![Figura 124. Diagrama de Atividades para o estado "Exibindo detalhes", dentro do Diagrama de Estados para a classe TelaDetalheAtivo em [UC010].](figuras/atv-uc010-teladetalheativo.png)
 
-![Figura 117. Diagrama de Atividades para o estado "Consultando cotações", dentro do Diagrama de Estados para a classe RepositorioCotacao em [UC010].](figuras/atv-uc010-repositoriocotacao.png)
+![Figura 125. Diagrama de Atividades para o estado "Consultando cotações", dentro do Diagrama de Estados para a classe RepositorioCotacao em [UC010].](figuras/atv-uc010-repositoriocotacao.png)
 
-![Figura 118. Diagrama de Atividades para o estado "Gerando recomendações", dentro do Diagrama de Estados para a classe TelaRecomendacoes em [UC011].](figuras/atv-uc011-telarecomendacoes.png)
+![Figura 126. Diagrama de Atividades para o estado "Gerando recomendações", dentro do Diagrama de Estados para a classe TelaRecomendacoes em [UC011].](figuras/atv-uc011-telarecomendacoes.png)
 
-![Figura 119. Diagrama de Atividades para o estado "Consolidando parecer", dentro do Diagrama de Estados para a classe MotorAnalise em [UC011].](figuras/atv-uc011-motoranalise.png)
+![Figura 127. Diagrama de Atividades para o estado "Consolidando parecer", dentro do Diagrama de Estados para a classe MotorAnalise em [UC011].](figuras/atv-uc011-motoranalise.png)
 
-![Figura 120. Diagrama de Atividades para o estado "Vigente", dentro do Diagrama de Estados para a classe Recomendacao em [UC011].](figuras/atv-uc011-recomendacao.png)
+![Figura 128. Diagrama de Atividades para o estado "Vigente", dentro do Diagrama de Estados para a classe Recomendacao em [UC011].](figuras/atv-uc011-recomendacao.png)
 
-![Figura 121. Diagrama de Atividades para o estado "Detalhando justificativa", dentro do Diagrama de Estados para a classe TelaRecomendacoes em [UC012].](figuras/atv-uc012-telarecomendacoes.png)
+![Figura 129. Diagrama de Atividades para o estado "Detalhando justificativa", dentro do Diagrama de Estados para a classe TelaRecomendacoes em [UC012].](figuras/atv-uc012-telarecomendacoes.png)
 
-![Figura 122. Diagrama de Atividades para o estado "Consultando vigentes", dentro do Diagrama de Estados para a classe RepositorioRecomendacao em [UC012].](figuras/atv-uc012-repositoriorecomendacao.png)
+![Figura 130. Diagrama de Atividades para o estado "Consultando vigentes", dentro do Diagrama de Estados para a classe RepositorioRecomendacao em [UC012].](figuras/atv-uc012-repositoriorecomendacao.png)
 
-![Figura 123. Diagrama de Atividades para o estado "Editando a compra", dentro do Diagrama de Estados para a classe DialogoOperacao em [UC013].](figuras/atv-uc013-dialogooperacao.png)
+![Figura 131. Diagrama de Atividades para o estado "Editando a compra", dentro do Diagrama de Estados para a classe DialogoOperacao em [UC013].](figuras/atv-uc013-dialogooperacao.png)
 
-![Figura 124. Diagrama de Atividades para o estado "Atualizando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC013].](figuras/atv-uc013-servicocarteira.png)
+![Figura 132. Diagrama de Atividades para o estado "Atualizando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC013].](figuras/atv-uc013-servicocarteira.png)
 
-![Figura 125. Diagrama de Atividades para o estado "Registrando a venda", dentro do Diagrama de Estados para a classe TelaCarteira em [UC014].](figuras/atv-uc014-telacarteira.png)
+![Figura 133. Diagrama de Atividades para o estado "Registrando a venda", dentro do Diagrama de Estados para a classe TelaCarteira em [UC014].](figuras/atv-uc014-telacarteira.png)
 
-![Figura 126. Diagrama de Atividades para o estado "Verificando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC014].](figuras/atv-uc014-servicocarteira.png)
+![Figura 134. Diagrama de Atividades para o estado "Verificando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC014].](figuras/atv-uc014-servicocarteira.png)
 
-![Figura 127. Diagrama de Atividades para o estado "Aberta", dentro do Diagrama de Estados para a classe Posicao em [UC014].](figuras/atv-uc014-posicao.png)
+![Figura 135. Diagrama de Atividades para o estado "Aberta", dentro do Diagrama de Estados para a classe Posicao em [UC014].](figuras/atv-uc014-posicao.png)
 
-![Figura 128. Diagrama de Atividades para o estado "Calculando o resumo", dentro do Diagrama de Estados para a classe TelaCarteira em [UC015].](figuras/atv-uc015-telacarteira.png)
+![Figura 136. Diagrama de Atividades para o estado "Calculando o resumo", dentro do Diagrama de Estados para a classe TelaCarteira em [UC015].](figuras/atv-uc015-telacarteira.png)
 
-![Figura 129. Diagrama de Atividades para o estado "Avaliando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC015].](figuras/atv-uc015-servicocarteira.png)
+![Figura 137. Diagrama de Atividades para o estado "Avaliando a posição", dentro do Diagrama de Estados para a classe ServicoCarteira em [UC015].](figuras/atv-uc015-servicocarteira.png)
 
-![Figura 130. Diagrama de Atividades para o estado "Sugerindo o valor de referência", dentro do Diagrama de Estados para a classe DialogoAlerta em [UC016].](figuras/atv-uc016-dialogoalerta.png)
+![Figura 138. Diagrama de Atividades para o estado "Sugerindo o valor de referência", dentro do Diagrama de Estados para a classe DialogoAlerta em [UC016].](figuras/atv-uc016-dialogoalerta.png)
 
-![Figura 131. Diagrama de Atividades para o estado "Validando o alerta", dentro do Diagrama de Estados para a classe ServicoAlerta em [UC016].](figuras/atv-uc016-servicoalerta.png)
+![Figura 139. Diagrama de Atividades para o estado "Validando o alerta", dentro do Diagrama de Estados para a classe ServicoAlerta em [UC016].](figuras/atv-uc016-servicoalerta.png)
 
-![Figura 132. Diagrama de Atividades para o estado "Notificando na barra de status", dentro do Diagrama de Estados para a classe JanelaPrincipal em [UC017].](figuras/atv-uc017-janelaprincipal.png)
+![Figura 140. Diagrama de Atividades para o estado "Notificando na barra de status", dentro do Diagrama de Estados para a classe JanelaPrincipal em [UC017].](figuras/atv-uc017-janelaprincipal.png)
 
-![Figura 133. Diagrama de Atividades para o estado "Avaliando a condição", dentro do Diagrama de Estados para a classe ServicoAlerta em [UC017].](figuras/atv-uc017-servicoalerta.png)
+![Figura 141. Diagrama de Atividades para o estado "Avaliando a condição", dentro do Diagrama de Estados para a classe ServicoAlerta em [UC017].](figuras/atv-uc017-servicoalerta.png)
 
-![Figura 134. Diagrama de Atividades para o estado "Ativo", dentro do Diagrama de Estados para a classe Alerta em [UC017].](figuras/atv-uc017-alerta.png)
+![Figura 142. Diagrama de Atividades para o estado "Ativo", dentro do Diagrama de Estados para a classe Alerta em [UC017].](figuras/atv-uc017-alerta.png)
 
-![Figura 135. Diagrama de Atividades para o estado "Arquivando o alerta", dentro do Diagrama de Estados para a classe TelaAlertas em [UC018].](figuras/atv-uc018-telaalertas.png)
+![Figura 143. Diagrama de Atividades para o estado "Arquivando o alerta", dentro do Diagrama de Estados para a classe TelaAlertas em [UC018].](figuras/atv-uc018-telaalertas.png)
 
-![Figura 136. Diagrama de Atividades para o estado "Gravando o estado", dentro do Diagrama de Estados para a classe RepositorioAlerta em [UC018].](figuras/atv-uc018-repositorioalerta.png)
+![Figura 144. Diagrama de Atividades para o estado "Gravando o estado", dentro do Diagrama de Estados para a classe RepositorioAlerta em [UC018].](figuras/atv-uc018-repositorioalerta.png)
+
+![Figura 145. Diagrama de Atividades para o estado "Sincronizando", dentro do Diagrama de Estados para a classe TelaImportacao em [UC019].](figuras/atv-uc019-telaimportacao.png)
+
+![Figura 146. Diagrama de Atividades para o estado "Sincronizando ativo", dentro do Diagrama de Estados para a classe ServicoSincronizacao em [UC019].](figuras/atv-uc019-servicosincronizacao.png)
+
+![Figura 147. Diagrama de Atividades para o estado "Executando o backtesting", dentro do Diagrama de Estados para a classe DialogoBacktest em [UC020].](figuras/atv-uc020-dialogobacktest.png)
+
+![Figura 148. Diagrama de Atividades para o estado "Percorrendo os pregões", dentro do Diagrama de Estados para a classe Backtester em [UC020].](figuras/atv-uc020-backtester.png)
 
 
 ```{=openxml}
@@ -2638,8 +2877,12 @@ orientação a objetos, Qt 6 (Widgets e Charts) e SQLite — e está funcionando
 importação transacional valida e grava as cotações dos arquivos CSV, o painel exibe
 gráficos de velas com médias móveis e indicadores, o motor de análise gera
 recomendações justificadas pelas quatro regras implementadas sobre o padrão
-Strategy, a carteira consolida posições com preço médio ponderado e os alertas
-disparam por meio do padrão Observer. A rastreabilidade planejada foi mantida de
+Strategy, a carteira consolida posições com preço médio ponderado, os alertas
+disparam por meio do padrão Observer, a sincronização online busca somente o
+período faltante de cada ativo (com a fonte de dados isolada atrás de uma
+interface, numa segunda aplicação do padrão Strategy) e o backtesting mede a
+taxa de acerto e o retorno médio de cada regra sobre o histórico, com pesos
+configuráveis na média do parecer consolidado. A rastreabilidade planejada foi mantida de
 ponta a ponta: cada requisito funcional corresponde a um caso de uso, cada caso de
 uso às classes que o realizam, e cada classe às tabelas que a persistem — o mesmo
 esquema SQL modelado no Diagrama Entidade-Relacionamento é o executado pelo
@@ -2653,13 +2896,12 @@ mensagens reais exibidas pelo sistema.
 
 ## 5.1 Trabalhos Futuros
 
-Como evoluções além do escopo da disciplina, vislumbram-se: a atualização
-automática de cotações via API da B3 quando houver conexão; novas regras de análise
-(MACD, Bandas de Bollinger e Estocástico) aproveitando a extensibilidade do padrão
-Strategy; o backtesting das regras sobre o histórico importado, medindo o
-desempenho de cada estratégia; a exportação de relatórios das reuniões do clube; e
-o suporte multiusuário em rede local, substituindo o SQLite por um SGBD
-cliente-servidor — mudança isolada pela camada de repositórios.
+Como evoluções além do escopo da disciplina, vislumbram-se: novas regras de
+análise (MACD, Bandas de Bollinger e Estocástico) aproveitando a extensibilidade
+do padrão Strategy; o agendamento automático da sincronização de cotações; a
+exportação de relatórios das reuniões do clube; e o suporte multiusuário em rede
+local, substituindo o SQLite por um SGBD cliente-servidor — mudança isolada pela
+camada de repositórios.
 
 
 

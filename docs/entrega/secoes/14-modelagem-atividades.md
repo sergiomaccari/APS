@@ -81,3 +81,11 @@ Cada Diagrama de Estados tem seu estado principal detalhado por um Diagrama de A
 ![Figura {{F:atv-uc018-telaalertas}}. Diagrama de Atividades para o estado "Arquivando o alerta", dentro do Diagrama de Estados para a classe TelaAlertas em [UC018].](figuras/atv-uc018-telaalertas.png)
 
 ![Figura {{F:atv-uc018-repositorioalerta}}. Diagrama de Atividades para o estado "Gravando o estado", dentro do Diagrama de Estados para a classe RepositorioAlerta em [UC018].](figuras/atv-uc018-repositorioalerta.png)
+
+![Figura {{F:atv-uc019-telaimportacao}}. Diagrama de Atividades para o estado "Sincronizando", dentro do Diagrama de Estados para a classe TelaImportacao em [UC019].](figuras/atv-uc019-telaimportacao.png)
+
+![Figura {{F:atv-uc019-servicosincronizacao}}. Diagrama de Atividades para o estado "Sincronizando ativo", dentro do Diagrama de Estados para a classe ServicoSincronizacao em [UC019].](figuras/atv-uc019-servicosincronizacao.png)
+
+![Figura {{F:atv-uc020-dialogobacktest}}. Diagrama de Atividades para o estado "Executando o backtesting", dentro do Diagrama de Estados para a classe DialogoBacktest em [UC020].](figuras/atv-uc020-dialogobacktest.png)
+
+![Figura {{F:atv-uc020-backtester}}. Diagrama de Atividades para o estado "Percorrendo os pregões", dentro do Diagrama de Estados para a classe Backtester em [UC020].](figuras/atv-uc020-backtester.png)

@@ -41,3 +41,7 @@ hierarquicamente e os retornos relevantes aparecem tracejados.
 ![Figura {{F:seq-uc017}}. Diagrama de sequência para o [UC017].](figuras/seq-uc017.png)
 
 ![Figura {{F:seq-uc018}}. Diagrama de sequência para o [UC018].](figuras/seq-uc018.png)
+
+![Figura {{F:seq-uc019}}. Diagrama de sequência para o [UC019].](figuras/seq-uc019.png)
+
+![Figura {{F:seq-uc020}}. Diagrama de sequência para o [UC020].](figuras/seq-uc020.png)
