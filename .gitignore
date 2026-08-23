@@ -43,3 +43,8 @@ cofre*
 # build do CMake
 build/
 *.user
+
+# analises com material da empresa / terceiros - fora do repo publico
+docs/analises/metodologia-hub.md
+docs/analises/perfil-github.md
+docs/analises/veterano-teste-driva.md
