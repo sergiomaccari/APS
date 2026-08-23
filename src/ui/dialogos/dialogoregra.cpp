@@ -53,9 +53,18 @@ DialogoRegra::DialogoRegra(const RegraConfigurada& regra, QWidget* pai)
     m_campoSecundario->setDecimals(2);
     m_campoSecundario->setValue(m_regra.parametroSecundario());
 
+    m_campoPeso = new QDoubleSpinBox(this);
+    m_campoPeso->setRange(0.1, 5.0);
+    m_campoPeso->setSingleStep(0.1);
+    m_campoPeso->setDecimals(1);
+    m_campoPeso->setToolTip(QString::fromUtf8(
+        "Peso da regra na média ponderada do parecer consolidado (1,0 = peso igual)."));
+    m_campoPeso->setValue(m_regra.peso());
+
     auto* formulario = new QFormLayout();
     formulario->addRow(QStringLiteral("1º parâmetro:"), m_campoPrincipal);
     formulario->addRow(QStringLiteral("2º parâmetro:"), m_campoSecundario);
+    formulario->addRow(QString::fromUtf8("Peso na média:"), m_campoPeso);
 
     auto* botoes = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Cancel, this);
     botoes->button(QDialogButtonBox::Save)->setText(QStringLiteral("Salvar"));
@@ -79,6 +88,7 @@ RegraConfigurada DialogoRegra::regraInformada() const
     resultado.definirAtiva(m_campoAtiva->isChecked());
     resultado.definirParametroPrincipal(m_campoPrincipal->value());
     resultado.definirParametroSecundario(m_campoSecundario->value());
+    resultado.definirPeso(m_campoPeso->value());
     return resultado;
 }
 

@@ -1,9 +1,9 @@
 # 5 CONCLUSÕES
 
 Este Plano do Projeto consolidou o ciclo de análise do sistema AB3 — Analisador de
-Ativos da B3. A partir da entrevista com o cliente foram levantados 19 requisitos
-funcionais, 7 não funcionais, 4 restrições de projeto e 4 requisitos de experiência
-do usuário, todos rastreáveis aos 18 casos de uso especificados no padrão da
+Ativos da B3. A partir da entrevista com o cliente foram levantados 21 requisitos
+funcionais, 8 não funcionais, 4 restrições de projeto e 4 requisitos de experiência
+do usuário, todos rastreáveis aos 20 casos de uso especificados no padrão da
 disciplina e às classes do Diagrama de Classes — cada informação citada nos fluxos
 dos casos de uso existe como atributo no dicionário de informações, e cada caso de
 uso possui seu Diagrama de Sequência.
@@ -28,8 +28,8 @@ Para o segundo bimestre, o projeto prossegue com: a modelagem dinâmica compleme
 e de Atividades); o endurecimento do sistema com a cobertura dos fluxos de exceção
 especificados e testes automatizados; e a preparação dos Testes de Validação, com a
 demonstração de cada caso de uso mapeada ao seu Diagrama de Sequência. Como
-evoluções além do escopo da disciplina, vislumbram-se a atualização automática de
-cotações via API quando houver conexão, novas regras de análise (MACD e Bandas de
-Bollinger) e o backtesting das regras sobre o histórico importado.
+evoluções além do escopo da disciplina, vislumbram-se novas regras de análise
+(MACD e Bandas de Bollinger), o agendamento automático da sincronização de
+cotações e a exportação de relatórios das reuniões do clube.
 
 \newpage

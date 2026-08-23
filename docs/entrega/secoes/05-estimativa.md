@@ -31,14 +31,17 @@ Tabela {{T:poker}}.
 | [RF017] | 5 |
 | [RF018] | 8 |
 | [RF019] | 3 |
-| **Total** | **116** |
+| [RF020] | 8 |
+| [RF021] | 8 |
+| **Total** | **132** |
 
 Assim, a estimativa de esforço total para o desenvolvimento e cumprimento de todos
-os requisitos funcionais foi de **116 horas** — cerca de 29 horas por integrante ao
+os requisitos funcionais foi de **132 horas** — cerca de 33 horas por integrante ao
 longo do bimestre. As maiores estimativas couberam à importação transacional de
 cotações [RF005], ao painel gráfico com indicadores [RF009] e ao motor de
 recomendações [RF012], por concentrarem validações, cálculo numérico e regras de
-negócio.
+negócio, seguidas da sincronização online [RF020] e do backtesting [RF021], que
+envolvem integração externa e reprocessamento do histórico.
 
 ### Verificação complementar com Pontos de Caso de Uso (UCP)
 
@@ -81,10 +84,12 @@ número de transações de seu fluxo de eventos:
 | UC016 Cadastrar alerta | 5 | Médio | 10 |
 | UC017 Avaliar e disparar alertas | 7 | Complexo | 15 |
 | UC018 Arquivar alerta | 3 | Simples | 5 |
-| **UUCW** | | | **180** |
+| UC019 Sincronizar cotações online | 6 | Médio | 10 |
+| UC020 Executar backtesting das regras | 6 | Médio | 10 |
+| **UUCW** | | | **200** |
 
 Com isso, os pontos de caso de uso não ajustados são
-UUCP = UAW + UUCW = 6 + 180 = **186**.
+UUCP = UAW + UUCW = 6 + 200 = **206**.
 
 **Passo 3 — Fatores técnicos (TCF).**
 
@@ -129,17 +134,17 @@ quanto maior o valor, mais eles reduzem a produtividade estimada.
 ECF = 1,4 − (0,03 × 16,0) = **0,92**.
 
 **Passo 5 — Cálculo final.**
-UCP = UUCP × TCF × ECF = 186 × 0,85 × 0,92 = **145,45 pontos**.
+UCP = UUCP × TCF × ECF = 206 × 0,85 × 0,92 = **161,09 pontos**.
 
 Aplicando a taxa clássica de Karner, de 20 horas por ponto, o esforço seria de
-2.909 horas — valor coerente com um projeto industrial completo (levantamento,
+3.222 horas — valor coerente com um projeto industrial completo (levantamento,
 gestão, testes formais, implantação e garantia), conduzido por equipe alocada em
 tempo integral. Para o recorte desta disciplina, a leitura relevante do UCP é
 relativa: os casos de uso classificados como complexos (UC005, UC009, UC011 e
 UC017) correspondem exatamente aos requisitos com as maiores cartas no Planning
 Poker ([RF005], [RF009], [RF012] e [RF018]), o que dá consistência às duas
 técnicas. Adotamos como compromisso operacional a estimativa do Planning Poker
-(116 horas de implementação), usando o UCP como medida de tamanho funcional e como
+(132 horas de implementação), usando o UCP como medida de tamanho funcional e como
 verificação da classificação de esforço entre os casos de uso.
 
 \newpage

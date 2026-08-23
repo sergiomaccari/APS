@@ -20,7 +20,8 @@ public:
                      const QString& nomeRegra,
                      bool ativa,
                      double parametroPrincipal,
-                     double parametroSecundario);
+                     double parametroSecundario,
+                     double peso = 1.0);
 
     qint64 id() const;
     QString nomeRegra() const;
@@ -34,11 +35,15 @@ public:
     // DY considerado excelente ou P/L a partir do qual sugere venda.
     double parametroSecundario() const;
 
+    // Peso da regra na media ponderada do MotorAnalise (> 0; padrao 1,0).
+    double peso() const;
+
     void definirId(qint64 id);
     void definirNomeRegra(const QString& nomeRegra);
     void definirAtiva(bool ativa);
     void definirParametroPrincipal(double parametroPrincipal);
     void definirParametroSecundario(double parametroSecundario);
+    void definirPeso(double peso);
 
     // Verdadeiro quando ha nome de regra e os parametros nao sao negativos.
     bool valida() const;
@@ -52,6 +57,7 @@ private:
     bool m_ativa = true;
     double m_parametroPrincipal = 0.0;
     double m_parametroSecundario = 0.0;
+    double m_peso = 1.0;
 };
 
 }

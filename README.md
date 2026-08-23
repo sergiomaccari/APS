@@ -18,7 +18,13 @@ Thales Romagna Fabrowski.
 - Importa séries históricas de cotações a partir de arquivos CSV no padrão
   brasileiro — de forma **transacional**: um erro estrutural rejeita o arquivo
   inteiro, e datas repetidas são ignoradas (importar duas vezes não duplica nada).
-- Configura as regras de análise (liga, desliga e ajusta parâmetros) sem recompilar.
+- **Sincroniza cotações online** (Yahoo Finance) com um clique: o sistema baixa
+  apenas o período posterior à última cotação de cada ativo — o CSV continua
+  sendo o caminho primário e tudo funciona offline sem a sincronização.
+- Configura as regras de análise (liga, desliga, ajusta parâmetros e **pesos da
+  média ponderada**) sem recompilar.
+- Executa o **backtesting** das regras: reexecuta o motor em cada ponto do
+  histórico e mede sinais, taxa de acerto e retorno médio por regra.
 - Gerencia usuários e papéis.
 
 **Investidor**
@@ -65,6 +71,7 @@ Monólito modular em camadas — cada camada só conhece a de baixo:
 | Padrão | Onde | Para quê |
 |---|---|---|
 | **Strategy** | `analise/regraanalise.h` + 4 regras concretas | cada critério de análise é uma estratégia intercambiável; o motor não conhece nenhuma delas |
+| **Strategy** (2ª aplicação) | `servicos/fontecotacoesremota.h` → `FonteYahooFinance` | a fonte da sincronização online é plugável; trocar de provedor não toca no serviço |
 | **Observer** | `servicos/servicoalerta.h` ↔ `JanelaPrincipal` | o serviço notifica alertas disparados sem conhecer a interface |
 | **Repository** | `src/persistencia/` | isola o SQL do resto do sistema |
 | **Singleton** | `persistencia/bancodedados.h` | uma única conexão com o banco |
@@ -115,15 +122,19 @@ reiniciar o programa.
    e escolha `dados/`: os cinco CSVs são casados por ticker e importados.
 2. Tente importar `dados/INVALIDO-exemplo.csv` para ver a **rejeição transacional**
    (três erros apontados por linha, nenhuma cotação gravada).
-3. Vá em *Regras de análise* para ver os critérios e parâmetros ativos.
-4. Em *Recomendações* → **Gerar para todos os ativos**: PETR4 sai **Compra**
+3. Com internet, clique em **Sincronizar online** na tela de importação: só o
+   período faltante de cada ativo é baixado (rodar duas vezes não duplica nada).
+4. Vá em *Regras de análise* para ver os critérios, parâmetros e pesos; em
+   **Backtesting…**, execute a avaliação histórica das regras (sinais, taxa de
+   acerto e retorno médio por regra).
+5. Em *Recomendações* → **Gerar para todos os ativos**: PETR4 sai **Compra**
    (cruzamento de médias para cima) e MGLU3 sai **Venda** (múltiplo elevado,
    proventos baixos e tendência de queda).
-5. **Trocar usuário** → entre como **investidor** → *Painel de análise*: gráfico,
+6. **Trocar usuário** → entre como **investidor** → *Painel de análise*: gráfico,
    indicadores e a justificativa da recomendação.
-6. *Alertas* → **Novo alerta** com preço abaixo do fechamento atual →
+7. *Alertas* → **Novo alerta** com preço abaixo do fechamento atual →
    **Avaliar agora**: o alerta dispara e a notificação aparece na barra de status.
-7. *Minha carteira*: posições com lucro/prejuízo e o resumo consolidado.
+8. *Minha carteira*: posições com lucro/prejuízo e o resumo consolidado.
 
 ## Estrutura de pastas
 

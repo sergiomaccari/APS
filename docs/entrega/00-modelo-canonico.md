@@ -40,9 +40,12 @@ UAW = 2 × 3 = **6**
 | RF017 | O investidor deve ser capaz de cadastrar alertas de preço | UC016 | TelaAlertas, DialogoAlerta, ServicoAlerta, RepositorioAlerta, Alerta |
 | RF018 | O sistema deve disparar e notificar os alertas cuja condição foi satisfeita | UC017 | ServicoAlerta, ObservadorAlerta, JanelaPrincipal, Alerta |
 | RF019 | O investidor deve ser capaz de arquivar alertas já disparados | UC018 | TelaAlertas, ServicoAlerta, RepositorioAlerta, Alerta |
+| RF020 | O administrador deve ser capaz de sincronizar cotações online, baixando apenas o período faltante | UC019 | TelaImportacao, ServicoSincronizacao, FonteYahooFinance, RepositorioCotacao, RepositorioImportacao, Importacao |
+| RF021 | O administrador deve ser capaz de executar o backtesting das regras de análise | UC020 | TelaRegras, DialogoBacktest, Backtester, MotorAnalise, RepositorioCotacao |
 
-**19 requisitos funcionais → 18 casos de uso** (RF009 e RF010 são atendidos pelo mesmo
-UC009, como o exemplo do professor faz com RF014/RF017).
+**21 requisitos funcionais → 20 casos de uso** (RF009 e RF010 são atendidos pelo mesmo
+UC009, como o exemplo do professor faz com RF014/RF017). RF020 e RF021 foram
+acrescentados na extensão de escopo de 19/08 (spec 0001 + ADR 0003).
 
 ## Casos de uso
 
@@ -66,12 +69,13 @@ UC009, como o exemplo do professor faz com RF014/RF017).
 | UC016 | Cadastrar alerta | Investidor | Médio (10) | 5 | 3 |
 | UC017 | Avaliar e disparar alertas | Investidor | Complexo (15) | 7 | 10 |
 | UC018 | Arquivar alerta | Investidor | Simples (5) | 3 | 2 |
+| UC019 | Sincronizar cotações online | Administrador | Médio (10) | 6 | 8 |
+| UC020 | Executar backtesting das regras | Administrador | Médio (10) | 6 | 7 |
 
-UUCW = 4 simples (20) + 9 médios (90) + 5 complexos (75)... **conferir na seção 2.6**:
 Simples: UC001, UC004, UC008, UC018 → 4 × 5 = 20
-Médios: UC002, UC003, UC006, UC007, UC010, UC012, UC013, UC014, UC015, UC016 → 10 × 10 = 100
+Médios: UC002, UC003, UC006, UC007, UC010, UC012, UC013, UC014, UC015, UC016, UC019, UC020 → 12 × 10 = 120
 Complexos: UC005, UC009, UC011, UC017 → 4 × 15 = 60
-**UUCW = 180** · UAW = 6 · **UUCP = 186**
+**UUCW = 200** · UAW = 6 · **UUCP = 206** · UCP = 206 × 0,85 × 0,92 = **161,09**
 
 ## Requisitos não funcionais, restrições e experiência do usuário
 
@@ -84,6 +88,7 @@ Complexos: UC005, UC009, UC011, UC017 → 4 × 15 = 60
 | RNF005 | Somente o administrador deve acessar as telas de administração |
 | RNF006 | Toda recomendação deve exibir a regra e os números que a justificaram |
 | RNF007 | O sistema deve responder às interações da interface em menos de 2 segundos com 5 anos de histórico |
+| RNF008 | A sincronização online é opcional: sem internet o sistema apenas informa e todas as demais funções seguem operando |
 | RP001 | O sistema será implementado em C++ com paradigma orientado a objetos |
 | RP002 | A interface gráfica utilizará o framework Qt 6 (Widgets e Charts) |
 | RP003 | O banco de dados será relacional (SQLite) com no mínimo 5 tabelas |
@@ -119,6 +124,9 @@ Complexos: UC005, UC009, UC011, UC017 → 4 × 15 = 60
 | RN020 | O alerta só dispara quando a condição é satisfeita pela última cotação | ServicoAlerta::avaliarAlertas |
 | RN021 | Somente alerta já disparado pode ser arquivado | Alerta::arquivar |
 | RN022 | O valor de referência do alerta deve ser maior que zero | ServicoAlerta::criarAlerta |
+| RN023 | A sincronização busca apenas o período posterior à última cotação local (ou 365 dias, sem cotações) e nunca duplica pregões | ServicoSincronizacao::inicioDaJanela + UNIQUE(ativo_id, data) |
+| RN024 | No backtesting, Compra acerta quando o retorno no horizonte é positivo e Venda quando é negativo; Neutro não gera sinal | Backtester::executar |
+| RN025 | O peso de uma regra deve ser maior que zero; a pontuação consolidada é a média ponderada pelos pesos | RegraConfigurada::valida / MotorAnalise::analisar |
 
 ## Máquinas de estado (base dos Diagramas de Estados do 2º bimestre)
 
@@ -141,18 +149,18 @@ Complexos: UC005, UC009, UC011, UC017 → 4 × 15 = 60
 | Posicao | id, carteiraId, ativoId, quantidade, precoMedio, compradaEm |
 | Alerta | id, usuarioId, ativoId, condicao, valorReferencia, estado, criadoEm, disparadoEm |
 | Recomendacao | id, ativoId, tipo, justificativa, regraAplicada, geradaEm, estado, pontuacao |
-| RegraConfigurada | id, nomeRegra, ativa, parametroPrincipal, parametroSecundario |
+| RegraConfigurada | id, nomeRegra, ativa, parametroPrincipal, parametroSecundario, peso |
 | Importacao | id, ativoId, arquivo, estado, linhasLidas, linhasInseridas, mensagemErro, executadaEm |
 | Indicador *(struct)* | nome, data, valor |
 
-Total de atributos das classes de domínio: **62** (a meta observada nos trabalhos de
+Total de atributos das classes de domínio: **63** (a meta observada nos trabalhos de
 veteranos é 30; o dicionário completo inclui ainda serviços, repositórios e telas).
 
 ## Camadas e padrões de projeto (para o capítulo de modelagem)
 
 | Padrão | Participantes |
 |---|---|
-| Strategy | RegraAnalise (interface); RegraCruzamentoMedias, RegraRsi, RegraDividendYield, RegraPrecoLucro; MotorAnalise (contexto) |
+| Strategy | RegraAnalise (interface); RegraCruzamentoMedias, RegraRsi, RegraDividendYield, RegraPrecoLucro; MotorAnalise (contexto). Segunda aplicação: FonteCotacoesRemota (interface) e FonteYahooFinance (fonte plugável da sincronização) |
 | Observer | ObservadorAlerta (interface), ServicoAlerta (sujeito), JanelaPrincipal (observador concreto) |
 | Repository | RepositorioUsuario, RepositorioAtivo, RepositorioCotacao, RepositorioCarteira, RepositorioAlerta, RepositorioRecomendacao, RepositorioRegra, RepositorioImportacao |
 | Singleton | BancoDeDados |

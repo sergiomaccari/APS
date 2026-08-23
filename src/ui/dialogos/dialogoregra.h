@@ -31,6 +31,7 @@ private:
     QCheckBox* m_campoAtiva = nullptr;
     QDoubleSpinBox* m_campoPrincipal = nullptr;
     QDoubleSpinBox* m_campoSecundario = nullptr;
+    QDoubleSpinBox* m_campoPeso = nullptr;
     QLabel* m_rotuloDescricao = nullptr;
 };
 

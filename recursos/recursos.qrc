@@ -4,5 +4,6 @@
         <file alias="001_esquema_inicial.sql">sql/001_esquema_inicial.sql</file>
         <file alias="002_dados_semente.sql">sql/002_dados_semente.sql</file>
         <file alias="003_ativo_demonstracao.sql">sql/003_ativo_demonstracao.sql</file>
+        <file alias="004_peso_das_regras.sql">sql/004_peso_das_regras.sql</file>
     </qresource>
 </RCC>

@@ -16,12 +16,14 @@
 #include "persistencia/repositoriorecomendacao.h"
 #include "persistencia/repositorioregra.h"
 #include "persistencia/repositoriousuario.h"
+#include "servicos/fonteyahoofinance.h"
 #include "servicos/servicoalerta.h"
 #include "servicos/servicoativo.h"
 #include "servicos/servicoautenticacao.h"
 #include "servicos/servicocarteira.h"
 #include "servicos/servicoimportacao.h"
 #include "servicos/servicorecomendacao.h"
+#include "servicos/servicosincronizacao.h"
 
 namespace analisador
 {
@@ -53,6 +55,11 @@ public:
     ServicoCarteira servicoCarteira;
     ServicoAlerta servicoAlerta;
     ServicoRecomendacao servicoRecomendacao;
+
+    // Sincronizacao online (RF020): a fonte remota e declarada antes do servico,
+    // que a recebe por referencia.
+    FonteYahooFinance fonteCotacoes;
+    ServicoSincronizacao servicoSincronizacao;
 };
 
 }

@@ -20,11 +20,11 @@ MotorAnalise::~MotorAnalise()
 {
 }
 
-void MotorAnalise::registrarRegra(std::unique_ptr<RegraAnalise> regra)
+void MotorAnalise::registrarRegra(std::unique_ptr<RegraAnalise> regra, double peso)
 {
     if (regra)
     {
-        m_regras.push_back(std::move(regra));
+        m_regras.push_back({std::move(regra), peso > 0.0 ? peso : 1.0});
     }
 }
 
@@ -36,9 +36,9 @@ int MotorAnalise::quantidadeDeRegras() const
 QStringList MotorAnalise::nomesDasRegras() const
 {
     QStringList nomes;
-    for (const auto& regra : m_regras)
+    for (const auto& registro : m_regras)
     {
-        nomes.append(regra->nome());
+        nomes.append(registro.regra->nome());
     }
     return nomes;
 }
@@ -47,9 +47,9 @@ QVector<Recomendacao> MotorAnalise::avaliarRegrasIndividualmente(const Ativo& at
                                                                  const QVector<Cotacao>& historico) const
 {
     QVector<Recomendacao> pareceres;
-    for (const auto& regra : m_regras)
+    for (const auto& registro : m_regras)
     {
-        const std::optional<Recomendacao> parecer = regra->avaliar(ativo, historico);
+        const std::optional<Recomendacao> parecer = registro.regra->avaliar(ativo, historico);
         if (parecer.has_value())
         {
             pareceres.append(parecer.value());
@@ -80,7 +80,37 @@ Recomendacao MotorAnalise::analisar(const Ativo& ativo, const QVector<Cotacao>& 
         return consolidada;
     }
 
-    double soma = 0.0;
+    // Realinha o peso de cada parecer pelo nome da regra (os pareceres seguem
+    // a ordem de registro; regras que se abstiveram nao aparecem).
+    QVector<double> pesos;
+    pesos.reserve(pareceres.size());
+    std::size_t proximaRegra = 0;
+    for (const Recomendacao& parecer : pareceres)
+    {
+        double peso = 1.0;
+        while (proximaRegra < m_regras.size())
+        {
+            const auto& registro = m_regras.at(proximaRegra++);
+            if (registro.regra->nome() == parecer.regraAplicada())
+            {
+                peso = registro.peso;
+                break;
+            }
+        }
+        pesos.append(peso);
+    }
+    bool haPesosDiferentes = false;
+    for (const double peso : pesos)
+    {
+        if (peso != 1.0)
+        {
+            haPesosDiferentes = true;
+            break;
+        }
+    }
+
+    double somaPonderada = 0.0;
+    double somaDosPesos = 0.0;
     QStringList justificativas;
     QStringList nomesAplicados;
     const QLocale brasil(QLocale::Portuguese, QLocale::Brazil);
@@ -88,22 +118,29 @@ Recomendacao MotorAnalise::analisar(const Ativo& ativo, const QVector<Cotacao>& 
     for (int i = 0; i < pareceres.size(); ++i)
     {
         const Recomendacao& parecer = pareceres.at(i);
-        soma += parecer.pontuacao();
+        const double peso = pesos.at(i);
+        somaPonderada += parecer.pontuacao() * peso;
+        somaDosPesos += peso;
         nomesAplicados.append(parecer.regraAplicada());
-        justificativas.append(QStringLiteral("%1. [%2 | %3 | %4] %5")
-                                  .arg(i + 1)
-                                  .arg(parecer.regraAplicada(),
-                                       paraTexto(parecer.tipo()),
-                                       brasil.toString(parecer.pontuacao(), 'f', 2),
-                                       parecer.justificativa()));
+        QString linha = QStringLiteral("%1. [%2 | %3 | %4] %5")
+                            .arg(i + 1)
+                            .arg(parecer.regraAplicada(),
+                                 paraTexto(parecer.tipo()),
+                                 brasil.toString(parecer.pontuacao(), 'f', 2),
+                                 parecer.justificativa());
+        if (haPesosDiferentes)
+        {
+            linha += QStringLiteral(" (peso %1)").arg(brasil.toString(peso, 'f', 1));
+        }
+        justificativas.append(linha);
     }
 
-    const double pontuacaoFinal = soma / pareceres.size();
+    const double pontuacaoFinal = somaPonderada / somaDosPesos;
     consolidada.definirPontuacao(pontuacaoFinal);
     consolidada.definirTipo(Recomendacao::tipoPorPontuacao(pontuacaoFinal));
     consolidada.definirRegraAplicada(nomesAplicados.join(QStringLiteral(", ")));
 
-    const QString cabecalho = QString::fromUtf8(
+    QString cabecalho = QString::fromUtf8(
         "Parecer consolidado de %1 regra(s) para %2 em %3: %4 (pontuação %5, limiar de decisão %6).")
         .arg(pareceres.size())
         .arg(ativo.ticker(),
@@ -111,6 +148,10 @@ Recomendacao MotorAnalise::analisar(const Ativo& ativo, const QVector<Cotacao>& 
              paraTexto(consolidada.tipo()),
              brasil.toString(pontuacaoFinal, 'f', 2),
              brasil.toString(Recomendacao::LIMIAR_DECISAO, 'f', 2));
+    if (haPesosDiferentes)
+    {
+        cabecalho += QString::fromUtf8(" Média ponderada pelos pesos configurados das regras.");
+    }
 
     consolidada.definirJustificativa(cabecalho + QStringLiteral("\n\n") + justificativas.join(QStringLiteral("\n")));
     return consolidada;
@@ -155,7 +196,7 @@ std::unique_ptr<MotorAnalise> MotorAnalise::comRegrasPadrao(const QVector<RegraC
             continue;
         }
         regra->configurar(configuracao.parametroPrincipal(), configuracao.parametroSecundario());
-        motor->registrarRegra(std::move(regra));
+        motor->registrarRegra(std::move(regra), configuracao.peso());
     }
     return motor;
 }

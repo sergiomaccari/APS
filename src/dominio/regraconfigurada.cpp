@@ -13,12 +13,14 @@ RegraConfigurada::RegraConfigurada(qint64 id,
                                    const QString& nomeRegra,
                                    bool ativa,
                                    double parametroPrincipal,
-                                   double parametroSecundario)
+                                   double parametroSecundario,
+                                   double peso)
     : m_id(id)
     , m_nomeRegra(nomeRegra)
     , m_ativa(ativa)
     , m_parametroPrincipal(parametroPrincipal)
     , m_parametroSecundario(parametroSecundario)
+    , m_peso(peso)
 {
 }
 
@@ -72,19 +74,35 @@ void RegraConfigurada::definirParametroSecundario(double parametroSecundario)
     m_parametroSecundario = parametroSecundario;
 }
 
+double RegraConfigurada::peso() const
+{
+    return m_peso;
+}
+
+void RegraConfigurada::definirPeso(double peso)
+{
+    m_peso = peso;
+}
+
 bool RegraConfigurada::valida() const
 {
-    return !m_nomeRegra.isEmpty() && m_parametroPrincipal >= 0.0 && m_parametroSecundario >= 0.0;
+    return !m_nomeRegra.isEmpty() && m_parametroPrincipal >= 0.0 && m_parametroSecundario >= 0.0
+           && m_peso > 0.0;
 }
 
 QString RegraConfigurada::descricao() const
 {
     const QLocale brasil(QLocale::Portuguese, QLocale::Brazil);
-    return QStringLiteral("%1 (%2 / %3) - %4")
+    QString texto = QStringLiteral("%1 (%2 / %3) - %4")
         .arg(m_nomeRegra,
              brasil.toString(m_parametroPrincipal, 'f', 2),
              brasil.toString(m_parametroSecundario, 'f', 2),
              m_ativa ? QStringLiteral("ativa") : QStringLiteral("inativa"));
+    if (m_peso != 1.0)
+    {
+        texto += QStringLiteral(" - peso %1").arg(brasil.toString(m_peso, 'f', 1));
+    }
+    return texto;
 }
 
 }

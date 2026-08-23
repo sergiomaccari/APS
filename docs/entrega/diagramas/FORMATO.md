@@ -100,11 +100,11 @@ distinto vira uma "trilha" dimensionada pelo maior elemento nela.
 | `uc-casos-de-uso` | diagrama geral de casos de uso | 1 |
 | `cls-dominio`, `cls-analise`, `cls-arquitetura` | classes: domínio (herança Ativo), Strategy/Motor, camadas UI→serviços→repositórios | 3 |
 | `obj-analise`, `obj-carteira` | objetos/instâncias | 2 |
-| `seq-uc001` … `seq-uc018` | sequência, um por UC | 18 |
-| `com-uc001` … `com-uc018` | comunicação, um por UC | 18 |
+| `seq-uc001` … `seq-uc020` | sequência, um por UC | 20 |
+| `com-uc001` … `com-uc020` | comunicação, um por UC | 20 |
 | `der-banco` | entidade-relacionamento (9 tabelas) | 1 |
-| `est-ucNNN-<classe>` | estados (2 classes por UC + domínio onde indicado) | 40 |
-| `atv-ucNNN-<classe>` | atividades (o estado principal de cada diagrama de estados) | 40 |
+| `est-ucNNN-<classe>` | estados (2 classes por UC + domínio onde indicado) | 44 |
+| `atv-ucNNN-<classe>` | atividades (o estado principal de cada diagrama de estados) | 44 |
 
 ### Classes escolhidas por UC (estados e atividades)
 
@@ -128,6 +128,8 @@ distinto vira uma "trilha" dimensionada pelo maior elemento nela.
 | UC016 | DialogoAlerta | ServicoAlerta | — |
 | UC017 | JanelaPrincipal | ServicoAlerta | **Alerta** |
 | UC018 | TelaAlertas | RepositorioAlerta | — |
+| UC019 | TelaImportacao | ServicoSincronizacao | — |
+| UC020 | DialogoBacktest | Backtester | — |
 
 Título dentro do arquivo (`moldura`) e nome do arquivo em minúsculas, ex.:
 `est-uc005-importacao.json` → moldura `stm UC005 | Importacao`.

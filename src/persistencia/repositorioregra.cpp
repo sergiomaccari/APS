@@ -15,7 +15,7 @@ RepositorioRegra::RepositorioRegra()
 
 QString RepositorioRegra::colunas()
 {
-    return QStringLiteral("id, nome_regra, ativa, parametro_principal, parametro_secundario");
+    return QStringLiteral("id, nome_regra, ativa, parametro_principal, parametro_secundario, peso");
 }
 
 RegraConfigurada RepositorioRegra::montarRegra(const QSqlQuery& consulta)
@@ -27,6 +27,7 @@ RegraConfigurada RepositorioRegra::montarRegra(const QSqlQuery& consulta)
     regra.definirAtiva(consulta.value(2).toInt() != 0);
     regra.definirParametroPrincipal(consulta.value(3).toDouble());
     regra.definirParametroSecundario(consulta.value(4).toDouble());
+    regra.definirPeso(consulta.value(5).toDouble());
     return regra;
 }
 
@@ -45,12 +46,13 @@ bool RepositorioRegra::salvar(RegraConfigurada& regra)
     QSqlQuery consulta(BancoDeDados::instancia().conexao());
     consulta.prepare(QStringLiteral(
         "INSERT INTO regra_configurada "
-        "(nome_regra, ativa, parametro_principal, parametro_secundario) "
-        "VALUES (:nome_regra, :ativa, :parametro_principal, :parametro_secundario)"));
+        "(nome_regra, ativa, parametro_principal, parametro_secundario, peso) "
+        "VALUES (:nome_regra, :ativa, :parametro_principal, :parametro_secundario, :peso)"));
     consulta.bindValue(QStringLiteral(":nome_regra"), regra.nomeRegra());
     consulta.bindValue(QStringLiteral(":ativa"), regra.ativa() ? 1 : 0);
     consulta.bindValue(QStringLiteral(":parametro_principal"), regra.parametroPrincipal());
     consulta.bindValue(QStringLiteral(":parametro_secundario"), regra.parametroSecundario());
+    consulta.bindValue(QStringLiteral(":peso"), regra.peso());
 
     if (!consulta.exec())
     {
@@ -67,13 +69,14 @@ bool RepositorioRegra::atualizar(const RegraConfigurada& regra)
 {
     QSqlQuery consulta(BancoDeDados::instancia().conexao());
     consulta.prepare(QStringLiteral(
-        "UPDATE regra_configurada SET nome_regra = :nome_regra, ativa = :ativa, "
+        "UPDATE regra_configurada SET nome_regra = :nome_regra, ativa = :ativa, peso = :peso, "
         "parametro_principal = :parametro_principal, "
         "parametro_secundario = :parametro_secundario WHERE id = :id"));
     consulta.bindValue(QStringLiteral(":nome_regra"), regra.nomeRegra());
     consulta.bindValue(QStringLiteral(":ativa"), regra.ativa() ? 1 : 0);
     consulta.bindValue(QStringLiteral(":parametro_principal"), regra.parametroPrincipal());
     consulta.bindValue(QStringLiteral(":parametro_secundario"), regra.parametroSecundario());
+    consulta.bindValue(QStringLiteral(":peso"), regra.peso());
     consulta.bindValue(QStringLiteral(":id"), regra.id());
 
     if (!consulta.exec())

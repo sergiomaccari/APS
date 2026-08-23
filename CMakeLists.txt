@@ -33,7 +33,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Tipo de build" FORCE)
 endif()
 
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Charts Sql Test)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Charts Sql Network Test)
 
 # -----------------------------------------------------------------------------
 # Biblioteca de nucleo: tudo que nao depende da interface grafica.
@@ -54,7 +54,7 @@ set(ARQUIVO_RECURSOS "${CMAKE_CURRENT_SOURCE_DIR}/recursos/recursos.qrc")
 add_library(analisador-nucleo STATIC ${FONTES_NUCLEO})
 
 target_include_directories(analisador-nucleo PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
-target_link_libraries(analisador-nucleo PUBLIC Qt6::Core Qt6::Sql)
+target_link_libraries(analisador-nucleo PUBLIC Qt6::Core Qt6::Sql Qt6::Network)
 
 # -----------------------------------------------------------------------------
 # Aplicacao com interface grafica.

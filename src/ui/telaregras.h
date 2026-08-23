@@ -32,6 +32,7 @@ signals:
 private slots:
     void editarSelecionada();
     void alternarAtivacao();
+    void abrirBacktest();
 
 private:
     qint64 idSelecionado() const;
@@ -41,6 +42,7 @@ private:
     QTableWidget* m_tabela = nullptr;
     QPushButton* m_botaoEditar = nullptr;
     QPushButton* m_botaoAlternar = nullptr;
+    QPushButton* m_botaoBacktest = nullptr;
     QLabel* m_rotuloMensagem = nullptr;
 };
 

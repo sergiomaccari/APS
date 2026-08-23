@@ -14,8 +14,12 @@ orientação a objetos, Qt 6 (Widgets e Charts) e SQLite — e está funcionando
 importação transacional valida e grava as cotações dos arquivos CSV, o painel exibe
 gráficos de velas com médias móveis e indicadores, o motor de análise gera
 recomendações justificadas pelas quatro regras implementadas sobre o padrão
-Strategy, a carteira consolida posições com preço médio ponderado e os alertas
-disparam por meio do padrão Observer. A rastreabilidade planejada foi mantida de
+Strategy, a carteira consolida posições com preço médio ponderado, os alertas
+disparam por meio do padrão Observer, a sincronização online busca somente o
+período faltante de cada ativo (com a fonte de dados isolada atrás de uma
+interface, numa segunda aplicação do padrão Strategy) e o backtesting mede a
+taxa de acerto e o retorno médio de cada regra sobre o histórico, com pesos
+configuráveis na média do parecer consolidado. A rastreabilidade planejada foi mantida de
 ponta a ponta: cada requisito funcional corresponde a um caso de uso, cada caso de
 uso às classes que o realizam, e cada classe às tabelas que a persistem — o mesmo
 esquema SQL modelado no Diagrama Entidade-Relacionamento é o executado pelo
@@ -29,12 +33,11 @@ mensagens reais exibidas pelo sistema.
 
 ## 5.1 Trabalhos Futuros
 
-Como evoluções além do escopo da disciplina, vislumbram-se: a atualização
-automática de cotações via API da B3 quando houver conexão; novas regras de análise
-(MACD, Bandas de Bollinger e Estocástico) aproveitando a extensibilidade do padrão
-Strategy; o backtesting das regras sobre o histórico importado, medindo o
-desempenho de cada estratégia; a exportação de relatórios das reuniões do clube; e
-o suporte multiusuário em rede local, substituindo o SQLite por um SGBD
-cliente-servidor — mudança isolada pela camada de repositórios.
+Como evoluções além do escopo da disciplina, vislumbram-se: novas regras de
+análise (MACD, Bandas de Bollinger e Estocástico) aproveitando a extensibilidade
+do padrão Strategy; o agendamento automático da sincronização de cotações; a
+exportação de relatórios das reuniões do clube; e o suporte multiusuário em rede
+local, substituindo o SQLite por um SGBD cliente-servidor — mudança isolada pela
+camada de repositórios.
 
 \newpage

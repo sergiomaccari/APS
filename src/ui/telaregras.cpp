@@ -15,6 +15,7 @@
 #include "analise/motoranalise.h"
 #include "analise/regraanalise.h"
 #include "ui/contexto.h"
+#include "ui/dialogos/dialogobacktest.h"
 #include "ui/dialogos/dialogoregra.h"
 
 namespace analisador
@@ -37,12 +38,16 @@ TelaRegras::TelaRegras(Contexto& contexto, QWidget* pai)
 
     m_botaoEditar = new QPushButton(QStringLiteral("Editar parâmetros"), this);
     m_botaoAlternar = new QPushButton(QStringLiteral("Ativar / desativar"), this);
+    m_botaoBacktest = new QPushButton(QString::fromUtf8("Backtesting…"), this);
+    m_botaoBacktest->setToolTip(QString::fromUtf8(
+        "Reaplica as regras ativas no histórico importado e mede a taxa de acerto."));
     m_botaoEditar->setEnabled(false);
     m_botaoAlternar->setEnabled(false);
 
     auto* linhaBotoes = new QHBoxLayout();
     linhaBotoes->addWidget(m_botaoEditar);
     linhaBotoes->addWidget(m_botaoAlternar);
+    linhaBotoes->addWidget(m_botaoBacktest);
     linhaBotoes->addStretch();
 
     m_tabela = new QTableWidget(this);
@@ -77,6 +82,7 @@ TelaRegras::TelaRegras(Contexto& contexto, QWidget* pai)
 
     connect(m_botaoEditar, &QPushButton::clicked, this, &TelaRegras::editarSelecionada);
     connect(m_botaoAlternar, &QPushButton::clicked, this, &TelaRegras::alternarAtivacao);
+    connect(m_botaoBacktest, &QPushButton::clicked, this, &TelaRegras::abrirBacktest);
     connect(m_tabela, &QTableWidget::itemSelectionChanged, this, [this]() {
         const bool temSelecao = idSelecionado() > 0;
         m_botaoEditar->setEnabled(temSelecao);
@@ -200,6 +206,14 @@ void TelaRegras::editarSelecionada()
     atualizar();
     mostrarMensagem(QString::fromUtf8("Regra %1 atualizada.").arg(editada.nomeRegra()), false);
     emit regrasAlteradas();
+}
+
+void TelaRegras::abrirBacktest()
+{
+    // O backtesting usa a configuracao que esta valendo agora: o administrador
+    // ajusta os parametros e confere na hora o efeito no historico.
+    DialogoBacktest dialogo(m_contexto, this);
+    dialogo.exec();
 }
 
 void TelaRegras::alternarAtivacao()

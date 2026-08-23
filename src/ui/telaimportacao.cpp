@@ -47,9 +47,16 @@ TelaImportacao::TelaImportacao(Contexto& contexto, QWidget* pai)
     m_campoArquivo = new QLineEdit(this);
     m_campoArquivo->setPlaceholderText(QString::fromUtf8("Caminho do arquivo .csv"));
 
-    auto* botaoEscolher = new QPushButton(QStringLiteral("Escolher..."), this);
+    m_botaoEscolher = new QPushButton(QStringLiteral("Escolher..."), this);
     m_botaoImportar = new QPushButton(QStringLiteral("Importar arquivo"), this);
-    auto* botaoDiretorio = new QPushButton(QString::fromUtf8("Importar pasta inteira"), this);
+    m_botaoDiretorio = new QPushButton(QString::fromUtf8("Importar pasta inteira"), this);
+
+    m_botaoSincronizar = new QPushButton(QString::fromUtf8("Sincronizar online"), this);
+    m_botaoSincronizar->setToolTip(
+        QString::fromUtf8("Baixa do Yahoo Finance apenas o período que falta em cada ativo "
+                          "(do dia seguinte à última cotação gravada até hoje).\n"
+                          "Requer conexão com a internet. A importação por CSV continua sendo "
+                          "o caminho primário e funciona totalmente offline."));
 
     auto* linhaAtivo = new QHBoxLayout();
     linhaAtivo->addWidget(new QLabel(QStringLiteral("Ativo:"), this));
@@ -59,9 +66,10 @@ TelaImportacao::TelaImportacao(Contexto& contexto, QWidget* pai)
     auto* linhaArquivo = new QHBoxLayout();
     linhaArquivo->addWidget(new QLabel(QStringLiteral("Arquivo:"), this));
     linhaArquivo->addWidget(m_campoArquivo, 1);
-    linhaArquivo->addWidget(botaoEscolher);
+    linhaArquivo->addWidget(m_botaoEscolher);
     linhaArquivo->addWidget(m_botaoImportar);
-    linhaArquivo->addWidget(botaoDiretorio);
+    linhaArquivo->addWidget(m_botaoDiretorio);
+    linhaArquivo->addWidget(m_botaoSincronizar);
 
     m_rotuloResumo = new QLabel(QString(), this);
     m_rotuloResumo->setWordWrap(true);
@@ -104,9 +112,10 @@ TelaImportacao::TelaImportacao(Contexto& contexto, QWidget* pai)
     disposicao->addWidget(m_areaErros);
     disposicao->addWidget(grupoHistorico, 1);
 
-    connect(botaoEscolher, &QPushButton::clicked, this, &TelaImportacao::escolherArquivo);
+    connect(m_botaoEscolher, &QPushButton::clicked, this, &TelaImportacao::escolherArquivo);
     connect(m_botaoImportar, &QPushButton::clicked, this, &TelaImportacao::importarArquivo);
-    connect(botaoDiretorio, &QPushButton::clicked, this, &TelaImportacao::importarDiretorio);
+    connect(m_botaoDiretorio, &QPushButton::clicked, this, &TelaImportacao::importarDiretorio);
+    connect(m_botaoSincronizar, &QPushButton::clicked, this, &TelaImportacao::sincronizarOnline);
 
     atualizar();
 }
@@ -156,13 +165,22 @@ void TelaImportacao::carregarAtivos()
         m_campoAtivo->setCurrentIndex(indice);
     }
 
-    const bool temAtivo = m_campoAtivo->count() > 0;
-    m_botaoImportar->setEnabled(temAtivo);
-    if (!temAtivo)
+    habilitarOperacoes(true);
+    if (m_campoAtivo->count() == 0)
     {
         relatar(QString::fromUtf8("Cadastre um ativo antes de importar cotações."),
                 QStringList(), false);
     }
+}
+
+void TelaImportacao::habilitarOperacoes(bool habilitado)
+{
+    // Importar um arquivo e sincronizar so fazem sentido com ativo cadastrado.
+    const bool temAtivo = m_campoAtivo->count() > 0;
+    m_botaoEscolher->setEnabled(habilitado);
+    m_botaoImportar->setEnabled(habilitado && temAtivo);
+    m_botaoDiretorio->setEnabled(habilitado);
+    m_botaoSincronizar->setEnabled(habilitado && temAtivo);
 }
 
 void TelaImportacao::carregarHistorico()
@@ -279,6 +297,28 @@ void TelaImportacao::importarDiretorio()
     carregarHistorico();
 
     if (resultado.linhasInseridas > 0)
+    {
+        emit cotacoesImportadas();
+    }
+}
+
+void TelaImportacao::sincronizarOnline()
+{
+    // A consulta e sincrona e pode levar alguns segundos por ativo: desabilitar
+    // os botoes evita disparos repetidos enquanto a requisicao esta em curso.
+    habilitarOperacoes(false);
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    const ResultadoSincronizacao resultado = m_contexto.servicoSincronizacao.sincronizarTodos();
+
+    QApplication::restoreOverrideCursor();
+    habilitarOperacoes(true);
+
+    const bool sucesso = resultado.ativosProcessados > 0 && resultado.ativosComFalha == 0;
+    relatar(resultado.resumo(), resultado.mensagens, sucesso);
+    carregarHistorico();
+
+    if (resultado.cotacoesInseridas > 0)
     {
         emit cotacoesImportadas();
     }

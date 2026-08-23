@@ -22,6 +22,8 @@ demandas, foram definidos os seguintes requisitos funcionais:
 - [RF017] O investidor deve ser capaz de cadastrar alertas de preço.
 - [RF018] O sistema deve disparar e notificar os alertas cuja condição foi satisfeita.
 - [RF019] O investidor deve ser capaz de arquivar alertas já disparados.
+- [RF020] O administrador deve ser capaz de sincronizar cotações online, com o sistema baixando apenas o período posterior à última cotação de cada ativo.
+- [RF021] O administrador deve ser capaz de executar o backtesting das regras de análise, medindo a taxa de acerto e o retorno médio de cada regra sobre o histórico.
 
 Considerando a implementação do sistema, também foram levantados requisitos não
 funcionais:
@@ -33,6 +35,7 @@ funcionais:
 - [RNF005] Somente o administrador deve acessar as telas de administração.
 - [RNF006] Toda recomendação deve exibir a regra e os números que a justificaram.
 - [RNF007] O sistema deve responder às interações da interface em menos de 2 segundos com 5 anos de histórico carregado.
+- [RNF008] A sincronização online deve ser opcional: sem conexão o sistema apenas informa a indisponibilidade e todas as demais funções seguem operando com os dados locais.
 
 Para definir limitações técnicas ao desenvolvimento do sistema, foram elaboradas as
 restrições de projeto:

@@ -30,7 +30,9 @@ public:
     MotorAnalise& operator=(const MotorAnalise&) = delete;
 
     // Acrescenta uma estrategia ao motor (assume a propriedade do ponteiro).
-    void registrarRegra(std::unique_ptr<RegraAnalise> regra);
+    // O peso entra na media ponderada do parecer consolidado; valores <= 0
+    // sao tratados como 1,0.
+    void registrarRegra(std::unique_ptr<RegraAnalise> regra, double peso = 1.0);
 
     // Quantidade de estrategias registradas.
     int quantidadeDeRegras() const;
@@ -39,8 +41,9 @@ public:
     QStringList nomesDasRegras() const;
 
     // Executa todas as estrategias e agrega os pareceres em uma unica
-    // recomendacao: a pontuacao final e a media das pontuacoes das regras que
-    // opinaram e a justificativa lista cada parecer numerado. Quando nenhuma
+    // recomendacao: a pontuacao final e a media ponderada (pelos pesos
+    // configurados) das pontuacoes das regras que opinaram e a justificativa
+    // lista cada parecer numerado. Quando nenhuma
     // regra opina, devolve recomendacao Neutro com pontuacao zero explicando
     // a ausencia de dados.
     Recomendacao analisar(const Ativo& ativo, const QVector<Cotacao>& historico) const;
@@ -61,7 +64,13 @@ public:
     static QVector<RegraConfigurada> configuracaoPadrao();
 
 private:
-    std::vector<std::unique_ptr<RegraAnalise>> m_regras;
+    struct RegistroDeRegra
+    {
+        std::unique_ptr<RegraAnalise> regra;
+        double peso = 1.0;
+    };
+
+    std::vector<RegistroDeRegra> m_regras;
 };
 
 }

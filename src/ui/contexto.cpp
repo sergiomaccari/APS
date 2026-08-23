@@ -10,6 +10,7 @@ Contexto::Contexto()
     , servicoCarteira(repositorioCarteira, repositorioCotacao, repositorioAtivo)
     , servicoAlerta(repositorioAlerta, repositorioCotacao, repositorioAtivo)
     , servicoRecomendacao(repositorioRecomendacao, repositorioCotacao, repositorioAtivo, repositorioRegra)
+    , servicoSincronizacao(repositorioAtivo, repositorioCotacao, repositorioImportacao, fonteCotacoes)
 {
 }
 
