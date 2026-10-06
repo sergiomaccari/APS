@@ -78,3 +78,9 @@
 - **RF021 implementado:** `Backtester` puro (RN024), diálogo de backtesting na tela de regras com taxa de acerto e retorno médio por regra; **peso por regra** (migração 004, RN025) com média ponderada no MotorAnalise e campo no diálogo de regras.
 - Suíte: **5 alvos de teste passando** (novos `testesincronizacao` — parser e janela sem rede — e `testebacktest` — séries calibradas à mão). Build limpo com Qt Network. Capturas regeneradas com os botões novos.
 - Modelo canônico, requisitos (21 RF, RNF008), estimativa (UUCW 200, UUCP 206, UCP 161,09; poker 132 h), conclusões, FORMATO e README atualizados. Quadros UC019/UC020, dicionário das classes novas e 12 diagramas em produção por 4 agentes Opus.
+
+## 2026-10-06 (versão da apresentação 1)
+- Criada a branch `13/10-prototipo` a partir da `main` (`ca716f0`) a pedido do Sergio: versão congelada do protótipo para a entrega de 13/10 e os Testes do Protótipo de 20/10. Critério: o capítulo 4 do documento do 1º bimestre define o protótipo como o sistema na tecnologia definitiva, navegável nos 20 casos de uso — por isso a branch não corta funcionalidades (UC019/UC020 estão no documento).
+- App marcado como protótipo: título da janela, versão `1.0.0-prototipo` e texto em *Ajuda → Sobre*.
+- Criado `docs/processos/roteiro-apresentacao-1.md`: checklist da véspera, demo de ~12 min em 3 blocos cobrindo UC001–UC020, alerta sobre a ordem sincronização × geração de recomendações e tabela de contingência.
+- Validação da branch (sem sudo: Qt 6.4.2 + Charts via `aqtinstall`, CMake/Ninja via pip, cabeçalhos OpenGL extraídos de `.deb`): build Release sem erros nem avisos; **5 alvos de teste passando (88 casos)**; `capturar-telas` gerou as 12 telas com as mesmas dimensões das figuras do documento, e as recomendações saíram PETR4 Compra 0,72 · VALE3 Compra 0,45 · HGLG11 Compra 0,38 · ITUB4 Neutro −0,08 · MGLU3 Venda −0,37, como prevê o roteiro.
