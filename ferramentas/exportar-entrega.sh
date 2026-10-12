@@ -95,8 +95,9 @@ readonly -a WHITELIST_EXATOS=(
 # Ela ignora, porém, os diretórios locais que continuam no disco do Sergio
 # depois de "git checkout entrega-13-10" (eram ignorados ou não versionados em
 # main): sem isso apareceriam como não versionados na branch e um
-# "git add -A" os publicaria. Menção literal a .claude/ e .superpowers/ é
-# escolha consciente: protege contra commit acidental.
+# "git add -A" os publicaria. Menção literal a .claude/ e .agents/ é escolha
+# consciente (já constam do .gitignore público de main). .superpowers/ fica só
+# em .git/info/exclude, que vale para todas as branches do clone.
 read -r -d '' GITIGNORE_ENTREGA <<'FIM' || true
 # Build do CMake e artefatos locais
 build*/
@@ -116,7 +117,6 @@ inicio.txt
 .env.*
 .claude/
 .agents/
-.superpowers/
 APS/
 docs/analises/
 padroes/
