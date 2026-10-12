@@ -2,7 +2,7 @@
 
 - **Spec:** [`../specs/0002-prototipo-de-telas.md`](../specs/0002-prototipo-de-telas.md)
 - **Design:** [`../design/0001-prototipo-de-telas-stubs.md`](../design/0001-prototipo-de-telas-stubs.md)
-- **Status:** em andamento (12/10/2026): T1–T6 e T8 feitas; T7 (publicação da branch `entrega-13-10`) em andamento
+- **Status:** concluído (12/10/2026): T1–T8 feitas; `entrega-13-10` publicada (e564d63) e `13/10-prototipo` apagada
 - **Branch de trabalho:** `feat/prototipo-stubs` (a partir de `main` em `d7335be`). Nada é commitado em `main`.
 
 > Para agentes executores: cada tarefa abaixo é autocontida. Leia a spec, o design
@@ -94,7 +94,7 @@
   tratados): commit `c060412`. Build sem avisos, 88 casos passando, `ldd` sem
   Sql/Network, smoke saiu com 124 sem `.sqlite`, 12 capturas (10 idênticas byte a
   byte às figuras do documento; 01 e 07 diferem só no cursor de texto).
-- [ ] 🟡 **T7 — Branch da entrega**: rodar `exportar-entrega.sh`; compilar a branch
+- [x] **T7 — Branch da entrega**: rodar `exportar-entrega.sh`; compilar a branch
   órfã em worktree limpo com `-DAPENAS_PROTOTIPO=ON`; `git push -u origin
   entrega-13-10`; `git push origin --delete 13/10-prototipo`; `git branch -D
   13/10-prototipo`.
@@ -111,6 +111,6 @@
 - [x] `ldd build/analisador-b3-prototipo | grep -E 'Qt6Sql|Qt6Network'` vazio.
 - [x] `XDG_DATA_HOME=$TMP QT_QPA_PLATFORM=offscreen timeout 10 build/analisador-b3-prototipo; echo $?` → 124 e nenhum `*.sqlite` em `$TMP`.
 - [x] `ls capturas-prototipo/*.png | wc -l` → 12.
-- [ ] `git rev-list --count entrega-13-10` → 1; `git merge-base main entrega-13-10` → vazio (código 1).
-- [ ] Worktree da `entrega-13-10` compila do zero.
-- [ ] `git ls-remote --heads origin` lista `entrega-13-10` e `feat/prototipo-stubs`, não lista `13/10-prototipo`.
+- [x] `git rev-list --count entrega-13-10` → 1; `git merge-base main entrega-13-10` → vazio (código 1).
+- [x] Worktree da `entrega-13-10` compila do zero.
+- [x] `git ls-remote --heads origin` lista `entrega-13-10` e `feat/prototipo-stubs`, não lista `13/10-prototipo`.
