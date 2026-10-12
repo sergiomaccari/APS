@@ -310,9 +310,15 @@ void JanelaPrincipal::mostrarSobre()
             "<p>Trabalho da disciplina Análise e Projeto de Sistemas (UTFPR).<br>"
             "Equipe: Sergio Roncato Maccari, Arthur Dal Bem Nunes, Leonardo Pereira Shibata "
             "e Thales Romagna Fabrowski.</p>"
+#ifdef ANALISADOR_PROTOTIPO
+            "<p>Implementado em C++20 com Qt 6 (Widgets e Charts), sobre dados de "
+            "demonstração mantidos em memória. Padrões de projeto aplicados: Strategy nas "
+            "regras de análise, Observer nos alertas e Repository no acesso aos dados.</p>"
+#else
             "<p>Implementado em C++20 com Qt 6 (Widgets, Charts e SQL) e SQLite. "
             "Padrões de projeto aplicados: Strategy nas regras de análise, Observer nos "
             "alertas, Repository na persistência e Singleton na conexão com o banco.</p>"
+#endif
             "<p><i>As recomendações são apoio à decisão baseado em regras explícitas e não "
             "constituem recomendação de investimento.</i></p>"));
 }
