@@ -51,6 +51,22 @@ git fetch --prune && git checkout entrega-13-10
 
 Depois pode apagar a cópia local antiga com `git branch -D 13/10-prototipo`.
 
+**Atualização de 12/10 à noite — lentidão no Painel de análise e em Detalhes do ativo
+corrigida** (relato do Leo, no Windows). A tabela de cotações do detalhe recalculava
+as colunas a cada célula (~250 ms por entrada → 9 ms) e o gráfico de velas repetia
+uma animação de 1 s a cada entrada (agora aparece pronto). A `entrega-13-10` foi
+regerada; quem já tinha baixado precisa atualizar a cópia:
+
+```bash
+git fetch origin
+git checkout entrega-13-10
+git reset --hard origin/entrega-13-10
+```
+
+Compilem em **Release** (`cmake -S . -B build -DCMAKE_BUILD_TYPE=Release`). No Qt
+Creator ou no Visual Studio, escolham o kit/configuração Release: em Debug o Qt roda
+sem otimização e as telas com gráfico ficam bem mais lentas.
+
 **A revisão do Thales de 11/10 não se perdeu:** os commits "Revisão final" e o
 merge dele foram absorvidos em `main` (e os documentos da `entrega-13-10` saem
 dessa versão).
