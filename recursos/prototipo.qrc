@@ -1,0 +1,12 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+    <!-- Cotacoes de demonstracao do prototipo de telas (lidas por src/prototipo/dadosfixos.cpp).
+         INVALIDO-exemplo.csv fica de fora: so serve para a demonstracao da importacao real. -->
+    <qresource prefix="/dados">
+        <file alias="HGLG11.csv">../dados/HGLG11.csv</file>
+        <file alias="ITUB4.csv">../dados/ITUB4.csv</file>
+        <file alias="MGLU3.csv">../dados/MGLU3.csv</file>
+        <file alias="PETR4.csv">../dados/PETR4.csv</file>
+        <file alias="VALE3.csv">../dados/VALE3.csv</file>
+    </qresource>
+</RCC>

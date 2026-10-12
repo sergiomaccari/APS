@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
 {
     QApplication aplicacao(argc, argv);
     QApplication::setApplicationName(QStringLiteral("Analisador B3"));
-    QApplication::setApplicationVersion(QStringLiteral("1.0.0-prototipo"));
+    QApplication::setApplicationVersion(QStringLiteral("1.0.0"));
     QApplication::setOrganizationName(QStringLiteral("UTFPR - APS"));
 
     analisador::aplicarEstilo(aplicacao);

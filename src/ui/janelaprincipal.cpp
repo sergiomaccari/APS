@@ -35,7 +35,11 @@ JanelaPrincipal::JanelaPrincipal(Contexto& contexto, QWidget* pai)
     : QMainWindow(pai)
     , m_contexto(contexto)
 {
+#ifdef ANALISADOR_PROTOTIPO
     setWindowTitle(QString::fromUtf8("Analisador B3 - análise e apoio à decisão de investimentos (protótipo)"));
+#else
+    setWindowTitle(QString::fromUtf8("Analisador B3 - análise e apoio à decisão de investimentos"));
+#endif
     resize(1280, 800);
 
     m_navegacao = new QListWidget(this);
@@ -297,8 +301,10 @@ void JanelaPrincipal::mostrarSobre()
         QStringLiteral("Sobre o Analisador B3"),
         QString::fromUtf8(
             "<h3>Analisador B3</h3>"
+#ifdef ANALISADOR_PROTOTIPO
             "<p><b>Versão:</b> protótipo de telas da 1ª apresentação (1º bimestre, "
             "entrega em 13/10/2026).</p>"
+#endif
             "<p>Sistema de análise de ativos da B3 e apoio à decisão de investimentos, "
             "com recomendações justificadas por regras transparentes.</p>"
             "<p>Trabalho da disciplina Análise e Projeto de Sistemas (UTFPR).<br>"

@@ -7,18 +7,29 @@
 //   2. gerar as figuras do capitulo "Protótipo" do documento da disciplina.
 //
 // Uso:  ./build/capturar-telas [diretorio-de-saida]
+//
+// Compilado com ANALISADOR_PROTOTIPO (alvo capturar-telas-prototipo), nao abre
+// banco nem popula nada: usuarios, cotacoes, recomendacoes e alertas ja vem dos
+// dados fixos em memoria do prototipo (src/prototipo/dadosfixos.h). Apenas a
+// avaliacao de alertas e mantida, para o alerta de PETR4 aparecer disparado.
+// A saida padrao passa a ser capturas-prototipo/.
+//
+// Uso:  ./build/capturar-telas-prototipo [diretorio-de-saida]
 
 #include <QApplication>
 #include <QDir>
 #include <QEventLoop>
 #include <QTimer>
 #include <QPixmap>
-#include <QTemporaryDir>
 #include <QTextStream>
 #include <QWidget>
 
+#ifndef ANALISADOR_PROTOTIPO
+#include <QTemporaryDir>
+
 #include "persistencia/bancodedados.h"
 #include "servicos/servicoimportacao.h"
+#endif
 #include "ui/contexto.h"
 #include "ui/estilo.h"
 #include "dominio/alerta.h"
@@ -76,10 +87,15 @@ int main(int argc, char* argv[])
     QApplication aplicacao(argc, argv);
     analisador::aplicarEstilo(aplicacao);
 
-    const QString diretorioSaida = argc > 1 ? QString::fromLocal8Bit(argv[1])
-                                            : QStringLiteral("capturas");
+#ifdef ANALISADOR_PROTOTIPO
+    const QString diretorioPadrao = QStringLiteral("capturas-prototipo");
+#else
+    const QString diretorioPadrao = QStringLiteral("capturas");
+#endif
+    const QString diretorioSaida = argc > 1 ? QString::fromLocal8Bit(argv[1]) : diretorioPadrao;
     QDir().mkpath(diretorioSaida);
 
+#ifndef ANALISADOR_PROTOTIPO
     // Banco proprio da captura, para nao interferir no banco de uso normal.
     QTemporaryDir temporario;
     if (!temporario.isValid())
@@ -95,6 +111,7 @@ int main(int argc, char* argv[])
         saida() << "Erro de banco: " << banco.ultimoErro() << Qt::endl;
         return 1;
     }
+#endif
 
     analisador::Contexto contexto;
 
@@ -112,6 +129,13 @@ int main(int argc, char* argv[])
     }
     contexto.usuarioLogado = administrador.value();
 
+#ifdef ANALISADOR_PROTOTIPO
+    // Prototipo: os dados ja estao semeados em memoria. So avalia os alertas do
+    // investidor, como a janela principal faz ao abrir.
+    contexto.usuarioLogado = investidor.value();
+    saida() << "alertas disparados na avaliacao: "
+            << contexto.servicoAlerta.avaliarAlertas(investidor->id()) << Qt::endl;
+#else
     // Popula o banco como um usuario faria na apresentacao.
     const analisador::ResultadoImportacao importacao =
         contexto.servicoImportacao.importarDiretorio(QStringLiteral("dados"));
@@ -151,6 +175,7 @@ int main(int argc, char* argv[])
         const int disparados = contexto.servicoAlerta.avaliarAlertas(investidor->id());
         saida() << "alertas disparados na avaliacao: " << disparados << Qt::endl;
     }
+#endif
 
     int falhas = 0;
     const auto arquivo = [&diretorioSaida](const QString& nome) {
@@ -200,6 +225,8 @@ int main(int argc, char* argv[])
 
     saida() << (falhas == 0 ? "TODAS as telas capturadas."
                             : QStringLiteral("%1 captura(s) falharam.").arg(falhas)) << Qt::endl;
+#ifndef ANALISADOR_PROTOTIPO
     banco.fechar();
+#endif
     return falhas == 0 ? 0 : 1;
 }

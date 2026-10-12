@@ -7,9 +7,9 @@
 #include <QString>
 #include <QVector>
 
-#include <QSqlQuery>
-
 #include "dominio/importacao.h"
+
+QT_FORWARD_DECLARE_CLASS(QSqlQuery)
 
 namespace analisador
 {

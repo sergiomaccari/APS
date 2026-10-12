@@ -44,6 +44,9 @@ cofre*
 build/
 *.user
 
+# capturas de tela geradas por capturar-telas-prototipo (saida padrao)
+capturas-prototipo/
+
 # analises com material da empresa / terceiros - fora do repo publico
 docs/analises/metodologia-hub.md
 docs/analises/perfil-github.md
