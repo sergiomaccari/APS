@@ -195,6 +195,22 @@ quadros de UC são as strings literais do código).
   regenerados com UC019/UC020, quadros, diagramas e UCP atualizados (206 UUCP →
   161,09 UCP; poker proposto 132 h).
 
+## 4e. Versão da apresentação 1 — branch `13/10-prototipo` (06/10/2026)
+
+Criamos a branch **`13/10-prototipo`**: é a versão congelada do protótipo que
+acompanha o documento do 1º bimestre (entrega 13/10, apresentação 20/10). Não é um
+sistema diferente: o próprio documento (capítulo 4) diz que o protótipo foi
+"construído na tecnologia definitiva (C++ com Qt 6 e SQLite), navegável em todos
+os casos de uso", então a branch é o sistema nesse estado, marcado como
+**protótipo** no título da janela e em *Ajuda → Sobre*. O que for feito daqui em
+diante para o 2º bimestre segue na `main` sem mexer nesta versão.
+
+O roteiro da apresentação, com os 20 casos de uso na ordem da demo, checklist da
+véspera e o que fazer se algo der errado, está em
+[`docs/processos/roteiro-apresentacao-1.md`](docs/processos/roteiro-apresentacao-1.md).
+**Falta combinar quem apresenta cada bloco** (A — acesso, B — administração,
+C — investidor).
+
 ## 5. O que a equipe precisa decidir/fazer
 
 1. **Aprovar (ou vetar) o tema** — ler o ADR 0001 (`docs/decisoes/`) com a análise
