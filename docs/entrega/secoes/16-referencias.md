@@ -7,6 +7,17 @@ Acesso em: ago. 2026.
 BOOCH, G.; RUMBAUGH, J.; JACOBSON, I. **UML: guia do usuário**. 2. ed. Rio de
 Janeiro: Elsevier, 2005.
 
+BRASIL. **Lei nº 13.709, de 14 de agosto de 2018**. Lei Geral de Proteção de
+Dados Pessoais (LGPD). Brasília, DF: Presidência da República, 2018. Disponível
+em: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm.
+Acesso em: out. 2026.
+
+COMISSÃO DE VALORES MOBILIÁRIOS. **Resolução CVM nº 20, de 25 de fevereiro de
+2021**. Dispõe sobre a atividade de analista de valores mobiliários. Rio de
+Janeiro: CVM, 2021. Disponível em:
+https://conteudo.cvm.gov.br/export/sites/cvm/legislacao/resolucoes/anexos/001/resol020consolid.pdf.
+Acesso em: out. 2026.
+
 FOWLER, M. **UML essencial: um breve guia para a linguagem-padrão de modelagem de
 objetos**. 3. ed. Porto Alegre: Bookman, 2005.
 

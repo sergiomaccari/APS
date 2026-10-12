@@ -113,7 +113,7 @@ def numerar(texto: str):
 LARGURAS = [
     (("Atributo", "Descrição", "Tamanho"), [15, 21, 7, 12, 10, 15]),
     (("Método", "Retorno", "Parâmetros"), [13, 22, 13, 17, 15]),
-    (("Data", "Versão", "Autor"), [7, 6, 34, 18]),
+    (("Data", "Versão", "Autor"), [9, 8, 31, 17]),
     (("Ações dos atores", "Ações do sistema"), [24, 24]),
 ]
 

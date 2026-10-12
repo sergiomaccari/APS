@@ -2,10 +2,10 @@
 
 Este documento consolidou o ciclo completo de análise, projeto e construção do
 sistema AB3 — Analisador de Ativos da B3. A modelagem cobre as visões estática e
-dinâmica do sistema: 18 casos de uso especificados no padrão da disciplina, cada um
+dinâmica do sistema: 20 casos de uso especificados no padrão da disciplina, cada um
 com seus Diagramas de Sequência e de Comunicação; Diagramas de Estados para as
 classes de fronteira e de controle de cada caso de uso, acrescidos das máquinas de
-estado do domínio (Alerta, Recomendacao e Importacao); um Diagrama de Atividades
+estado do domínio (Importacao, Recomendacao, Posicao e Alerta); um Diagrama de Atividades
 detalhando o estado principal de cada máquina; e o mapeamento do modelo de classes
 para um banco relacional de nove tabelas.
 
@@ -36,7 +36,7 @@ mensagens reais exibidas pelo sistema.
 Como evoluções além do escopo da disciplina, vislumbram-se: novas regras de
 análise (MACD, Bandas de Bollinger e Estocástico) aproveitando a extensibilidade
 do padrão Strategy; o agendamento automático da sincronização de cotações; a
-exportação de relatórios das reuniões do clube; e o suporte multiusuário em rede
+exportação de relatórios de análise; e o suporte multiusuário em rede
 local, substituindo o SQLite por um SGBD cliente-servidor — mudança isolada pela
 camada de repositórios.
 

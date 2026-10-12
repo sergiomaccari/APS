@@ -1,14 +1,16 @@
 ```{=openxml}
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="3600"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="72"/></w:rPr><w:t>AB3</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="200"/></w:pPr><w:r><w:rPr><w:sz w:val="40"/></w:rPr><w:t>Analisador de Ativos da B3</w:t></w:r></w:p>
-<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Cliente: Clube de Investimentos Neoville</w:t></w:r></w:p>
-<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsável no cliente: Prof. Marcos R. Andrade</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Cliente: Equipe de desenvolvimento do AB3 (uso próprio)</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Leonardo P. Shibata e Thales R. Fabrowski</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Projeto: AB3 — Versão: 1.0</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Curitiba</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>2026</w:t></w:r></w:p>
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="40"/></w:rPr><w:t>AB3</w:t></w:r></w:p>
-<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsável no cliente: Prof. Marcos R. Andrade</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Leonardo P. Shibata e Thales R. Fabrowski</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="600"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsáveis pelo projeto e desenvolvimento:</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Sergio Roncato Maccari, Arthur Dal Bem Nunes,</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Leonardo Pereira Shibata e Thales Romagna Fabrowski</w:t></w:r></w:p>
@@ -23,8 +25,9 @@
 \vspace*{4cm}
 {\Huge\bfseries AB3}\\[0.6em]
 {\LARGE Analisador de Ativos da B3}\\[4cm]
-{\large Cliente: Clube de Investimentos Neoville}\\[0.3em]
-{\large Responsável no cliente: Prof. Marcos R. Andrade}\\[1.5cm]
+{\large Cliente: Equipe de desenvolvimento do AB3 (uso próprio)}\\[0.3em]
+{\large Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,}\\
+{\large Leonardo P. Shibata e Thales R. Fabrowski}\\[1.5cm]
 {\large Projeto: AB3 --- Versão: 1.0}
 \vfill
 {\large Curitiba}\\
@@ -35,7 +38,8 @@
 \begin{center}
 \vspace*{4cm}
 {\LARGE\bfseries AB3}\\[2cm]
-{\large Responsável no cliente: Prof. Marcos R. Andrade}\\[1cm]
+{\large Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,}\\
+{\large Leonardo P. Shibata e Thales R. Fabrowski}\\[1cm]
 {\large Responsáveis pelo projeto e desenvolvimento:}\\[0.3em]
 {\large Sergio Roncato Maccari, Arthur Dal Bem Nunes,}\\
 {\large Leonardo Pereira Shibata e Thales Romagna Fabrowski}
@@ -50,18 +54,16 @@
 
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 18/08/26 | 0.1 | Definição do projeto e do escopo | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.2 | Criação das questões e entrevista com o cliente | Sergio 🟦 |
-| 19/08/26 | 0.3 | Definição dos requisitos e regras de negócio | Sergio 🟦 |
-| 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker e UCP) | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.5 | Estudo de viabilidade | Sergio 🟦 |
-| 19/08/26 | 0.6 | Modelagem — casos de uso, classes, dicionário, objetos e sequência | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.7 | Protótipo das telas — 1ª entrega | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.8.1 | Diagramas de Comunicação | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.8.2 | Mapeamento para o Diagrama Entidade-Relacionamento | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.8.3 | Diagramas de Estados | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.8.4 | Diagramas de Atividades | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.9 | Implementação do sistema e testes | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 1.0 | Conclusão final | Sergio, Arthur, Leonardo e Thales 🟦 |
-
-🟦 *[Equipe: ajustar autores e datas de cada etapa antes da entrega.]*
+| 18/08/26 | 0.1 | Definição do projeto e do escopo | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.2 | Criação das questões e respostas do levantamento | Sergio |
+| 19/08/26 | 0.3 | Definição dos requisitos e regras de negócio | Sergio |
+| 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker e UCP) | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.5 | Estudo de viabilidade | Sergio |
+| 19/08/26 | 0.6 | Modelagem — casos de uso, classes, dicionário, objetos e sequência | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.7 | Protótipo das telas — 1ª entrega | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.8.1 | Diagramas de Comunicação | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.8.2 | Mapeamento para o Diagrama Entidade-Relacionamento | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.8.3 | Diagramas de Estados | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.8.4 | Diagramas de Atividades | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.9 | Implementação do sistema e testes | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 1.0 | Conclusão final | Sergio, Arthur, Leonardo e Thales |

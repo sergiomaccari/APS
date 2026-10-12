@@ -1,14 +1,16 @@
 ```{=openxml}
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="3600"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="72"/></w:rPr><w:t>AB3</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="200"/></w:pPr><w:r><w:rPr><w:sz w:val="40"/></w:rPr><w:t>Analisador de Ativos da B3</w:t></w:r></w:p>
-<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Cliente: Clube de Investimentos Neoville</w:t></w:r></w:p>
-<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsável no cliente: Prof. Marcos R. Andrade</w:t></w:r></w:p>
-<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Projeto: AB3 — Versão: 0.7</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Cliente: Equipe de desenvolvimento do AB3 (uso próprio)</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Leonardo P. Shibata e Thales R. Fabrowski</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Projeto: AB3 — Versão: 0.8</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Curitiba</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>2026</w:t></w:r></w:p>
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:b/><w:sz w:val="40"/></w:rPr><w:t>AB3</w:t></w:r></w:p>
-<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsável no cliente: Prof. Marcos R. Andrade</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Leonardo P. Shibata e Thales R. Fabrowski</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="600"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsáveis pelo projeto e desenvolvimento:</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Sergio Roncato Maccari, Arthur Dal Bem Nunes,</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Leonardo Pereira Shibata e Thales Romagna Fabrowski</w:t></w:r></w:p>
@@ -23,9 +25,10 @@
 \vspace*{4cm}
 {\Huge\bfseries AB3}\\[0.6em]
 {\LARGE Analisador de Ativos da B3}\\[4cm]
-{\large Cliente: Clube de Investimentos Neoville}\\[0.3em]
-{\large Responsável no cliente: Prof. Marcos R. Andrade}\\[1.5cm]
-{\large Projeto: AB3 --- Versão: 0.7}
+{\large Cliente: Equipe de desenvolvimento do AB3 (uso próprio)}\\[0.3em]
+{\large Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,}\\
+{\large Leonardo P. Shibata e Thales R. Fabrowski}\\[1.5cm]
+{\large Projeto: AB3 --- Versão: 0.8}
 \vfill
 {\large Curitiba}\\
 {\large 2026}
@@ -35,7 +38,8 @@
 \begin{center}
 \vspace*{4cm}
 {\LARGE\bfseries AB3}\\[2cm]
-{\large Responsável no cliente: Prof. Marcos R. Andrade}\\[1cm]
+{\large Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,}\\
+{\large Leonardo P. Shibata e Thales R. Fabrowski}\\[1cm]
 {\large Responsáveis pelo projeto e desenvolvimento:}\\[0.3em]
 {\large Sergio Roncato Maccari, Arthur Dal Bem Nunes,}\\
 {\large Leonardo Pereira Shibata e Thales Romagna Fabrowski}
@@ -49,17 +53,15 @@
 **Histórico de Modificações**
 
 | Data | Versão | Descrição | Autor |
-|-------|------|----------------------------------|------------------|
-| 18/08/26 | 0.1 | Definição do projeto e do escopo | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.2 | Criação das questões e entrevista com o cliente | Sergio 🟦 |
-| 19/08/26 | 0.3 | Definição dos requisitos e regras de negócio | Sergio 🟦 |
-| 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker e UCP) | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.5 | Estudo de viabilidade | Sergio 🟦 |
-| 19/08/26 | 0.6 | Modelagem — casos de uso, classes, dicionário, objetos e sequência | Sergio, Arthur, Leonardo e Thales 🟦 |
-| 19/08/26 | 0.7 | Protótipo das telas e conclusões | Sergio, Arthur, Leonardo e Thales 🟦 |
-
-🟦 *[Equipe: ajustar autores e datas de cada etapa antes da entrega — o professor
-usa este quadro para ver a divisão de trabalho do grupo.]*
+|---------|--------|-------------------------------|-----------------|
+| 18/08/26 | 0.1 | Definição do projeto e do escopo | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.2 | Criação das questões e respostas do levantamento | Sergio |
+| 19/08/26 | 0.3 | Definição dos requisitos e regras de negócio | Sergio |
+| 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker e UCP) | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.5 | Estudo de viabilidade | Sergio |
+| 19/08/26 | 0.6 | Modelagem — casos de uso, classes, dicionário, objetos e sequência | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.7 | Protótipo das telas e conclusões | Sergio, Arthur, Leonardo e Thales |
+| 11/10/26 | 0.8 | Revisão geral: cliente, estimativa de esforço, viabilidade e referências | Thales |
 
 ```{=openxml}
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
@@ -95,7 +97,7 @@ usa este quadro para ver a divisão de trabalho do grupo.]*
 \begingroup\setlength{\parindent}{0pt}
 ```
 
-Figura 1. Sessão online de Planning Poker. 🟦  
+Figura 1. Sessão de Planning Poker: baralho utilizado e carta de consenso de cada requisito funcional.  
 Figura 2. Protótipo da tela de login.  
 Figura 3. Janela principal com a navegação do papel Administrador.  
 Figura 4. Janela principal com a navegação do papel Investidor.  
@@ -154,11 +156,13 @@ Figura 39. Diagrama de sequência para o [UC020].
 \begingroup\setlength{\parindent}{0pt}
 ```
 
-Tabela 1. Estimativa de esforço em horas para cada requisito funcional.  
+Tabela 1. Estimativa de esforço e tempo efetivamente realizado, em horas, para cada requisito funcional.  
 Tabela 2. Cálculo do peso não ajustado dos atores (UAW).  
 Tabela 3. Cálculo do peso não ajustado dos casos de uso (UUCW).  
 Tabela 4. Fatores de complexidade técnica (TCF).  
 Tabela 5. Fatores de ambiente (ECF).  
+Tabela 6. Nível de conhecimento dos integrantes em cada tecnologia.  
+Tabela 7. Horas, valor por hora e custo de desenvolvimento de cada integrante.  
 Quadro 1. Descrição do caso de uso UC001.  
 Quadro 2. Descrição do caso de uso UC002.  
 Quadro 3. Descrição do caso de uso UC003.  
@@ -264,26 +268,36 @@ Quadro 88. Dicionário de informações da classe GraficoLinha.
 
 # LISTA DE ABREVIATURAS E SIGLAS
 
-AB3: Analisador de Ativos da B3 (nome do sistema).
-B3: Brasil, Bolsa, Balcão (bolsa de valores brasileira).
-CSV: Comma-Separated Values (valores separados por delimitador).
-DER: Diagrama Entidade-Relacionamento.
-DY: Dividend Yield (rendimento de dividendos).
-FII: Fundo de Investimento Imobiliário.
-POO: Programação Orientada a Objetos.
-P/L: Índice Preço sobre Lucro.
-REU: Requisito de Experiência de Usuário.
-RF: Requisito Funcional.
-RN: Regra de Negócio.
-RNF: Requisito Não Funcional.
-RP: Restrição de Projeto.
-RSI: Relative Strength Index (Índice de Força Relativa).
-SGBD: Sistema Gerenciador de Banco de Dados.
-SHA: Secure Hash Algorithm (algoritmo de resumo criptográfico).
-SQL: Structured Query Language (Linguagem de Consulta Estruturada).
-UC: Use Case (Caso de Uso).
-UCP: Use Case Points (Pontos de Caso de Uso).
+```{=latex}
+\begingroup\setlength{\parindent}{0pt}
+```
+
+AB3: Analisador de Ativos da B3 (nome do sistema).\
+B3: Brasil, Bolsa, Balcão (bolsa de valores brasileira).\
+CSV: Comma-Separated Values (valores separados por delimitador).\
+CVM: Comissão de Valores Mobiliários.\
+DER: Diagrama Entidade-Relacionamento.\
+DY: Dividend Yield (rendimento de dividendos).\
+FII: Fundo de Investimento Imobiliário.\
+LGPD: Lei Geral de Proteção de Dados Pessoais.\
+POO: Programação Orientada a Objetos.\
+P/L: Índice Preço sobre Lucro.\
+REU: Requisito de Experiência de Usuário.\
+RF: Requisito Funcional.\
+RN: Regra de Negócio.\
+RNF: Requisito Não Funcional.\
+RP: Restrição de Projeto.\
+RSI: Relative Strength Index (Índice de Força Relativa).\
+SGBD: Sistema Gerenciador de Banco de Dados.\
+SHA: Secure Hash Algorithm (algoritmo de resumo criptográfico).\
+SQL: Structured Query Language (Linguagem de Consulta Estruturada).\
+UC: Use Case (Caso de Uso).\
+UCP: Use Case Points (Pontos de Caso de Uso).\
 UML: Unified Modeling Language (Linguagem de Modelagem Unificada).
+
+```{=latex}
+\endgroup
+```
 
 
 
@@ -297,28 +311,29 @@ UML: Unified Modeling Language (Linguagem de Modelagem Unificada).
 
 # 1 INTRODUÇÃO
 
-O Clube de Investimentos Neoville 🟦 é um grupo de estudos de investimentos formado
-por alunos e servidores da Universidade Tecnológica Federal do Paraná (UTFPR),
-Campus Curitiba, sede Neoville. O clube reúne cerca de quarenta participantes que
-acompanham ativos negociados na B3 (Brasil, Bolsa, Balcão) — ações e fundos de
-investimento imobiliário — com finalidade educacional. Hoje esse acompanhamento é
-feito em planilhas individuais, sem padronização: cada participante mantém seus
-próprios dados de cotações, calcula os próprios indicadores e chega a conclusões
-que não podem ser comparadas com as dos demais.
+Os quatro integrantes da equipe deste projeto são estudantes de Engenharia de
+Computação da Universidade Tecnológica Federal do Paraná (UTFPR), Campus Curitiba,
+que acompanham ativos negociados na B3 (Brasil, Bolsa, Balcão) — ações e fundos de
+investimento imobiliário — e estudam análise técnica para apoiar suas decisões como
+investidores pessoa física. A equipe é, portanto, ao mesmo tempo desenvolvedora e
+cliente do sistema proposto. Hoje esse acompanhamento é feito em planilhas
+individuais, sem padronização: cada integrante mantém seus próprios dados de
+cotações, calcula os próprios indicadores e chega a conclusões que não podem ser
+comparadas com as dos demais.
 
-O presente projeto tem como finalidade proporcionar ao clube um sistema único de
+O presente projeto tem como finalidade proporcionar à equipe um sistema único de
 apoio à análise de ativos, o **AB3 — Analisador de Ativos da B3**: uma aplicação de
 mesa (desktop) que centraliza o cadastro de ativos, importa o histórico de cotações
 a partir de arquivos CSV, apresenta gráficos e indicadores técnicos, consolida a
-carteira dos participantes e gera recomendações de compra, venda ou neutralidade
+carteira de cada integrante e gera recomendações de compra, venda ou neutralidade
 sempre acompanhadas da justificativa numérica que as produziu. O sistema destina-se
 ao estudo — as recomendações são apoio à decisão, e não aconselhamento financeiro.
 
 ## 1.1 Objetivo Geral
 
 Projetar um sistema de apoio à análise de ativos da bolsa de valores brasileira
-(B3) para o Clube de Investimentos Neoville da Universidade Tecnológica Federal do
-Paraná.
+(B3) para os próprios integrantes da equipe, estudantes da Universidade Tecnológica
+Federal do Paraná, em sua atuação como investidores pessoa física.
 
 ## 1.2 Objetivos Específicos
 
@@ -337,10 +352,10 @@ Este documento está dividido em cinco partes:
 
 1. **Capítulo 2: Levantamento de Requisitos.** Nesta parte é apresentado o
    levantamento de requisitos, realizado com base no desenvolvimento de questões
-   respondidas pelo cliente, evidenciando as suas principais demandas. Também é
-   realizada a estimativa de esforço de software para cada requisito funcional,
-   com o método Planning Poker, complementada pela técnica de Pontos de Caso de
-   Uso (UCP).
+   respondidas pela própria equipe, na condição de cliente do sistema, evidenciando
+   as suas principais demandas. Também é realizada a estimativa de esforço de
+   software para cada requisito funcional, com o método Planning Poker,
+   complementada pela técnica de Pontos de Caso de Uso (UCP).
 2. **Capítulo 3: Estudo de Viabilidade.** Este capítulo explicita a viabilidade do
    projeto, examinando as ferramentas e recursos que serão utilizados.
 3. **Capítulo 4: Resultados.** Nesta seção está incluído o resultado do sistema,
@@ -364,7 +379,7 @@ Este documento está dividido em cinco partes:
 # 2 LEVANTAMENTO DE REQUISITOS
 
 Na presente seção são apresentadas perguntas organizacionais, feitas para alinhar o
-projeto às necessidades do clube; econômicas, para o levantamento de custos e
+projeto às necessidades do cliente; econômicas, para o levantamento de custos e
 viabilidade financeira; técnicas, para compreender o escopo metodológico e as
 ferramentas para o desenvolvimento do projeto, bem como a capacidade do cliente de
 manter o funcionamento do sistema; e perguntas operacionais, visando entender as
@@ -376,32 +391,35 @@ levantada a estimativa de esforço de software para cada requisito funcional,
 utilizando o método Planning Poker e, como verificação complementar, a técnica de
 Pontos de Caso de Uso (UCP).
 
-As respostas a seguir foram dadas pelo coordenador do clube, cliente do projeto. 🟦
+Como a própria equipe é a cliente do sistema, as questões foram respondidas pelos
+seus quatro integrantes, na condição de futuros usuários, e as respostas a seguir
+consolidam a visão do grupo.
 
 ## 2.1 Questões Organizacionais
 
 1. **Quais são as principais necessidades do cliente?**
 
 Foi relatada a necessidade de centralizar o acompanhamento dos ativos estudados
-pelo clube, hoje disperso em planilhas individuais, e de padronizar a análise com
-critérios objetivos: os debates nas reuniões partem de números diferentes e de
-regras que cada participante aplica à sua maneira.
+pela equipe, hoje disperso em planilhas individuais, e de padronizar a análise com
+critérios objetivos: as discussões entre os integrantes partem de números
+diferentes e de regras que cada um aplica à sua maneira.
 
-2. **Quais alterações deverão ser feitas na rotina do clube?**
+2. **Quais alterações deverão ser feitas na rotina do cliente?**
 
-As reuniões quinzenais passarão a partir dos dados e das recomendações exibidos
-pelo sistema. Um dos membros assumirá o papel de administrador, responsável por
-manter o cadastro de ativos e importar as cotações após os pregões.
+As análises da equipe passarão a partir de uma base única de cotações e das
+recomendações justificadas pelo sistema, em vez das planilhas individuais. Um dos
+integrantes assumirá o papel de administrador, responsável por manter o cadastro de
+ativos e importar as cotações após os pregões.
 
 3. **Qual o tempo necessário para suprir as necessidades apresentadas?**
 
 Será necessário ao menos de três a quatro meses para o desenvolvimento de um
-projeto que atenda às necessidades levantadas, de modo que o clube gostaria de
+projeto que atenda às necessidades levantadas, de modo que a equipe pretende
 utilizar o sistema ainda neste semestre letivo.
 
-4. **Como os novos métodos apresentados pelo projeto se diferenciam dos métodos atuais utilizados pelo clube?**
+4. **Como os novos métodos apresentados pelo projeto se diferenciam dos métodos atuais utilizados pelo cliente?**
 
-Atualmente cada participante mantém a própria planilha, sem padrão de cálculo, e as
+Atualmente cada integrante mantém a própria planilha, sem padrão de cálculo, e as
 conclusões não são comparáveis nem auditáveis. O sistema unificará a base de
 cotações e aplicará as mesmas regras de análise para todos, registrando a
 justificativa numérica de cada recomendação.
@@ -409,36 +427,36 @@ justificativa numérica de cada recomendação.
 5. **Quais os principais benefícios que o projeto trará para o cliente?**
 
 Manter um histórico central de cotações dos ativos estudados; gerar recomendações
-sempre justificadas, que servem de material didático nas reuniões; consolidar as
+sempre justificadas, que servem de material de estudo para a equipe; consolidar as
 carteiras com preço médio e resultado calculados automaticamente; e avisar os
-participantes por alertas de preço.
+integrantes por alertas de preço.
 
 6. **Existem riscos ao realizar a mudança para o novo sistema definido pelo projeto?**
 
 Há dependência do formato dos arquivos CSV de cotações obtidos da B3 e das
 corretoras — mudanças de leiaute exigiriam ajuste na importação. Há também o risco
-de participantes interpretarem as recomendações como aconselhamento financeiro,
-motivo pelo qual o sistema deve deixar claro seu caráter de apoio ao estudo.
+de as recomendações serem interpretadas como aconselhamento financeiro, motivo pelo
+qual o sistema deve deixar claro seu caráter de apoio ao estudo.
 
 7. **Como outras organizações similares resolveram necessidades similares?**
 
-Outros clubes utilizam plataformas comerciais de análise (home brokers das
-corretoras, TradingView, Status Invest). São soluções pagas ou dependentes de
-internet, cujos critérios de análise não são transparentes nem configuráveis — o
-que não atende ao propósito didático do clube.
+Outros investidores e grupos de estudo utilizam plataformas comerciais de análise
+(home brokers das corretoras, TradingView, Status Invest). São soluções pagas ou
+dependentes de internet, cujos critérios de análise não são transparentes nem
+configuráveis — o que não atende ao propósito de estudo da equipe.
 
 ## 2.2 Questões Econômicas
 
 1. **Quanto custará o projeto, aproximadamente?**
 
-O projeto não poderá ser custeado, visto que o clube é um grupo de estudos de uma
-instituição pública, sem verba própria. O desenvolvimento será voluntário, pela
-equipe do projeto.
+O projeto não terá custeio externo: a equipe é, ao mesmo tempo, cliente e
+desenvolvedora, e não dispõe de verba destinada a ele. O custo do projeto é o tempo
+de trabalho dos integrantes, estimado na seção 2.6 e valorado na seção 3.5.
 
 2. **É necessário o custeio do projeto? Se sim, de que forma?**
 
 Não. Todas as ferramentas previstas são gratuitas e de código aberto, e o sistema
-executará nas máquinas já existentes dos participantes e do laboratório.
+executará nas máquinas já existentes dos integrantes e do laboratório.
 
 3. **Qual será o gasto para manter o sistema?**
 
@@ -446,14 +464,15 @@ Nenhum gasto direto. As cotações históricas são disponibilizadas gratuitamen
 site da B3 e pelas corretoras, e o banco de dados é embutido na aplicação, sem
 servidores a manter.
 
-4. **Haverá algum impacto significativo na verba do clube?**
+4. **Haverá algum impacto significativo na verba do cliente?**
 
-Não há verba envolvida; o clube não possui receita nem despesa regulares.
+Não. Não há verba destinada ao projeto, e o sistema não gera despesas recorrentes
+para os integrantes.
 
 5. **O sistema pode auxiliar com a verba de alguma forma?**
 
-Indiretamente: participantes que hoje assinam plataformas de análise pagas poderão
-substituí-las pelo sistema nas atividades do clube, economizando as mensalidades.
+Indiretamente: o sistema dispensa a assinatura de plataformas de análise pagas para
+as funcionalidades que oferece.
 
 6. **Quais são os possíveis competidores do sistema no mercado?**
 
@@ -463,8 +482,9 @@ recomendação transparentes e configuráveis.
 
 7. **Existe a possibilidade de oferecer o sistema a outros clientes?**
 
-Existe. O clube pretende disponibilizar o sistema gratuitamente a outros clubes de
-investimento e ligas acadêmicas, preservando os créditos da equipe.
+Existe. A equipe pretende disponibilizar o sistema gratuitamente a outros
+estudantes, clubes de investimento e ligas acadêmicas, preservando os créditos dos
+autores.
 
 ## 2.3 Questões Técnicas
 
@@ -486,9 +506,10 @@ com no mínimo cinco tabelas.
 
 4. **O sistema precisará de conexão com a internet?**
 
-Não. O sistema funcionará totalmente offline, a partir das cotações importadas de
-arquivos CSV — requisito do cliente, pois a sala usada pelo clube não possui rede
-confiável.
+Não para as funções essenciais. O sistema funcionará totalmente offline, a partir
+das cotações importadas de arquivos CSV — requisito da equipe, para que o uso no
+laboratório e a demonstração não dependam da rede. A sincronização online de
+cotações será um complemento opcional.
 
 5. **Qual será a ferramenta de versionamento de código utilizada?**
 
@@ -497,9 +518,9 @@ com controle de versões Git.
 
 6. **Como será feita a manutenção do sistema/suporte técnico após seu desenvolvimento?**
 
-Pela própria equipe enquanto seus membros participarem do clube. O código será
-documentado e acompanhado de guia de compilação e execução, permitindo que futuros
-membros assumam a manutenção.
+Pela própria equipe, que também é usuária do sistema. O código será documentado e
+acompanhado de guia de compilação e execução, permitindo que outros desenvolvedores
+assumam a manutenção no futuro.
 
 7. **Como serão obtidos os dados de cotações dos ativos?**
 
@@ -511,8 +532,9 @@ ou das corretoras, e importados no sistema pelo administrador.
 
 1. **Quais são os principais usuários desse sistema?**
 
-O coordenador e o membro responsável pela base de dados (papel Administrador) e os
-demais participantes do clube (papel Investidor).
+Os próprios integrantes da equipe, em dois papéis: o Administrador, integrante
+responsável pela base de ativos, cotações, regras de análise e usuários, e os
+Investidores, que consultam as análises e mantêm suas carteiras e alertas.
 
 2. **Quais funcionalidades são essenciais para o sistema?**
 
@@ -529,17 +551,17 @@ de análise e o arquivamento de alertas já disparados.
 4. **Qual a preferência de interação dos clientes com o sistema (por exemplo: mobile, web, desktop)?**
 
 Aplicação desktop, para uso nas máquinas do laboratório e nos notebooks dos
-participantes (Windows e Linux).
+integrantes (Windows e Linux).
 
 5. **O sistema poderia auxiliar na otimização de algum processo já existente?**
 
 Sim, na consolidação das carteiras: hoje o preço médio e o resultado de cada
-participante são calculados manualmente em planilha, processo demorado e propenso a
+integrante são calculados manualmente em planilha, processo demorado e propenso a
 erros.
 
 6. **Existem prazos ou ciclos específicos considerados críticos para o sistema?**
 
-Sim: as reuniões quinzenais do clube, antes das quais as cotações devem estar
+Sim: o fechamento de cada pregão, após o qual as cotações do dia devem ser
 importadas e as recomendações atualizadas, e o fechamento mensal do resultado das
 carteiras.
 
@@ -553,8 +575,10 @@ recomendações não constituem aconselhamento financeiro.
 
 ## 2.5 Requisitos Funcionais, Não Funcionais, Restrições de Projeto e Requisitos de Experiência do Usuário
 
-Após a entrevista com o cliente e a análise das respostas, respeitando as suas
-demandas, foram definidos os seguintes requisitos funcionais:
+Após a análise das respostas às questões de levantamento, respeitando as demandas
+da equipe na condição de cliente, foram definidos os seguintes requisitos
+funcionais — que, segundo Sommerville (2011), descrevem os serviços que o sistema
+deve fornecer:
 
 - [RF001] O usuário deve ser capaz de realizar login no sistema.
 - [RF002] O administrador deve ser capaz de cadastrar ativos (ações e fundos imobiliários).
@@ -609,40 +633,41 @@ experiência do usuário:
 
 ## 2.6 Estimativa de Esforço de Software com Planning Poker
 
-Utilizamos o método Planning Poker para estimar o esforço de software com base em
-cada requisito funcional levantado. A equipe reuniu-se em sessão online com cartas
+Utilizamos o método Planning Poker (GRENNING, 2002) para estimar o esforço de
+software com base em cada requisito funcional levantado. A equipe reuniu-se em sessão online com cartas
 da sequência de Fibonacci (1, 2, 3, 5, 8, 13, 21), revotando os requisitos em que
-houve divergência até o consenso, e com base nos resultados elaboramos a
-Tabela 1.
+houve divergência até o consenso (Figura 1). Com base nos
+resultados elaboramos a Tabela 1, que também registra o tempo
+efetivamente realizado na implementação de cada requisito.
 
-![Figura 1. Sessão online de Planning Poker. 🟦](figuras/planning-poker.png)
+![Figura 1. Sessão de Planning Poker: baralho utilizado e carta de consenso de cada requisito funcional.](figuras/planning-poker.png)
 
-**Tabela 1. Estimativa de esforço em horas para cada requisito funcional.**
+**Tabela 1. Estimativa de esforço e tempo efetivamente realizado, em horas, para cada requisito funcional.**
 
-| Código do Requisito Funcional | Estimativa de esforço (horas) |
-|---|---|
-| [RF001] | 5 |
-| [RF002] | 5 |
-| [RF003] | 3 |
-| [RF004] | 2 |
-| [RF005] | 13 |
-| [RF006] | 5 |
-| [RF007] | 5 |
-| [RF008] | 3 |
-| [RF009] | 13 |
-| [RF010] | 5 |
-| [RF011] | 8 |
-| [RF012] | 13 |
-| [RF013] | 5 |
-| [RF014] | 5 |
-| [RF015] | 5 |
-| [RF016] | 5 |
-| [RF017] | 5 |
-| [RF018] | 8 |
-| [RF019] | 3 |
-| [RF020] | 8 |
-| [RF021] | 8 |
-| **Total** | **132** |
+| Código do Requisito Funcional | Estimativa de esforço (horas) | Tempo realizado (horas) |
+|----------|----------|----------|
+| [RF001] | 5 | 4 |
+| [RF002] | 5 | 5 |
+| [RF003] | 3 | 3 |
+| [RF004] | 2 | 2 |
+| [RF005] | 13 | 16 |
+| [RF006] | 5 | 5 |
+| [RF007] | 5 | 5 |
+| [RF008] | 3 | 2 |
+| [RF009] | 13 | 17 |
+| [RF010] | 5 | 5 |
+| [RF011] | 8 | 8 |
+| [RF012] | 13 | 15 |
+| [RF013] | 5 | 4 |
+| [RF014] | 5 | 6 |
+| [RF015] | 5 | 6 |
+| [RF016] | 5 | 5 |
+| [RF017] | 5 | 4 |
+| [RF018] | 8 | 9 |
+| [RF019] | 3 | 2 |
+| [RF020] | 8 | 11 |
+| [RF021] | 8 | 9 |
+| **Total** | **132** | **143** |
 
 Assim, a estimativa de esforço total para o desenvolvimento e cumprimento de todos
 os requisitos funcionais foi de **132 horas** — cerca de 33 horas por integrante ao
@@ -651,6 +676,18 @@ cotações [RF005], ao painel gráfico com indicadores [RF009] e ao motor de
 recomendações [RF012], por concentrarem validações, cálculo numérico e regras de
 negócio, seguidas da sincronização online [RF020] e do backtesting [RF021], que
 envolvem integração externa e reprocessamento do histórico.
+
+O tempo efetivamente realizado na implementação totalizou **143 horas**, 11 horas
+(8,3%) acima do estimado. Os desvios concentraram-se nos requisitos que exigiram o
+primeiro contato da equipe com recursos ainda pouco conhecidos: o painel gráfico
+[RF009] (+4 h), pela curva de aprendizado do Qt Charts; a importação
+transacional [RF005] (+3 h), pela quantidade de casos de validação; a
+sincronização online [RF020] (+3 h), pela verificação do suporte a TLS e do
+formato de resposta da fonte de dados; e o motor de recomendações [RF012] (+2 h),
+pela calibração das regras. Os cadastros simples e as consultas ficaram iguais ou
+abaixo da estimativa, o que indica que o Planning Poker foi bem calibrado para
+tarefas conhecidas e tende a subestimar a integração com tecnologias novas —
+aprendizado que será aplicado às estimativas do segundo bimestre.
 
 ### Verificação complementar com Pontos de Caso de Uso (UCP)
 
@@ -769,35 +806,36 @@ verificação da classificação de esforço entre os casos de uso.
 # 3 ESTUDO DE VIABILIDADE
 
 Na presente seção é realizado o estudo preliminar da viabilidade organizacional,
-econômica, técnica e operacional do projeto, bem como a análise dos recursos a
-serem utilizados, indicando assim sua exequibilidade e as relações de
-custo/benefício de sua implementação.
+econômica, técnica e operacional do projeto (PRESSMAN; MAXIM, 2016), bem como a
+análise dos recursos a serem utilizados, indicando assim sua exequibilidade e as
+relações de custo/benefício de sua implementação.
 
 ## 3.1 Viabilidade Organizacional
 
-Conforme as respostas obtidas pelo levantamento de dados, o clube não dispõe hoje
-de nenhum instrumento comum de acompanhamento: cada participante mantém a própria
+Conforme as respostas obtidas pelo levantamento de dados, a equipe não dispõe hoje
+de nenhum instrumento comum de acompanhamento: cada integrante mantém a própria
 planilha, com dados, fórmulas e critérios distintos, o que compromete a comparação
-das análises e o caráter didático das reuniões. O novo sistema centraliza o
-cadastro de ativos e o histórico de cotações em uma única base, aplica as mesmas
-regras de análise para todos e registra a justificativa de cada recomendação —
-transformando os debates de opinião em debates sobre critérios verificáveis. A
-divisão em dois papéis (Administrador e Investidor) reflete a organização já
-existente no clube, em que um membro é responsável pelos dados e os demais os
-consomem, de modo que a implantação não exige mudança na estrutura do grupo.
+das análises e o estudo conjunto. O novo sistema centraliza o cadastro de ativos e
+o histórico de cotações em uma única base, aplica as mesmas regras de análise para
+todos e registra a justificativa de cada recomendação — transformando as discussões
+de opinião em discussões sobre critérios verificáveis. A divisão em dois papéis
+(Administrador e Investidor) reflete a organização adotada pela equipe, em que um
+integrante é responsável pelos dados e os demais os consomem. Como cliente e
+desenvolvedores são as mesmas pessoas, a implantação não depende de aprovação
+externa nem exige mudança na estrutura do grupo.
 
 ## 3.2 Viabilidade Econômica
 
-Tendo em vista a natureza do cliente — grupo de estudos de instituição pública, sem
-verba —, o projeto foi concebido para custo zero. Todas as ferramentas de
-desenvolvimento são gratuitas e de código aberto (compilador GCC, CMake, framework
-Qt na licença LGPL, SQLite em domínio público, Git/GitHub). O sistema executa
-localmente nas máquinas já existentes, sem servidores, hospedagem ou licenças, e os
-dados de cotações são obtidos gratuitamente no site da B3 e nas corretoras dos
-participantes. O único custo real é o tempo da equipe de desenvolvimento — estimado
-em 116 horas na seção 2.6 —, assumido voluntariamente como parte da disciplina.
-Como benefício econômico indireto, o sistema substitui, no uso do clube,
-plataformas de análise por assinatura.
+Tendo em vista que o cliente é a própria equipe, sem verba destinada ao projeto, o
+sistema foi concebido para custo zero de aquisição e operação. Todas as ferramentas
+de desenvolvimento são gratuitas e de código aberto (compilador GCC, CMake,
+framework Qt na licença LGPL, SQLite em domínio público, Git/GitHub). O sistema
+executa localmente nas máquinas já existentes, sem servidores, hospedagem ou
+licenças, e os dados de cotações são obtidos gratuitamente no site da B3 e nas
+corretoras. O único custo real é o tempo da equipe de desenvolvimento — estimado em
+132 horas na seção 2.6 e valorado na seção 3.5 —, assumido voluntariamente como
+parte da disciplina. Como benefício econômico indireto, o sistema dispensa a
+assinatura de plataformas de análise pagas para as funcionalidades que oferece.
 
 ## 3.3 Viabilidade Técnica
 
@@ -811,6 +849,28 @@ algoritmos de análise técnica previstos (médias móveis simples e exponencial
 1978; MURPHY, 1999) e são implementáveis diretamente sobre as séries de cotações
 importadas.
 
+A Tabela 6 apresenta o nível de conhecimento de cada integrante nas
+tecnologias do projeto, em três graus: básico (conhece os conceitos e já os aplicou
+em exercícios), intermediário (já desenvolveu projetos acadêmicos com a tecnologia)
+e avançado (utiliza a tecnologia com autonomia em projetos de maior porte).
+
+**Tabela 6. Nível de conhecimento dos integrantes em cada tecnologia.**
+
+| Tecnologia | Sergio | Arthur | Leonardo | Thales |
+|--------------|-----------|-----------|-----------|-----------|
+| C++ e orientação a objetos | Avançado | Intermediário | Intermediário | Intermediário |
+| Qt 6 (Widgets e Charts) | Intermediário | Básico | Básico | Básico |
+| SQL e SQLite | Avançado | Intermediário | Intermediário | Intermediário |
+| CMake | Intermediário | Básico | Básico | Intermediário |
+| Git e GitHub | Avançado | Intermediário | Intermediário | Avançado |
+| UML | Intermediário | Intermediário | Intermediário | Intermediário |
+| Mercado de capitais e análise técnica | Intermediário | Básico | Básico | Intermediário |
+
+A principal lacuna está no Qt 6, que três dos quatro integrantes conhecem apenas em
+nível básico. Ela é mitigada pela documentação oficial do framework, pelos
+exemplos já construídos no repositório do projeto e pela revisão de código entre os
+integrantes. Nas demais tecnologias, todos têm ao menos a base exigida pelo projeto.
+
 O principal risco técnico identificado é a variação de leiaute dos arquivos CSV de
 cotações entre fontes. A mitigação adotada é dupla: fixar um formato de entrada
 documentado (cabeçalho com seis colunas, datas dd/mm/aaaa, vírgula decimal) e
@@ -821,15 +881,39 @@ contra duplicidade [RNF003].
 
 ## 3.4 Viabilidade Operacional
 
-O sistema será operado pelos próprios membros do clube, sem necessidade de equipe
-técnica dedicada. O fluxo operacional acompanha o ciclo das reuniões: antes de cada
-encontro, o administrador importa os arquivos de cotações e o sistema reavalia
-recomendações e alertas; durante a reunião, os participantes consultam o painel
-gráfico, as recomendações justificadas e o resultado das carteiras. A navegação por
-papel [REU001] impede que participantes alterem a base por engano, e as mensagens
-de erro em português [REU003] tornam a operação acessível a membros de qualquer
-curso. Por ser uma aplicação desktop offline, não há dependência da infraestrutura
-de rede da sala do clube.
+O sistema será operado pelos próprios integrantes da equipe, que são também os seus
+usuários, sem necessidade de equipe técnica dedicada nem de treinamento formal. O
+fluxo operacional acompanha o ciclo do mercado: após o fechamento do pregão, o
+administrador importa os arquivos de cotações e o sistema reavalia recomendações e
+alertas; em seguida, cada integrante consulta o painel gráfico, as recomendações
+justificadas e o resultado da sua carteira. A navegação por papel [REU001] impede
+que um investidor altere a base por engano, e as mensagens de erro em português
+[REU003] indicam o motivo de cada falha. Por ser uma aplicação desktop offline, a
+operação não depende da infraestrutura de rede do laboratório.
+
+Quanto à legislação aplicável, dois marcos foram considerados. O primeiro é a
+Resolução CVM nº 20/2021, que reserva a analistas de valores mobiliários
+credenciados a elaboração, em caráter profissional, de relatórios de análise sobre
+valores mobiliários destinados à publicação, divulgação ou distribuição a terceiros
+(COMISSÃO DE VALORES MOBILIÁRIOS, 2021). O AB3 não exerce essa atividade: suas
+recomendações são produzidas por regras transparentes e configuráveis, para uso dos
+próprios integrantes no estudo da análise técnica, sem caráter profissional e sem
+divulgação a terceiros, e o sistema informa em suas telas que elas constituem apoio
+à decisão, e não aconselhamento financeiro [REU004]. Caso o sistema venha a ser
+oferecido a outros estudantes, será distribuído como ferramenta de estudo, mantendo
+esse aviso e sem que a equipe elabore ou divulgue análises sobre ativos
+específicos.
+
+O segundo é a Lei Geral de Proteção de Dados Pessoais (BRASIL, 2018). O sistema
+trata dados pessoais dos seus usuários — nome, e-mail, senha e posições da
+carteira —, e o tratamento observa os princípios de finalidade, necessidade e
+segurança do art. 6º da lei: são coletados somente os dados indispensáveis ao
+funcionamento do sistema; eles permanecem no banco de dados local da máquina do
+usuário, sem envio a servidores ou a terceiros (a sincronização online transmite
+apenas o código do ativo e o período desejado); as senhas são armazenadas somente
+como resumo criptográfico SHA-256 [RNF004]; e o gerenciamento de usuários é
+restrito ao administrador [RNF005]. Os titulares desses dados são os próprios
+integrantes da equipe, que conhecem e consentem com o tratamento.
 
 ## 3.5 Recursos a Serem Utilizados
 
@@ -843,9 +927,31 @@ de rede da sala do clube.
   versionamento Git com hospedagem no GitHub e editores Qt Creator / VS Code.
 - **Dados:** arquivos CSV de cotações históricas obtidos do site da B3, de
   portais de dados de mercado (como o Investing.com) e das corretoras dos
-  participantes.
+  integrantes.
 - **Bibliografia técnica:** obras de engenharia de software, UML e análise técnica
   listadas no Capítulo 6.
+
+Considerando as 132 horas estimadas por meio do Planning Poker (Tabela
+1), divididas igualmente entre os quatro integrantes, e adotando como
+referência o valor de R$ 30,00 por hora — compatível com a remuneração de um
+desenvolvedor de software em início de carreira —, o custo de desenvolvimento do
+projeto é apresentado na Tabela 7.
+
+**Tabela 7. Horas, valor por hora e custo de desenvolvimento de cada integrante.**
+
+| Integrante | Horas estimadas | Valor por hora (R$) | Custo (R$) |
+|------------------------|------------|------------|------------|
+| Sergio Roncato Maccari | 33 | 30,00 | 990,00 |
+| Arthur Dal Bem Nunes | 33 | 30,00 | 990,00 |
+| Leonardo Pereira Shibata | 33 | 30,00 | 990,00 |
+| Thales Romagna Fabrowski | 33 | 30,00 | 990,00 |
+| **Total** | **132** | — | **3.960,00** |
+
+Com as 143 horas efetivamente realizadas (Tabela 1), o custo de
+referência chega a R$ 4.290,00. Como o trabalho é desenvolvido no âmbito da
+disciplina, sem compensação financeira, esse valor representa o custo de
+oportunidade da equipe, e não um desembolso: somado ao custo zero de ferramentas,
+hardware e dados, o projeto não tem custo financeiro para o cliente.
 
 
 
@@ -900,7 +1006,8 @@ importados de arquivos CSV de cotações.
 
 ## 4.2 Modelagem
 
-A modelagem do AB3 parte dos requisitos do Capítulo 2: cada requisito funcional é
+A modelagem do AB3, feita na notação UML (BOOCH; RUMBAUGH; JACOBSON, 2005;
+FOWLER, 2005), parte dos requisitos do Capítulo 2: cada requisito funcional é
 atendido por um caso de uso (com [RF009] e [RF010] atendidos pelo mesmo UC009), e
 cada caso de uso é especificado, na sequência, com seus fluxos, regras de negócio e
 classes participantes.
@@ -2517,17 +2624,20 @@ hierarquicamente e os retornos relevantes aparecem tracejados.
 # 5 CONCLUSÕES
 
 Este Plano do Projeto consolidou o ciclo de análise do sistema AB3 — Analisador de
-Ativos da B3. A partir da entrevista com o cliente foram levantados 21 requisitos
-funcionais, 8 não funcionais, 4 restrições de projeto e 4 requisitos de experiência
-do usuário, todos rastreáveis aos 20 casos de uso especificados no padrão da
-disciplina e às classes do Diagrama de Classes — cada informação citada nos fluxos
-dos casos de uso existe como atributo no dicionário de informações, e cada caso de
-uso possui seu Diagrama de Sequência.
+Ativos da B3. A partir das questões de levantamento respondidas pela própria
+equipe, na condição de cliente, foram levantados 21 requisitos funcionais, 8 não
+funcionais, 4 restrições de projeto e 4 requisitos de experiência do usuário, todos
+rastreáveis aos 20 casos de uso especificados no padrão da disciplina e às classes
+do Diagrama de Classes — cada informação citada nos fluxos dos casos de uso existe
+como atributo no dicionário de informações, e cada caso de uso possui seu Diagrama
+de Sequência.
 
 O estudo de viabilidade confirmou a exequibilidade do projeto no contexto do
-cliente: custo zero em ferramentas, funcionamento offline e operação pelos próprios
-membros do clube. A estimativa de esforço combinou duas técnicas — Planning Poker
-(116 horas) e Pontos de Caso de Uso (145,45 UCP) — que convergiram na
+cliente: custo zero em ferramentas, funcionamento offline, operação pelos próprios
+integrantes da equipe, que são também os usuários do sistema, e observância da
+regulamentação da CVM sobre análise de valores mobiliários e da LGPD. A estimativa
+de esforço combinou duas técnicas — Planning Poker (132 horas estimadas e 143
+realizadas) e Pontos de Caso de Uso (161,09 UCP) — que convergiram na
 identificação dos pontos de maior complexidade: a importação transacional de
 cotações, o painel gráfico de análise e o motor de recomendações.
 
@@ -2546,7 +2656,7 @@ especificados e testes automatizados; e a preparação dos Testes de Validação
 demonstração de cada caso de uso mapeada ao seu Diagrama de Sequência. Como
 evoluções além do escopo da disciplina, vislumbram-se novas regras de análise
 (MACD e Bandas de Bollinger), o agendamento automático da sincronização de
-cotações e a exportação de relatórios das reuniões do clube.
+cotações e a exportação de relatórios de análise.
 
 
 
@@ -2566,6 +2676,17 @@ Acesso em: ago. 2026.
 
 BOOCH, G.; RUMBAUGH, J.; JACOBSON, I. **UML: guia do usuário**. 2. ed. Rio de
 Janeiro: Elsevier, 2005.
+
+BRASIL. **Lei nº 13.709, de 14 de agosto de 2018**. Lei Geral de Proteção de
+Dados Pessoais (LGPD). Brasília, DF: Presidência da República, 2018. Disponível
+em: https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm.
+Acesso em: out. 2026.
+
+COMISSÃO DE VALORES MOBILIÁRIOS. **Resolução CVM nº 20, de 25 de fevereiro de
+2021**. Dispõe sobre a atividade de analista de valores mobiliários. Rio de
+Janeiro: CVM, 2021. Disponível em:
+https://conteudo.cvm.gov.br/export/sites/cvm/legislacao/resolucoes/anexos/001/resol020consolid.pdf.
+Acesso em: out. 2026.
 
 FOWLER, M. **UML essencial: um breve guia para a linguagem-padrão de modelagem de
 objetos**. 3. ed. Porto Alegre: Bookman, 2005.

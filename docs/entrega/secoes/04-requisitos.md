@@ -1,7 +1,9 @@
 ## 2.5 Requisitos Funcionais, Não Funcionais, Restrições de Projeto e Requisitos de Experiência do Usuário
 
-Após a entrevista com o cliente e a análise das respostas, respeitando as suas
-demandas, foram definidos os seguintes requisitos funcionais:
+Após a análise das respostas às questões de levantamento, respeitando as demandas
+da equipe na condição de cliente, foram definidos os seguintes requisitos
+funcionais — que, segundo Sommerville (2011), descrevem os serviços que o sistema
+deve fornecer:
 
 - [RF001] O usuário deve ser capaz de realizar login no sistema.
 - [RF002] O administrador deve ser capaz de cadastrar ativos (ações e fundos imobiliários).

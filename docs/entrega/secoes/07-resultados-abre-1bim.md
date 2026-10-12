@@ -41,7 +41,8 @@ importados de arquivos CSV de cotações.
 
 ## 4.2 Modelagem
 
-A modelagem do AB3 parte dos requisitos do Capítulo 2: cada requisito funcional é
+A modelagem do AB3, feita na notação UML (BOOCH; RUMBAUGH; JACOBSON, 2005;
+FOWLER, 2005), parte dos requisitos do Capítulo 2: cada requisito funcional é
 atendido por um caso de uso (com [RF009] e [RF010] atendidos pelo mesmo UC009), e
 cada caso de uso é especificado, na sequência, com seus fluxos, regras de negócio e
 classes participantes.

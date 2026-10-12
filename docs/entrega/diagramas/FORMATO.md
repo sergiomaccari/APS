@@ -65,6 +65,7 @@ distinto vira uma "trilha" dimensionada pelo maior elemento nela.
 | `nota` | `texto` | nota com canto dobrado |
 | `tabela` | `nome`, `colunas[]` ("id INTEGER  [PK]") | tabela do DER |
 | `texto` | `texto` | texto solto |
+| `carta` | `texto` (valor) + `nome` opcional | carta de Planning Poker: com `nome`, rótulo na faixa superior (ex.: o requisito); sem ele, o valor se repete nos cantos (carta do baralho) |
 
 ### Ligações
 
@@ -105,6 +106,7 @@ distinto vira uma "trilha" dimensionada pelo maior elemento nela.
 | `der-banco` | entidade-relacionamento (9 tabelas) | 1 |
 | `est-ucNNN-<classe>` | estados (2 classes por UC + domínio onde indicado) | 44 |
 | `atv-ucNNN-<classe>` | atividades (o estado principal de cada diagrama de estados) | 44 |
+| `planning-poker` | Planning Poker: baralho e carta de consenso de cada requisito funcional (elemento `carta`) | 1 |
 
 ### Classes escolhidas por UC (estados e atividades)
 

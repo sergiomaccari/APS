@@ -88,6 +88,15 @@ QFont fontePequena()
     return fonte;
 }
 
+// Valor estampado nas cartas de Planning Poker (elemento "carta").
+QFont fonteCarta()
+{
+    QFont fonte = fonteNormal();
+    fonte.setPointSizeF(22.0);
+    fonte.setBold(true);
+    return fonte;
+}
+
 QStringList linhasDe(const QString& texto)
 {
     return texto.split(QLatin1Char('\n'));
@@ -613,6 +622,13 @@ QSizeF medirElemento(const Elemento& e)
         const double altura = alturaLinha + 10.0 + corpo.height() + 10.0;
         return QSizeF(std::max(largura + 22.0, e.larguraMinima), altura);
     }
+    if (e.tipo == QLatin1String("carta"))
+    {
+        // proporcao de carta de baralho; so alarga se o valor nao couber
+        const QString valor = e.texto.isEmpty() ? QString() : e.texto.first();
+        const double largura = std::max(68.0, QFontMetricsF(fonteCarta()).horizontalAdvance(valor) + 24.0);
+        return QSizeF(largura, largura * 1.4);
+    }
     // estado, acao e o que mais vier: retangulo (arredondado) com texto
     QStringList conteudo = e.texto;
     if (!e.nome.isEmpty())
@@ -772,6 +788,48 @@ void desenharElemento(QPainter& p, const Elemento& e)
             p.drawText(QPointF(r.left() + 10.0, y + pequena.ascent()), coluna);
             y += pequena.height();
         }
+        return;
+    }
+
+    if (e.tipo == QLatin1String("carta"))
+    {
+        // Carta de Planning Poker: valor grande ao centro. Com "nome", uma faixa
+        // superior traz o rotulo (ex.: o requisito estimado); sem ele, o valor se
+        // repete nos cantos, como nas cartas do baralho.
+        const QString valor = e.texto.isEmpty() ? QString() : e.texto.first();
+        const double raioCarta = 7.0;
+        p.setPen(Qt::NoPen);
+        p.setBrush(QColor(0, 0, 0, 38));
+        p.drawRoundedRect(r.translated(2.0, 2.5), raioCarta, raioCarta);
+        p.setPen(QPen(COR_BORDA, 1.4));
+        p.setBrush(e.nome.isEmpty() ? COR_FUNDO : COR_CAIXA);
+        p.drawRoundedRect(r, raioCarta, raioCarta);
+        if (e.nome.isEmpty())
+        {
+            desenharTexto(p, r.center(), QStringList(valor), fonteCarta());
+            desenharTexto(p, QPointF(r.left() + 11.0, r.top() + 12.0), QStringList(valor), fontePequena());
+            desenharTexto(p, QPointF(r.right() - 11.0, r.bottom() - 12.0), QStringList(valor), fontePequena());
+            return;
+        }
+        QFont fonteRotulo = fontePequena();
+        fonteRotulo.setBold(true);
+        const double alturaFaixa = QFontMetricsF(fonteRotulo).height() + 8.0;
+        QPainterPath forma;
+        forma.addRoundedRect(r, raioCarta, raioCarta);
+        p.save();
+        p.setClipPath(forma);
+        p.setPen(Qt::NoPen);
+        p.setBrush(COR_TABELA_TITULO);
+        p.drawRect(QRectF(r.left(), r.top(), r.width(), alturaFaixa));
+        p.restore();
+        p.setPen(QPen(COR_BORDA, 1.0));
+        p.drawLine(QPointF(r.left(), r.top() + alturaFaixa), QPointF(r.right(), r.top() + alturaFaixa));
+        p.setBrush(Qt::NoBrush);
+        p.setPen(QPen(COR_BORDA, 1.4));
+        p.drawRoundedRect(r, raioCarta, raioCarta);
+        desenharTexto(p, QPointF(r.center().x(), r.top() + alturaFaixa / 2.0), linhasDe(e.nome), fonteRotulo);
+        desenharTexto(p, QPointF(r.center().x(), (r.top() + alturaFaixa + r.bottom()) / 2.0),
+                      QStringList(valor), fonteCarta());
         return;
     }
 
