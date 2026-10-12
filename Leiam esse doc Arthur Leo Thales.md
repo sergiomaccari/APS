@@ -2,7 +2,81 @@
 
 > Documento vivo, mantido pela IA (Claude) que o Sergio usa no dia a dia como Tech
 > Lead. Explica **como o projeto da disciplina está sendo conduzido**, o raciocínio
-> por trás de cada etapa e como vocês participam. Última atualização: **18/08/2026**.
+> por trás de cada etapa e como vocês participam. Última atualização: **12/10/2026**.
+
+## 0. NOVO (12/10/2026) — o protótipo mudou e a entrega está na branch `entrega-13-10`
+
+> 📌 **Leia primeiro:**
+> [`docs/processos/prototipo-vs-versao-final.md`](docs/processos/prototipo-vs-versao-final.md)
+> — o que o protótipo do 1º bimestre faz e o que fica para a versão final.
+
+**Por que mudou.** A branch `13/10-prototipo` entregava o **sistema completo**
+(banco SQLite, motor de análise, sincronização online, backtesting, testes) só
+com o rótulo "protótipo". Decidimos em equipe que o 1º bimestre deve mostrar
+**uma ideia de frontend navegável** — é o que o professor pede ("telas funcionais
+em modo gráfico, representando os casos de uso") — e que o histórico público da
+entrega não deve revelar o sistema pronto, que é o entregável do 2º bimestre.
+Registro da decisão: `docs/decisoes/0004-prototipo-por-stubs-em-branch-orfa.md`.
+
+**O que o alvo novo faz.** Existe agora o executável `analisador-b3-prototipo`:
+**as mesmas telas** do documento (nada na interface mudou), sobre **dados de
+demonstração fixos** e com **estado só em memória**:
+
+- funcionam até fechar o programa: cadastrar/editar/remover ativo, usuário e
+  regra; comprar e vender; criar, disparar e arquivar alertas;
+- resultado pré-pronto: importação de cotações (resumo fixo de 650 cotações,
+  `INVALIDO-exemplo.csv` rejeitado), recomendações (as 5 de sempre) e
+  backtesting (tabela fixa);
+- sincronização online: o botão informa "prevista para a versão final
+  (2º bimestre)", sem rede;
+- nada é gravado em disco: ao fechar, volta tudo ao estado inicial (ótimo para
+  ensaiar).
+
+Compilar e rodar:
+`cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DAPENAS_PROTOTIPO=ON && cmake --build build -j`
+e `./build/analisador-b3-prototipo`. Só precisa de Qt Widgets e Charts (não
+precisa mais do driver SQLite). O roteiro da apresentação de 20/10 foi reescrito
+para essa versão: `docs/processos/roteiro-apresentacao-1.md`.
+
+**Onde está a entrega.** Na branch **`entrega-13-10`** — uma branch órfã (sem
+histórico do sistema completo) com só o protótipo, o documento do 1º bimestre e o
+roteiro. A **`13/10-prototipo` foi apagada** (local e no GitHub). O sistema
+completo continua em `main`, para o 2º bimestre.
+
+**Como trocar** (quem tinha a `13/10-prototipo` local):
+
+```bash
+git fetch --prune && git checkout entrega-13-10
+```
+
+Depois pode apagar a cópia local antiga com `git branch -D 13/10-prototipo`.
+
+**A revisão do Thales de 11/10 não se perdeu:** os commits "Revisão final" e o
+merge dele foram absorvidos em `main` (e os documentos da `entrega-13-10` saem
+dessa versão).
+
+**Pendências do documento do 1º bimestre — decidir em equipe antes de entregar
+(13/10):**
+
+1. **Cliente** — o documento agora diz que o cliente é "a própria equipe" (antes
+   era o Clube de Investimentos Neoville), mas essa troca não tem ADR. Confirmar
+   que fica assim e registrar.
+2. **Figura 1 (Planning Poker)** — é uma imagem gerada, e o texto afirma que houve
+   sessão online. Confirmar se a sessão aconteceu; se não, ajustar o texto (ou
+   fazer a sessão e trocar a figura).
+3. **"Tempo realizado" (143 h)** — não há registro de horas que sustente esse
+   número. Ou alguém tem o registro, ou o texto precisa deixar claro que é
+   estimativa.
+4. **Histórico de versões** — há datas/autores de 19/08 e a versão 0.8 do
+   2º bimestre fora de ordem. Cada um confere as linhas em que aparece.
+5. **Tabela de nível de conhecimento** — foi preenchida por uma pessoa só. Cada um
+   confirma a sua linha.
+6. **R$ 30/h** no estudo de viabilidade — está sem fonte. Citar uma referência
+   ou justificar o valor.
+7. **Abreviaturas** — faltam TLS, UAW, UUCW, TCF e ECF na lista.
+
+> As seções abaixo (1 a 7) são o histórico do projeto desde agosto. O que foi
+> superado por esta seção está marcado como **[Superado em 12/10/2026]**.
 
 ## 1. O que está acontecendo aqui
 
@@ -91,7 +165,9 @@ de última hora para preencher o documento.
 - ✅ **Tema A (Analisador B3) e stack Qt 6 + SQLite aprovados pelo Sergio em
   18/08** — ADRs 0001/0002 aceitas, spec 0001 aprovada. Faltam duas validações com
   vocês: confirmar o tema/stack e definir quem faz o papel de **cliente** na
-  entrevista de requisitos.
+  entrevista de requisitos. **[Superado em 12/10/2026]** o tema e a stack já
+  estão em uso há dois meses; o cliente passou a ser "a própria equipe" (ver
+  pendência 1 da seção 0).
 - ✅ **As 14 aulas foram lidas na íntegra** (482 págs; sínteses em
   `docs/analises/aulas-*.md`). Descobertas que valem nota: o professor tem um
   **template exato de especificação de caso de uso** (fluxo básico com rótulos
@@ -101,7 +177,7 @@ de última hora para preencher o documento.
   UC → Sequência → Estados (por classe/UC) → Atividades (por estado).
 - ✅ **Plano do 1º bimestre pronto**: `docs/planos/0001-plano-1o-bimestre.md` —
   cronograma reverso a partir de 13/10 com uma semana de folga.
-- ⬜ Próximo passo: **kickoff da equipe (semana 18–24/08)** — validar tema/stack,
+- ⬜ **[Superado em 12/10/2026]** Próximo passo: **kickoff da equipe (semana 18–24/08)** — validar tema/stack,
   definir o cliente da entrevista e dividir responsabilidades. Depois começa a
   fase de execução.
 
@@ -132,6 +208,10 @@ a maior parte da nota.
 geradas automaticamente por um utilitário (`capturar-telas`), então dá para regerá-las
 a qualquer momento depois de mexer na interface. Elas servem direto no capítulo
 "Protótipo" dos dois documentos.
+
+**[Superado em 12/10/2026 para o 1º bimestre]** o que se apresenta em 20/10 é o
+protótipo de telas (seção 0), não este sistema; ele segue em `main` para o
+2º bimestre.
 
 Para rodar na sua máquina: instale `build-essential cmake qt6-base-dev qt6-charts-dev
 libqt6sql6-sqlite`, depois `cmake -S . -B build && cmake --build build -j` e
@@ -166,13 +246,15 @@ quadros de UC são as strings literais do código).
 
 **O que falta é de gente, não de máquina** (procurem 🟦 dentro dos documentos):
 
-1. Validar o **cliente fictício** que assumi: "Clube de Investimentos Neoville",
-   coordenador "Prof. Marcos R. Andrade". Se preferirem entrevistar alguém real,
-   só as respostas das seções 2.1–2.4 mudam.
-2. Fazer a **sessão real de Planning Poker** (~30 min) e trocar a Figura 1, que
-   hoje é um marcador. A tabela de horas já está proposta (116 h).
+1. ~~Validar o **cliente fictício** que assumi: "Clube de Investimentos Neoville",
+   coordenador "Prof. Marcos R. Andrade".~~ **[Superado em 12/10/2026]** o
+   documento passou a usar "a própria equipe" como cliente — ver pendência 1 da
+   seção 0.
+2. ~~Fazer a **sessão real de Planning Poker** (~30 min) e trocar a Figura 1, que
+   hoje é um marcador.~~ **[Superado em 12/10/2026]** a Figura 1 virou imagem
+   gerada e o total mudou — ver pendências 2 e 3 da seção 0.
 3. Ajustar **autores e datas do Histórico de Modificações** — o professor usa
-   isso para ver a divisão do grupo.
+   isso para ver a divisão do grupo. (Continua valendo: pendência 4 da seção 0.)
 4. **Ler e revisar**: são os documentos que valem 8,0 pontos em cada bimestre.
 
 ## 4d. Novidades de 23/08 — feedback aplicado + 2 funcionalidades novas
@@ -197,6 +279,10 @@ quadros de UC são as strings literais do código).
 
 ## 4e. Versão da apresentação 1 — branch `13/10-prototipo` (06/10/2026)
 
+> **[Superado em 12/10/2026]** A branch `13/10-prototipo` foi apagada e a entrega
+> agora está na `entrega-13-10`, com o protótipo de telas sobre dados fixos (ver
+> seção 0). O roteiro citado abaixo foi reescrito para essa versão.
+
 Criamos a branch **`13/10-prototipo`**: é a versão congelada do protótipo que
 acompanha o documento do 1º bimestre (entrega 13/10, apresentação 20/10). Não é um
 sistema diferente: o próprio documento (capítulo 4) diz que o protótipo foi
@@ -212,6 +298,10 @@ véspera e o que fazer se algo der errado, está em
 C — investidor).
 
 ## 5. O que a equipe precisa decidir/fazer
+
+> **[Superado em 12/10/2026]** Os itens 1 a 3 abaixo eram do kickoff de agosto:
+> o tema foi adotado, o cliente virou "a própria equipe" e o Planning Poker já
+> está no documento. O que falta decidir agora está na seção 0.
 
 1. **Aprovar (ou vetar) o tema** — ler o ADR 0001 (`docs/decisoes/`) com a análise
    crítica B3 vs. alternativas. A decisão é nossa, não da IA.
