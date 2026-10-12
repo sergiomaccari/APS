@@ -1,35 +1,77 @@
 # HANDOFF — retomada entre sessões
 
-> Atualizado em **2026-08-19**. Leia junto com [`../MARCOS.md`](../MARCOS.md) e [`../LOG.md`](../LOG.md).
+> Atualizado em **2026-10-12**. Leia junto com [`../MARCOS.md`](../MARCOS.md) e [`../LOG.md`](../LOG.md).
 
 ## Estado atual (resumo de 1 parágrafo)
 
-Sistema **compilado, testado (67 casos) e rodando** na branch
-`teste-de-desenvolvimento`. **Minutas completas dos 2 documentos entregáveis**
-geradas em `docs/entrega/` (`documento-1-bimestre.md/.docx` e
-`documento-2-bimestre.md/.docx`), na estrutura exata do modelo do professor, com
-123 diagramas UML próprios (gerador `gerar-diagramas` + montador
-`montar-documento.py`). Falta: revisão humana da equipe e as pendências 🟦 abaixo.
+Véspera da entrega do 1º bimestre (13/10). O **sistema completo** está em `main`
+(5 alvos de teste, 88 casos; inclui a revisão do Thales de 11/10, incorporada por
+fast-forward). O **protótipo de telas** foi feito na branch `feat/prototipo-stubs`
+(ainda não mesclada em `main`): alvo `analisador-b3-prototipo` com as mesmas telas,
+dados fixos e estado em memória, via dublês em `src/prototipo/` (spec 0002, design
+0001, ADR 0004, plano 0003). A entrega vai na branch órfã **`entrega-13-10`**,
+gerada por `ferramentas/exportar-entrega.sh` e publicada no GitHub; ela substitui
+a `13/10-prototipo`, que deve ser apagada local e no GitHub. O **documento do 1º
+bimestre** está na versão 0.9: conteúdo até a Aula 10 (sem UCP), sem "Tempo
+realizado", Capítulo 4 e conclusões alinhados ao protótipo. O documento do 2º
+bimestre não mudou.
+
+## Próximos passos
+
+1. Conferir a publicação da `entrega-13-10` (1 commit, sem `merge-base` com `main`,
+   compila do zero) e a remoção da `13/10-prototipo` (local e `origin`).
+2. Ensaiar o roteiro (`docs/processos/roteiro-apresentacao-1.md`) com o protótipo e
+   dividir os blocos A/B/C entre a equipe; entregar no Moodle/na forma que o
+   professor pede até 13/10. Testes do protótipo em 20/10.
+3. Decidir as pendências restantes do documento (lista abaixo) — se algo mudar,
+   regenerar o documento do 1º bimestre e a branch da entrega.
+4. Mesclar `feat/prototipo-stubs` em `main` quando o Sergio aprovar.
+5. Depois de 13/10, voltar ao 2º bimestre em `main` (plano 0002; entrega 17/11,
+   validação 24/11), incorporando o feedback do professor.
 
 ## Pendências 🟦 (input humano)
 
-0. **⚠️ URGENTE — limpar o histórico público:** `docs/analises/metodologia-hub.md`,
-   `perfil-github.md` e `veterano-teste-driva.md` (material da Driva + nome de um
-   candidato) ficaram no histórico já publicado. Já saíram do versionamento
-   (`2aaf4c9`), mas a reescrita exige aprovação do Sergio. Sugestão no terminal:
+0. **⚠️ Limpar o histórico público** (pendência antiga, de 23/08):
+   `docs/analises/metodologia-hub.md`, `perfil-github.md` e
+   `veterano-teste-driva.md` (material da Driva + nome de um candidato) ficaram no
+   histórico já publicado de `main` e `teste-de-desenvolvimento`. Já saíram do versionamento (`2aaf4c9`), mas a
+   reescrita exige aprovação do Sergio. Sugestão no terminal:
    `! pip install git-filter-repo && git filter-repo --invert-paths --path docs/analises/metodologia-hub.md --path docs/analises/perfil-github.md --path docs/analises/veterano-teste-driva.md && git push --force origin main teste-de-desenvolvimento`
    (guardar um clone de backup antes; os arquivos locais são preservados por
-   estarem no .gitignore — conferir com `git status` após o filter-repo).
-1. **Socializar com Arthur/Leo/Thales:** tema A + stack (aprovados pelo Sergio em
-   18/08) e o cliente fictício assumido nos documentos ("Clube de Investimentos
-   Neoville", coordenador Prof. Marcos R. Andrade — trocar se a equipe entrevistar
-   alguém real; só muda a seção 2.1–2.4).
-2. **Sessão real de Planning Poker** da equipe → substituir a Figura 1 (marcador)
-   dos documentos; a Tabela 1 (116 h) já está preenchida como proposta.
-3. **Histórico de Modificações:** ajustar autores/datas por etapa (marcado 🟦 nos
-   documentos).
-4. Preferências de custo: subagentes pesados em **Opus**; avisar Sergio ao cruzar
+   estarem no .gitignore — conferir com `git status` após o filter-repo). A
+   `entrega-13-10` é órfã e não carrega esse histórico.
+1. **Cliente "própria equipe"** — o documento trocou o Clube de Investimentos
+   Neoville pela própria equipe, sem ADR. Confirmar e registrar em `docs/decisoes/`.
+2. **Figura 1 do Planning Poker** — é imagem gerada, e o texto afirma sessão
+   online. Fazer a sessão e trocar a figura, ou ajustar o texto.
+3. **Histórico de Modificações** — datas/autores de 19/08 a conferir por cada um.
+4. **Tabela de nível de conhecimento** — preenchida por uma pessoa só; cada um
+   confirma a sua linha.
+5. **R$ 30/h** na viabilidade — sem fonte; citar referência ou justificar.
+6. **TLS** — aparece no quadro do UC020, mas não está na lista de abreviaturas.
+7. **`docs/entrega/secoes/dicionario-parte2.md:123`** — cita a `FonteYahooFinance`
+   como implementação existente; avaliar uma variante `-1bim`, como foi feito com
+   `quadros-uc-01-09` e `dicionario-parte1`.
+8. Preferências de custo: subagentes pesados em **Opus**; avisar Sergio ao cruzar
    50% do orçamento de tokens da sessão.
+
+Resolvidas em 12/10: estimativa por UCP (fora do 1º bimestre, é da Aula 12),
+coluna "Tempo realizado"/143 h e R$ 4.290,00, Capítulo 4 e conclusões que
+afirmavam SQLite e indicadores reais no protótipo, quadros de UC e dicionário que
+afirmavam implementação.
+
+## Como rodar o protótipo
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release   # em main/feat: gera os 2 executáveis
+cmake --build build -j
+./build/analisador-b3-prototipo                    # protótipo (nada gravado em disco)
+QT_QPA_PLATFORM=offscreen ./build/capturar-telas-prototipo   # 12 PNGs em capturas-prototipo/
+ferramentas/exportar-entrega.sh --dry-run          # lista o que iria para a entrega-13-10
+```
+
+Na `entrega-13-10`, o `CMakeLists.txt` já vem com `APENAS_PROTOTIPO=ON` e só
+precisa de Qt Widgets e Charts.
 
 ## Como regenerar os documentos
 
@@ -43,9 +85,9 @@ python3 ferramentas/montar-documento.py ambos --docx <caminho-do-pandoc>
 Editou um diagrama? Mude o `.json` e rode as 2 últimas linhas. Editou texto? Mude a
 seção em `docs/entrega/secoes/` e rode só a última.
 
-## Próximo item da implementação (loop autônomo — atualizar a cada iteração)
+## Histórico da implementação do sistema (até 19/08, branch `teste-de-desenvolvimento`, hoje em `main`)
 
-**Fase atual: EXECUÇÃO do sistema na branch `teste-de-desenvolvimento`.**
+**Registro histórico (a fase de execução de agosto terminou).**
 Ordem dos itens; marque ✅ ao concluir e commitar.
 
 1. ✅ Domínio (`src/dominio/`) — 12 classes, com máquinas de estado.
@@ -138,9 +180,7 @@ Ordem dos itens; marque ✅ ao concluir e commitar.
     canônico, 123 diagramas (JSON + PNG verificado), todas as seções e os dois
     documentos montados em `.md` + `.docx`. Ver "Como regenerar" no topo.
 
-**Próximos passos:** revisão humana dos documentos pela equipe (pendências 🟦 no
-topo); ensaio da apresentação do protótipo (roteiro de 7 passos no README);
-depois da entrega de 13/10, incorporar feedback do professor.
+**Próximos passos:** ver a seção "Próximos passos" no topo (atualizada em 12/10).
 
 **Restrições da execução:** convenções em `CLAUDE.md`; commit/push na branch a cada
 item concluído; nunca versionar `inicio.txt`, `APS/` nem material do

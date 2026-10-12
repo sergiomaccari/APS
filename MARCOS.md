@@ -13,12 +13,12 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | 1 | Análise do material da disciplina, veteranos e metodologia | não necessário | Sínteses em `docs/analises/` + doc da equipe atualizado | ✅ | 2026-08-18 |
 | 2 | Definição do tema (com análise crítica) e spec aprovada | `docs/specs/0001-tema-e-escopo.md` | Spec com status `aprovada` pelo Sergio (e validada com a equipe) | 🟡 | 2026-08-18 |
 | 2b | Leitura das 14 aulas (desbloqueadas com a senha) e síntese das convenções do professor | não necessário | `docs/analises/aulas-*.md` regravados com conteúdo real | ✅ | 2026-08-18 |
-| 3 | Trabalho 1º bimestre — Plano do Projeto (parte escrita, 8,0 pts) | [`docs/planos/0001-plano-1o-bimestre.md`](docs/planos/0001-plano-1o-bimestre.md) | Documento no modelo do professor completo, revisado, entregue até 13/10/2026 | 🟡 minuta completa | 2026-08-19 |
-| 4 | Protótipo de telas (2,0 pts) | idem + [`roteiro`](docs/processos/roteiro-apresentacao-1.md) | Telas gráficas funcionais cobrindo os casos de uso, apresentadas em 20/10/2026 | 🟡 branch `13/10-prototipo` + roteiro prontos; falta ensaio e divisão dos blocos | 2026-10-06 |
+| 3 | Trabalho 1º bimestre — Plano do Projeto (parte escrita, 8,0 pts) | [`docs/planos/0001-plano-1o-bimestre.md`](docs/planos/0001-plano-1o-bimestre.md) | Documento no modelo do professor completo, revisado, entregue até 13/10/2026 | 🟡 versão 0.9 (revisão do Thales incorporada; conteúdo só até a Aula 10, sem UCP; sem "Tempo realizado"; Capítulo 4 e conclusões alinhados ao protótipo); falta decidir as pendências restantes e entregar no Moodle/na forma que o professor pede | 2026-10-12 |
+| 4 | Protótipo de telas (2,0 pts) | idem + [`roteiro`](docs/processos/roteiro-apresentacao-1.md) | Telas gráficas funcionais cobrindo os casos de uso, apresentadas em 20/10/2026 | 🟡 protótipo por stubs pronto (alvo `analisador-b3-prototipo`, mesmas telas, dados fixos, estado em memória) e roteiro reescrito; branch órfã `entrega-13-10` substitui a `13/10-prototipo`; falta ensaiar o roteiro, dividir os blocos e entregar na forma que o professor pede | 2026-10-12 |
 | 5 | Trabalho 2º bimestre — Projeto (parte escrita, 8,0 pts) | [`docs/planos/0002-plano-2o-bimestre.md`](docs/planos/0002-plano-2o-bimestre.md) | Documento completo (comunicação, DER, estados, atividades, protótipo) entregue até 17/11/2026 | 🟡 minuta completa | 2026-08-19 |
 | 6 | Sistema funcionando + Testes de Validação (2,0 pts) | [`docs/planos/0002-plano-2o-bimestre.md`](docs/planos/0002-plano-2o-bimestre.md) | Requisitos atendidos pelos casos de uso e diagramas de sequência demonstrados em 24/11/2026 | 🟡 | 2026-08-19 |
 
-### Implementação do sistema (branch `teste-de-desenvolvimento`)
+### Implementação do sistema (`main`; protótipo de telas em `feat/prototipo-stubs`)
 
 | Camada | Status | Observação |
 |---|---|---|
@@ -28,14 +28,15 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | Persistência (8 repositórios + transações) | ✅ | prepare/bindValue sempre |
 | Serviços (6, com Observer e importação atômica) | ✅ | |
 | Interface (9 telas, 4 diálogos, 3 widgets) | ✅ | Qt Widgets + Charts, navegação por papel |
-| Testes automatizados (61 casos) | ✅ | Qt Test + ctest |
+| Testes automatizados (5 alvos, 88 casos) | ✅ | Qt Test + ctest |
 | Documentação de uso (README + guia de build) | ✅ | roteiro de demonstração em 7 passos |
 | Revisão adversarial (2 rodadas) | ✅ | ver `LOG.md` de 19/08 |
 | **Compilar, testar e rodar** | ✅ | Qt 6.4.2: build limpo, 5 alvos de teste passando, sistema executando com dados reais |
 | Sincronização online (RF020) + backtesting e pesos (RF021) | ✅ | 23/08: Yahoo Finance com janela incremental (1.245 cotações reais na fumaça); Backtester com RN024; média ponderada |
 | Capturas das telas (figuras do documento) | ✅ | alvo `capturar-telas` gera 12 PNGs em `capturas/` |
+| Protótipo de telas (stubs) | ✅ | 12/10, branch `feat/prototipo-stubs`: alvos `analisador-b3-prototipo` e `capturar-telas-prototipo`; dublês em `src/prototipo/`; sem Qt Sql/Network; sistema completo intacto (88 casos passando); 12 capturas, 10 idênticas às figuras do documento. Ver spec 0002, design 0001, ADR 0004 |
 
-### Documentos entregáveis (branch `teste-de-desenvolvimento`, em `docs/entrega/`)
+### Documentos entregáveis (`main` + `feat/prototipo-stubs`, em `docs/entrega/`)
 
 | Artefato | Status | Observação |
 |---|---|---|
@@ -43,9 +44,9 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | Gerador de diagramas (JSON → PNG) | ✅ | `ferramentas/gerar-diagramas.cpp` + `diagramas/FORMATO.md` |
 | 123 diagramas UML verificados visualmente | ✅ | UC, 3 classes, 2 objetos, DER, 18 seq, 18 com, 40 estados, 40 atividades |
 | Seções de texto (78+ quadros no formato do professor) | ✅ | entrevista, requisitos, Planning Poker + UCP, viabilidade, 18 UCs, dicionário |
-| `documento-1-bimestre.md/.docx` | ✅ minuta | 37 figuras, 83 quadros/tabelas |
+| `documento-1-bimestre.md/.docx/.pdf` | ✅ versão 0.9 | 39 figuras, 91 quadros/tabelas; só Planning Poker na estimativa; variantes `-1bim` das seções que afirmavam implementação |
 | `documento-2-bimestre.md/.docx` | ✅ minuta | 136 figuras, 83 quadros/tabelas |
-| Revisão da equipe + pendências 🟦 dos documentos | ⬜ | cliente fictício, sessão real de Planning Poker (Figura 1), autores do histórico |
+| Revisão da equipe + pendências 🟦 dos documentos | 🟡 | revisão do Thales (11/10) incorporada; resolvidos em 12/10: UCP, "Tempo realizado"/143 h, R$ 4.290, Capítulo 4. Faltam: cliente "própria equipe" sem ADR, Figura 1 do Planning Poker (imagem gerada × texto de sessão online), datas/autores do histórico, tabela de nível de conhecimento, R$ 30/h sem fonte, TLS nas abreviaturas, `dicionario-parte2.md:123` (FonteYahooFinance) |
 | ⚠️ Limpeza do histórico público (material Driva) | ❌ bloqueado | aguarda aprovação do Sergio — ver HANDOFF pendência 0 |
 
 ## Notas

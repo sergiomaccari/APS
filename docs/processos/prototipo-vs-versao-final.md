@@ -142,8 +142,10 @@ de 20/10: [`roteiro-apresentacao-1.md`](roteiro-apresentacao-1.md).
 - "Vamos validar tudo com testes automatizados e com o roteiro dos 20 casos de
   uso, que é o que será avaliado em 24/11."
 
-> ⚠️ Atenção: o capítulo 4 e as conclusões do documento do 1º bimestre ainda
-> dizem que o protótipo foi construído "na tecnologia definitiva (C++ com Qt 6 e
-> SQLite)" e "calculando indicadores reais". O protótipo entregue é C++/Qt 6,
-> mas **sem SQLite** e com resultados pré-prontos. Se o professor notar, a
-> resposta é a do primeiro bullet acima. Ajustar o texto é decisão do Sergio.
+> ⚠️ Atualizado em 12/10: o Capítulo 4 e as conclusões do documento do 1º
+> bimestre (versão 0.9) já descrevem o protótipo como ele é — telas em C++ com
+> Qt 6, dados fixos em memória, e banco, motor de análise e sincronização no
+> 2º bimestre. O documento também ficou restrito ao conteúdo até a Aula 10 (só
+> Planning Poker na estimativa, sem Pontos de Caso de Uso) e sem a coluna
+> "Tempo realizado". Se o professor perguntar pelo resto, a resposta é a do
+> primeiro bullet acima.

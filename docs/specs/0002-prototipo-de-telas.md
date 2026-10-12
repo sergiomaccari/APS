@@ -122,6 +122,19 @@ própria da entrega, sem o histórico que mostra o sistema completo.
 
 ## Decisões pendentes
 
-- 🟦 [VALIDAR c/ Sergio] Pendências do documento apontadas em 12/10: cliente
-  "própria equipe", Figura 1 do Planning Poker, coluna "Tempo realizado" (143 h),
-  histórico de versões. Não bloqueiam esta spec.
+- ✅ Resolvidas em 12/10 (decisão do Sergio): documento do 1º bimestre restrito
+  ao conteúdo até a Aula 10 (saiu Pontos de Caso de Uso; Planning Poker fica,
+  porque o modelo exige a seção 2.6); saiu a coluna "Tempo realizado" (143 h) e o
+  R$ 4.290,00; Capítulo 4 e conclusões alinhados ao protótipo; quadros de UC e
+  dicionário do 1º bimestre sem afirmar implementação (variantes `-1bim`);
+  versão 0.9 do documento.
+- 🟦 [VALIDAR c/ Sergio] Pendências restantes do documento do 1º bimestre (não
+  bloqueiam esta spec):
+  - cliente "própria equipe" sem ADR que registre a troca;
+  - Figura 1 do Planning Poker é imagem gerada, e o texto afirma sessão online;
+  - histórico de versões com datas/autores de 19/08 a conferir;
+  - tabela de nível de conhecimento preenchida por uma pessoa só;
+  - R$ 30/h da viabilidade sem fonte;
+  - TLS (quadro do UC020) sem entrada na lista de abreviaturas;
+  - `dicionario-parte2.md:123` cita a `FonteYahooFinance` como implementação
+    existente; avaliar uma variante `-1bim`.

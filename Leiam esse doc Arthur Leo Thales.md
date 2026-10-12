@@ -55,6 +55,21 @@ Depois pode apagar a cópia local antiga com `git branch -D 13/10-prototipo`.
 merge dele foram absorvidos em `main` (e os documentos da `entrega-13-10` saem
 dessa versão).
 
+**O que mudou no documento do 1º bimestre hoje (versão 0.9):**
+
+- **Só conteúdo até a Aula 10.** A estimativa por Pontos de Caso de Uso (UCP) saiu,
+  porque é matéria da Aula 12. O Planning Poker fica: o modelo do professor exige
+  a seção 2.6.
+- **Sem "Tempo realizado".** A coluna de horas realizadas (143 h) saiu da tabela
+  de estimativa, e a viabilidade não cita mais 143 h nem R$ 4.290,00 (ficam
+  132 h e R$ 3.960,00).
+- **Capítulo 4 e conclusões ajustados ao protótipo:** descrevem telas em C++/Qt 6
+  sobre dados fixos em memória, com banco, motor de análise e sincronização no
+  2º bimestre. Os quadros de UC e o dicionário do 1º bimestre também deixaram de
+  dizer que tudo "já está implementado".
+- Nova linha **0.9** no histórico de modificações. O documento do 2º bimestre
+  não mudou.
+
 **Pendências do documento do 1º bimestre — decidir em equipe antes de entregar
 (13/10):**
 
@@ -64,16 +79,18 @@ dessa versão).
 2. **Figura 1 (Planning Poker)** — é uma imagem gerada, e o texto afirma que houve
    sessão online. Confirmar se a sessão aconteceu; se não, ajustar o texto (ou
    fazer a sessão e trocar a figura).
-3. **"Tempo realizado" (143 h)** — não há registro de horas que sustente esse
-   número. Ou alguém tem o registro, ou o texto precisa deixar claro que é
-   estimativa.
+3. ~~**"Tempo realizado" (143 h)** — não há registro de horas que sustente esse
+   número.~~ **Resolvido em 12/10:** a coluna saiu do documento do 1º bimestre.
 4. **Histórico de versões** — há datas/autores de 19/08 e a versão 0.8 do
    2º bimestre fora de ordem. Cada um confere as linhas em que aparece.
 5. **Tabela de nível de conhecimento** — foi preenchida por uma pessoa só. Cada um
    confirma a sua linha.
 6. **R$ 30/h** no estudo de viabilidade — está sem fonte. Citar uma referência
    ou justificar o valor.
-7. **Abreviaturas** — faltam TLS, UAW, UUCW, TCF e ECF na lista.
+7. **Abreviaturas** — falta **TLS** (aparece no quadro do UC020).
+   ~~UAW, UUCW, TCF e ECF~~ não se aplicam mais: o UCP saiu do 1º bimestre.
+8. **Dicionário, parte 2** — um trecho ainda cita a `FonteYahooFinance` como
+   implementação existente; avaliar se ganha versão própria do 1º bimestre.
 
 > As seções abaixo (1 a 7) são o histórico do projeto desde agosto. O que foi
 > superado por esta seção está marcado como **[Superado em 12/10/2026]**.
