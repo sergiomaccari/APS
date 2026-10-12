@@ -113,6 +113,6 @@ Credenciais: administrador `admin@analisadorb3.com` / `admin123`; investidor
 | Configuração do CMake não encontra o Qt | Instalar Qt 6.4+ com Widgets e Charts (`qt6-base-dev qt6-charts-dev` no Ubuntu) ou informar o caminho com `-DCMAKE_PREFIX_PATH=<pasta do Qt>` |
 | Título da janela sem "(protótipo)" ou tela diferente do documento | Build antigo ou de outra pasta: apagar `build/`, recompilar com `-DAPENAS_PROTOTIPO=ON` e rodar `./build/analisador-b3-prototipo` |
 | Dados diferentes dos do roteiro (ativo de teste sobrando, posição alterada) | Sobrou estado de um ensaio: fechar o programa e abrir de novo (tudo volta ao inicial) |
-| Alerta de PETR4 não apareceu ao entrar como investidor | A mensagem some da barra de status depois de alguns segundos; ir em *Alertas* → **Avaliar agora** |
+| Alerta de PETR4 não apareceu ao entrar como investidor | A mensagem some da barra de status depois de alguns segundos e o alerta de PETR4 já disparado não é avaliado de novo; mostrar o estado "Disparado" em *Alertas* ou criar um novo alerta (passo 20) e clicar em **Avaliar agora** |
 | Recomendações vazias | Clicar em **Gerar para todos os ativos** (passo 12) |
 | Perguntarem por que a importação/sincronização "não fez nada" | É o comportamento previsto do protótipo: resultado pré-pronto; o cálculo real chega no 2º bimestre |

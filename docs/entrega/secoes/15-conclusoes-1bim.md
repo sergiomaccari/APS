@@ -13,8 +13,7 @@ O estudo de viabilidade confirmou a exequibilidade do projeto no contexto do
 cliente: custo zero em ferramentas, funcionamento offline, operação pelos próprios
 integrantes da equipe, que são também os usuários do sistema, e observância da
 regulamentação da CVM sobre análise de valores mobiliários e da LGPD. A estimativa
-de esforço, feita com o método Planning Poker (132 horas estimadas e 143
-realizadas), identificou os pontos de maior complexidade: a importação
+de esforço, feita com o método Planning Poker (132 horas estimadas), identificou os pontos de maior complexidade: a importação
 transacional de cotações, o painel gráfico de análise e o motor de recomendações.
 
 Destaca-se que o protótipo apresentado no Capítulo 4 já foi construído na
@@ -27,10 +26,11 @@ online de cotações são implementados no segundo bimestre.
 
 ## 5.1 Trabalhos Futuros
 
-Para o segundo bimestre, o projeto prossegue com: a modelagem dinâmica complementar
+Para o segundo bimestre, o projeto prossegue com: a implementação da persistência
+em banco de dados, do motor de análise com as regras de recomendação e da
+sincronização com a fonte online de cotações; a modelagem dinâmica complementar
 (Diagramas de Comunicação, mapeamento Entidade-Relacionamento, Diagramas de Estados
-e de Atividades); o endurecimento do sistema com a cobertura dos fluxos de exceção
-especificados e testes automatizados; e a preparação dos Testes de Validação, com a
+e de Atividades); e a preparação dos Testes de Validação, com a
 demonstração de cada caso de uso mapeada ao seu Diagrama de Sequência. Como
 evoluções além do escopo da disciplina, vislumbram-se novas regras de análise
 (MACD e Bandas de Bollinger), o agendamento automático da sincronização de

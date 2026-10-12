@@ -4,11 +4,14 @@
 #
 # Uso:
 #   ferramentas/exportar-entrega.sh [--dry-run] [--branch entrega-13-10] [--forcar]
+#                                   [--aceitar-avisos]
 #
-#   --dry-run   só lista (ordenado) os arquivos que entrariam, com a contagem,
-#               e roda as verificações de proibidos; não cria nada.
-#   --branch    nome da branch a gerar (padrão: entrega-13-10).
-#   --forcar    recria a branch se ela já existir (sem isso, aborta).
+#   --dry-run          só lista (ordenado) os arquivos que entrariam, com a
+#                      contagem, e roda as verificações; não cria nada.
+#   --branch           nome da branch a gerar (padrão: entrega-13-10).
+#   --forcar           recria a branch se ela já existir (sem isso, aborta).
+#   --aceitar-avisos   no modo real, segue mesmo com termos suspeitos no
+#                      conteúdo (sem isso, aborta antes do commit).
 #
 # Origem: o commit HEAD atual (arquivos vêm do commit, nunca do disco, para
 # não levar nada que não esteja versionado). Fora do --dry-run exige árvore
@@ -21,11 +24,11 @@
 #      referenciadas por docs/entrega/documento-1-bimestre.md;
 #   2. cria um worktree temporário, faz checkout --orphan e limpa índice e
 #      arquivos;
-#   3. extrai a whitelist com git archive, liga APENAS_PROTOTIPO no
-#      CMakeLists.txt, gera um .gitignore reduzido e move
-#      docs/entrega/README-entrega.md para README.md;
-#   4. verifica que nada proibido entrou e faz um commit único com autor
-#      Sergio Maccari; remove o worktree.
+#   3. extrai a whitelist com git archive, reduz o CMakeLists.txt aos alvos
+#      do protótipo (APENAS_PROTOTIPO ligado), gera um .gitignore reduzido e
+#      move docs/entrega/README-entrega.md para README.md;
+#   4. verifica que nada proibido entrou (caminhos e conteúdo) e faz um
+#      commit único com autor Sergio Maccari; remove o worktree.
 #
 # Não faz push: publicar a branch é passo manual do plano.
 # =============================================================================
@@ -41,12 +44,19 @@ readonly README_ORIGEM="docs/entrega/README-entrega.md"
 readonly DOC_1BIM="docs/entrega/documento-1-bimestre.md"
 readonly MONTADOR="ferramentas/montar-documento.py"
 
-# Caminhos que NUNCA podem entrar na branch pública (RP-09).
-readonly PROIBIDOS_REGEX='^(inicio\.txt|APS/|\.claude/|\.agents/|padroes/|design-system/|docs/analises/|testes/|recursos/sql/)'
+# Caminhos que NUNCA podem entrar na branch pública (RP-09). A whitelist já
+# barra todos; esta lista é defesa em profundidade (ex.: uma nota .md posta
+# dentro de src/prototipo/).
+readonly PROIBIDOS_REGEX='^(inicio\.txt|APS/|padroes/|design-system/|docs/analises/|testes/|recursos/sql/|LOG\.md$|MARCOS\.md$|docs/HANDOFF\.md$|Leiam esse doc|docs/(specs|design|planos|decisoes)/|docs/processos/prototipo-vs-versao-final\.md$)|(^|/)(\.claude|\.agents|\.superpowers)/|(^|/)CLAUDE\.md$|(^|/)cofre'
 readonly PROIBIDOS_CPP_REGEX='^src/(analise|persistencia|servicos)/.*\.cpp$'
-# Conteúdo que merece revisão humana antes de publicar (só aviso). Sensível a
-# maiúsculas de propósito: ".claude/" no .gitignore gerado não é menção.
-readonly SUSPEITOS_REGEX='Co-Authored-By|Claude|Anthropic|[Dd]riva|claude-automacoes'
+# Conteúdo que bloqueia o modo real (salvo --aceitar-avisos). Sem diferenciar
+# maiúsculas; "IA" isolado é checado à parte, com maiúsculas, para não casar
+# palavras comuns em português. O .gitignore gerado fica de fora (lista
+# .claude/ e .superpowers/ de propósito) e é checado só contra os termos de
+# autoria/empresa.
+readonly SUSPEITOS_REGEX_I='co-authored-by|claude|anthropic|driva|automacoes|superpowers'
+readonly SUSPEITOS_REGEX_CS='\bIA\b'
+readonly SUSPEITOS_GITIGNORE_REGEX='co-authored-by|anthropic|driva|automacoes'
 
 # Whitelist por padrão (regex sobre os caminhos versionados em HEAD).
 # Cada grupo precisa casar com pelo menos um arquivo; os itens marcados como
@@ -81,11 +91,15 @@ readonly -a WHITELIST_EXATOS=(
 # .gitignore da branch: gerado aqui em vez de copiado. O original de main cita
 # nomes de análises internas e material de terceiros (comentários e caminhos
 # em docs/analises/) que não devem aparecer num repositório público; a versão
-# reduzida mantém só o necessário para quem compila o protótipo.
+# reduzida não tem comentários descritivos nem nomes de arquivos.
+# Ela ignora, porém, os diretórios locais que continuam no disco do Sergio
+# depois de "git checkout entrega-13-10" (eram ignorados ou não versionados em
+# main): sem isso apareceriam como não versionados na branch e um
+# "git add -A" os publicaria. Menção literal a .claude/ e .superpowers/ é
+# escolha consciente: protege contra commit acidental.
 read -r -d '' GITIGNORE_ENTREGA <<'FIM' || true
 # Build do CMake e artefatos locais
-build/
-build-*/
+build*/
 capturas*/
 *.user
 
@@ -102,6 +116,12 @@ inicio.txt
 .env.*
 .claude/
 .agents/
+.superpowers/
+APS/
+docs/analises/
+padroes/
+design-system/
+cofre*
 FIM
 readonly GITIGNORE_ENTREGA
 
@@ -113,7 +133,7 @@ info() { printf '%s\n' "$*"; }
 titulo() { printf '\n== %s ==\n' "$*"; }
 
 uso() {
-    sed -n '4,11p' "$0" | sed 's/^# \{0,1\}//'
+    sed -n '4,14p' "$0" | sed 's/^# \{0,1\}//'
 }
 
 # ----------------------------------------------------------------------------
@@ -121,11 +141,13 @@ uso() {
 # ----------------------------------------------------------------------------
 DRY_RUN=0
 FORCAR=0
+ACEITAR_AVISOS=0
 BRANCH="entrega-13-10"
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --dry-run) DRY_RUN=1 ;;
         --forcar) FORCAR=1 ;;
+        --aceitar-avisos) ACEITAR_AVISOS=1 ;;
         --branch)
             [[ $# -ge 2 && -n "$2" ]] || erro "--branch exige um nome."
             BRANCH="$2"; shift ;;
@@ -192,7 +214,9 @@ fi
 # ----------------------------------------------------------------------------
 # 1. Monta a lista de arquivos a partir de HEAD
 # ----------------------------------------------------------------------------
-git ls-tree -r --name-only "$ORIGEM" > "$AUX/arvore.txt"
+# core.quotePath=false: caminhos não ASCII saem literais (sem aspas/escapes) e
+# casam com os padrões da whitelist.
+git -c core.quotePath=false ls-tree -r --name-only "$ORIGEM" > "$AUX/arvore.txt"
 
 existe_em_head() { grep -qxF -- "$1" "$AUX/arvore.txt"; }
 
@@ -281,6 +305,73 @@ if existe_em_head "CMakeLists.txt"; then
     fi
 fi
 
+# CMakeLists.txt da branch: só os alvos do protótipo. Cabeçalho reescrito e
+# tudo depois do "return()" do modo APENAS_PROTOTIPO removido, para não
+# expor alvos, testes e recursos do sistema completo (que não vão para a
+# branch). $1 = CMakeLists.txt de HEAD; $2 = saída. Falha se a estrutura
+# esperada não for encontrada.
+reduzir_cmake() {
+    python3 -I - "$1" "$2" <<'PY'
+import re, sys
+texto = open(sys.argv[1], encoding="utf-8").read()
+CABECALHO = """\
+# =============================================================================
+# Analisador B3 - prototipo de telas (entrega do 1o bimestre)
+# Trabalho de Analise e Projeto de Sistemas (UTFPR)
+#
+# Alvos:
+#   analisador-b3-prototipo  (executavel) - prototipo de telas: interface grafica
+#                                           (src/ui) e dominio (src/dominio), com
+#                                           dados fixos em memoria (src/prototipo);
+#                                           sem SQL nem rede
+#   capturar-telas-prototipo (executavel) - salva um PNG de cada tela (modo
+#                                           offscreen)
+#
+# Requisitos: CMake 3.19+, compilador C++20 e Qt 6 (Core, Gui, Widgets, Charts).
+#
+# Compilar:
+#   cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+#   cmake --build build -j
+#   ./build/analisador-b3-prototipo
+# =============================================================================
+"""
+def trocar(padrao, novo, alvo):
+    resultado, n = re.subn(padrao, novo, alvo, flags=re.M | re.S)
+    if n != 1:
+        sys.exit(f"reduzir_cmake: padrão encontrado {n} vez(es), esperado 1: {padrao[:60]}")
+    return resultado
+# 1. Cabeçalho: bloco inicial de comentários.
+texto = trocar(r"\A(?:#[^\n]*\n)+", lambda m: CABECALHO, texto)
+# 2. Opção ligada por padrão.
+texto = trocar(r"^([ \t]*option[ \t]*\([ \t]*APENAS_PROTOTIPO[ \t][^\n]*?[ \t])OFF([ \t]*\))", r"\1ON\2", texto)
+# 3. Só os módulos do Qt que o protótipo usa; desligar a opção não tem sentido aqui.
+texto = trocar(
+    r"^if\(APENAS_PROTOTIPO\)\n(\s*find_package\(Qt6 REQUIRED COMPONENTS Core Gui Widgets Charts\))\n"
+    r"else\(\)\n[^\n]*\nendif\(\)\n",
+    lambda m: ("if(NOT APENAS_PROTOTIPO)\n"
+               "    message(FATAL_ERROR \"Esta versao contem somente o prototipo de telas: "
+               "mantenha APENAS_PROTOTIPO=ON.\")\n"
+               "endif()\n" + m.group(1).strip() + "\n"),
+    texto)
+# 4. Corta tudo após o return() do modo protótipo.
+texto = trocar(
+    r"^if\(APENAS_PROTOTIPO\)\n\s*(message\(STATUS[^\n]*\))\n\s*return\(\)\n\s*endif\(\)\n.*\Z",
+    lambda m: m.group(1) + "\n", texto)
+for proibido in ("analisador-nucleo", "src/main.cpp", "testes/", "recursos.qrc",
+                 "enable_testing", "gerar-diagramas", "Qt6::Test",
+                 "Qt6::Sql Qt6::Network", "Sql Network Test"):
+    if proibido in texto:
+        sys.exit(f"reduzir_cmake: resto do sistema completo no resultado: {proibido!r}")
+open(sys.argv[2], "w", encoding="utf-8").write(texto)
+PY
+}
+if existe_em_head "CMakeLists.txt"; then
+    git show "$ORIGEM:CMakeLists.txt" > "$AUX/CMakeLists.head.txt"
+    if ! reduzir_cmake "$AUX/CMakeLists.head.txt" "$AUX/CMakeLists.reduzido.txt" 2> "$AUX/cmake.err"; then
+        FALTANDO+=("CMakeLists.txt: estrutura inesperada para a redução ($(tr '\n' ' ' < "$AUX/cmake.err"))")
+    fi
+fi
+
 # ----------------------------------------------------------------------------
 # Verificações (sobre a lista final de caminhos)
 # ----------------------------------------------------------------------------
@@ -306,34 +397,71 @@ verificar_caminhos() {
     info "ok — nenhum caminho proibido."
 }
 
-# Aviso de conteúdo: $1 = lista de caminhos; $2 = "HEAD" (lê do commit) ou
-# diretório do worktree (lê do disco).
+# Conteúdo suspeito: $1 = lista de caminhos; $2 = "HEAD" (lê do commit) ou
+# diretório do worktree (lê do disco). Devolve 1 se houver ocorrência.
+# Texto: grep sem diferenciar maiúsculas (+ "IA" isolado, com maiúsculas).
+# .docx: o XML interno (texto e metadados) passa pelos mesmos padrões.
+# PNG e PDF (fluxos comprimidos) não são inspecionados; o PDF sai do mesmo
+# .md que o .docx.
 verificar_conteudo() {
-    local lista="$1" fonte="$2" achados=""
-    titulo "Conteúdo a revisar ($SUSPEITOS_REGEX)"
-    grep -vE '\.(png|docx|pdf)$' "$lista" > "$AUX/texto.txt" || true
+    local lista="$1" fonte="$2" achados="" base="$2"
+    titulo "Conteúdo suspeito ($SUSPEITOS_REGEX_I | $SUSPEITOS_REGEX_CS)"
+    grep -vE '\.(png|docx|pdf)$' "$lista" | grep -vxF '.gitignore' > "$AUX/texto.txt" || true
+    grep -E '\.docx$' "$lista" > "$AUX/docx.txt" || true
     if [[ "$fonte" == "HEAD" ]]; then
-        # README.md e .gitignore não existem com esse nome em HEAD.
-        sed -e "s#^README\.md\$#$README_ORIGEM#" -e '/^\.gitignore$/d' "$AUX/texto.txt" > "$AUX/texto-head.txt"
+        # README.md não existe com esse nome em HEAD.
+        sed -e "s#^README\.md\$#$README_ORIGEM#" "$AUX/texto.txt" > "$AUX/texto-head.txt"
         if [[ -s "$AUX/texto-head.txt" ]]; then
-            achados="$(xargs -d '\n' git grep -n -I -E "$SUSPEITOS_REGEX" "$ORIGEM" -- < "$AUX/texto-head.txt" \
+            achados="$(xargs -d '\n' git grep -n -I -i -E "$SUSPEITOS_REGEX_I" "$ORIGEM" -- < "$AUX/texto-head.txt" \
+                | sed "s#^$ORIGEM:##" || true)"
+            achados+=$'\n'"$(xargs -d '\n' git grep -n -I -E "$SUSPEITOS_REGEX_CS" "$ORIGEM" -- < "$AUX/texto-head.txt" \
                 | sed "s#^$ORIGEM:##" || true)"
         fi
-        if grep -qE "$SUSPEITOS_REGEX" <<< "$GITIGNORE_ENTREGA"; then
-            achados+=$'\n.gitignore (gerado): contém termo suspeito'
-        fi
+        # Os .docx são extraídos do commit para um diretório auxiliar.
+        base="$AUX/docx-head"
+        while IFS= read -r caminho; do
+            [[ -n "$caminho" ]] || continue
+            mkdir -p "$base/$(dirname "$caminho")"
+            git show "$ORIGEM:$caminho" > "$base/$caminho"
+        done < "$AUX/docx.txt"
     else
-        achados="$(cd "$fonte" && xargs -d '\n' grep -n -I -E -H -- "$SUSPEITOS_REGEX" < "$AUX/texto.txt" || true)"
+        if [[ -s "$AUX/texto.txt" ]]; then
+            achados="$(cd "$fonte" && xargs -d '\n' grep -n -I -i -E -H -- "$SUSPEITOS_REGEX_I" < "$AUX/texto.txt" || true)"
+            achados+=$'\n'"$(cd "$fonte" && xargs -d '\n' grep -n -I -E -H -- "$SUSPEITOS_REGEX_CS" < "$AUX/texto.txt" || true)"
+        fi
+        if [[ -f "$fonte/.gitignore" ]] && grep -qiE "$SUSPEITOS_GITIGNORE_REGEX" "$fonte/.gitignore"; then
+            achados+=$'\n.gitignore: contém termo de autoria/empresa'
+        fi
     fi
-    achados="$(sed '/^$/d' <<< "$achados")"
+    if grep -qiE "$SUSPEITOS_GITIGNORE_REGEX" <<< "$GITIGNORE_ENTREGA"; then
+        achados+=$'\n.gitignore (gerado): contém termo de autoria/empresa'
+    fi
+    if [[ -s "$AUX/docx.txt" ]]; then
+        achados+=$'\n'"$(python3 -I - "$base" "$AUX/docx.txt" "$SUSPEITOS_REGEX_I" "$SUSPEITOS_REGEX_CS" <<'PY'
+import re, sys, zipfile
+# O programa vem pela entrada padrão (heredoc); a lista de .docx, por arquivo.
+base, lista = sys.argv[1], sys.argv[2]
+regex_i, regex_cs = re.compile(sys.argv[3], re.I), re.compile(sys.argv[4])
+for caminho in filter(None, (l.strip() for l in open(lista, encoding="utf-8"))):
+    with zipfile.ZipFile(f"{base}/{caminho}") as z:
+        for membro in z.namelist():
+            if not membro.endswith((".xml", ".rels")):
+                continue
+            texto = re.sub(r"<[^>]+>", " ", z.read(membro).decode("utf-8", "replace"))
+            for m in list(regex_i.finditer(texto)) + list(regex_cs.finditer(texto)):
+                print(f"{caminho}[{membro}]: ...{texto[max(0, m.start()-40):m.end()+40]}...")
+PY
+)"
+    fi
+    achados="$(sed '/^[[:space:]]*$/d' <<< "$achados")"
     if [[ -n "$achados" ]]; then
         printf '\n!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n'
         printf '!! ATENÇÃO: %d ocorrência(s) para revisar antes do push:\n' "$(wc -l <<< "$achados")"
         sed 's/^/!!   /' <<< "$achados"
         printf '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n'
-    else
-        info "ok — nenhuma ocorrência."
+        return 1
     fi
+    info "ok — nenhuma ocorrência."
 }
 
 relatar_faltando() {
@@ -360,12 +488,18 @@ if [[ $DRY_RUN -eq 1 ]]; then
     info "Total: $(wc -l < "$AUX/final.txt") arquivo(s) ($N_SECOES seções do 1º bim, $N_FIGURAS figuras; .gitignore gerado; README.md vem de $README_ORIGEM)."
     STATUS=0
     verificar_caminhos "$AUX/final.txt" || STATUS=1
-    verificar_conteudo "$AUX/final.txt" "HEAD"
+    CONTEUDO_OK=1
+    verificar_conteudo "$AUX/final.txt" "HEAD" || CONTEUDO_OK=0
     relatar_faltando || STATUS=2
+    if [[ $STATUS -eq 0 && $CONTEUDO_OK -eq 0 && $ACEITAR_AVISOS -eq 0 ]]; then
+        STATUS=3
+    fi
     if [[ $STATUS -eq 0 ]]; then
         titulo "Dry-run OK — pronto para gerar a branch (rode sem --dry-run)"
     elif [[ $STATUS -eq 1 ]]; then
         printf '\nDry-run com caminhos proibidos: o modo real abortaria.\n' >&2
+    elif [[ $STATUS -eq 3 ]]; then
+        printf '\nDry-run com conteúdo suspeito: o modo real abortaria (revise ou use --aceitar-avisos).\n' >&2
     else
         printf '\nDry-run incompleto: commite os itens faltando antes do modo real.\n' >&2
     fi
@@ -395,8 +529,9 @@ find "$WT" -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
 mapfile -t COPIAR < "$AUX/copiar.txt"
 git -C "$RAIZ" archive --format=tar "$ORIGEM" -- "${COPIAR[@]}" | tar -x -C "$WT"
 
-# APENAS_PROTOTIPO ligado por padrão na branch da entrega.
-sed -E -i "s/$CMAKE_OPCAO_REGEX/\\1ON\\2/" "$WT/CMakeLists.txt"
+# CMakeLists.txt reduzido aos alvos do protótipo, com APENAS_PROTOTIPO ligado
+# por padrão (gerado e validado na etapa 1).
+cp "$AUX/CMakeLists.reduzido.txt" "$WT/CMakeLists.txt"
 grep -qE '^[[:space:]]*option[[:space:]]*\([[:space:]]*APENAS_PROTOTIPO[[:space:]].*[[:space:]]ON[[:space:]]*\)' "$WT/CMakeLists.txt" \
     || erro "não consegui ligar APENAS_PROTOTIPO no CMakeLists.txt."
 
@@ -404,7 +539,7 @@ printf '%s\n' "$GITIGNORE_ENTREGA" > "$WT/.gitignore"
 mv "$WT/$README_ORIGEM" "$WT/README.md"
 
 git -C "$WT" add -A
-git -C "$WT" ls-files | LC_ALL=C sort > "$AUX/indexados.txt"
+git -C "$WT" -c core.quotePath=false ls-files | LC_ALL=C sort > "$AUX/indexados.txt"
 
 # Confere que o índice bate exatamente com a lista planejada.
 if ! diff -u "$AUX/final.txt" "$AUX/indexados.txt" > "$AUX/diff.txt"; then
@@ -412,7 +547,11 @@ if ! diff -u "$AUX/final.txt" "$AUX/indexados.txt" > "$AUX/diff.txt"; then
     erro "o conteúdo do worktree difere da lista planejada."
 fi
 verificar_caminhos "$AUX/indexados.txt" || erro "caminho proibido no índice; nada foi publicado."
-verificar_conteudo "$AUX/indexados.txt" "$WT"
+if ! verificar_conteudo "$AUX/indexados.txt" "$WT"; then
+    [[ $ACEITAR_AVISOS -eq 1 ]] \
+        || erro "conteúdo suspeito na branch; revise as ocorrências acima ou rode com --aceitar-avisos."
+    info "Seguindo com --aceitar-avisos."
+fi
 
 # 4. Commit único com autor e committer Sergio, sem trailers de coautoria.
 env -u GIT_AUTHOR_NAME -u GIT_AUTHOR_EMAIL -u GIT_COMMITTER_NAME -u GIT_COMMITTER_EMAIL \
@@ -448,7 +587,7 @@ Próximos passos (manuais):
        d=\$(mktemp -d) && git worktree add "\$d" $BRANCH
        cmake -S "\$d" -B "\$d/build" -DCMAKE_BUILD_TYPE=Release && cmake --build "\$d/build" -j8
        git worktree remove --force "\$d"
-  2. Revisar os avisos de conteúdo acima (se houver).
+  2. Revisar os avisos de conteúdo acima (se houver; só com --aceitar-avisos).
   3. Publicar: git push -u origin $BRANCH   (com --forcar: git push -f origin $BRANCH)
   4. Conferir: git log --oneline $BRANCH | wc -l  → 1 ; git merge-base main $BRANCH → vazio
 EOF

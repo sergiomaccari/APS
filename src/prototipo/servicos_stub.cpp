@@ -1,4 +1,4 @@
-// Serviços do protótipo de telas (entrega de 13/10, spec 0002, RP-03 a RP-08):
+// Serviços do protótipo de telas (entrega de 13/10):
 // mesmas classes de src/servicos/, mas sobre o estado em memória de DadosFixos.
 //
 // Este arquivo substitui, nos alvos do protótipo, os .cpp reais de serviços.
@@ -9,7 +9,7 @@
 // - Os serviços leem e escrevem direto em dados(); os repositórios recebidos no
 //   construtor só são guardados (os membros referência exigem).
 // - Nada de banco, arquivo ou rede: importação e sincronização devolvem
-//   resultados pré-prontos com as mensagens fixas (RP-05 e RP-06) e
+//   resultados pré-prontos com as mensagens fixas e
 //   recomendações não são calculadas, apenas lidas da semente.
 // - O "agora" do protótipo é momentoDaSemente() (23/08/2026 12:20), a mesma
 //   data das figuras do documento.
@@ -119,7 +119,7 @@ void registrarImportacao(qint64 ativoId, const QString& arquivo, int lidas, int 
 }
 
 // ===========================================================================
-// ServicoAutenticacao (RP-03)
+// ServicoAutenticacao
 // ===========================================================================
 
 const QString ServicoAutenticacao::SAL = QStringLiteral("aps-b3-2026");
@@ -323,7 +323,7 @@ QString ServicoAutenticacao::ultimoErro() const
 }
 
 // ===========================================================================
-// ServicoAtivo (RP-04)
+// ServicoAtivo
 // ===========================================================================
 
 ServicoAtivo::ServicoAtivo(RepositorioAtivo& repositorio)
@@ -448,7 +448,7 @@ QString ServicoAtivo::ultimoErro() const
 }
 
 // ===========================================================================
-// ServicoImportacao (RP-05)
+// ServicoImportacao
 // ===========================================================================
 
 QString ResultadoImportacao::resumo() const
@@ -458,7 +458,12 @@ QString ResultadoImportacao::resumo() const
         return QString::fromUtf8("Importação rejeitada: %1 erro(s) encontrado(s). Nenhuma cotação foi gravada.")
             .arg(erros.size());
     }
-    // Resultado pré-pronto do protótipo: a mesma mensagem fixa para arquivo e pasta.
+    // Resultado pré-pronto do protótipo. Só importarDiretorio preenche erros
+    // (o exemplo inválido rejeitado): sem erros, o resultado é de um arquivo só.
+    if (erros.isEmpty())
+    {
+        return QString::fromUtf8("Importação concluída: %1 cotações em 1 arquivo.").arg(linhasLidas);
+    }
     return prototipo::mensagemImportacaoFixa();
 }
 
@@ -483,12 +488,16 @@ ResultadoImportacao ServicoImportacao::importarCsv(const QString& caminho, qint6
         return resultado;
     }
 
-    // O arquivo não é lido: as cotações de demonstração já estão carregadas,
-    // então todas as linhas "lidas" seriam ignoradas por duplicidade.
+    // O arquivo não é lido: as cotações de demonstração do ativo já estão
+    // carregadas, então todas as linhas "lidas" seriam ignoradas por duplicidade.
+    // Ativo cadastrado durante a apresentação (sem série na semente): usa o
+    // tamanho de um CSV de demonstração.
+    const qsizetype naSemente = dados().cotacoes.value(ativoId).size();
+    const int cotacoesDoAtivo = naSemente > 0 ? static_cast<int>(naSemente) : COTACOES_POR_ARQUIVO;
     resultado.sucesso = true;
-    resultado.linhasLidas = COTACOES_POR_ARQUIVO;
+    resultado.linhasLidas = cotacoesDoAtivo;
     resultado.linhasInseridas = 0;
-    resultado.linhasIgnoradas = COTACOES_POR_ARQUIVO;
+    resultado.linhasIgnoradas = cotacoesDoAtivo;
     registrarImportacao(ativoId, caminho, resultado.linhasLidas, resultado.linhasInseridas);
     return resultado;
 }
@@ -531,7 +540,7 @@ QString ServicoImportacao::ultimoErro() const
 }
 
 // ===========================================================================
-// ServicoCarteira (RP-04)
+// ServicoCarteira
 // ===========================================================================
 
 bool ResumoCarteira::vazia() const
@@ -729,7 +738,7 @@ QString ServicoCarteira::ultimoErro() const
 }
 
 // ===========================================================================
-// ServicoAlerta (RP-04 e RP-08) - Observer manual, igual ao real
+// ServicoAlerta - Observer manual, igual ao real
 // ===========================================================================
 
 ServicoAlerta::ServicoAlerta(RepositorioAlerta& repositorioAlerta,
@@ -924,7 +933,7 @@ QString ServicoAlerta::ultimoErro() const
 }
 
 // ===========================================================================
-// ServicoRecomendacao (RP-05): lê as recomendações fixas, sem MotorAnalise
+// ServicoRecomendacao: lê as recomendações fixas, sem MotorAnalise
 // ===========================================================================
 
 ServicoRecomendacao::ServicoRecomendacao(RepositorioRecomendacao& repositorioRecomendacao,
@@ -1026,7 +1035,7 @@ QString ServicoRecomendacao::ultimoErro() const
 }
 
 // ===========================================================================
-// ServicoSincronizacao (RP-06): sem rede, mensagem fixa
+// ServicoSincronizacao: sem rede, mensagem fixa
 // ===========================================================================
 
 QString ResultadoSincronizacao::resumo() const

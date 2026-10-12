@@ -30,14 +30,16 @@ MIOLO_COMUM = [
     "06-viabilidade.md",
 ]
 # O 1º bimestre só traz conteúdo visto até a Aula 10: as variantes "-1bim"
-# retiram os Pontos de Caso de Uso (Aula 12), que só o 2º bimestre apresenta.
+# retiram os Pontos de Caso de Uso (Aula 12), que só o 2º bimestre apresenta,
+# e o tempo realizado da estimativa (a implementação real fica para o 2º
+# bimestre; a entrega do 1º é o protótipo de telas).
 MIOLO_1BIM = [
     "01-abreviaturas-1bim.md",
     "02-introducao-1bim.md",
     "03-levantamento-questoes-1bim.md",
     "04-requisitos.md",
     "05-estimativa-1bim.md",
-    "06-viabilidade.md",
+    "06-viabilidade-1bim.md",
 ]
 MODELAGEM_1BIM = [
     "quadros-uc-01-09.md",
@@ -48,9 +50,21 @@ MODELAGEM_1BIM = [
     "09-modelagem-objetos.md",
     "10-modelagem-sequencia.md",
 ]
+# O documento do 1º bimestre acompanha o protótipo de telas (sem persistência
+# nem motor de análise reais): as variantes "-1bim" descrevem o comportamento e
+# os atributos como especificados para o sistema, sem afirmar implementação.
+MODELAGEM_DOC1 = [
+    "quadros-uc-01-09-1bim.md",
+    "quadros-uc-10-18.md",
+    "08-modelagem-classes.md",
+    "dicionario-parte1-1bim.md",
+    "dicionario-parte2.md",
+    "09-modelagem-objetos.md",
+    "10-modelagem-sequencia.md",
+]
 MANIFESTOS = {
     "1": ["00-capa-1bim.md", "@SUMARIO", "@LISTAS"] + MIOLO_1BIM
-         + ["07-resultados-abre-1bim.md"] + MODELAGEM_1BIM
+         + ["07-resultados-abre-1bim.md"] + MODELAGEM_DOC1
          + ["15-conclusoes-1bim.md", "16-referencias-1bim.md"],
     "2": ["00-capa-2bim.md", "@SUMARIO", "@LISTAS"] + MIOLO_COMUM
          + ["07-resultados-abre-2bim.md"] + MODELAGEM_1BIM

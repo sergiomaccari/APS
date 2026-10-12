@@ -1,5 +1,5 @@
 // Implementacao alternativa das classes de src/analise/ para o protótipo de
-// telas (entrega de 13/10, spec 0002, RP-05 e RP-07).
+// telas (entrega de 13/10).
 //
 // Este arquivo substitui, nos alvos do protótipo, os .cpp reais de análise.
 // Os headers de src/analise/ continuam sendo o contrato: aqui só se definem os
@@ -7,10 +7,10 @@
 //
 // - CalculadoraIndicadores: cálculo real e simples de MMS, IFR, variação e
 //   volatilidade. É a ÚNICA exceção de cálculo aprovada para o protótipo
-//   (RP-07), existe apenas para o gráfico e os cartões do painel.
+//   e existe apenas para o gráfico e os cartões do painel.
 // - MotorAnalise::criarRegra: devolve uma RegraFixa, que só sabe descrever o
 //   critério de cada uma das 4 regras; o parecer é sempre Neutro.
-// - Backtester: devolve uma tabela pré-pronta, uma linha por regra (RP-05),
+// - Backtester: devolve uma tabela pré-pronta, uma linha por regra,
 //   sem percorrer as cotações.
 
 #include <cmath>
@@ -367,7 +367,7 @@ std::unique_ptr<RegraAnalise> MotorAnalise::criarRegra(const QString& nomeRegra)
 }
 
 // ---------------------------------------------------------------------------
-// Backtester (tabela fixa, RP-05)
+// Backtester (tabela fixa)
 // ---------------------------------------------------------------------------
 
 const QString Backtester::NOME_CONSOLIDADO = QString::fromUtf8("Consolidado (média ponderada)");

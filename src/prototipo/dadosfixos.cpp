@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+#include <QDebug>
 #include <QFile>
 #include <QLocale>
 #include <QStringList>
@@ -16,8 +17,14 @@ namespace analisador::prototipo
 namespace
 {
 
-// Data de referência das recomendações: último pregão dos CSVs.
-const QDate DATA_DAS_RECOMENDACOES(2026, 8, 14);
+// Data de referência das recomendações: último pregão dos CSVs. Função, e não
+// constante de namespace, porque QDate não é constexpr: a inicialização
+// dinâmica não teria ordem garantida se dados() fosse chamada a partir do
+// inicializador estático de outra unidade de tradução.
+QDate dataDasRecomendacoes()
+{
+    return QDate(2026, 8, 14);
+}
 
 // Converte número no formato brasileiro do CSV ("41,37").
 double numeroDoCsv(const QString& texto)
@@ -36,6 +43,10 @@ QVector<Cotacao> lerCotacoes(const QString& ticker, qint64 ativoId, qint64& prox
     QFile arquivo(QStringLiteral(":/dados/%1.csv").arg(ticker));
     if (!arquivo.open(QIODevice::ReadOnly | QIODevice::Text))
     {
+        // Sem o recurso embutido (prototipo.qrc) a série fica vazia e os
+        // gráficos saem em branco: avisa em vez de falhar em silêncio.
+        qWarning().noquote() << "Protótipo: não foi possível abrir" << arquivo.fileName()
+                             << "- a série de" << ticker << "fica vazia.";
         return serie;
     }
 
@@ -55,6 +66,12 @@ QVector<Cotacao> lerCotacoes(const QString& ticker, qint64 ativoId, qint64& prox
             continue;
         }
         const QDate data = QDate::fromString(campos.at(0).trimmed(), QStringLiteral("dd/MM/yyyy"));
+        if (!data.isValid())
+        {
+            qWarning().noquote() << "Protótipo: data inválida ignorada em" << arquivo.fileName()
+                                 << ":" << linha;
+            continue;
+        }
         serie.append(Cotacao(proximaCotacao++,
                              ativoId,
                              data,
@@ -76,7 +93,7 @@ Recomendacao parecer(qint64 ativoId, const QString& regra, double pontuacao, con
                         Recomendacao::tipoPorPontuacao(pontuacao),
                         justificativa,
                         regra,
-                        DATA_DAS_RECOMENDACOES,
+                        dataDasRecomendacoes(),
                         pontuacao);
 }
 
@@ -107,7 +124,7 @@ Recomendacao consolidar(qint64 id, const Ativo& ativo, const QVector<Recomendaca
             "Parecer consolidado de %1 regra(s) para %2 em %3: %4 (pontuação %5, limiar de decisão %6).")
             .arg(pareceres.size())
             .arg(ativo.ticker(),
-                 DATA_DAS_RECOMENDACOES.toString(QStringLiteral("dd/MM/yyyy")),
+                 dataDasRecomendacoes().toString(QStringLiteral("dd/MM/yyyy")),
                  paraTexto(tipo),
                  brasil.toString(pontuacao, 'f', 2),
                  brasil.toString(Recomendacao::LIMIAR_DECISAO, 'f', 2));
@@ -117,7 +134,7 @@ Recomendacao consolidar(qint64 id, const Ativo& ativo, const QVector<Recomendaca
                              tipo,
                              cabecalho + QStringLiteral("\n\n") + linhas.join(QStringLiteral("\n")),
                              nomes.join(QStringLiteral(", ")),
-                             DATA_DAS_RECOMENDACOES,
+                             dataDasRecomendacoes(),
                              pontuacao);
     consolidada.marcarComoVigente();
     return consolidada;
@@ -125,7 +142,7 @@ Recomendacao consolidar(qint64 id, const Ativo& ativo, const QVector<Recomendaca
 
 void semearUsuarios(DadosFixos& d)
 {
-    // Hashes copiados de recursos/sql/002_dados_semente.sql (admin123 / investidor123).
+    // Hashes iguais aos da semente do sistema completo (admin123 / investidor123).
     d.usuarios.append(Usuario(1,
                               QStringLiteral("Administrador do Sistema"),
                               QStringLiteral("admin@analisadorb3.com"),

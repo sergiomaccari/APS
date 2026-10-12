@@ -77,8 +77,12 @@ dois pontos de marcação; `main.cpp` real volta à versão `1.0.0`.
 
 1. Cria worktree temporário com `git worktree add --detach` e `git checkout
    --orphan entrega-13-10`, limpa o índice.
-2. Copia a whitelist: `CMakeLists.txt` (com `APENAS_PROTOTIPO` ON via `sed`),
-   `.gitignore`, `src/ui/**`, `src/dominio/**`, `src/servicos/*.h`,
+2. Copia a whitelist: `CMakeLists.txt` (reduzido aos alvos do protótipo:
+   cabeçalho reescrito, `APENAS_PROTOTIPO` ON e nada após o `return()`),
+   `.gitignore` gerado (sem comentários descritivos; ignora também `APS/`,
+   `docs/analises/`, `.superpowers/`, `.claude/`, `.agents/`, `padroes/`,
+   `design-system/`, `cofre*`, `inicio.txt`, `build*/` e `capturas*/`, que
+   continuam no disco após `git checkout entrega-13-10`), `src/ui/**`, `src/dominio/**`, `src/servicos/*.h`,
    `src/persistencia/repositorio*.h`, `src/analise/{regraanalise,motoranalise,
    calculadoraindicadores,backtester}.h`, `src/prototipo/**`, `dados/*.csv`,
    `recursos/prototipo.qrc`, `ferramentas/capturar-telas.cpp`,
@@ -88,8 +92,12 @@ dois pontos de marcação; `main.cpp` real volta à versão `1.0.0`.
    do próprio `.md`), e `docs/entrega/README-entrega.md` renomeado para
    `README.md` na raiz.
 3. Verifica que nada proibido entrou (`inicio.txt`, `APS/`, `.claude/`,
-   `.agents/`, `padroes/`, `design-system/`, `docs/analises/`, `*.cpp` de
-   analise/persistencia/servicos, `testes/`, `documento-2-bimestre*`).
+   `.agents/`, `.superpowers/`, `padroes/`, `design-system/`, `cofre*`,
+   `docs/analises/`, `CLAUDE.md`, `LOG.md`, `MARCOS.md`, `docs/HANDOFF.md`,
+   specs/design/planos/decisões, `*.cpp` de analise/persistencia/servicos,
+   `testes/`, `documento-2-bimestre*`) e varre o conteúdo (texto e XML do
+   `.docx`, sem diferenciar maiúsculas) atrás de termos de autoria/empresa:
+   ocorrência aborta o modo real, salvo `--aceitar-avisos`.
 4. Commit único "Entrega 13/10 — Plano do Projeto e protótipo de telas" com
    autor Sergio; remove o worktree. Push e exclusão da branch antiga são passos
    manuais do plano (autorizados pelo Sergio).

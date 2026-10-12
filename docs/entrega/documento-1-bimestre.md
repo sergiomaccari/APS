@@ -57,12 +57,12 @@
 | 18/08/26 | 0.1 | Definição do projeto e do escopo | Sergio, Arthur, Leonardo e Thales |
 | 19/08/26 | 0.2 | Criação das questões e respostas do levantamento | Sergio |
 | 19/08/26 | 0.3 | Definição dos requisitos e regras de negócio | Sergio |
-| 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker) | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker e UCP) | Sergio, Arthur, Leonardo e Thales |
 | 19/08/26 | 0.5 | Estudo de viabilidade | Sergio |
 | 19/08/26 | 0.6 | Modelagem — casos de uso, classes, dicionário, objetos e sequência | Sergio, Arthur, Leonardo e Thales |
 | 19/08/26 | 0.7 | Protótipo das telas e conclusões | Sergio, Arthur, Leonardo e Thales |
 | 11/10/26 | 0.8 | Revisão geral: cliente, estimativa de esforço, viabilidade e referências | Thales |
-| 12/10/26 | 0.9 | Ajuste do Capítulo 4 e das conclusões ao protótipo de telas; estimativa restrita ao Planning Poker | Sergio |
+| 12/10/26 | 0.9 | Ajuste do Capítulo 4 e das conclusões ao protótipo de telas; estimativa restrita ao Planning Poker; tabela de estimativa sem tempo realizado | Sergio |
 
 ```{=openxml}
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
@@ -157,7 +157,7 @@ Figura 39. Diagrama de sequência para o [UC020].
 \begingroup\setlength{\parindent}{0pt}
 ```
 
-Tabela 1. Estimativa de esforço e tempo efetivamente realizado, em horas, para cada requisito funcional.  
+Tabela 1. Estimativa de esforço, em horas, para cada requisito funcional.  
 Tabela 2. Nível de conhecimento dos integrantes em cada tecnologia.  
 Tabela 3. Horas, valor por hora e custo de desenvolvimento de cada integrante.  
 Quadro 1. Descrição do caso de uso UC001.  
@@ -631,37 +631,36 @@ Utilizamos o método Planning Poker (GRENNING, 2002) para estimar o esforço de
 software com base em cada requisito funcional levantado. A equipe reuniu-se em sessão online com cartas
 da sequência de Fibonacci (1, 2, 3, 5, 8, 13, 21), revotando os requisitos em que
 houve divergência até o consenso (Figura 1). Com base nos
-resultados elaboramos a Tabela 1, que também registra o tempo
-efetivamente realizado na implementação de cada requisito.
+resultados elaboramos a Tabela 1.
 
 ![Figura 1. Sessão de Planning Poker: baralho utilizado e carta de consenso de cada requisito funcional.](figuras/planning-poker.png)
 
-**Tabela 1. Estimativa de esforço e tempo efetivamente realizado, em horas, para cada requisito funcional.**
+**Tabela 1. Estimativa de esforço, em horas, para cada requisito funcional.**
 
-| Código do Requisito Funcional | Estimativa de esforço (horas) | Tempo realizado (horas) |
-|----------|----------|----------|
-| [RF001] | 5 | 4 |
-| [RF002] | 5 | 5 |
-| [RF003] | 3 | 3 |
-| [RF004] | 2 | 2 |
-| [RF005] | 13 | 16 |
-| [RF006] | 5 | 5 |
-| [RF007] | 5 | 5 |
-| [RF008] | 3 | 2 |
-| [RF009] | 13 | 17 |
-| [RF010] | 5 | 5 |
-| [RF011] | 8 | 8 |
-| [RF012] | 13 | 15 |
-| [RF013] | 5 | 4 |
-| [RF014] | 5 | 6 |
-| [RF015] | 5 | 6 |
-| [RF016] | 5 | 5 |
-| [RF017] | 5 | 4 |
-| [RF018] | 8 | 9 |
-| [RF019] | 3 | 2 |
-| [RF020] | 8 | 11 |
-| [RF021] | 8 | 9 |
-| **Total** | **132** | **143** |
+| Código do Requisito Funcional | Estimativa de esforço (horas) |
+|----------|----------|
+| [RF001] | 5 |
+| [RF002] | 5 |
+| [RF003] | 3 |
+| [RF004] | 2 |
+| [RF005] | 13 |
+| [RF006] | 5 |
+| [RF007] | 5 |
+| [RF008] | 3 |
+| [RF009] | 13 |
+| [RF010] | 5 |
+| [RF011] | 8 |
+| [RF012] | 13 |
+| [RF013] | 5 |
+| [RF014] | 5 |
+| [RF015] | 5 |
+| [RF016] | 5 |
+| [RF017] | 5 |
+| [RF018] | 8 |
+| [RF019] | 3 |
+| [RF020] | 8 |
+| [RF021] | 8 |
+| **Total** | **132** |
 
 Assim, a estimativa de esforço total para o desenvolvimento e cumprimento de todos
 os requisitos funcionais foi de **132 horas** — cerca de 33 horas por integrante ao
@@ -670,18 +669,6 @@ cotações [RF005], ao painel gráfico com indicadores [RF009] e ao motor de
 recomendações [RF012], por concentrarem validações, cálculo numérico e regras de
 negócio, seguidas da sincronização online [RF020] e do backtesting [RF021], que
 envolvem integração externa e reprocessamento do histórico.
-
-O tempo efetivamente realizado na implementação totalizou **143 horas**, 11 horas
-(8,3%) acima do estimado. Os desvios concentraram-se nos requisitos que exigiram o
-primeiro contato da equipe com recursos ainda pouco conhecidos: o painel gráfico
-[RF009] (+4 h), pela curva de aprendizado do Qt Charts; a importação
-transacional [RF005] (+3 h), pela quantidade de casos de validação; a
-sincronização online [RF020] (+3 h), pela verificação do suporte a TLS e do
-formato de resposta da fonte de dados; e o motor de recomendações [RF012] (+2 h),
-pela calibração das regras. Os cadastros simples e as consultas ficaram iguais ou
-abaixo da estimativa, o que indica que o Planning Poker foi bem calibrado para
-tarefas conhecidas e tende a subestimar a integração com tecnologias novas —
-aprendizado que será aplicado às estimativas do segundo bimestre.
 
 
 
@@ -837,9 +824,8 @@ projeto é apresentado na Tabela 3.
 | Thales Romagna Fabrowski | 33 | 30,00 | 990,00 |
 | **Total** | **132** | — | **3.960,00** |
 
-Com as 143 horas efetivamente realizadas (Tabela 1), o custo de
-referência chega a R$ 4.290,00. Como o trabalho é desenvolvido no âmbito da
-disciplina, sem compensação financeira, esse valor representa o custo de
+Como o trabalho é desenvolvido no âmbito da disciplina, sem compensação
+financeira, esse valor de R$ 3.960,00 representa o custo de
 oportunidade da equipe, e não um desembolso: somado ao custo zero de ferramentas,
 hardware e dados, o projeto não tem custo financeiro para o cliente.
 
@@ -922,7 +908,7 @@ atores, descrição, pré-condições, pós-condições, fluxo básico numerado 
 cada elemento indicada entre parênteses — `(ator)`, `(sistema)`, `(classe X)` e
 `(atributo)` —, regras de negócio, fluxos alternativos e fluxos de exceção. Os passos, os
 campos e as mensagens reproduzidos nos quadros a seguir correspondem exatamente ao
-comportamento implementado no sistema Analisador B3.
+comportamento especificado para o sistema Analisador B3.
 
 **Quadro 1. Descrição do caso de uso UC001.**
 
@@ -1558,9 +1544,9 @@ detalha o conteúdo admissível de cada atributo, servindo de contrato entre a a
 projeto do banco de dados e a implementação em C++.
 
 Os quadros desta seção descrevem as classes das camadas de **domínio**, de **análise** e de
-**persistência**, exatamente como foram implementadas no código-fonte (diretórios
-`src/dominio/`, `src/analise/` e `src/persistencia/`). Os nomes dos atributos são os nomes
-reais dos membros das classes, com o prefixo `m_` adotado como convenção do projeto para
+**persistência**, conforme o modelo de classes especificado para o sistema. Os nomes dos
+atributos são os nomes definidos para os membros das classes, com o prefixo `m_` adotado
+como convenção do projeto para
 atributos de instância; constantes de classe aparecem em maiúsculas, sem prefixo.
 
 Convenções adotadas nas colunas dos quadros, conforme a notação apresentada em aula:
@@ -2529,8 +2515,7 @@ O estudo de viabilidade confirmou a exequibilidade do projeto no contexto do
 cliente: custo zero em ferramentas, funcionamento offline, operação pelos próprios
 integrantes da equipe, que são também os usuários do sistema, e observância da
 regulamentação da CVM sobre análise de valores mobiliários e da LGPD. A estimativa
-de esforço, feita com o método Planning Poker (132 horas estimadas e 143
-realizadas), identificou os pontos de maior complexidade: a importação
+de esforço, feita com o método Planning Poker (132 horas estimadas), identificou os pontos de maior complexidade: a importação
 transacional de cotações, o painel gráfico de análise e o motor de recomendações.
 
 Destaca-se que o protótipo apresentado no Capítulo 4 já foi construído na
@@ -2543,10 +2528,11 @@ online de cotações são implementados no segundo bimestre.
 
 ## 5.1 Trabalhos Futuros
 
-Para o segundo bimestre, o projeto prossegue com: a modelagem dinâmica complementar
+Para o segundo bimestre, o projeto prossegue com: a implementação da persistência
+em banco de dados, do motor de análise com as regras de recomendação e da
+sincronização com a fonte online de cotações; a modelagem dinâmica complementar
 (Diagramas de Comunicação, mapeamento Entidade-Relacionamento, Diagramas de Estados
-e de Atividades); o endurecimento do sistema com a cobertura dos fluxos de exceção
-especificados e testes automatizados; e a preparação dos Testes de Validação, com a
+e de Atividades); e a preparação dos Testes de Validação, com a
 demonstração de cada caso de uso mapeada ao seu Diagrama de Sequência. Como
 evoluções além do escopo da disciplina, vislumbram-se novas regras de análise
 (MACD e Bandas de Bollinger), o agendamento automático da sincronização de

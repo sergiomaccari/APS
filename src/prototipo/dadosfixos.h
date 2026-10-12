@@ -7,8 +7,8 @@
 // leem e escrevem neste estado em memória. Nada é gravado em disco; ao fechar o
 // programa tudo volta à semente.
 //
-// A semente transcreve recursos/sql/002_dados_semente.sql e
-// 003_ativo_demonstracao.sql, as cotações de dados/*.csv (embutidas em
+// A semente transcreve os dados de demonstração do sistema completo (usuários,
+// ativos, carteira e regras), as cotações de dados/*.csv (embutidas em
 // recursos/prototipo.qrc como :/dados/<TICKER>.csv) e o que o sistema completo
 // produz em ferramentas/capturar-telas.cpp (importações, recomendações e
 // alertas), de modo que as telas mostrem os mesmos dados das figuras do
@@ -138,10 +138,10 @@ const QVector<Recomendacao>& pareceresDoAtivo(qint64 ativoId);
 // figuras do documento): criação dos alertas e execução das importações.
 QDateTime momentoDaSemente();
 
-// Mensagem fixa do resumo de importação (RP-05), para usar literalmente.
+// Mensagem fixa do resumo de importação, para usar literalmente.
 QString mensagemImportacaoFixa();
 
-// Mensagem fixa da sincronização online (RP-06), para usar literalmente.
+// Mensagem fixa da sincronização online, para usar literalmente.
 QString mensagemSincronizacaoFixa();
 
 }

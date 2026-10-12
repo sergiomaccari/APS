@@ -32,9 +32,10 @@ Thales Romagna Fabrowski.
 ## O que o protótipo não faz (fica para a versão final, 2º bimestre)
 
 - **Não grava nada em disco.** Ao fechar o programa, tudo volta ao estado inicial.
-- **Importação de cotações** mostra um resultado pré-pronto (650 cotações em
-  5 arquivos, `INVALIDO-exemplo.csv` rejeitado) e registra a linha no histórico,
-  mas não lê nem valida os arquivos.
+- **Importação de cotações** mostra um resultado pré-pronto (pasta inteira: 650
+  cotações em 5 arquivos, `INVALIDO-exemplo.csv` rejeitado; arquivo único: as
+  130 cotações do ativo) e registra a linha no histórico, mas não lê nem valida
+  os arquivos.
 - **Gerar recomendações** devolve as 5 recomendações de demonstração (PETR4,
   VALE3 e HGLG11 Compra; ITUB4 Neutro; MGLU3 Venda), sem executar o motor de
   análise.
