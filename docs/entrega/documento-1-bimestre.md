@@ -4,7 +4,7 @@
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Cliente: Equipe de desenvolvimento do AB3 (uso próprio)</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Leonardo P. Shibata e Thales R. Fabrowski</w:t></w:r></w:p>
-<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Projeto: AB3 — Versão: 0.8</w:t></w:r></w:p>
+<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="1200"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Projeto: AB3 — Versão: 0.9</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="2400"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>Curitiba</w:t></w:r></w:p>
 <w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:rPr><w:sz w:val="24"/></w:rPr><w:t>2026</w:t></w:r></w:p>
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
@@ -28,7 +28,7 @@
 {\large Cliente: Equipe de desenvolvimento do AB3 (uso próprio)}\\[0.3em]
 {\large Responsáveis no cliente: Sergio R. Maccari, Arthur D. B. Nunes,}\\
 {\large Leonardo P. Shibata e Thales R. Fabrowski}\\[1.5cm]
-{\large Projeto: AB3 --- Versão: 0.8}
+{\large Projeto: AB3 --- Versão: 0.9}
 \vfill
 {\large Curitiba}\\
 {\large 2026}
@@ -57,11 +57,12 @@
 | 18/08/26 | 0.1 | Definição do projeto e do escopo | Sergio, Arthur, Leonardo e Thales |
 | 19/08/26 | 0.2 | Criação das questões e respostas do levantamento | Sergio |
 | 19/08/26 | 0.3 | Definição dos requisitos e regras de negócio | Sergio |
-| 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker e UCP) | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker) | Sergio, Arthur, Leonardo e Thales |
 | 19/08/26 | 0.5 | Estudo de viabilidade | Sergio |
 | 19/08/26 | 0.6 | Modelagem — casos de uso, classes, dicionário, objetos e sequência | Sergio, Arthur, Leonardo e Thales |
 | 19/08/26 | 0.7 | Protótipo das telas e conclusões | Sergio, Arthur, Leonardo e Thales |
 | 11/10/26 | 0.8 | Revisão geral: cliente, estimativa de esforço, viabilidade e referências | Thales |
+| 12/10/26 | 0.9 | Ajuste do Capítulo 4 e das conclusões ao protótipo de telas; estimativa restrita ao Planning Poker | Sergio |
 
 ```{=openxml}
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
@@ -157,12 +158,8 @@ Figura 39. Diagrama de sequência para o [UC020].
 ```
 
 Tabela 1. Estimativa de esforço e tempo efetivamente realizado, em horas, para cada requisito funcional.  
-Tabela 2. Cálculo do peso não ajustado dos atores (UAW).  
-Tabela 3. Cálculo do peso não ajustado dos casos de uso (UUCW).  
-Tabela 4. Fatores de complexidade técnica (TCF).  
-Tabela 5. Fatores de ambiente (ECF).  
-Tabela 6. Nível de conhecimento dos integrantes em cada tecnologia.  
-Tabela 7. Horas, valor por hora e custo de desenvolvimento de cada integrante.  
+Tabela 2. Nível de conhecimento dos integrantes em cada tecnologia.  
+Tabela 3. Horas, valor por hora e custo de desenvolvimento de cada integrante.  
 Quadro 1. Descrição do caso de uso UC001.  
 Quadro 2. Descrição do caso de uso UC002.  
 Quadro 3. Descrição do caso de uso UC003.  
@@ -292,7 +289,6 @@ SGBD: Sistema Gerenciador de Banco de Dados.\
 SHA: Secure Hash Algorithm (algoritmo de resumo criptográfico).\
 SQL: Structured Query Language (Linguagem de Consulta Estruturada).\
 UC: Use Case (Caso de Uso).\
-UCP: Use Case Points (Pontos de Caso de Uso).\
 UML: Unified Modeling Language (Linguagem de Modelagem Unificada).
 
 ```{=latex}
@@ -354,8 +350,7 @@ Este documento está dividido em cinco partes:
    levantamento de requisitos, realizado com base no desenvolvimento de questões
    respondidas pela própria equipe, na condição de cliente do sistema, evidenciando
    as suas principais demandas. Também é realizada a estimativa de esforço de
-   software para cada requisito funcional, com o método Planning Poker,
-   complementada pela técnica de Pontos de Caso de Uso (UCP).
+   software para cada requisito funcional, com o método Planning Poker.
 2. **Capítulo 3: Estudo de Viabilidade.** Este capítulo explicita a viabilidade do
    projeto, examinando as ferramentas e recursos que serão utilizados.
 3. **Capítulo 4: Resultados.** Nesta seção está incluído o resultado do sistema,
@@ -388,8 +383,7 @@ requisitos funcionais e não funcionais, levantados com base nas respostas às
 questões, bem como restrições do projeto e requisitos de experiência do usuário, na
 finalidade de assimilar as necessidades e expectativas do cliente. Por fim, foi
 levantada a estimativa de esforço de software para cada requisito funcional,
-utilizando o método Planning Poker e, como verificação complementar, a técnica de
-Pontos de Caso de Uso (UCP).
+utilizando o método Planning Poker.
 
 Como a própria equipe é a cliente do sistema, as questões foram respondidas pelos
 seus quatro integrantes, na condição de futuros usuários, e as respostas a seguir
@@ -689,110 +683,6 @@ abaixo da estimativa, o que indica que o Planning Poker foi bem calibrado para
 tarefas conhecidas e tende a subestimar a integração com tecnologias novas —
 aprendizado que será aplicado às estimativas do segundo bimestre.
 
-### Verificação complementar com Pontos de Caso de Uso (UCP)
-
-Como contraprova da estimativa, aplicamos a técnica de Pontos de Caso de Uso
-(KARNER, 1993), nos cinco passos apresentados em aula.
-
-**Passo 1 — Peso dos atores (UAW).** Os dois atores do sistema, Administrador e
-Investidor, interagem por interface gráfica e são, portanto, complexos (peso 3):
-
-**Tabela 2. Cálculo do peso não ajustado dos atores (UAW).**
-
-| Ator | Classificação | Peso |
-|---|---|---|
-| Administrador | Complexo (interface gráfica) | 3 |
-| Investidor | Complexo (interface gráfica) | 3 |
-| **UAW** | | **6** |
-
-**Passo 2 — Peso dos casos de uso (UUCW).** Cada caso de uso foi classificado pelo
-número de transações de seu fluxo de eventos:
-
-**Tabela 3. Cálculo do peso não ajustado dos casos de uso (UUCW).**
-
-| Caso de uso | Transações | Classificação | Peso |
-|---|---|---|---|
-| UC001 Fazer login | 3 | Simples | 5 |
-| UC002 Cadastrar ativo | 5 | Médio | 10 |
-| UC003 Atualizar ativo | 6 | Médio | 10 |
-| UC004 Remover ativo | 3 | Simples | 5 |
-| UC005 Importar cotações | 8 | Complexo | 15 |
-| UC006 Configurar regra de análise | 5 | Médio | 10 |
-| UC007 Gerenciar usuários | 6 | Médio | 10 |
-| UC008 Buscar ativos | 2 | Simples | 5 |
-| UC009 Visualizar painel de análise | 8 | Complexo | 15 |
-| UC010 Visualizar detalhes do ativo | 4 | Médio | 10 |
-| UC011 Gerar recomendações | 9 | Complexo | 15 |
-| UC012 Visualizar recomendações vigentes | 5 | Médio | 10 |
-| UC013 Comprar ativo | 6 | Médio | 10 |
-| UC014 Vender ativo | 6 | Médio | 10 |
-| UC015 Visualizar resultado da carteira | 4 | Médio | 10 |
-| UC016 Cadastrar alerta | 5 | Médio | 10 |
-| UC017 Avaliar e disparar alertas | 7 | Complexo | 15 |
-| UC018 Arquivar alerta | 3 | Simples | 5 |
-| UC019 Sincronizar cotações online | 6 | Médio | 10 |
-| UC020 Executar backtesting das regras | 6 | Médio | 10 |
-| **UUCW** | | | **200** |
-
-Com isso, os pontos de caso de uso não ajustados são
-UUCP = UAW + UUCW = 6 + 200 = **206**.
-
-**Passo 3 — Fatores técnicos (TCF).**
-
-**Tabela 4. Fatores de complexidade técnica (TCF).**
-
-| Fator | Descrição | Peso | Valor (0–5) | Peso × Valor |
-|---|---|---|---|---|
-| F1 | Sistema distribuído | 2 | 0 | 0 |
-| F2 | Desempenho / tempo de resposta | 1 | 3 | 3 |
-| F3 | Eficiência do usuário final | 1 | 3 | 3 |
-| F4 | Processamento interno complexo | 1 | 3 | 3 |
-| F5 | Reusabilidade do código | 1 | 2 | 2 |
-| F6 | Facilidade de instalação | 0,5 | 4 | 2 |
-| F7 | Facilidade de uso | 0,5 | 4 | 2 |
-| F8 | Portabilidade | 2 | 2 | 4 |
-| F9 | Facilidade de mudança | 1 | 3 | 3 |
-| F10 | Concorrência | 1 | 0 | 0 |
-| F11 | Requisitos de segurança | 1 | 2 | 2 |
-| F12 | Acesso por terceiros | 1 | 0 | 0 |
-| F13 | Necessidade de treinamento especial | 1 | 1 | 1 |
-| **TFactor** | | | | **25** |
-
-TCF = 0,6 + (0,01 × 25) = **0,85**.
-
-**Passo 4 — Fatores de ambiente (ECF).** Os fatores F7 e F8 têm peso negativo:
-quanto maior o valor, mais eles reduzem a produtividade estimada.
-
-**Tabela 5. Fatores de ambiente (ECF).**
-
-| Fator | Descrição | Peso | Valor (0–5) | Peso × Valor |
-|---|---|---|---|---|
-| F1 | Familiaridade com o processo de desenvolvimento | 1,5 | 3 | 4,5 |
-| F2 | Experiência na aplicação (domínio financeiro) | 0,5 | 2 | 1,0 |
-| F3 | Experiência em orientação a objetos | 1 | 4 | 4,0 |
-| F4 | Capacidade do analista líder | 0,5 | 3 | 1,5 |
-| F5 | Motivação | 1 | 5 | 5,0 |
-| F6 | Estabilidade dos requisitos | 2 | 4 | 8,0 |
-| F7 | Equipe em tempo parcial | −1 | 5 | −5,0 |
-| F8 | Dificuldade da linguagem de programação | −1 | 3 | −3,0 |
-| **EFactor** | | | | **16,0** |
-
-ECF = 1,4 − (0,03 × 16,0) = **0,92**.
-
-**Passo 5 — Cálculo final.**
-UCP = UUCP × TCF × ECF = 206 × 0,85 × 0,92 = **161,09 pontos**.
-
-Aplicando a taxa clássica de Karner, de 20 horas por ponto, o esforço seria de
-3.222 horas — valor coerente com um projeto industrial completo (levantamento,
-gestão, testes formais, implantação e garantia), conduzido por equipe alocada em
-tempo integral. Para o recorte desta disciplina, a leitura relevante do UCP é
-relativa: os casos de uso classificados como complexos (UC005, UC009, UC011 e
-UC017) correspondem exatamente aos requisitos com as maiores cartas no Planning
-Poker ([RF005], [RF009], [RF012] e [RF018]), o que dá consistência às duas
-técnicas. Adotamos como compromisso operacional a estimativa do Planning Poker
-(132 horas de implementação), usando o UCP como medida de tamanho funcional e como
-verificação da classificação de esforço entre os casos de uso.
-
 
 
 ```{=openxml}
@@ -849,12 +739,12 @@ algoritmos de análise técnica previstos (médias móveis simples e exponencial
 1978; MURPHY, 1999) e são implementáveis diretamente sobre as séries de cotações
 importadas.
 
-A Tabela 6 apresenta o nível de conhecimento de cada integrante nas
+A Tabela 2 apresenta o nível de conhecimento de cada integrante nas
 tecnologias do projeto, em três graus: básico (conhece os conceitos e já os aplicou
 em exercícios), intermediário (já desenvolveu projetos acadêmicos com a tecnologia)
 e avançado (utiliza a tecnologia com autonomia em projetos de maior porte).
 
-**Tabela 6. Nível de conhecimento dos integrantes em cada tecnologia.**
+**Tabela 2. Nível de conhecimento dos integrantes em cada tecnologia.**
 
 | Tecnologia | Sergio | Arthur | Leonardo | Thales |
 |--------------|-----------|-----------|-----------|-----------|
@@ -935,9 +825,9 @@ Considerando as 132 horas estimadas por meio do Planning Poker (Tabela
 1), divididas igualmente entre os quatro integrantes, e adotando como
 referência o valor de R$ 30,00 por hora — compatível com a remuneração de um
 desenvolvedor de software em início de carreira —, o custo de desenvolvimento do
-projeto é apresentado na Tabela 7.
+projeto é apresentado na Tabela 3.
 
-**Tabela 7. Horas, valor por hora e custo de desenvolvimento de cada integrante.**
+**Tabela 3. Horas, valor por hora e custo de desenvolvimento de cada integrante.**
 
 | Integrante | Horas estimadas | Valor por hora (R$) | Custo (R$) |
 |------------------------|------------|------------|------------|
@@ -968,8 +858,11 @@ hardware e dados, o projeto não tem custo financeiro para o cliente.
 ## 4.1 Conteúdo dos Resultados
 
 Este capítulo apresenta os resultados do projeto em duas partes. A primeira é o
-protótipo das telas do sistema, já construído na tecnologia definitiva (C++ com
-Qt 6) e navegável de ponta a ponta, cobrindo todos os casos de uso levantados. A
+protótipo das telas do sistema, construído na tecnologia de interface definitiva
+(C++ com Qt 6) e navegável de ponta a ponta, cobrindo todos os casos de uso
+levantados. O protótipo opera sobre dados de demonstração fixos, mantidos em memória
+durante a sessão; a persistência em banco de dados, o motor de análise e a
+integração com a fonte online de cotações são implementados no segundo bimestre. A
 segunda é a modelagem do sistema: o Diagrama de Casos de Uso, a especificação de
 cada caso de uso no padrão da disciplina, o Diagrama de Classes com o dicionário de
 informações, os Diagramas de Objetos e um Diagrama de Sequência para cada caso de
@@ -977,8 +870,8 @@ uso.
 
 ### Protótipo das telas
 
-As figuras a seguir apresentam as telas do protótipo em execução, com dados reais
-importados de arquivos CSV de cotações.
+As figuras a seguir apresentam as telas do protótipo em execução, com os dados de
+demonstração utilizados na navegação dos casos de uso.
 
 ![Figura 2. Protótipo da tela de login.](figuras/tela-01-login.png)
 
@@ -2636,16 +2529,17 @@ O estudo de viabilidade confirmou a exequibilidade do projeto no contexto do
 cliente: custo zero em ferramentas, funcionamento offline, operação pelos próprios
 integrantes da equipe, que são também os usuários do sistema, e observância da
 regulamentação da CVM sobre análise de valores mobiliários e da LGPD. A estimativa
-de esforço combinou duas técnicas — Planning Poker (132 horas estimadas e 143
-realizadas) e Pontos de Caso de Uso (161,09 UCP) — que convergiram na
-identificação dos pontos de maior complexidade: a importação transacional de
-cotações, o painel gráfico de análise e o motor de recomendações.
+de esforço, feita com o método Planning Poker (132 horas estimadas e 143
+realizadas), identificou os pontos de maior complexidade: a importação
+transacional de cotações, o painel gráfico de análise e o motor de recomendações.
 
 Destaca-se que o protótipo apresentado no Capítulo 4 já foi construído na
-tecnologia definitiva (C++ com Qt 6 e SQLite), navegável em todos os casos de uso e
-calculando indicadores reais sobre cotações importadas — o que antecipa riscos
-técnicos que só apareceriam na implementação e dá segurança às estimativas
-apresentadas.
+tecnologia de interface definitiva (C++ com Qt 6), com as mesmas telas da versão
+final, navegável em todos os casos de uso e operando sobre dados de demonstração
+fixos mantidos em memória — o que antecipa riscos de interface e de navegação que
+só apareceriam na implementação e dá segurança às estimativas apresentadas. A
+persistência em banco de dados, o motor de análise e a integração com a fonte
+online de cotações são implementados no segundo bimestre.
 
 ## 5.1 Trabalhos Futuros
 
@@ -2699,9 +2593,6 @@ planning**. Hawthorn Woods: Renaissance Software Consulting, 2002.
 
 INVESTING.COM. **Cotações e dados históricos — ações e fundos imobiliários da
 B3**. Disponível em: https://br.investing.com/. Acesso em: ago. 2026.
-
-KARNER, G. **Resource estimation for Objectory projects**. Kista: Objective Systems
-SF AB, 1993.
 
 MURPHY, J. J. **Technical analysis of the financial markets**. New York: New York
 Institute of Finance, 1999.

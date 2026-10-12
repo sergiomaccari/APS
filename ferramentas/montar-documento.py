@@ -29,6 +29,16 @@ MIOLO_COMUM = [
     "05-estimativa.md",
     "06-viabilidade.md",
 ]
+# O 1º bimestre só traz conteúdo visto até a Aula 10: as variantes "-1bim"
+# retiram os Pontos de Caso de Uso (Aula 12), que só o 2º bimestre apresenta.
+MIOLO_1BIM = [
+    "01-abreviaturas-1bim.md",
+    "02-introducao-1bim.md",
+    "03-levantamento-questoes-1bim.md",
+    "04-requisitos.md",
+    "05-estimativa-1bim.md",
+    "06-viabilidade.md",
+]
 MODELAGEM_1BIM = [
     "quadros-uc-01-09.md",
     "quadros-uc-10-18.md",
@@ -39,9 +49,9 @@ MODELAGEM_1BIM = [
     "10-modelagem-sequencia.md",
 ]
 MANIFESTOS = {
-    "1": ["00-capa-1bim.md", "@SUMARIO", "@LISTAS"] + MIOLO_COMUM
+    "1": ["00-capa-1bim.md", "@SUMARIO", "@LISTAS"] + MIOLO_1BIM
          + ["07-resultados-abre-1bim.md"] + MODELAGEM_1BIM
-         + ["15-conclusoes-1bim.md", "16-referencias.md"],
+         + ["15-conclusoes-1bim.md", "16-referencias-1bim.md"],
     "2": ["00-capa-2bim.md", "@SUMARIO", "@LISTAS"] + MIOLO_COMUM
          + ["07-resultados-abre-2bim.md"] + MODELAGEM_1BIM
          + ["11-modelagem-comunicacao.md", "12-modelagem-der.md",

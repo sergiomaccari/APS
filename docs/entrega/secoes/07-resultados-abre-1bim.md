@@ -3,8 +3,11 @@
 ## 4.1 Conteúdo dos Resultados
 
 Este capítulo apresenta os resultados do projeto em duas partes. A primeira é o
-protótipo das telas do sistema, já construído na tecnologia definitiva (C++ com
-Qt 6) e navegável de ponta a ponta, cobrindo todos os casos de uso levantados. A
+protótipo das telas do sistema, construído na tecnologia de interface definitiva
+(C++ com Qt 6) e navegável de ponta a ponta, cobrindo todos os casos de uso
+levantados. O protótipo opera sobre dados de demonstração fixos, mantidos em memória
+durante a sessão; a persistência em banco de dados, o motor de análise e a
+integração com a fonte online de cotações são implementados no segundo bimestre. A
 segunda é a modelagem do sistema: o Diagrama de Casos de Uso, a especificação de
 cada caso de uso no padrão da disciplina, o Diagrama de Classes com o dicionário de
 informações, os Diagramas de Objetos e um Diagrama de Sequência para cada caso de
@@ -12,8 +15,8 @@ uso.
 
 ### Protótipo das telas
 
-As figuras a seguir apresentam as telas do protótipo em execução, com dados reais
-importados de arquivos CSV de cotações.
+As figuras a seguir apresentam as telas do protótipo em execução, com os dados de
+demonstração utilizados na navegação dos casos de uso.
 
 ![Figura {{F:tela-01-login}}. Protótipo da tela de login.](figuras/tela-01-login.png)
 

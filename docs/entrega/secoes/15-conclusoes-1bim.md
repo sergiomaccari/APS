@@ -13,16 +13,17 @@ O estudo de viabilidade confirmou a exequibilidade do projeto no contexto do
 cliente: custo zero em ferramentas, funcionamento offline, operação pelos próprios
 integrantes da equipe, que são também os usuários do sistema, e observância da
 regulamentação da CVM sobre análise de valores mobiliários e da LGPD. A estimativa
-de esforço combinou duas técnicas — Planning Poker (132 horas estimadas e 143
-realizadas) e Pontos de Caso de Uso (161,09 UCP) — que convergiram na
-identificação dos pontos de maior complexidade: a importação transacional de
-cotações, o painel gráfico de análise e o motor de recomendações.
+de esforço, feita com o método Planning Poker (132 horas estimadas e 143
+realizadas), identificou os pontos de maior complexidade: a importação
+transacional de cotações, o painel gráfico de análise e o motor de recomendações.
 
 Destaca-se que o protótipo apresentado no Capítulo 4 já foi construído na
-tecnologia definitiva (C++ com Qt 6 e SQLite), navegável em todos os casos de uso e
-calculando indicadores reais sobre cotações importadas — o que antecipa riscos
-técnicos que só apareceriam na implementação e dá segurança às estimativas
-apresentadas.
+tecnologia de interface definitiva (C++ com Qt 6), com as mesmas telas da versão
+final, navegável em todos os casos de uso e operando sobre dados de demonstração
+fixos mantidos em memória — o que antecipa riscos de interface e de navegação que
+só apareceriam na implementação e dá segurança às estimativas apresentadas. A
+persistência em banco de dados, o motor de análise e a integração com a fonte
+online de cotações são implementados no segundo bimestre.
 
 ## 5.1 Trabalhos Futuros
 
