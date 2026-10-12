@@ -95,3 +95,9 @@
 - Revisão do conjunto: 0 críticos, 3 importantes e 11 menores, todos tratados no commit `c060412` (inclui `.gitignore` da branch da entrega cobrindo o material privado que fica no disco).
 - Documentos de apoio: roteiro da apresentação de 20/10 reescrito para o protótipo, `docs/entrega/README-entrega.md`, `docs/processos/prototipo-vs-versao-final.md` e seção nova no doc da equipe.
 - **Pendências restantes:** ensaiar o roteiro e dividir os blocos; entregar no Moodle/na forma que o professor pede; decidir os pontos do documento listados no HANDOFF (cliente "própria equipe" sem ADR, Figura 1 do Planning Poker, histórico de versões, nível de conhecimento, R$ 30/h, TLS, `dicionario-parte2.md:123`); mesclar `feat/prototipo-stubs` em `main` quando aprovado.
+
+## 2026-10-12 (lentidão nas telas com gráfico)
+- Relato do Leonardo (Windows): troca lenta só para "Painel de análise" e "Detalhes do ativo".
+- Causa 1, Detalhes do ativo: a tabela de 60 cotações com cabeçalho em `ResizeToContents` recalculava a largura das colunas a cada `setItem()`, com custo quadrático (~250 ms por entrada). Correção: modo `Interactive` durante o preenchimento e `ResizeToContents` restaurado ao fim; mesmas larguras. Medido: 250 → 9 ms.
+- Causa 2, Painel de análise: o gráfico de velas era recriado a cada entrada com animação de séries de 1 s (~65 redesenhos completos). Correção: animação removida; o gráfico aparece pronto. Medido: 130 → 4 redesenhos no 1,5 s após entrar.
+- Vale para o protótipo e para o sistema completo (código em `src/ui/`). 5 alvos de teste passando; capturas das telas com gráfico idênticas às anteriores. Branch `entrega-13-10` regerada.

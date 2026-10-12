@@ -164,6 +164,14 @@ void TelaDetalheAtivo::redesenhar()
     const int quantidade = qMin(LINHAS_TABELA, total);
     m_tabelaCotacoes->setRowCount(quantidade);
 
+    // Com o cabecalho em ResizeToContents, cada setItem() faz o Qt recalcular a
+    // largura das colunas percorrendo todas as linhas: o custo cresce com o
+    // quadrado das linhas (~240 ms para 60 x 7 celulas, a cada entrada na tela).
+    // Durante o preenchimento o modo fica Interactive; ao restaurar o modo, as
+    // larguras sao calculadas uma unica vez, com o mesmo resultado visual.
+    QHeaderView* cabecalho = m_tabelaCotacoes->horizontalHeader();
+    cabecalho->setSectionResizeMode(QHeaderView::Interactive);
+
     for (int i = 0; i < quantidade; ++i)
     {
         const Cotacao& cotacao = historico.at(total - 1 - i);
@@ -181,6 +189,7 @@ void TelaDetalheAtivo::redesenhar()
         m_tabelaCotacoes->setItem(i, 5, celulaVariacao);
         m_tabelaCotacoes->setItem(i, 6, new QTableWidgetItem(brasil.toString(cotacao.volume())));
     }
+    cabecalho->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     const QVector<Recomendacao> pareceres = m_contexto.servicoRecomendacao.detalharPorRegra(ativoId);
     if (pareceres.isEmpty())

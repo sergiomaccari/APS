@@ -93,7 +93,9 @@ void GraficoCandlestick::definirDados(const QString& titulo,
 
     auto* grafico = new QChart();
     grafico->setTitle(titulo);
-    grafico->setAnimationOptions(QChart::SeriesAnimations);
+    // Sem animacao de series: o grafico e recriado a cada entrada no painel, e a
+    // animacao (1 s, ~65 quadros redesenhando o grafico inteiro) se repetia a
+    // cada troca de tela, deixando a navegacao lenta em maquinas mais fracas.
 
     auto* candles = new QCandlestickSeries();
     candles->setName(QString::fromUtf8("Cotação diária"));
