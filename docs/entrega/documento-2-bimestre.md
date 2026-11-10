@@ -60,13 +60,13 @@
 | 19/08/26 | 0.4 | Estimativa de esforço (Planning Poker e UCP) | Sergio, Arthur, Leonardo e Thales |
 | 19/08/26 | 0.5 | Estudo de viabilidade | Sergio |
 | 19/08/26 | 0.6 | Modelagem — casos de uso, classes, dicionário, objetos e sequência | Sergio, Arthur, Leonardo e Thales |
-| 19/08/26 | 0.7 | Protótipo das telas — 1ª entrega | Sergio, Arthur, Leonardo e Thales |
-| 19/08/26 | 0.8.1 | Diagramas de Comunicação | Sergio, Arthur, Leonardo e Thales |
-| 19/08/26 | 0.8.2 | Mapeamento para o Diagrama Entidade-Relacionamento | Sergio, Arthur, Leonardo e Thales |
-| 19/08/26 | 0.8.3 | Diagramas de Estados | Sergio, Arthur, Leonardo e Thales |
-| 19/08/26 | 0.8.4 | Diagramas de Atividades | Sergio, Arthur, Leonardo e Thales |
-| 19/08/26 | 0.9 | Implementação do sistema e testes | Sergio, Arthur, Leonardo e Thales |
-| 19/08/26 | 1.0 | Conclusão final | Sergio, Arthur, Leonardo e Thales |
+| 19/08/26 | 0.7 | Protótipo das telas e conclusões | Sergio, Arthur, Leonardo e Thales |
+| 11/10/26 | 0.8 | Revisão geral: cliente, estimativa de esforço, viabilidade e referências | Thales |
+| 12/10/26 | 0.9 | Ajuste do Capítulo 4 e das conclusões ao protótipo de telas; estimativa restrita ao Planning Poker; tabela de estimativa sem tempo realizado | Sergio |
+| 09/11/26 | 0.9.1 | Diagramas de Comunicação e mapeamento para o Diagrama Entidade-Relacionamento | Sergio, Arthur, Leonardo e Thales |
+| 09/11/26 | 0.9.2 | Diagramas de Estados e Diagramas de Atividades | Sergio, Arthur, Leonardo e Thales |
+| 09/11/26 | 0.9.3 | Implementação do sistema e testes automatizados; Capítulo 4 com as telas do sistema final; estimativa com tempo realizado e verificação por Pontos de Caso de Uso | Sergio, Arthur, Leonardo e Thales |
+| 09/11/26 | 1.0 | Revisão final, lista de abreviaturas e conclusões | Sergio |
 
 ```{=openxml}
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>
@@ -387,15 +387,23 @@ Quadro 88. Dicionário de informações da classe GraficoLinha.
 ```
 
 AB3: Analisador de Ativos da B3 (nome do sistema).\
+API: Application Programming Interface (Interface de Programação de Aplicações).\
 B3: Brasil, Bolsa, Balcão (bolsa de valores brasileira).\
 CSV: Comma-Separated Values (valores separados por delimitador).\
 CVM: Comissão de Valores Mobiliários.\
 DER: Diagrama Entidade-Relacionamento.\
 DY: Dividend Yield (rendimento de dividendos).\
+ECF: Environmental Complexity Factor (Fator de Complexidade Ambiental).\
 FII: Fundo de Investimento Imobiliário.\
+HTTPS: Hypertext Transfer Protocol Secure (protocolo de transferência de hipertexto seguro).\
+JSON: JavaScript Object Notation (formato de troca de dados).\
 LGPD: Lei Geral de Proteção de Dados Pessoais.\
-POO: Programação Orientada a Objetos.\
+MACD: Moving Average Convergence Divergence (Convergência e Divergência de Médias Móveis).\
+MME: Média Móvel Exponencial.\
+MMS: Média Móvel Simples.\
+OHLCV: Open, High, Low, Close, Volume (abertura, máxima, mínima, fechamento e volume).\
 P/L: Índice Preço sobre Lucro.\
+POO: Programação Orientada a Objetos.\
 REU: Requisito de Experiência de Usuário.\
 RF: Requisito Funcional.\
 RN: Regra de Negócio.\
@@ -405,9 +413,14 @@ RSI: Relative Strength Index (Índice de Força Relativa).\
 SGBD: Sistema Gerenciador de Banco de Dados.\
 SHA: Secure Hash Algorithm (algoritmo de resumo criptográfico).\
 SQL: Structured Query Language (Linguagem de Consulta Estruturada).\
+TCF: Technical Complexity Factor (Fator de Complexidade Técnica).\
+TLS: Transport Layer Security (protocolo de segurança da camada de transporte).\
+UAW: Unadjusted Actor Weight (Peso Não Ajustado dos Atores).\
 UC: Use Case (Caso de Uso).\
 UCP: Use Case Points (Pontos de Caso de Uso).\
-UML: Unified Modeling Language (Linguagem de Modelagem Unificada).
+UML: Unified Modeling Language (Linguagem de Modelagem Unificada).\
+UUCP: Unadjusted Use Case Points (Pontos de Caso de Uso Não Ajustados).\
+UUCW: Unadjusted Use Case Weight (Peso Não Ajustado dos Casos de Uso).
 
 ```{=latex}
 \endgroup
@@ -3010,8 +3023,9 @@ configuráveis na média do parecer consolidado. A rastreabilidade planejada foi
 ponta a ponta: cada requisito funcional corresponde a um caso de uso, cada caso de
 uso às classes que o realizam, e cada classe às tabelas que a persistem — o mesmo
 esquema SQL modelado no Diagrama Entidade-Relacionamento é o executado pelo
-sistema. A implementação é acompanhada de 67 casos de teste automatizados (Qt
-Test) cobrindo os indicadores, as regras de análise e os serviços.
+sistema. A implementação é acompanhada de 88 casos de teste automatizados (Qt
+Test), distribuídos em cinco conjuntos que cobrem os indicadores, as regras de
+análise, a importação transacional, a sincronização online e o backtesting.
 
 As divergências encontradas durante a implementação foram reincorporadas à
 modelagem — os documentos descrevem o sistema como ele é, não como se imaginou que

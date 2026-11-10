@@ -23,8 +23,9 @@ configuráveis na média do parecer consolidado. A rastreabilidade planejada foi
 ponta a ponta: cada requisito funcional corresponde a um caso de uso, cada caso de
 uso às classes que o realizam, e cada classe às tabelas que a persistem — o mesmo
 esquema SQL modelado no Diagrama Entidade-Relacionamento é o executado pelo
-sistema. A implementação é acompanhada de 67 casos de teste automatizados (Qt
-Test) cobrindo os indicadores, as regras de análise e os serviços.
+sistema. A implementação é acompanhada de 88 casos de teste automatizados (Qt
+Test), distribuídos em cinco conjuntos que cobrem os indicadores, as regras de
+análise, a importação transacional, a sincronização online e o backtesting.
 
 As divergências encontradas durante a implementação foram reincorporadas à
 modelagem — os documentos descrevem o sistema como ele é, não como se imaginou que
