@@ -1,0 +1,23 @@
+# Build do CMake e artefatos locais
+build*/
+capturas*/
+*.user
+
+# Editores / sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Arquivos locais que nunca devem ser versionados
+inicio.txt
+.env
+.env.*
+.claude/
+.agents/
+APS/
+docs/analises/
+padroes/
+design-system/
+cofre*
