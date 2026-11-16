@@ -1,8 +1,21 @@
 # HANDOFF — retomada entre sessões
 
-> Atualizado em **2026-10-12**. Leia junto com [`../MARCOS.md`](../MARCOS.md) e [`../LOG.md`](../LOG.md).
+> Atualizado em **2026-11-16** (bloco do topo); o restante é de **2026-10-12**. Leia junto com [`../MARCOS.md`](../MARCOS.md) e [`../LOG.md`](../LOG.md).
 
-## Estado atual (resumo de 1 parágrafo)
+## ⚠️ Atualização de 16/11 (véspera da entrega do 2º bimestre)
+
+- A entrega de 17/11 está na branch órfã **`entrega-17-11`** (documento do 2º
+  bimestre v1.0 em `.md/.docx/.pdf`, sistema completo, testes e
+  `docs/processos/roteiro-testes-validacao.md`).
+- O documento dessa branch é **mais novo que o da `main`** e as seções-fonte que o
+  geraram não estão no GitHub. Antes de regerar o documento a partir da `main`,
+  trazer essas mudanças para `docs/entrega/secoes/` (o diff entre os dois
+  `documento-2-bimestre.md` mostra exatamente o que mudou), senão elas se perdem.
+- Em 16/11 as datas das versões 0.9.1–1.0 do Histórico de Modificações foram
+  redistribuídas (pedido do Leonardo): 26/10, 03/11, 09/11 e 16/11.
+- Ferramentas ausentes nesta WSL hoje: Qt, pandoc e tectonic.
+
+## Estado atual em 12/10 (resumo de 1 parágrafo)
 
 Véspera da entrega do 1º bimestre (13/10). O **sistema completo** está em `main`
 (5 alvos de teste, 88 casos; inclui a revisão do Thales de 11/10, incorporada por

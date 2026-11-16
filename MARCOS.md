@@ -15,7 +15,7 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | 2b | Leitura das 14 aulas (desbloqueadas com a senha) e síntese das convenções do professor | não necessário | `docs/analises/aulas-*.md` regravados com conteúdo real | ✅ | 2026-08-18 |
 | 3 | Trabalho 1º bimestre — Plano do Projeto (parte escrita, 8,0 pts) | [`docs/planos/0001-plano-1o-bimestre.md`](docs/planos/0001-plano-1o-bimestre.md) | Documento no modelo do professor completo, revisado, entregue até 13/10/2026 | ✅ entregue (13/10; confirmado pelo Sergio em 09/11) | 2026-11-09 |
 | 4 | Protótipo de telas (2,0 pts) | idem + [`roteiro`](docs/processos/roteiro-apresentacao-1.md) | Telas gráficas funcionais cobrindo os casos de uso, apresentadas em 20/10/2026 | ✅ entregue e apresentado (confirmado pelo Sergio em 09/11) | 2026-11-09 |
-| 5 | Trabalho 2º bimestre — Projeto (parte escrita, 8,0 pts) | [`docs/planos/0002-plano-2o-bimestre.md`](docs/planos/0002-plano-2o-bimestre.md) | Documento completo (comunicação, DER, estados, atividades, protótipo) entregue até 17/11/2026 | 🟡 minuta completa | 2026-08-19 |
+| 5 | Trabalho 2º bimestre — Projeto (parte escrita, 8,0 pts) | [`docs/planos/0002-plano-2o-bimestre.md`](docs/planos/0002-plano-2o-bimestre.md) | Documento completo (comunicação, DER, estados, atividades, protótipo) entregue até 17/11/2026 | 🟡 versão 1.0 na branch `entrega-17-11`; falta entregar | 2026-11-16 |
 | 6 | Sistema funcionando + Testes de Validação (2,0 pts) | [`docs/planos/0002-plano-2o-bimestre.md`](docs/planos/0002-plano-2o-bimestre.md) | Requisitos atendidos pelos casos de uso e diagramas de sequência demonstrados em 24/11/2026 | 🟡 | 2026-08-19 |
 
 ### Implementação do sistema (`main`; protótipo de telas em `feat/prototipo-stubs`)
@@ -45,7 +45,7 @@ Legenda: ⬜ pendente · 🟡 em andamento · ✅ concluído · ❌ bloqueado
 | 123 diagramas UML verificados visualmente | ✅ | UC, 3 classes, 2 objetos, DER, 18 seq, 18 com, 40 estados, 40 atividades |
 | Seções de texto (78+ quadros no formato do professor) | ✅ | entrevista, requisitos, Planning Poker + UCP, viabilidade, 18 UCs, dicionário |
 | `documento-1-bimestre.md/.docx/.pdf` | ✅ versão 0.9 | 39 figuras, 91 quadros/tabelas; só Planning Poker na estimativa; variantes `-1bim` das seções que afirmavam implementação |
-| `documento-2-bimestre.md/.docx` | 🟡 versão 1.0 em revisão | 148 figuras, 95 tabelas/quadros; alinhado ao documento do 1º bimestre em 09/11 (histórico, siglas, 88 testes) |
+| `documento-2-bimestre.md/.docx/.pdf` | 🟡 versão 1.0 na `entrega-17-11` | 148 figuras, 95 tabelas/quadros; alinhado ao 1º bimestre em 09/11; datas do histórico redistribuídas em 16/11 (pedido do Leonardo). ⚠️ A versão da `entrega-17-11` é mais nova que a da `main` e as seções-fonte dela não estão no repositório (ver `LOG.md` de 16/11) |
 | Revisão da equipe + pendências 🟦 dos documentos | 🟡 | revisão do Thales (11/10) incorporada; resolvidos em 12/10: UCP, "Tempo realizado"/143 h, R$ 4.290, Capítulo 4. Faltam: cliente "própria equipe" sem ADR, Figura 1 do Planning Poker (imagem gerada × texto de sessão online), datas/autores do histórico, tabela de nível de conhecimento, R$ 30/h sem fonte, TLS nas abreviaturas, `dicionario-parte2.md:123` (FonteYahooFinance) |
 | ⚠️ Limpeza do histórico público (material Driva) | ❌ bloqueado | aguarda aprovação do Sergio — ver HANDOFF pendência 0 |
 

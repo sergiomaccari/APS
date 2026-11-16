@@ -2,9 +2,20 @@
 
 > Documento vivo, mantido pela IA (Claude) que o Sergio usa no dia a dia como Tech
 > Lead. Explica **como o projeto da disciplina está sendo conduzido**, o raciocínio
-> por trás de cada etapa e como vocês participam. Última atualização: **12/10/2026**.
+> por trás de cada etapa e como vocês participam. Última atualização: **16/11/2026**.
 
-## 0. NOVO (12/10/2026) — o protótipo mudou e a entrega está na branch `entrega-13-10`
+## 0. NOVO (16/11/2026) — entrega do 2º bimestre na branch `entrega-17-11`
+
+- O documento e o sistema que vão para a entrega de 17/11 estão na branch
+  **`entrega-17-11`** (PDF em `docs/entrega/documento-2-bimestre.pdf`). O roteiro
+  dos Testes de Validação de 24/11 está em `docs/processos/roteiro-testes-validacao.md`
+  dessa mesma branch.
+- **Histórico de Modificações (página 3):** a pedido do Leo, as versões do 2º
+  bimestre deixaram de estar todas em 09/11 — agora 0.9.1 em 26/10, 0.9.2 em 03/11,
+  0.9.3 em 09/11 e 1.0 em 16/11, seguindo o cronograma do plano do 2º bimestre.
+  Só as datas mudaram; o resto do documento está idêntico.
+
+## 0a. (12/10/2026) — o protótipo mudou e a entrega está na branch `entrega-13-10`
 
 > 📌 **Leia primeiro:**
 > [`docs/processos/prototipo-vs-versao-final.md`](docs/processos/prototipo-vs-versao-final.md)

@@ -63,7 +63,7 @@
 | 19/08/26 | 0.7 | Protótipo das telas e conclusões | Sergio, Arthur, Leonardo e Thales |
 | 11/10/26 | 0.8 | Revisão geral: cliente, estimativa de esforço, viabilidade e referências | Thales |
 | 12/10/26 | 0.9 | Ajuste do Capítulo 4 e das conclusões ao protótipo de telas; estimativa restrita ao Planning Poker; tabela de estimativa sem tempo realizado | Sergio |
-| 09/11/26 | 0.9.1 | Diagramas de Comunicação e mapeamento para o Diagrama Entidade-Relacionamento | Sergio, Arthur, Leonardo e Thales |
-| 09/11/26 | 0.9.2 | Diagramas de Estados e Diagramas de Atividades | Sergio, Arthur, Leonardo e Thales |
+| 26/10/26 | 0.9.1 | Diagramas de Comunicação e mapeamento para o Diagrama Entidade-Relacionamento | Sergio, Arthur, Leonardo e Thales |
+| 03/11/26 | 0.9.2 | Diagramas de Estados e Diagramas de Atividades | Sergio, Arthur, Leonardo e Thales |
 | 09/11/26 | 0.9.3 | Implementação do sistema e testes automatizados; Capítulo 4 com as telas do sistema final; estimativa com tempo realizado e verificação por Pontos de Caso de Uso | Sergio, Arthur, Leonardo e Thales |
-| 09/11/26 | 1.0 | Revisão final, lista de abreviaturas e conclusões | Sergio |
+| 16/11/26 | 1.0 | Revisão final, lista de abreviaturas e conclusões | Sergio |
